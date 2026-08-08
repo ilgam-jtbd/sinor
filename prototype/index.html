@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시놀 프로토타입 · 4대 메뉴 (홈·여행·만남·모임)</title>
+<style>
+:root{
+  --teal:#0F6E68; --teal-d:#0A524D; --teal-bg:#E7F1EF;
+  --coral:#E8683D; --coral-bg:#FCEDE6;
+  --gold:#E6A817; --gold-bg:#FBF1D8;
+  --ground:#FBF9F5; --card:#FFFFFF; --card-2:#F5F2EC;
+  --ink:#22201C; --ink-2:#5C574E; --ink-3:#8A8377;
+  --line:#E7E1D6; --line-2:#D8D0C2;
+  --ok:#1E7A4D; --danger:#C0392B;
+  --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --shadow:0 2px 10px rgba(34,32,28,.07),0 1px 3px rgba(34,32,28,.05);
+  --shadow-lg:0 8px 30px rgba(34,32,28,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--sans); background:#2A2824; color:var(--ink);
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column; align-items:center; min-height:100%;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ---------- stage ---------- */
+.stage{width:100%;max-width:1160px;padding:22px 16px 60px}
+.stagehead{color:#EDE9E1;text-align:center;margin-bottom:20px}
+.stagehead h1{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.stagehead p{font-size:13px;color:#B4ADA0;margin-top:5px}
+.toggle{display:inline-flex;background:#3C3934;border-radius:999px;padding:4px;margin-top:14px;gap:2px}
+.toggle button{padding:8px 20px;border-radius:999px;font-size:14px;font-weight:700;color:#B4ADA0}
+.toggle button.on{background:var(--ground);color:var(--ink)}
+
+.frames{display:flex;gap:26px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+
+/* ---------- phone ---------- */
+.phone{
+  width:390px;max-width:100%;height:800px;background:var(--ground);
+  border-radius:36px;border:10px solid #17150F;box-shadow:var(--shadow-lg);
+  overflow:hidden;position:relative;display:flex;flex-direction:column;
+}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:26px;background:#17150F;border-radius:0 0 16px 16px;z-index:60}
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth}
+.screen::-webkit-scrollbar{width:0}
+.view{display:none;padding-bottom:20px}
+.view.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* header */
+.apphead{position:sticky;top:0;z-index:40;background:var(--ground);padding:34px 18px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px}
+.logo{width:30px;height:30px;border-radius:9px;background:var(--teal);color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center}
+.loc{font-size:15px;font-weight:700;color:var(--ink)}
+.loc small{color:var(--ink-3);font-weight:500}
+.hicons{display:flex;align-items:center;gap:6px}
+.mypage-btn{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line-2);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700;color:var(--teal);min-height:40px}
+.bell{width:40px;height:40px;border-radius:999px;background:var(--card);border:1px solid var(--line-2);display:grid;place-items:center;font-size:16px;position:relative}
+.bell .dot{position:absolute;top:9px;right:10px;width:7px;height:7px;border-radius:999px;background:var(--coral)}
+
+/* search */
+.searchbar{margin:12px 18px 4px;background:var(--card);border:1.5px solid var(--teal);border-radius:999px;padding:13px 18px;font-size:16px;color:var(--ink-3);display:flex;align-items:center;gap:10px}
+
+.sec{padding:18px 18px 4px}
+.sec h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:3px}
+.sec .subttl{font-size:13.5px;color:var(--ink-3);margin-bottom:12px}
+.seclink{float:right;font-size:14px;color:var(--teal);font-weight:700}
+
+/* quick menu */
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:8px 18px 4px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 8px;text-align:center;box-shadow:var(--shadow)}
+.qcard .emo{font-size:26px}
+.qcard .lb{font-size:15px;font-weight:800;margin-top:6px;color:var(--ink)}
+.qcard .dc{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+
+/* recommend strip */
+.today{display:flex;gap:10px;overflow-x:auto;padding:8px 18px 14px;scroll-snap-type:x mandatory}
+.today::-webkit-scrollbar{height:0}
+.tcard{scroll-snap-align:start;flex:0 0 74%;border-radius:18px;padding:18px;color:#fff;box-shadow:var(--shadow);min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+.tcard.t1{background:linear-gradient(135deg,#0F6E68,#0A524D)}
+.tcard.t2{background:linear-gradient(135deg,#E8683D,#C94E27)}
+.tcard.t3{background:linear-gradient(135deg,#E6A817,#C98A0A)}
+.tcard .k{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.02em}
+.tcard .h{font-size:18px;font-weight:800;margin-top:6px;line-height:1.35}
+.tcard .m{font-size:13px;opacity:.95;margin-top:auto;padding-top:10px}
+
+/* content card (수익카드도 동일 컴포넌트) */
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;margin:8px 18px;box-shadow:var(--shadow);overflow:hidden}
+.card .thumb{height:120px;background:var(--card-2);position:relative;display:grid;place-items:center;font-size:38px}
+.card .thumb .tag{position:absolute;top:10px;left:10px;background:rgba(15,110,104,.92);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.card .thumb .tag.hot{background:rgba(232,104,61,.95)}
+.card .bd{padding:14px 16px}
+.card .bd h3{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.card .meta{font-size:13.5px;color:var(--ink-2);margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.card .meta b{color:var(--teal);font-weight:800}
+.card .price{margin-top:8px;font-size:14px;color:var(--ink-3)}
+.card .price s{color:var(--ink-3)}
+.card .price b{color:var(--coral);font-size:18px;font-weight:800}
+.seats{color:var(--danger);font-weight:800}
+.cta{display:block;width:calc(100% - 32px);margin:4px 16px 16px;background:var(--teal);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:800;text-align:center;min-height:48px}
+.cta.coral{background:var(--coral)}
+.cta.ghost{background:var(--card);color:var(--teal);border:1.5px solid var(--teal)}
+
+/* horizontal group cards */
+.hrow{display:flex;gap:12px;overflow-x:auto;padding:6px 18px 14px;scroll-snap-type:x mandatory}
+.hrow::-webkit-scrollbar{height:0}
+.gcard{scroll-snap-align:start;flex:0 0 60%;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.gcard .gt{height:92px;background:var(--card-2);display:grid;place-items:center;font-size:30px}
+.gcard .gb{padding:11px 13px}
+.gcard .gb h4{font-size:15px;font-weight:800}
+.gcard .gb .gm{font-size:12.5px;color:var(--ink-3);margin-top:4px}
+.gcard .gb .fill{margin-top:8px;height:6px;border-radius:999px;background:var(--line)}
+.gcard .gb .fill i{display:block;height:100%;border-radius:999px;background:var(--teal)}
+.gcard .gb .cnt{font-size:12px;color:var(--teal);font-weight:700;margin-top:5px}
+
+/* category grid */
+.catgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:10px 18px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 4px;text-align:center;box-shadow:var(--shadow)}
+.cat .e{font-size:22px}
+.cat .l{font-size:12.5px;font-weight:700;margin-top:5px;color:var(--ink)}
+
+/* list rows */
+.lrow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin:8px 18px;padding:12px 14px;box-shadow:var(--shadow)}
+.lrow .av{width:46px;height:46px;border-radius:12px;background:var(--teal-bg);display:grid;place-items:center;font-size:22px;flex:0 0 auto}
+.lrow .li{flex:1;min-width:0}
+.lrow .li h4{font-size:16px;font-weight:800}
+.lrow .li p{font-size:13px;color:var(--ink-3);margin-top:2px}
+.lrow .unread{background:var(--coral);color:#fff;font-size:12px;font-weight:800;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;padding:0 6px}
+.lrow .chev{color:var(--ink-3);font-size:18px}
+
+/* meet purpose */
+.purpose{margin:10px 18px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);border-left:5px solid var(--teal)}
+.purpose.coral{border-left-color:var(--coral)}
+.purpose.gold{border-left-color:var(--gold)}
+.purpose .q{font-size:13px;color:var(--ink-3);font-weight:700}
+.purpose h3{font-size:19px;font-weight:800;margin:3px 0 6px}
+.purpose p{font-size:14px;color:var(--ink-2)}
+.purpose .go{margin-top:12px;display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-weight:800;font-size:15px}
+.badge18{display:inline-block;background:var(--gold-bg);color:#8A6A15;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;margin-top:8px}
+
+/* trust block */
+.trust{margin:10px 18px;background:var(--teal-bg);border-radius:16px;padding:16px 18px}
+.trust h3{font-size:17px;font-weight:800;color:var(--teal-d)}
+.trust ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.trust li{font-size:14.5px;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
+.trust li b{color:var(--teal-d)}
+.trust .chk{color:var(--ok);font-weight:800;flex:0 0 auto}
+
+/* review */
+.review{margin:8px 18px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.review .stars{color:var(--gold);font-size:14px}
+.review p{font-size:14.5px;color:var(--ink);margin:6px 0 6px;line-height:1.55}
+.review .who{font-size:12.5px;color:var(--ink-3)}
+
+/* stat row */
+.stats{display:flex;gap:8px;padding:0 18px 6px}
+.stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;box-shadow:var(--shadow)}
+.stat .n{font-size:19px;font-weight:800;color:var(--teal)}
+.stat .l{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+
+/* my page overlay */
+.overlay{position:absolute;inset:0;background:var(--ground);z-index:70;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column}
+.overlay.on{transform:none}
+.ovhead{position:sticky;top:0;background:var(--ground);padding:34px 18px 12px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.ovhead button{font-size:22px;color:var(--ink);width:40px;height:40px}
+.ovhead h2{font-size:19px;font-weight:800}
+.ovbody{flex:1;overflow-y:auto;padding:16px 0 24px}
+.profile{display:flex;align-items:center;gap:14px;padding:6px 20px 18px}
+.profile .pic{width:60px;height:60px;border-radius:999px;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800}
+.profile h3{font-size:19px;font-weight:800}
+.profile p{font-size:13.5px;color:var(--ink-3);margin-top:3px}
+.verified{display:inline-block;background:var(--teal-bg);color:var(--teal-d);font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;margin-top:5px}
+.mlist{display:flex;flex-direction:column}
+.mitem{display:flex;align-items:center;gap:14px;padding:15px 20px;border-top:1px solid var(--line);font-size:16px;font-weight:600}
+.mitem .e{font-size:20px;width:26px;text-align:center}
+.mitem .chev{margin-left:auto;color:var(--ink-3)}
+.mitem .pt{margin-left:auto;color:var(--coral);font-weight:800}
+
+/* bottom nav */
+.tabbar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border-top:1px solid var(--line-2);padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:50}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:var(--ink-3);font-size:12px;font-weight:700;min-height:48px}
+.tab .ti{font-size:22px;line-height:1}
+.tab.on{color:var(--teal)}
+
+/* web frame */
+.webwrap{display:none}
+.webwrap.on{display:block}
+.appwrap.off{display:none}
+.webbar{background:#EDEAE3;padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-3);border-bottom:1px solid var(--line)}
+.webbar .u{background:#fff;border-radius:999px;padding:5px 12px;flex:1;font-family:monospace;font-size:12px;color:var(--ink-2)}
+.hero{background:linear-gradient(150deg,#0F6E68,#0A524D);color:#fff;padding:30px 20px 26px;text-align:center}
+.hero h1{font-size:25px;font-weight:800;line-height:1.35}
+.hero p{font-size:14.5px;opacity:.92;margin-top:8px}
+.hero .install{margin-top:16px;background:#fff;color:var(--teal-d);border-radius:12px;padding:14px;font-size:16px;font-weight:800;width:100%;min-height:48px}
+.webnav{display:flex;gap:6px;padding:12px 16px;overflow-x:auto;background:var(--ground);border-bottom:1px solid var(--line)}
+.webnav a{flex:0 0 auto;padding:8px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line-2);font-size:14px;font-weight:700;color:var(--ink);text-decoration:none}
+.webnav a.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.note{background:var(--gold-bg);border:1px solid var(--gold);border-radius:12px;margin:14px 18px;padding:12px 14px;font-size:13px;color:#6b520f}
+.note b{color:#3f3007}
+
+.legend{max-width:900px;margin:26px auto 0;color:#CFC9BC;font-size:12.5px;line-height:1.7;padding:0 16px}
+.legend b{color:#F1ECE2}
+.legend code{background:#3C3934;padding:1px 6px;border-radius:4px;font-size:11.5px}
+.tapnote{text-align:center;color:#8F887B;font-size:12px;margin-top:8px}
+@media(max-width:460px){.phone{height:720px}}
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="stagehead">
+    <h1>시놀 프로토타입 · 4대 메뉴</h1>
+    <p>홈 · 여행 · 만남 · 모임 — 실측 콘텐츠 기반 동작 프로토타입 (시놀 김연재 · 2026-08)</p>
+    <div class="toggle" role="tablist">
+      <button id="tg-app" class="on" onclick="setMode('app')">📱 앱</button>
+      <button id="tg-web" onclick="setMode('web')">🌐 웹</button>
+    </div>
+    <div class="tapnote">하단 메뉴와 카드를 실제로 눌러 화면을 이동해 보세요</div>
+  </div>
+
+  <div class="frames">
+    <!-- ============ APP ============ -->
+    <div class="phone appwrap" id="appwrap">
+      <div class="notch"></div>
+      <div class="screen" id="appscreen">
+
+        <!-- overlay: my page -->
+        <div class="overlay" id="mypage">
+          <div class="ovhead"><button onclick="closeMy()" aria-label="닫기">←</button><h2>마이페이지</h2></div>
+          <div class="ovbody">
+            <div class="profile">
+              <div class="pic">김</div>
+              <div><h3>김영자 님</h3><p>서울 강남구 · 관심사 등산·여행</p><span class="verified">✓ 얼굴 본인인증 완료</span></div>
+            </div>
+            <div class="mlist">
+              <div class="mitem"><span class="e">👤</span>내 프로필<span class="chev">›</span></div>
+              <div class="mitem"><span class="e">🎯</span>관심사 · 지역<span class="chev">›</span></div>
+              <div class="mitem"><span class="e">🛡️</span>본인인증<span class="chev">›</span></div>
+              <div class="mitem"><span class="e">👥</span>내 모임 <span class="chev">›</span></div>
+              <div class="mitem"><span class="e">🎁</span>포인트<span class="pt">11,100P</span></div>
+              <div class="mitem"><span class="e">💳</span>결제 · 구독<span class="chev">›</span></div>
+              <div class="mitem"><span class="e">🔔</span>알림 설정<span class="chev">›</span></div>
+              <div class="mitem"><span class="e">💬</span>고객센터 · 약관<span class="chev">›</span></div>
+              <div class="mitem"><span class="e">↩️</span>로그아웃<span class="chev">›</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOME -->
+        <div class="view on" id="v-home">
+          <div class="apphead">
+            <div class="brand"><div class="logo">시</div><div class="loc">서울 강남 <small>▾</small></div></div>
+            <div class="hicons">
+              <button class="bell" onclick="go('meet')" aria-label="알림"><span>🔔</span><span class="dot"></span></button>
+              <button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button>
+            </div>
+          </div>
+          <div class="searchbar" onclick="go('groups')"><span>🔍</span> 무엇을 찾으세요?</div>
+
+          <div class="sec"><h2>오늘 시놀에서 해볼 것</h2><div class="subttl">김영자 님을 위한 추천</div></div>
+          <div class="today">
+            <div class="tcard t1" onclick="go('meet')"><div><div class="k">단체미팅 · 오늘 마감 임박</div><div class="h">8/17 강남 5060 단체미팅</div></div><div class="m">잔여 3석 · 지금 신청 →</div></div>
+            <div class="tcard t2" onclick="go('travel')"><div><div class="k">시놀트립</div><div class="h">제주 한림 2박, 멤버십가로</div></div><div class="m">정가 32만 → 24만 →</div></div>
+            <div class="tcard t3" onclick="go('groups')"><div><div class="k">내 지역 모임</div><div class="h">강남 아침 산책 모임</div></div><div class="m">이번 주 토요일 · 4/8명 →</div></div>
+          </div>
+
+          <div class="quick">
+            <button class="qcard" onclick="go('travel')"><div class="emo">✈️</div><div class="lb">여행</div><div class="dc">시놀트립</div></button>
+            <button class="qcard" onclick="go('meet')"><div class="emo">💗</div><div class="lb">만남</div><div class="dc">친구·인연</div></button>
+            <button class="qcard" onclick="go('groups')"><div class="emo">🧑‍🤝‍🧑</div><div class="lb">모임</div><div class="dc">취미·동호회</div></button>
+          </div>
+
+          <!-- 수익카드 ① 단체미팅 : 콘텐츠 카드와 동일 컴포넌트 -->
+          <div class="sec"><h2>이번 주 단체미팅</h2></div>
+          <div class="card" onclick="go('meet')">
+            <div class="thumb">🍷<span class="tag hot">잔여 3석</span></div>
+            <div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3>
+              <div class="meta"><span>📅 8/17 (토) 오후 5시</span><span>📍 강남</span><span class="seats">잔여 3석</span></div>
+              <div class="price"><b>99,000원</b> · 성혼비 없음</div>
+            </div>
+          </div>
+          <button class="cta" onclick="go('meet')">신청하기</button>
+
+          <div class="sec"><span class="seclink" onclick="go('groups')">전체보기 ›</span><h2>내 지역 모임</h2></div>
+          <div class="hrow">
+            <div class="gcard" onclick="go('groups')"><div class="gt">🥾</div><div class="gb"><h4>강남 아침 산책</h4><div class="gm">토 오전 7시 · 양재천</div><div class="fill"><i style="width:50%"></i></div><div class="cnt">4 / 8명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt">♟️</div><div class="gb"><h4>분당 바둑 동호회</h4><div class="gm">매주 화 · 정자동</div><div class="fill"><i style="width:60%"></i></div><div class="cnt">6 / 10명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt">🎨</div><div class="gb"><h4>서초 수채화 클래스</h4><div class="gm">목 오후 2시</div><div class="fill"><i style="width:75%"></i></div><div class="cnt">9 / 12명</div></div></div>
+          </div>
+
+          <!-- 수익카드 ② 인연진단 -->
+          <div class="card" style="border-left:5px solid var(--coral)" onclick="go('meet')">
+            <div class="bd"><h3>💗 나의 인연 유형은?</h3>
+              <div class="meta">3~5문항 간단 진단 · 결과에서 바로 전화 상담</div></div>
+          </div>
+          <button class="cta coral" onclick="go('meet')">내 유형 보기</button>
+
+          <div class="sec"><span class="seclink" onclick="go('groups')">전체보기 ›</span><h2>새로 열린 모임</h2></div>
+          <div class="hrow">
+            <div class="gcard" onclick="go('groups')"><div class="gt">📷</div><div class="gb"><h4>중년 사진 출사</h4><div class="gm">오늘 개설 · 서울숲</div><div class="fill"><i style="width:20%"></i></div><div class="cnt">2 / 10명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt">⛳</div><div class="gb"><h4>파크골프 함께해요</h4><div class="gm">어제 개설 · 한강</div><div class="fill"><i style="width:33%"></i></div><div class="cnt">3 / 9명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt">🎵</div><div class="gb"><h4>추억의 팝송 모임</h4><div class="gm">2일 전 · 홍대</div><div class="fill"><i style="width:45%"></i></div><div class="cnt">5 / 11명</div></div></div>
+          </div>
+
+          <!-- 수익카드 ③ 이번 주 여행 -->
+          <div class="sec"><h2>이번 주 여행</h2></div>
+          <div class="card" onclick="go('travel')">
+            <div class="thumb">🏝️<span class="tag">시놀트립</span></div>
+            <div class="bd"><h3>제주 한림 오션뷰 2박 3일</h3>
+              <div class="meta"><span>📅 8월 상시 출발</span><span>🚌 전용 버스</span></div>
+              <div class="price"><s>정가 320,000원</s> → <b>240,000원</b> <span style="color:var(--ink-3)">멤버십가</span></div>
+            </div>
+          </div>
+          <button class="cta ghost" onclick="go('travel')">멤버십가로 보기</button>
+
+          <div class="sec"><span class="seclink">전체보기 ›</span><h2>시니어 칼럼</h2></div>
+          <div class="lrow"><div class="av">🦶</div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 조회 1,240</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av">💞</div><div class="li"><h4>60대 재혼, 무엇부터 준비할까</h4><p>재혼 · 조회 980</p></div><span class="chev">›</span></div>
+        </div>
+
+        <!-- TRAVEL -->
+        <div class="view" id="v-travel">
+          <div class="apphead">
+            <div class="brand"><div class="logo">시</div><div class="loc">여행 · 시놀트립</div></div>
+            <button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button>
+          </div>
+          <div class="today" style="padding-top:16px">
+            <div class="tcard t2" style="flex:0 0 92%"><div><div class="k">시놀트립 멤버십</div><div class="h">연 49,900원으로<br>전 여행 상품 멤버십가</div></div><div class="m">월 4,158원 · 지금 가입 →</div></div>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="n">49,900원</div><div class="l">연 멤버십</div></div>
+            <div class="stat"><div class="n">최대 25%</div><div class="l">멤버십 할인</div></div>
+            <div class="stat"><div class="n">11,100P</div><div class="l">보유 포인트</div></div>
+          </div>
+
+          <div class="sec"><h2>이번 주 추천 여행</h2></div>
+          <div class="card">
+            <div class="thumb">🏝️<span class="tag">오션뷰</span></div>
+            <div class="bd"><h3>제주 한림 오션뷰 2박 3일</h3>
+              <div class="meta"><span>📅 8월 상시</span><span>🚌 전용 버스</span><span>🍽️ 조식 포함</span></div>
+              <div class="price"><s>정가 320,000원</s> → <b>240,000원</b> <span style="color:var(--ink-3)">멤버십가</span></div>
+            </div>
+          </div>
+          <button class="cta">멤버십 가입하고 예약</button>
+          <button class="cta ghost" style="margin-top:-4px">전화로 예약 · 02-508-5670</button>
+
+          <div class="sec"><h2>지역별 여행</h2></div>
+          <div class="catgrid" style="grid-template-columns:repeat(5,1fr)">
+            <div class="cat"><div class="e">🌊</div><div class="l">강원</div></div>
+            <div class="cat"><div class="e">🍊</div><div class="l">제주</div></div>
+            <div class="cat"><div class="e">⛰️</div><div class="l">경상</div></div>
+            <div class="cat"><div class="e">🏞️</div><div class="l">충청</div></div>
+            <div class="cat"><div class="e">🌾</div><div class="l">전라</div></div>
+          </div>
+
+          <div class="sec"><h2>다녀온 분들 후기</h2></div>
+          <div class="review"><div class="stars">★★★★★</div><p>"혼자였으면 못 갔을 여행인데, 또래분들과 함께라 편하고 즐거웠어요. 버스까지 태워주니 몸이 편합니다."</p><div class="who">김○자 님 · 제주 2박 3일</div></div>
+          <div class="review"><div class="stars">★★★★★</div><p>"멤버십 가입하니 이번 여행 하나로 회비가 빠졌네요. 다음 강원도도 예약했습니다."</p><div class="who">이○호 님 · 속초 미팅여행</div></div>
+
+          <div class="note"><b>운영 메모(비노출):</b> 하나투어 제휴 상품은 이 화면에서 팔지 않습니다. 광고 성과(노출·클릭)만 측정합니다. 판매·결제는 시놀트립 멤버십으로 자사 도메인에서 완결.</div>
+        </div>
+
+        <!-- MEET -->
+        <div class="view" id="v-meet">
+          <div class="apphead">
+            <div class="brand"><div class="logo">시</div><div class="loc">만남</div></div>
+            <button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button>
+          </div>
+          <div class="sec"><h2>어떤 만남을 찾으세요?</h2><div class="subttl">목적에 맞게 골라 보세요</div></div>
+
+          <div class="purpose gold">
+            <div class="q">가볍게 시작하고 싶다면</div>
+            <h3>친구 · 이성친구 — 시럽</h3>
+            <p>관심사가 비슷한 50+ 친구를 내 주변에서 찾습니다. AI 주선과 5중 여성 안심 기능.</p>
+            <span class="badge18">시럽 앱 · 성인(18+) 등급 안내</span>
+            <div class="go">시럽으로 이동 →</div>
+          </div>
+
+          <div class="purpose">
+            <div class="q">진지한 인연을 찾는다면</div>
+            <h3>결혼·재혼 — 시럽인연</h3>
+            <p>신원인증과 전문 매니저의 1:1 매칭. <b>성혼비 없이</b> 총액이 끝납니다.</p>
+            <div class="go">인연 진단부터 시작 →</div>
+          </div>
+
+          <div class="trust">
+            <h3>시럽인연이 다른 점</h3>
+            <ul>
+              <li><span class="chk">✓</span><span><b>성혼비 없음</b> — 시장 관행은 가입비 외 성혼비 100~500만원 별도</span></li>
+              <li><span class="chk">✓</span><span>신원·직업·혼인 서류 <b>3중 검증</b></span></li>
+              <li><span class="chk">✓</span><span>전담 매니저 1:1 · 핵심 고객 <b>재결제율 47%</b></span></li>
+              <li><span class="chk">✓</span><span>상담 무료 · 방문 없이 전화로</span></li>
+            </ul>
+          </div>
+          <button class="cta">인연 진단 (3문항) 시작</button>
+          <button class="cta coral" style="margin-top:-4px">📞 전화 상담 예약 · 무료</button>
+
+          <div class="sec"><h2>함께 만나요 — 단체미팅</h2></div>
+          <div class="card">
+            <div class="thumb">🍷<span class="tag hot">잔여 3석</span></div>
+            <div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3>
+              <div class="meta"><span>📅 8/17 (토) 17시</span><span class="seats">잔여 3석</span></div>
+              <div class="price"><b>99,000원</b> · 성혼비 없음 · 본인인증 참가자만</div></div>
+          </div>
+          <div class="card">
+            <div class="bd"><h3>[경기·분당] 중년 와인 소셜</h3>
+              <div class="meta"><span>📅 8/24 (토) 18시</span><span>잔여 8석</span></div>
+              <div class="price"><b>120,000원</b></div></div>
+          </div>
+          <button class="cta">단체미팅 전체 일정 보기</button>
+
+          <div class="sec"><h2>대화</h2></div>
+          <div class="lrow" onclick="alert('모임 대화방으로 진입 (chat_entry: source=meeting)')"><div class="av">🥾</div><div class="li"><h4>강남 아침 산책 모임</h4><p>내일 7시 양재천 입구에서 만나요</p></div><span class="unread">3</span></div>
+          <div class="lrow" onclick="alert('1:1 대화방으로 진입 (chat_entry: source=profile)')"><div class="av">💬</div><div class="li"><h4>이○호 매니저</h4><p>말씀주신 조건으로 두 분 준비했습니다</p></div><span class="unread">1</span></div>
+        </div>
+
+        <!-- GROUPS -->
+        <div class="view" id="v-groups">
+          <div class="apphead">
+            <div class="brand"><div class="logo">시</div><div class="loc">모임 찾기</div></div>
+            <button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button>
+          </div>
+          <div class="searchbar"><span>🔍</span> 어떤 모임을 찾으세요?</div>
+          <div class="catgrid">
+            <div class="cat"><div class="e">📍</div><div class="l">지역</div></div>
+            <div class="cat"><div class="e">🏃</div><div class="l">운동</div></div>
+            <div class="cat"><div class="e">✈️</div><div class="l">여행</div></div>
+            <div class="cat"><div class="e">🎭</div><div class="l">문화</div></div>
+            <div class="cat"><div class="e">🎨</div><div class="l">취미</div></div>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><div class="n">1,561개</div><div class="l">운영 모임</div></div>
+            <div class="stat"><div class="n">107,735명</div><div class="l">누적 회원</div></div>
+            <div class="stat"><div class="n">서울 강남</div><div class="l">내 지역</div></div>
+          </div>
+
+          <div class="sec"><span class="seclink">전체 ›</span><h2>내 주변 모임</h2></div>
+          <div class="lrow"><div class="av">🥾</div><div class="li"><h4>강남 아침 산책</h4><p>토 오전 7시 · 양재천 · 4/8명</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av">♟️</div><div class="li"><h4>분당 바둑 동호회</h4><p>매주 화 · 정자동 · 6/10명</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av">⛳</div><div class="li"><h4>파크골프 함께해요</h4><p>일 오전 · 한강 · 3/9명</p></div><span class="chev">›</span></div>
+
+          <div class="sec"><h2>인기 모임</h2></div>
+          <div class="lrow"><div class="av">🎵</div><div class="li"><h4>추억의 팝송 부르기</h4><p>홍대 · 5/11명 · 이번 주 인기</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av">📷</div><div class="li"><h4>중년 사진 출사</h4><p>서울숲 · 오늘 개설</p></div><span class="chev">›</span></div>
+
+          <button class="cta">＋ 내 모임 만들기</button>
+          <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅은 하단 메뉴에서 빠지고 맥락에서 진입합니다 (기존 2탭·안읽음 규칙 유지).</div>
+        </div>
+
+      </div>
+      <!-- bottom nav -->
+      <div class="tabbar">
+        <button class="tab on" id="t-home" onclick="go('home')"><span class="ti">🏠</span>홈</button>
+        <button class="tab" id="t-travel" onclick="go('travel')"><span class="ti">✈️</span>여행</button>
+        <button class="tab" id="t-meet" onclick="go('meet')"><span class="ti">💗</span>만남</button>
+        <button class="tab" id="t-groups" onclick="go('groups')"><span class="ti">🧑‍🤝‍🧑</span>모임</button>
+      </div>
+    </div>
+
+    <!-- ============ WEB ============ -->
+    <div class="phone webwrap" id="webwrap">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="webbar"><span>🔒</span><span class="u">sinor.co.kr</span><span>⋮</span></div>
+        <div class="hero">
+          <h1>시놀 — 50+의<br>여행 · 만남 · 모임</h1>
+          <p>회원 10만 명이 함께하는 5060 생활 플랫폼</p>
+          <button class="install" onclick="alert('OS 감지 → 스토어 분기 (app_install_click)')">📲 시놀 앱 설치하기</button>
+        </div>
+        <div class="webnav">
+          <a href="#" class="on">홈</a><a href="#">여행</a><a href="#">만남</a><a href="#">모임</a><a href="#">칼럼</a>
+        </div>
+
+        <div class="sec"><h2>오늘의 추천</h2></div>
+        <div class="card">
+          <div class="thumb">🍷<span class="tag hot">잔여 3석</span></div>
+          <div class="bd"><h3>[서울·강남] 5060 단체미팅</h3>
+            <div class="meta"><span>📅 8/17 (토)</span><span class="seats">잔여 3석</span></div>
+            <div class="price"><b>99,000원</b> · 성혼비 없음</div></div>
+        </div>
+        <button class="cta">웹에서 바로 신청</button>
+
+        <div class="trust"><h3>시럽인연 — 진지한 인연</h3>
+          <ul>
+            <li><span class="chk">✓</span><span><b>성혼비 없음</b>으로 총액이 끝납니다</span></li>
+            <li><span class="chk">✓</span><span>신원인증 · 전문 매니저 1:1 매칭</span></li>
+          </ul>
+        </div>
+        <button class="cta coral">📞 전화 상담 예약 (무료)</button>
+
+        <div class="sec"><h2>시놀트립 멤버십</h2></div>
+        <div class="card">
+          <div class="thumb">🏝️<span class="tag">시놀트립</span></div>
+          <div class="bd"><h3>제주 한림 2박 3일</h3>
+            <div class="price"><s>320,000원</s> → <b>240,000원</b> <span style="color:var(--ink-3)">멤버십가</span></div></div>
+        </div>
+        <button class="cta ghost">멤버십 가입하고 예약</button>
+
+        <div class="sec"><h2>시니어 칼럼 <span style="font-size:13px;color:var(--ink-3);font-weight:600">191편</span></h2></div>
+        <div class="lrow"><div class="av">🦶</div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 CTA → 취미 모임 앱 설치</p></div><span class="chev">›</span></div>
+        <div class="lrow"><div class="av">💞</div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 CTA → 시럽인연 상담</p></div><span class="chev">›</span></div>
+        <div class="lrow"><div class="av">👨‍👩‍👧</div><div class="li"><h4>부모님께 재혼을 권하는 법</h4><p>자녀 · 하단 CTA → 카카오/문자 공유</p></div><span class="chev">›</span></div>
+
+        <div class="note"><b>웹 규칙:</b> 페이지마다 목표는 하나입니다. 칼럼=앱 설치 · 단체미팅=웹 신청 · 시럽인연=전화 상담 · 여행=멤버십 결제 · 자녀=공유. 상담·결제 페이지엔 앱 설치 유도를 넣지 않습니다.</div>
+
+        <div style="height:20px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <p><b>이 프로토타입에 대하여</b> — 시놀 V3 4대 메뉴 IA(홈·여행·만남·모임)를 실제 콘텐츠로 구현한 클릭 가능한 화면입니다. 상단 <b>앱/웹 토글</b>과 하단 <b>4대 메뉴</b>, 카드·마이페이지가 실제로 동작합니다.</p>
+    <p style="margin-top:8px">수치는 정합기준 정본 기반 — 회원 107,735명 · 모임 1,561개 · 시놀트립 멤버십 49,900원/년 · 단체미팅 99,000원~ · 시럽인연 성혼비 없음. 색·문구·아이콘은 디자인 단계에서 확정하는 초안이며, 실제 모임명·후기는 대표 예시입니다.</p>
+    <p style="margin-top:8px">측정 이벤트(참고): <code>primary_nav_tap</code> · <code>mypage_open</code> · <code>chat_entry</code> · <code>revenue_card_tap</code> · <code>trip_membership_view</code> · <code>meeting_apply_start</code> · <code>consult_call_tap</code>. 작성 시놀 김연재 · 2026-08 · 대외비</p>
+  </div>
+</div>
+
+<script>
+function go(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('v-'+name).classList.add('on');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('t-'+name).classList.add('on');
+  document.getElementById('appscreen').scrollTop=0;
+  closeMy();
+}
+function openMy(){document.getElementById('mypage').classList.add('on');}
+function closeMy(){document.getElementById('mypage').classList.remove('on');}
+function setMode(m){
+  const app=document.getElementById('appwrap'), web=document.getElementById('webwrap');
+  document.getElementById('tg-app').classList.toggle('on',m==='app');
+  document.getElementById('tg-web').classList.toggle('on',m==='web');
+  if(m==='app'){app.classList.remove('off');app.style.display='flex';web.classList.remove('on');}
+  else{app.classList.add('off');app.style.display='none';web.classList.add('on');}
+}
+</script>
+</body>
+</html>
