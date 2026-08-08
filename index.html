@@ -258,6 +258,20 @@ a{color:inherit}
 .purpose .go{margin-top:12px;display:inline-flex;align-items:center;gap:6px;color:var(--pink);font-weight:800;font-size:15px}
 .purpose.b .go{color:var(--blue)}
 .badge18{display:inline-block;background:var(--surface);color:var(--ink-2);font-family:var(--mono);font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;margin-top:10px}
+.purpose .ptop{display:flex;align-items:flex-start;gap:12px}
+.purpose .pico{width:46px;height:46px;flex:0 0 auto;border-radius:14px;background:var(--pink-50);display:grid;place-items:center}
+.purpose.b .pico{background:var(--blue-50)}
+.purpose .pico svg{width:25px;height:25px;stroke:var(--pink);stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.purpose.b .pico svg{stroke:var(--blue)}
+.purpose .ptop h3{margin:3px 0 0}
+.purpose .tag{font-size:13.5px;color:var(--ink-2);margin-top:5px;line-height:1.45}
+.feat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.feat3>div{background:var(--surface);border-radius:13px;padding:12px 6px;text-align:center}
+.feat3 svg{width:24px;height:24px;margin:0 auto 7px;stroke:var(--pink);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.purpose.b .feat3 svg{stroke:var(--blue)}
+.feat3 b{display:block;font-size:13px;font-weight:800;color:var(--ink);line-height:1.35;letter-spacing:-.02em}
+.hlbar{margin-top:12px;background:var(--pink-50);border-radius:13px;padding:12px 14px;font-size:14px;color:var(--pink-d);font-weight:700;line-height:1.45}
+.hlbar b{font-weight:800}
 
 .trust{margin:11px 18px;background:var(--pink-50);border:1px solid var(--pink-100);border-radius:var(--r-lg);padding:18px 20px}
 .trust h3{font-size:17px;font-weight:800;color:var(--pink-d);letter-spacing:-.01em}
@@ -528,6 +542,12 @@ footer.pg .r b{color:#fff}
   <symbol id="i-meet" viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></symbol>
   <symbol id="i-groups" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M17 14.6c2.4.4 4 2.3 4 5.4"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10a6.5 6.5 0 1 1 13 0c0 4.4-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.4"/></symbol>
+  <symbol id="i-tune" viewBox="0 0 24 24"><path d="M4 7h9M19 7h1M4 17h5M15 17h5"/><circle cx="16" cy="7" r="2.4"/><circle cx="12" cy="17" r="2.4"/></symbol>
+  <symbol id="i-block" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M6.2 6.2l11.6 11.6"/></symbol>
+  <symbol id="i-verify" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.4c0 4.4-2.9 7.6-7 9.4-4.1-1.8-7-5-7-9.4V5.8z"/><path d="M9 12.2l2.2 2.2 4.3-4.4"/></symbol>
+  <symbol id="i-mgr" viewBox="0 0 24 24"><circle cx="8.5" cy="8.2" r="3.2"/><path d="M2.6 20c0-3.3 2.6-5.4 5.9-5.4s5.9 2.1 5.9 5.4"/><path d="M15.6 4.4h5.8v5h-2.1l-1.8 2.1V9.4h-1.9z"/></symbol>
+  <symbol id="i-won" viewBox="0 0 24 24"><path d="M3.2 8.6h17.6v9.9a1.5 1.5 0 0 1-1.5 1.5H4.7a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M3.2 8.6 6.2 4h11.6l3 4.6"/><path d="M7.8 12.6l1.6 4 1.6-4 1.6 4 1.6-4"/></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
   <symbol id="i-help" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-1v-6h4"/><path d="M4 17v-4h4v7H7a3 3 0 0 1-3-3z"/></symbol>
   <symbol id="i-cat-loc" viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
@@ -711,12 +731,6 @@ footer.pg .r b{color:#fff}
                 <div class="tcard" onclick="go('groups')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=80" alt="트레킹"></div><div class="tb"><span class="eb">일정 · 참여</span><h3>서울둘레길 트레킹 (제10코스)</h3><p>8/9 · 양재시민의숲역</p></div></div>
               </div>
 
-              <div class="quick">
-                <button class="qcard" onclick="go('travel')"><svg class="qi"><use href="#i-travel"/></svg><div class="lb">여행</div><div class="dc">시놀트립</div></button>
-                <button class="qcard" onclick="go('meet')"><svg class="qi"><use href="#i-meet"/></svg><div class="lb">만남</div><div class="dc">친구·인연</div></button>
-                <button class="qcard" onclick="go('groups')"><svg class="qi"><use href="#i-groups"/></svg><div class="lb">모임</div><div class="dc">취미·동호회</div></button>
-              </div>
-
               <div class="sec"><span class="eb">Meeting</span><h2>이번 주 단체미팅</h2></div>
               <div class="card" onclick="go('meet')">
                 <div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 단체미팅 파티" onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80'"></div>
@@ -793,14 +807,29 @@ footer.pg .r b{color:#fff}
               <div class="apphead"><span class="hh-title">만남</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
               <div class="sec"><span class="eb">Meet</span><h2>어떤 만남을 찾으세요?</h2><div class="subttl">목적에 맞게 골라 보세요</div></div>
               <div class="purpose b">
-                <span class="eb">가볍게 시작</span><h3>친구 · 이성친구 — 시럽 (老맨스가 필요할 땐?)</h3>
-                <p>위치기반 매칭으로 내 주변 동네친구를, 관심사·거리·희망 연령대로 검색. 연락처 차단으로 지인 회피.</p>
+                <div class="ptop">
+                  <div class="pico"><svg><use href="#i-groups"/></svg></div>
+                  <div><span class="eb">가볍게 시작</span><h3>친구 · 이성친구 — 시럽</h3><div class="tag">老맨스가 필요할 땐?</div></div>
+                </div>
+                <div class="feat3">
+                  <div><svg><use href="#i-pin"/></svg><b>내 주변<br>동네친구</b></div>
+                  <div><svg><use href="#i-tune"/></svg><b>관심사·거리<br>나이로 검색</b></div>
+                  <div><svg><use href="#i-block"/></svg><b>연락처 차단<br>지인 회피</b></div>
+                </div>
                 <span class="badge18">시럽 앱 · 성인(18+) 등급 안내</span>
                 <div class="go">시럽으로 이동 →</div>
               </div>
               <div class="purpose">
-                <span class="eb">진지한 인연</span><h3>결혼 · 재혼 — 시럽인연</h3>
-                <p>신원인증과 전문 매니저의 1:1 매칭. <b>성혼비 없이</b> 총액이 끝납니다.</p>
+                <div class="ptop">
+                  <div class="pico"><svg><use href="#i-meet"/></svg></div>
+                  <div><span class="eb">진지한 인연</span><h3>결혼 · 재혼 — 시럽인연</h3><div class="tag">전문 매니저가 직접 연결합니다</div></div>
+                </div>
+                <div class="feat3">
+                  <div><svg><use href="#i-verify"/></svg><b>신원<br>3중 인증</b></div>
+                  <div><svg><use href="#i-mgr"/></svg><b>매니저<br>1:1 매칭</b></div>
+                  <div><svg><use href="#i-won"/></svg><b>성혼비<br>없음</b></div>
+                </div>
+                <div class="hlbar">가입비 외 추가 비용이 없습니다 — <b>성혼비 없이 총액이 끝납니다</b></div>
                 <div class="go">인연 진단부터 시작 →</div>
               </div>
               <div class="trust">
