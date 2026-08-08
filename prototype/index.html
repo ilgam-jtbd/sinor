@@ -3,8 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>시놀 신버전 제품 브리프 · 홈·여행·만남·모임 (전 직군 리뷰본)</title>
-<meta name="description" content="시놀 4대 메뉴 개편 — 고객 문제부터 화면·비즈니스 임팩트까지 한 번에 보는 제품 브리프">
+<title>시놀 신버전 제품 브리프 · 홈·여행·만남·모임 (실물 분석 반영본)</title>
+<meta name="description" content="시놀 4대 메뉴 개편 — 고객 문제부터 화면·비즈니스 임팩트·검색 전략까지 한 번에 보는 제품 브리프">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="시놀 신버전 제품 브리프 — 홈·여행·만남·모임">
+<meta property="og:description" content="고객 문제부터 화면·비즈니스 임팩트·검색 전략까지 한 번에 보는 전 직군 리뷰본 (대외비)">
+<meta property="og:locale" content="ko_KR">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500;600;700&display=swap">
@@ -26,6 +31,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
 body{font-family:var(--sans);background:#F4F5F8;color:var(--ink);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 svg{display:block}
@@ -400,6 +406,108 @@ footer.pg .r b{color:#fff}
   .lvr{flex-direction:column;gap:8px}
   .lvr .big{min-width:0}
 }
+
+/* ===== v4 추가: 참조사이트(AIchatbot/aboutfishing) 우측 기획주석 패턴 ===== */
+.protogrid{display:grid;grid-template-columns:minmax(0,392px) minmax(0,1fr);gap:30px;justify-content:center;align-items:start;margin-top:26px}
+@media(max-width:900px){.protogrid{grid-template-columns:1fr;gap:22px}.protogrid .phone{margin:0 auto}}
+.annos{display:flex;flex-direction:column;gap:14px;padding-top:6px}
+.anno-guide{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;box-shadow:var(--sh-sm)}
+.anno-guide .eb{color:var(--pink);display:block;margin-bottom:8px}
+.anno-guide h4{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.anno-guide p{font-size:13.5px;color:var(--ink-2);margin-top:6px}
+.issuebox{background:#FFF8EE;border:1px solid #F5E2BE;border-radius:var(--r-lg);padding:16px 18px}
+.issuebox .ttl{font-size:14px;font-weight:800;color:var(--warn);display:flex;align-items:center;gap:7px}
+.issuebox ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+.issuebox li{font-size:13px;color:var(--ink);line-height:1.5;display:flex;gap:8px;align-items:flex-start}
+.issuebox li .ck{font-family:var(--mono);font-size:10px;font-weight:700;background:var(--warn);color:#fff;padding:2px 7px;border-radius:999px;flex:0 0 auto;margin-top:1px}
+.annostep{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;box-shadow:var(--sh-sm);display:flex;gap:13px;align-items:flex-start}
+.annostep .num{width:26px;height:26px;border-radius:50%;background:var(--pink);color:#fff;font-family:var(--mono);font-size:13px;font-weight:700;display:grid;place-items:center;flex:0 0 auto}
+.annostep.b .num{background:var(--blue)}
+.annostep .as-t h5{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.annostep .as-t p{font-size:12.5px;color:var(--ink-2);margin-top:3px}
+.annostep .as-t .tag2{margin-top:7px}
+.expect{background:var(--blue-50);border:1px solid #CFE0FF;border-radius:var(--r-md);padding:12px 15px;font-size:13px;color:var(--blue-d);font-weight:600;display:flex;gap:8px;align-items:center}
+.expect b{color:#1E2A5E}
+
+
+/* v5: 실측 티커(timebid 패턴 — 가짜 활동 대신 실측 회전) */
+.ticker{margin-top:22px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:12px;padding:11px 16px;overflow:hidden;position:relative;height:44px}
+.ticker .tk{position:absolute;inset:11px 16px;font-family:var(--mono);font-size:13px;font-weight:600;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ticker .tk.on{opacity:1;transform:none}
+.ticker .tk b{color:#FFE3F0}
+/* v5: 검색·발견 채널 카드 */
+.chgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:700px){.chgrid{grid-template-columns:1fr}}
+.chc{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;box-shadow:var(--sh-sm);border-top:4px solid var(--blue)}
+.chc.warn{border-top-color:var(--warn)} .chc.risk{border-top-color:var(--danger)} .chc.ok{border-top-color:var(--ok)}
+.chc .hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.chc h4{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.chc .st{font-family:var(--mono);font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--blue-50);color:var(--blue-d)}
+.chc.warn .st{background:#FFF3DD;color:var(--warn)} .chc.risk .st{background:#FDE8E8;color:var(--danger)} .chc.ok .st{background:#E2F6EC;color:var(--ok)}
+.chc .diag{font-size:13.5px;color:var(--ink-2);margin-top:9px}
+.chc .act{margin-top:12px;border-top:1px dashed var(--line-2);padding-top:11px;font-size:13.5px}
+.chc .act b{color:var(--ink)}
+.chc .own{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-top:8px}
+/* v5: 웹 FAQ 블록(AEO 자리) */
+.faq{margin:11px 18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.faq .fq{padding:14px 16px;border-bottom:1px solid var(--line);font-size:14.5px;font-weight:700}
+.faq .fq small{display:block;font-weight:500;color:var(--ink-2);margin-top:5px;font-size:13px}
+.faq .fq:last-child{border-bottom:none}
+.schema-tag{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:700;background:var(--blue-50);color:var(--blue-d);padding:3px 9px;border-radius:999px;margin:0 18px 4px}
+
+
+/* v7: 실제 시놀 만남 이미지 3장 그리드 */
+.simg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:11px 18px 4px}
+.simg3 figure{margin:0;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--sh-sm)}
+.simg3 figure .im{height:82px;background:linear-gradient(135deg,var(--pink-50),var(--blue-50))}
+.simg3 figure img{width:100%;height:100%;object-fit:cover;display:block}
+.simg3 figcaption{font-size:11px;font-weight:700;color:var(--ink-2);text-align:center;padding:7px 4px;letter-spacing:-.01em}
+.srcnote{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-align:center;margin:2px 18px 0}
+
+
+/* v8: 마이페이지 실물(시럽 앱 「내 정보」) */
+.myhead{justify-content:space-between}
+.myhead .myicons{display:flex;gap:18px}
+.myhead .myicons .ic-btn svg{stroke:var(--ink)}
+.pcard .row3 .mi{font-size:20px;line-height:1}
+.pcard .row3 .l{font-size:12.5px;color:var(--ink-2);margin-top:6px;font-weight:600}
+.pcard .row3 .n{font-size:15px;font-weight:800;margin-top:3px;font-family:var(--sans)}
+.mybanner{margin:12px 18px;border-radius:var(--r-lg);overflow:hidden;background:linear-gradient(120deg,#DCE9FF,#EAF2FF);display:flex;align-items:center;padding:16px 18px;position:relative;box-shadow:var(--sh-sm)}
+.mybanner .mbtxt{flex:1;z-index:2}
+.mybanner .mbtxt .logo b{color:var(--ink)}
+.mybanner .mbtxt h3{font-size:18px;font-weight:800;margin-top:8px;letter-spacing:-.02em;line-height:1.3}
+.mybanner .mbtxt h3 b{color:var(--blue-d)}
+.mybanner .mbtxt p{font-size:12.5px;color:var(--ink-2);margin-top:5px}
+.mybanner .mbimg{font-size:40px;flex:0 0 auto;opacity:.9}
+.mysec{padding:20px 18px 4px;font-size:21px;font-weight:800;letter-spacing:-.02em}
+.mygrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;padding:12px 18px}
+.myq{background:var(--surface);border-radius:var(--r-lg);padding:20px 8px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;transition:.16s}
+.myq:active{transform:scale(.96)}
+.myq .mqi{font-size:34px;line-height:1}
+.myq .mql{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+
+
+/* v9: 대화 모임/1:1 2탭 (대표 요구) */
+.chattabs{display:flex;gap:0;margin:6px 18px 8px;border-bottom:1.5px solid var(--line)}
+.cht{flex:1;padding:12px 0;font-size:15px;font-weight:700;color:var(--ink-3);position:relative;letter-spacing:-.01em}
+.cht.on{color:var(--pink)}
+.cht.on::after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:2.5px;background:var(--pink);border-radius:2px}
+.cht .cdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pink);margin-left:6px;vertical-align:middle}
+.cht.on .cdot{display:none}
+.chatpane{display:none} .chatpane.on{display:block}
+
+
+/* v10: 대화 필터 칩 + 방 성격 뱃지 (모임 탭 하위 구분) */
+.chips-row{display:flex;gap:7px;padding:4px 18px 10px;overflow-x:auto}
+.chips-row::-webkit-scrollbar{height:0}
+.chip{flex:0 0 auto;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;background:var(--surface);color:var(--ink-2);border:1px solid var(--line-2);transition:.15s}
+.chip.on{background:var(--pink);color:#fff;border-color:var(--pink)}
+.rtag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle;letter-spacing:-.01em}
+.rtag.club{background:var(--surface-2);color:var(--ink-2)}
+.rtag.trip{background:var(--blue-50);color:var(--blue-d)}
+.rtag.meet{background:var(--pink-50);color:var(--pink-d)}
+.lrow .li p b{color:var(--pink-d)}
+
 </style>
 </head>
 <body>
@@ -441,6 +549,12 @@ footer.pg .r b{color:#fff}
     <div class="chips">
       <span>회원 107,735명</span><span>모임 1,561개</span><span>DAU/MAU 5.8%</span><span>앱 도달 1.4%</span><span>시럽인연 재결제 47%</span>
     </div>
+      <div class="ticker" aria-live="polite">
+        <span class="tk on">🔎 28일간 <b>4,232명</b>이 앱·웹에서 직접 검색 — 홈에 검색 진입점이 없는데도</span>
+        <span class="tk">📈 단체미팅 이탈률 <b>12.0%</b> — 사이트 최고 구매 의도, 광고 미투입 상태</span>
+        <span class="tk">🤖 AI 검색(챗GPT 등) 유입 <b>61명/28일</b> — 봇 차단 상태에서도 발생</span>
+        <span class="tk">📰 시니어 칼럼 <b>191편</b> · 검색 유입 1위 — 하단 전환 카드 미연결</span>
+      </div>
     <div class="btns">
       <a class="hbtn solid" href="#proto">▶ 동작 프로토타입 보기</a>
       <a class="hbtn line" href="#solution">4대 메뉴 해법</a>
@@ -527,7 +641,7 @@ footer.pg .r b{color:#fff}
       <div class="phd">
         <span class="eb">SINOR APP / WEB</span>
         <h3>시놀 · 홈 · 여행 · 만남 · 모임</h3>
-        <p>실제 시놀 브랜드(정식 로고 · 핑크/블루) 적용 · 시니어 접근성(본문 17px·터치 48px)</p>
+        <p>실제 시놀·시럽·시럽인연 웹 콘텐츠 반영(2026-08-08 확인) · 시니어 접근성(본문 17px·터치 48px)</p>
         <div class="toggle">
           <button id="tg-app" class="on" onclick="setMode('app')">앱 화면</button>
           <button id="tg-web" onclick="setMode('web')">웹 화면</button>
@@ -535,35 +649,47 @@ footer.pg .r b{color:#fff}
         <div class="tapnote">TAP BOTTOM MENU &amp; CARDS →</div>
       </div>
 
-      <div class="frames">
+      <div class="protogrid">
         <!-- ============ APP ============ -->
         <div class="phone appwrap" id="appwrap">
           <div class="notch"></div>
           <div class="screen" id="appscreen">
 
             <div class="overlay" id="mypage">
-              <div class="ovhead"><button onclick="closeMy()" aria-label="닫기">←</button><h2>마이페이지</h2></div>
+              <div class="ovhead myhead">
+                <span class="logo sm"><span class="lg-fb"><svg class="hearts" viewBox="0 0 128 104"><use href="#sinor-hearts"/></svg><b>내 정보</b></span></span>
+                <div class="myicons">
+                  <button class="ic-btn"><svg><use href="#i-help"/></svg>설정</button>
+                  <button class="ic-btn" onclick="closeMy()"><svg><use href="#i-help"/></svg>문의</button>
+                </div>
+              </div>
               <div class="ovbody">
                 <div class="pcard">
                   <div class="top">
-                    <div class="pic"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="프로필"></div>
-                    <div><h3>와이제이 님</h3><div class="sub">만 54세 · 서울 종로구</div></div>
+                    <div class="pic"><svg viewBox="0 0 24 24" style="width:100%;height:100%;padding:12px;stroke:#C9CDD4;stroke-width:1.6;fill:none"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg></div>
+                    <div><h3>와이제이</h3><div class="sub">만 54세 · 서울특별시 종로구</div></div>
                     <button class="edit">수정</button>
                   </div>
                   <div class="row3">
-                    <div><div class="n">11,100</div><div class="l">포인트</div></div>
-                    <div><div class="n">0</div><div class="l">하트</div></div>
-                    <div><div class="n">최근 0건</div><div class="l">결제 내역</div></div>
+                    <div><div class="mi">⭐</div><div class="l">포인트</div><div class="n">11,100</div></div>
+                    <div><div class="mi">💗</div><div class="l">하트</div><div class="n">0개</div></div>
+                    <div><div class="mi">🧾</div><div class="l">결제 내역</div><div class="n">최근 0건</div></div>
                   </div>
                 </div>
-                <div class="mlist">
-                  <div class="mitem"><svg class="e"><use href="#i-meet"/></svg>내 프로필<span class="chev">›</span></div>
-                  <div class="mitem"><svg class="e"><use href="#i-cat-loc"/></svg>관심사 · 지역<span class="chev">›</span></div>
-                  <div class="mitem"><svg class="e"><use href="#i-groups"/></svg>내 모임<span class="chev">›</span></div>
-                  <div class="mitem"><svg class="e"><use href="#i-travel"/></svg>결제 · 구독<span class="chev">›</span></div>
-                  <div class="mitem"><svg class="e"><use href="#i-bell"/></svg>알림 설정<span class="chev">›</span></div>
-                  <div class="mitem"><svg class="e"><use href="#i-help"/></svg>고객센터 · 약관<span class="chev">›</span></div>
+                <div class="mybanner">
+                  <div class="mbtxt"><span class="logo sm on-dark"><span class="lg-fb"><svg class="hearts" viewBox="0 0 128 104"><use href="#sinor-hearts"/></svg><b>시놀</b></span></span><h3>매월 고민 없이<br><b>시놀트립</b> 같이 떠나요</h3><p>여행 떠날 때마다 따라오는 혜택</p></div>
+                  <div class="mbimg">✈️🧳</div>
                 </div>
+                <div class="mysec">무엇이 필요하신가요?</div>
+                <div class="mygrid">
+                  <button class="myq"><span class="mqi">🔮</span><span class="mql">오늘의 운세</span></button>
+                  <button class="myq"><span class="mqi">🥠</span><span class="mql">정통 사주</span></button>
+                  <button class="myq"><span class="mqi">🍀</span><span class="mql">로또 번호</span></button>
+                  <button class="myq"><span class="mqi">🏨</span><span class="mql">여행 3% 할인</span></button>
+                  <button class="myq"><span class="mqi">📋</span><span class="mql">여행문의</span></button>
+                  <button class="myq"><span class="mqi">🕊️</span><span class="mql">장례 상조</span></button>
+                </div>
+                <div class="srcnote" style="margin:12px 18px 18px">실제 시럽 앱 「내 정보」 화면 반영 (2026-08)</div>
               </div>
             </div>
 
@@ -582,7 +708,7 @@ footer.pg .r b{color:#fff}
               <div class="today">
                 <div class="tcard" onclick="go('meet')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=500&q=80" alt="단체미팅"></div><div class="tb"><span class="eb">단체미팅 · 마감 임박</span><h3>8/17 강남 5060 단체미팅</h3><p>잔여 3석 · 지금 신청하기</p></div></div>
                 <div class="tcard" onclick="go('travel')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="시놀트립"></div><div class="tb"><span class="eb">시놀트립</span><h3>제주 한림 2박, 멤버십가로</h3><p>정가 32만 → 24만</p></div></div>
-                <div class="tcard" onclick="go('groups')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=80" alt="산책"></div><div class="tb"><span class="eb">내 지역 모임</span><h3>강남 아침 산책 모임</h3><p>토요일 · 4/8명</p></div></div>
+                <div class="tcard" onclick="go('groups')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=80" alt="트레킹"></div><div class="tb"><span class="eb">일정 · 참여</span><h3>서울둘레길 트레킹 (제10코스)</h3><p>8/9 · 양재시민의숲역</p></div></div>
               </div>
 
               <div class="quick">
@@ -593,8 +719,8 @@ footer.pg .r b{color:#fff}
 
               <div class="sec"><span class="eb">Meeting</span><h2>이번 주 단체미팅</h2></div>
               <div class="card" onclick="go('meet')">
-                <div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80" alt="단체미팅"></div>
-                <div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3>
+                <div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 단체미팅 파티" onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80'"></div>
+                <div class="bd"><h3>[서울·강남] 시놀 50+ 추억의 단체미팅</h3>
                   <div class="meta"><span>8/17 (토) 오후 5시</span><span>강남</span><span class="seats">잔여 3석</span></div>
                   <div class="price"><b>99,000원</b> · 성혼비 없음</div></div>
               </div>
@@ -638,7 +764,7 @@ footer.pg .r b{color:#fff}
               <div class="stats">
                 <div class="stat"><div class="n">49,900</div><div class="l">연 멤버십(원)</div></div>
                 <div class="stat"><div class="n">최대 25%</div><div class="l">멤버십 할인</div></div>
-                <div class="stat"><div class="n">11,100P</div><div class="l">보유 포인트</div></div>
+                <div class="stat"><div class="n">45%</div><div class="l">시럽인연 만족도</div></div>
               </div>
               <div class="sec"><span class="eb">This week</span><h2>이번 주 추천 여행</h2></div>
               <div class="card">
@@ -667,8 +793,8 @@ footer.pg .r b{color:#fff}
               <div class="apphead"><span class="hh-title">만남</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
               <div class="sec"><span class="eb">Meet</span><h2>어떤 만남을 찾으세요?</h2><div class="subttl">목적에 맞게 골라 보세요</div></div>
               <div class="purpose b">
-                <span class="eb">가볍게 시작</span><h3>친구 · 이성친구 — 시럽</h3>
-                <p>관심사가 비슷한 50+ 친구를 내 주변에서 찾습니다. AI 주선과 5중 여성 안심 기능.</p>
+                <span class="eb">가볍게 시작</span><h3>친구 · 이성친구 — 시럽 (老맨스가 필요할 땐?)</h3>
+                <p>위치기반 매칭으로 내 주변 동네친구를, 관심사·거리·희망 연령대로 검색. 연락처 차단으로 지인 회피.</p>
                 <span class="badge18">시럽 앱 · 성인(18+) 등급 안내</span>
                 <div class="go">시럽으로 이동 →</div>
               </div>
@@ -683,16 +809,41 @@ footer.pg .r b{color:#fff}
                   <li><span class="chk">✓</span><span><b>성혼비 없음</b> — 시장 관행은 가입비 외 성혼비 100~500만원 별도</span></li>
                   <li><span class="chk">✓</span><span>신원·직업·혼인 서류 <b>3중 검증</b></span></li>
                   <li><span class="chk">✓</span><span>전담 매니저 1:1 · 핵심 고객 <b>재결제율 47%</b></span></li>
+                  <li><span class="chk">✓</span><span>시놀, <b>중소벤처기업부 장관 표창</b> 수상 (2025.11)</span></li>
                 </ul>
               </div>
+                            <div class="simg3">
+                <figure><div class="im"><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/5bc5c6c461710.png" alt="철저한 신원 인증" onerror="this.parentNode.parentNode.style.display='none'"></div><figcaption>철저한 신원 인증</figcaption></figure>
+                <figure><div class="im"><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/ba3aaf7d81608.png" alt="전문 매니저 1:1 매칭" onerror="this.parentNode.parentNode.style.display='none'"></div><figcaption>전문 매니저 1:1</figcaption></figure>
+                <figure><div class="im"><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="다양한 미팅 파티" onerror="this.parentNode.parentNode.style.display='none'"></div><figcaption>다양한 미팅 파티</figcaption></figure>
+              </div>
+              <div class="srcnote">실제 시럽인연(sinor.co.kr) 콘텐츠</div>
               <button class="cta">인연 진단 (3문항) 시작</button>
               <button class="cta blue">전화 상담 예약 · 무료</button>
               <div class="sec"><span class="eb">Group</span><h2>함께 만나요 — 단체미팅</h2></div>
-              <div class="card"><div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80" alt="미팅"></div><div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3><div class="meta"><span>8/17 (토) 17시</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음 · 본인인증 참가자만</div></div></div>
+              <div class="card"><div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 단체미팅 파티" onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80'"></div><div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3><div class="meta"><span>8/17 (토) 17시</span><span class="seats">잔여 3석</span></div><div class="meta"><span style="color:var(--ink-3)">중앙일보 보도 · 6:6 · 국내 최초 품격있는 중년의 만남</span></div><div class="price"><b>99,000원</b> · 성혼비 없음 · 본인인증 참가자만</div></div></div>
               <button class="cta">단체미팅 전체 일정 보기</button>
-              <div class="sec"><span class="eb">Chat</span><h2>대화</h2></div>
-              <div class="lrow" onclick="alert('모임 대화방 진입\nchat_entry: source=meeting')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=100&q=80" alt="아침 산책"></div><div class="li"><h4>강남 아침 산책 모임</h4><p>내일 7시 양재천에서 만나요</p></div><span class="unread">3</span></div>
-              <div class="lrow" onclick="alert('1:1 대화방 진입\nchat_entry: source=profile')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="매니저"></div><div class="li"><h4>이○호 매니저</h4><p>말씀주신 조건으로 두 분 준비했습니다</p></div><span class="unread">1</span></div>
+              <div class="sec"><span class="eb">Chat</span><h2>대화 — 모임 / 1:1</h2><div class="subttl">모임·여행·단체미팅을 한 곳에서 · 안 읽음은 점으로 · 운영 공지 채널</div></div>
+              <div class="chattabs">
+                <button class="cht on" onclick="chatTab(this,'cm')">모임<span class="cdot"></span></button>
+                <button class="cht" onclick="chatTab(this,'c1')">1:1 대화<span class="cdot"></span></button>
+              </div>
+              <div id="cm" class="chatpane on">
+                <div class="chips-row">
+                  <button class="chip on" onclick="chatFilter(this,'all')">전체</button>
+                  <button class="chip" onclick="chatFilter(this,'club')">취미모임</button>
+                  <button class="chip" onclick="chatFilter(this,'trip')">여행</button>
+                  <button class="chip" onclick="chatFilter(this,'meet')">단체미팅</button>
+                </div>
+                <div class="lrow" data-k="club" onclick="alert('모임 대화방 진입 · chat_entry: source=group')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=100&q=80" alt="아침 산책"></div><div class="li"><h4>강남 아침 산책 모임 <span class="rtag club">취미</span></h4><p>내일 7시 양재천에서 만나요</p></div><span class="unread">3</span></div>
+                <div class="lrow" data-k="trip" onclick="alert('여행 단체 대화방 · chat_entry: source=trip')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=100&q=80" alt="시놀트립"></div><div class="li"><h4>시놀트립 · 8/30 영종도 <span class="rtag trip">✈️ 여행</span></h4><p><b>[운영 공지]</b> 07시 마포 집결 · 준비물 안내</p></div><span class="unread">5</span></div>
+                <div class="lrow" data-k="meet" onclick="alert('단체미팅 대화방 · chat_entry: source=meeting')"><div class="av img-slot"><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="단체미팅" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=100&q=80'"></div><div class="li"><h4>8/17 강남 단체미팅 <span class="rtag meet">🍷 미팅</span></h4><p><b>[운영 공지]</b> 오후 5시 · 드레스코드 안내 · 후기 이벤트</p></div><span class="unread">2</span></div>
+                <div class="lrow" data-k="club" onclick="alert('모임 대화방 진입 · chat_entry: source=group')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=100&q=80" alt="사랑방"></div><div class="li"><h4>5학년 사랑방 <span class="rtag club">취미</span></h4><p>오늘 저녁 번개 어떠세요?</p></div><span class="chev">›</span></div>
+              </div>
+              <div id="c1" class="chatpane">
+                <div class="lrow" onclick="alert('1:1 대화방 진입 · chat_entry: source=profile')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="매니저"></div><div class="li"><h4>이○호 매니저</h4><p>말씀주신 조건으로 두 분 준비했습니다</p></div><span class="unread">1</span></div>
+                <div class="lrow" onclick="alert('1:1 대화방 진입 · chat_entry: source=profile')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="상대"></div><div class="li"><h4>김○자 님</h4><p>사진 잘 봤습니다. 반가워요 :)</p></div><span class="chev">›</span></div>
+              </div>
               <div style="height:14px"></div>
             </div>
 
@@ -712,12 +863,16 @@ footer.pg .r b{color:#fff}
                 <div class="stat"><div class="n">107,735</div><div class="l">누적 회원</div></div>
                 <div class="stat"><div class="n">강남</div><div class="l">내 지역</div></div>
               </div>
-              <div class="sec"><span class="seclink">전체 ›</span><span class="eb">Near me</span><h2>내 주변 모임</h2></div>
-              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=100&q=80" alt="산책"></div><div class="li"><h4>강남 아침 산책</h4><p>토 오전 7시 · 양재천 · 4/8명</p></div><span class="chev">›</span></div>
-              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=100&q=80" alt="바둑"></div><div class="li"><h4>분당 바둑 동호회</h4><p>매주 화 · 정자동 · 6/10명</p></div><span class="chev">›</span></div>
-              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=100&q=80" alt="골프"></div><div class="li"><h4>파크골프 함께해요</h4><p>일 오전 · 한강 · 3/9명</p></div><span class="chev">›</span></div>
-              <div class="sec"><span class="eb">Popular</span><h2>인기 모임</h2></div>
-              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=100&q=80" alt="노래"></div><div class="li"><h4>추억의 팝송 부르기</h4><p>홍대 · 5/11명 · 이번 주 인기</p></div><span class="chev">›</span></div>
+              <div class="sec"><span class="seclink">전체 ›</span><span class="eb">My groups · 가입 4</span><h2>내 가입 모임</h2></div>
+              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&w=100&q=80" alt="사랑방"></div><div class="li"><h4>5학년 사랑방</h4><p>전체 · 자동 가입</p></div><span class="chev">›</span></div>
+              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=100&q=80" alt="시놀트립"></div><div class="li"><h4>시놀트립</h4><p>마포구 · 1,672명 가입 · 8/30 영종도</p></div><span class="chev">›</span></div>
+              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=100&q=80" alt="클럽"></div><div class="li"><h4>CLUB NO.1</h4><p>서초구 · 128명 가입 · 8/12 정모</p></div><span class="chev">›</span></div>
+              <div class="sec"><span class="eb">Discover · 내 근처 모임 찾기</span><h2>주제별 모임</h2></div>
+              <div class="hrow">
+                <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&w=400&q=80" alt="친목"></div><div class="gb"><h4>친목 모임</h4><div class="gm">인생을 재밌게</div></div></div>
+                <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80" alt="취미배움"></div><div class="gb"><h4>취미 배움 모임</h4><div class="gm">인생을 알차게</div></div></div>
+                <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="노래"></div><div class="gb"><h4>추억의 팝송</h4><div class="gm">홍대 · 5/11명</div></div></div>
+              </div>
               <button class="cta">＋ 내 모임 만들기</button>
               <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅은 하단 메뉴에서 빠지고 맥락에서 진입합니다.</div>
               <div style="height:14px"></div>
@@ -744,7 +899,7 @@ footer.pg .r b{color:#fff}
             </div>
             <div class="wbanner">
               <div class="bimg img-slot">
-                <img src="https://sinor.co.kr/img/main_banner_01.jpg" alt="시럽인연 배너" onerror="this.src='https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80'">
+                <img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 시럽인연 미팅 파티" onerror="this.src='https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80'">
                 <div class="btag"><span class="eb">프리미엄 소개팅 · 시럽인연</span><h3>다시 설레는 여름,<br>인연을 만나다</h3></div>
               </div>
             </div>
@@ -755,9 +910,9 @@ footer.pg .r b{color:#fff}
             <div class="startbar"><div class="go">시놀 웹으로 시작하기</div><div class="q">문의</div></div>
 
             <div class="wsec"><span class="eb">Today</span><h2>오늘의 추천</h2></div>
-            <div class="card"><div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80" alt="미팅"></div><div class="bd"><h3>[서울·강남] 5060 단체미팅</h3><div class="meta"><span>8/17 (토)</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음</div></div></div>
+            <div class="card"><div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 단체미팅 파티" onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80'"></div><div class="bd"><h3>[서울·강남] 5060 단체미팅</h3><div class="meta"><span>8/17 (토)</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음</div></div></div>
             <button class="cta">웹에서 바로 신청</button>
-            <div class="trust"><h3>시럽인연 — 진지한 인연</h3><ul><li><span class="chk">✓</span><span><b>성혼비 없음</b>으로 총액이 끝납니다</span></li><li><span class="chk">✓</span><span>신원인증 · 전문 매니저 1:1 매칭</span></li></ul></div>
+            <div class="trust"><h3>시럽인연 — 더 늦기 전에 시작하는 끝사랑</h3><ul><li><span class="chk">✓</span><span><b>성혼비 없음</b>으로 총액이 끝납니다</span></li><li><span class="chk">✓</span><span>철저한 신원 인증 · 전문 매니저 1:1 매칭 (회원 46,366 · 매칭 9,273+)</span></li></ul></div>
             <button class="cta blue">전화 상담 예약 (무료)</button>
             <div class="wsec"><span class="eb">Trip</span><h2>시놀트립 멤버십</h2></div>
             <div class="card"><div class="thumb img-slot"><span class="pill blue">시놀트립</span><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="여행"></div><div class="bd"><h3>제주 한림 2박 3일</h3><div class="price"><s>320,000원</s> → <b>240,000원</b> <span>멤버십가</span></div></div></div>
@@ -765,9 +920,43 @@ footer.pg .r b{color:#fff}
             <div class="wsec"><span class="eb">Column · 191</span><h2>시니어 칼럼</h2></div>
             <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=100&q=80" alt="맨발걷기"></div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 CTA → 취미 모임 앱 설치</p></div><span class="chev">›</span></div>
             <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=100&q=80" alt="재혼"></div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 CTA → 시럽인연 상담</p></div><span class="chev">›</span></div>
+                        <div class="wsec"><span class="eb">AEO · FAQ 스키마</span><h2>자주 묻는 질문</h2></div>
+            <div class="schema-tag">FAQPage JSON-LD 부착 — AI 답변 인용 대상</div>
+            <div class="faq">
+              <div class="fq">5060 단체미팅은 어떤 사람이 신청하나요?<small>50~60대 싱글, 새로운 인연을 원하는 분, 앱 프로필 공개는 부담스러운 분입니다.</small></div>
+              <div class="fq">성혼비가 따로 있나요?<small>시럽인연은 성혼비 없이 총액이 끝납니다. 시장 관행(가입비 외 성혼비 100~500만원)과 다릅니다.</small></div>
+              <div class="fq">회원 검증은 어떻게 하나요?<small>신분증·직업 등 단계별 인증을 거쳐 검증된 회원만 매칭됩니다. 중소벤처기업부 장관 표창(2025.11).</small></div>
+            </div>
             <div class="note"><b>웹 규칙:</b> 칼럼=앱 설치 · 단체미팅=웹 신청 · 시럽인연=전화 상담 · 여행=멤버십 결제.</div>
             <div style="height:20px"></div>
           </div>
+        </div>
+
+        <!-- ===== v4: 우측 기획 주석 (참조 AIchatbot/aboutfishing 패턴) ===== -->
+        <div class="annos">
+          <div class="anno-guide">
+            <span class="eb">Read this · 화면 보는 법</span>
+            <h4>왼쪽은 실제 화면, 아래는 기획 의도</h4>
+            <p>상단 <b>앱/웹 토글</b>로 두 화면을 바꾸고, 하단 4대 메뉴와 카드를 눌러 이동해 보세요. 문구·가격·후기는 실제 시놀·시럽·시럽인연에서 가져왔습니다.</p>
+          </div>
+
+          <div class="issuebox">
+            <div class="ttl">⚠ 확인 필요 이슈 · 컨펌 대상</div>
+            <ul>
+              <li><span class="ck">확인</span><span>실제 <b>시놀 앱 AS-IS는 5탭</b>(홈·내 모임·스토리·대화방·내정보)입니다. V3는 <b>목적형 4탭</b>(홈·여행·만남·모임)으로 재편 — 스토리(글)는 모임으로, 대화방은 맥락 진입으로, 내정보는 우측 상단으로 흡수. <b>대표 요구: 대화는 모임/1:1 분리</b>(만남 탭에 반영).</span></li>
+            <li><span class="ck">확인</span><span>실제 <b>sinor.co.kr 웹 네비는 서비스형</b>(시놀 모임앱·시럽 만남앱·단체미팅·시럽인연·여행·칼럼)입니다. 앱 V3 4탭과 구조가 달라, 웹/앱 정합 범위 결정 필요.</span></li>
+              <li><span class="ck">확인</span><span>단체미팅 <b>/meeting·/download 등 페이지는 이미 존재</b>. 신설이 아니라 연결·측정 작업 — 개발 범위 재확인.</span></li>
+              <li><span class="ck">확인</span><span>가격·잔여석·후기는 <b>목업용 예시값</b>. 실서비스 값 연동은 개발 Phase 0 이후.</span></li>
+            </ul>
+          </div>
+
+          <div class="annostep"><div class="num">1</div><div class="as-t"><h5>홈 — 오늘의 발견</h5><p>검색바(무엇을 찾으세요?) + 오늘의 추천 + 4대 메뉴 진입 + 수익 카드 3종.</p><span class="tag2">search_term 수집</span></div></div>
+          <div class="annostep b"><div class="num">2</div><div class="as-t"><h5>여행 — 시놀트립 멤버십</h5><p>연 49,900원 구독. 하나투어 제휴는 광고 지면(측정만), 판매는 자사 완결.</p><span class="tag2 b">구독 · 멤버십</span></div></div>
+          <div class="annostep"><div class="num">3</div><div class="as-t"><h5>만남 — 목적 분기</h5><p>가볍게=시럽(老맨스·18+), 진지하게=시럽인연(끝사랑·성혼비 없음), 함께=단체미팅.</p><span class="tag2">전화 상담 원탭</span></div></div>
+          <div class="annostep b"><div class="num">4</div><div class="as-t"><h5>모임 — 커뮤니티 자산</h5><p>1,561개 모임·카테고리. 채팅은 하단 탭에서 빼고 모임 상세에서 진입.</p><span class="tag2 b">라우팅 변경</span></div></div>
+          <div class="annostep"><div class="num">5</div><div class="as-t"><h5>대화방 = 리텐션 엔진 (여행·미팅 확장)</h5><p>여행 단체·단체미팅도 모임 대화방에 통합. 하위 필터(전체·취미·여행·미팅)로 구분하되 <b>알림은 한 곳에 집중</b> — 안 읽은 게 하나만 떠도 들어옵니다. 운영자는 출발 안내·집결·후기를 한 채널에서 공지.</p><span class="tag2">DAU · 노쇼↓ · 재신청↑</span></div></div>
+
+          <div class="expect">✓ <b>기대 결과:</b> 발견(홈) → 목적 완수 → <b>대화방 리텐션</b>으로 DAU/MAU 5.8% → 8%. 여행·미팅이 일회성에서 지속 관계로 전환</div>
         </div>
       </div>
     </div>
@@ -797,6 +986,44 @@ footer.pg .r b{color:#fff}
       </table>
     </div>
   </section>
+  <!-- v5: 검색·발견 채널 전략 (그로스 · SEO/ASO/AEO/GEO) -->
+  <section class="sect" id="channels">
+    <div class="sect-hd reveal">
+      <span class="eb">Growth · 검색이 데려온다</span>
+      <h2>고객은 검색으로 옵니다 — 4개 채널을 각각 잡습니다</h2>
+      <p>유입의 <b>57%가 검색</b>입니다(GA4). 화면만 바꾸면 절반이 샙니다. 검색·앱스토어·AI답변·AI크롤러 네 곳에서 시놀이 <b>발견되고, 인용되고, 설치되게</b> 만드는 것이 그로스의 첫 레버입니다. 실행은 실서비스(sinor.co.kr·스토어)에 적용하며, 이 브리프 문서 자체는 <span class="schema-tag" style="margin:0">noindex</span> 처리했습니다.</p>
+    </div>
+    <div class="chgrid reveal">
+      <div class="chc warn">
+        <div class="hd"><h4>SEO — 검색 유입</h4><span class="st">주의</span></div>
+        <div class="diag">시럽인연 메인(조회 <b>6,585 · 전체 45%</b>)의 제목이 브랜드만("시놀 시럽인연") — 검색어가 없습니다. 반면 단체미팅은 제목에 "5060·지역·월"이 있어 이탈 12%로 최고. <b>이 차이가 답입니다.</b></div>
+        <div class="act"><b>실행:</b> 페이지별 title에 검색어 삽입("5060 단체미팅"·"시니어 재혼"), 칼럼 191편 내부링크로 서비스 연결, sitemap·canonical 정비.</div>
+        <div class="own">담당 개발·기획 · 실행 위치 sinor.co.kr</div>
+      </div>
+      <div class="chc risk">
+        <div class="hd"><h4>ASO — 앱스토어</h4><span class="st">위험</span></div>
+        <div class="diag">App Store 시놀이 <b>영어로만 등록</b> — 한국어 키워드 미인덱싱. 시럽은 18+ 등급으로 설치 마찰.</div>
+        <div class="act"><b>실행:</b> App Store 한국어 로컬라이제이션(이름·부제·키워드 100자), Play 데이터 안전 재제출, 첫 스크린샷에 "5060 단체미팅" 배치.</div>
+        <div class="own">담당 그로스·개발 · 실행 위치 스토어 콘솔</div>
+      </div>
+      <div class="chc ok">
+        <div class="hd"><h4>AEO — AI 답변 인용</h4><span class="st">양호</span></div>
+        <div class="diag">시럽인연 페이지에 <b>이미 FAQ가 있고</b> 구글이 본문을 읽고 있습니다("40세 이상"·"성혼비 없음"). 새로 쓸 필요 없이 <b>구조화 표시(스키마)만</b> 얹으면 스니펫 후보가 됩니다.</div>
+        <div class="act"><b>실행:</b> 시럽인연·단체미팅에 FAQPage JSON-LD 부착(아래 웹 프로토 예시). "결혼정보회사 가격은?"·"60대 재혼 절차는?" 질문형 제목 글 10편, 첫 문단에 두 문장으로 답부터.</div>
+        <div class="own">담당 개발 · 실행 위치 sinor.co.kr</div>
+      </div>
+      <div class="chc warn">
+        <div class="hd"><h4>GEO — AI 크롤러 접근</h4><span class="st">주의</span></div>
+        <div class="diag">28일간 AI 유입 <b>61명</b>(챗GPT 47·제미나이 6·클로드 5·퍼플렉시티 3) 실측. 그런데 sinor.co.kr이 봇 접근을 차단합니다 — 읽히지 않으면 인용되지 않습니다.</div>
+        <div class="act"><b>실행:</b> robots.txt에서 GPTBot·PerplexityBot·ClaudeBot·Google-Extended 허용. 회사소개에 팩트 문장 집결(회원 11만·모임 1,500·2만 커플·성혼비 없음)과 언론 보도(플래텀·아크로팬 등)를 인용 근거로.</div>
+        <div class="own">담당 개발 · 실행 위치 서버 설정</div>
+      </div>
+    </div>
+    <div class="note" style="max-width:1080px;margin:16px auto 0">
+      <b>측정과 연결:</b> 네 채널 모두 GA4·서치콘솔·네이버 서치어드바이저로 유입을 계측하고, 도착 페이지의 <b>search_term·설치 전환</b> 이벤트로 판정합니다. 채널→화면→전환이 한 줄로 이어져야 그로스 실험이 성립합니다.
+    </div>
+  </section>
+
 
   <!-- 7. 비즈니스 임팩트 -->
   <section class="sect" id="impact">
@@ -830,8 +1057,9 @@ footer.pg .r b{color:#fff}
       <div class="evt"><b>primary_nav_tap</b>(menu)<small>4대 메뉴별 4주 기여도 측정</small></div>
       <div class="evt"><b>mypage_open</b><small>우상단 마이페이지 진입</small></div>
       <div class="evt"><b>chat_entry</b>(source, room_type)<small>맥락 진입 채팅의 출처 추적</small></div>
+      <div class="evt"><b>chat_filter_tap</b>(filter)<small>대화방 필터(전체·취미·여행·미팅) 이용 측정</small></div>
     </div>
-    <div class="note" style="margin:16px 0 0;max-width:none">기존 16종 이벤트에 위 3종을 추가합니다. <b>측정 이벤트는 이 개편과 같은 작업에 포함</b>합니다 — 나중에 붙이면 대부분 안 붙습니다.</div>
+    <div class="note" style="margin:16px 0 0;max-width:none">기존 16종 이벤트에 위 4종을 추가합니다. <b>측정 이벤트는 이 개편과 같은 작업에 포함</b>합니다 — 나중에 붙이면 대부분 안 붙습니다.</div>
   </section>
 
   <!-- 8. 직군별 -->
@@ -884,7 +1112,7 @@ footer.pg .r b{color:#fff}
       <small>모든 수치는 <b>정합기준 정본(2026-08)</b>에서 인용했습니다. 색·아이콘·최종 카피는 디자인 단계 확정 초안이며, 구조·콘텐츠 배치 합의가 이 문서의 목적입니다. 실사 사진은 예시(저작권 확인 후 자사 촬영본 교체). 로고는 제공된 실물 이미지를 인라인 SVG로 재현했습니다(정식 .svg 확보 시 교체).</small>
     </div>
     <div class="r">
-      <small><b>작성</b> 시놀 김연재 (Claude Code 세션)<br><b>기준일</b> 2026-08-08 · 대외비<br><b>출처</b> 종합전략 v3 · Dataroom 2026.07 · GA4 실측 · 외부 실사 2026.08.08<br><b>참조 UX</b> banns0104 하우스 스타일(velor·timebid·fishing·AIchatbot) — 실행 문법만 차용, 색·크기는 시놀 기준</small>
+      <small><b>작성</b> 시놀 김연재 (Claude Code 세션)<br><b>기준일</b> 2026-08-08 · 대외비<br><b>출처</b> 종합전략 v3 · Dataroom 2026.07 · GA4 실측 · 외부 실사 2026.08.08<br><b>참조 UX</b> banns0104 하우스 스타일(velor·timebid·fishing·AIchatbot) — 2026-08-08 브라우저 실물 확인 — 실행 문법만 차용, 색·크기는 시놀 기준</small>
     </div>
   </div>
 </footer>
@@ -913,6 +1141,47 @@ function setMode(m){
   var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12});
   els.forEach(function(e){io.observe(e)});
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"5060 단체미팅은 어떤 사람이 신청하나요?","acceptedAnswer":{"@type":"Answer","text":"50~60대 싱글, 새로운 인연을 원하는 분, 앱 프로필 공개는 부담스러운 분이 신청합니다."}},
+    {"@type":"Question","name":"시럽인연에 성혼비가 따로 있나요?","acceptedAnswer":{"@type":"Answer","text":"시럽인연은 성혼비 없이 총액이 끝납니다. 가입비 외 성혼비가 별도로 붙지 않습니다."}},
+    {"@type":"Question","name":"회원 검증은 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"신분증·직업 등 단계별 인증을 거쳐 검증된 회원만 매칭됩니다."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"시놀","url":"https://sinor.co.kr","description":"5060 시니어를 위한 모임·만남·여행 플랫폼","award":"중소벤처기업부 장관 표창 (2025.11)"}
+</script>
+
+<script>
+(function(){var tks=document.querySelectorAll('.ticker .tk');if(tks.length<2)return;var i=0;
+setInterval(function(){tks[i].classList.remove('on');i=(i+1)%tks.length;tks[i].classList.add('on');},3200);})();
+</script>
+
+<script>
+function chatTab(btn,id){
+  var tabs=btn.parentNode.querySelectorAll('.cht');
+  tabs.forEach(function(t){t.classList.remove('on')});
+  btn.classList.add('on');
+  ['cm','c1'].forEach(function(x){var e=document.getElementById(x); if(e) e.classList.toggle('on', x===id);});
+}
+</script>
+
+<script>
+function chatFilter(btn,k){
+  var row=btn.parentNode;
+  row.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on')});
+  btn.classList.add('on');
+  var pane=document.getElementById('cm');
+  pane.querySelectorAll('.lrow').forEach(function(r){
+    r.style.display = (k==='all' || r.getAttribute('data-k')===k) ? '' : 'none';
+  });
+}
 </script>
 </body>
 </html>
