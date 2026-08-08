@@ -9,257 +9,285 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500;600;700&display=swap">
 <style>
 :root{
+  /* 시놀 brand — pink + blue (실제 로고 두 하트) */
+  --pink:#FF2D78; --pink-d:#E01560; --pink-50:#FFEAF1; --pink-100:#FFD6E4;
+  --blue:#3D6AF2; --blue-d:#2B52CC; --blue-50:#EAF0FF;
+  --kakao:#FEE500;
   /* grounds */
-  --canvas:#F7F8F6; --base:#FFFFFF; --surface-1:#FFFFFF; --surface-2:#F1F3F0; --surface-3:#E9ECE7;
-  /* teal primary (시놀) */
-  --teal-50:#E8F2F0; --teal-100:#CDE6E2; --teal-300:#5FA9A2; --teal-500:#0F6E68; --teal-600:#0B564F; --teal-700:#083F3A;
-  --teal-grad:linear-gradient(135deg,#0F6E68 0%,#12817A 52%,#1CA199 100%);
-  /* coral accent (온기) */
-  --coral-50:#FCEDE6; --coral-500:#E8683D; --coral-600:#C94E27;
-  /* gold tertiary */
-  --gold-50:#FBF1D8; --gold-500:#E6A817; --gold-700:#8A6A15;
-  /* semantic tints */
-  --green-bg:#E8FAF0; --green:#1E7A4D; --red-bg:#FDECEA; --red:#C0392B;
-  /* text (warm ink) */
-  --ink:#1C2521; --ink-2:#51605A; --ink-3:#8A968F;
-  --line:#E4E8E3; --line-2:#D3D9D2;
+  --bg:#FFFFFF; --canvas:#F6F7F9; --card:#FFFFFF; --surface:#F3F4F6; --surface-2:#ECEEF1;
+  /* text */
+  --ink:#1A1A1A; --ink-2:#565961; --ink-3:#9297A0;
+  --line:#EDEEF1; --line-2:#E1E3E8;
+  --ok:#16A06A; --danger:#E5484D;
   /* radius */
-  --r-sm:10px; --r-md:14px; --r-lg:20px; --r-xl:26px;
-  /* shadow (layered, soft) */
-  --sh-sm:0 1px 2px rgba(16,40,36,.04),0 2px 6px rgba(16,40,36,.05);
-  --sh-md:0 2px 4px rgba(16,40,36,.05),0 8px 20px rgba(16,40,36,.08);
-  --sh-lg:0 8px 18px rgba(16,40,36,.09),0 24px 48px rgba(16,40,36,.13);
+  --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:24px;
+  /* shadow (soft, layered) */
+  --sh-sm:0 1px 2px rgba(20,22,30,.04),0 2px 6px rgba(20,22,30,.05);
+  --sh-md:0 2px 4px rgba(20,22,30,.05),0 10px 24px rgba(20,22,30,.08);
+  --sh-lg:0 10px 20px rgba(20,22,30,.10),0 28px 56px rgba(20,22,30,.14);
   --sans:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
   --mono:"Source Code Pro",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
-  font-family:var(--sans);
-  background:#1E2420;
-  background-image:radial-gradient(circle at 15% 0%,rgba(28,161,153,.10),transparent 45%),radial-gradient(circle at 85% 100%,rgba(232,104,61,.08),transparent 45%);
-  color:var(--ink);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  font-family:var(--sans);background:#EEF0F3;color:var(--ink);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
   display:flex;flex-direction:column;align-items:center;min-height:100%;
 }
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-.eb{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+svg{display:block}
+.eb{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 
-/* ---------- stage ---------- */
+/* logo */
+.logo{display:inline-flex;align-items:center;gap:7px}
+.logo .hearts{width:34px;height:22px;flex:0 0 auto}
+.logo .wm{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.logo.sm .hearts{width:27px;height:18px}.logo.sm .wm{font-size:17px}
+
+/* stage */
 .stage{width:100%;max-width:1200px;padding:26px 16px 64px}
-.stagehead{text-align:center;margin-bottom:22px;color:#EAF0EC}
-.stagehead .eb{color:#7FD3C9}
-.stagehead h1{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:8px}
-.stagehead p{font-size:13.5px;color:#9FB0A8;margin-top:6px}
-.toggle{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:5px;margin-top:16px;gap:3px}
-.toggle button{padding:9px 22px;border-radius:999px;font-size:14px;font-weight:700;color:#9FB0A8;transition:.2s}
-.toggle button.on{background:var(--canvas);color:var(--teal-600);box-shadow:var(--sh-sm)}
-.tapnote{text-align:center;color:#8298901;color:#7E8E86;font-size:12px;margin-top:10px;font-family:var(--mono);letter-spacing:.02em}
+.stagehead{text-align:center;margin-bottom:20px;color:#3A3E46}
+.stagehead .eb{color:var(--pink)}
+.stagehead h1{font-size:23px;font-weight:800;letter-spacing:-.02em;margin-top:8px;color:#1A1A1A}
+.stagehead p{font-size:13.5px;color:#6B7078;margin-top:6px}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--line-2);border-radius:999px;padding:5px;margin-top:16px;gap:3px;box-shadow:var(--sh-sm)}
+.toggle button{padding:9px 22px;border-radius:999px;font-size:14px;font-weight:700;color:var(--ink-3);transition:.2s}
+.toggle button.on{background:var(--pink);color:#fff}
+.tapnote{text-align:center;color:#8A8F98;font-size:11.5px;margin-top:10px;font-family:var(--mono);letter-spacing:.03em}
 .frames{display:flex;gap:30px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-top:22px}
 
-/* ---------- phone ---------- */
-.phone{
-  width:392px;max-width:100%;height:812px;background:var(--canvas);
-  border-radius:44px;border:11px solid #0E1512;box-shadow:var(--sh-lg),0 0 0 1px rgba(255,255,255,.04);
-  overflow:hidden;position:relative;display:flex;flex-direction:column;
-}
-.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:132px;height:30px;background:#0E1512;border-radius:0 0 18px 18px;z-index:60}
+/* phone */
+.phone{width:392px;max-width:100%;height:812px;background:var(--bg);border-radius:44px;border:11px solid #101216;box-shadow:var(--sh-lg);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:128px;height:30px;background:#101216;border-radius:0 0 18px 18px;z-index:60}
 .screen{flex:1;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;background:var(--canvas)}
 .screen::-webkit-scrollbar{width:0}
-.view{display:none}
-.view.on{display:block}
-.view.on>*{animation:rise .38s cubic-bezier(.2,.7,.2,1) both}
-.view.on>*:nth-child(2){animation-delay:.03s}
-.view.on>*:nth-child(3){animation-delay:.06s}
-.view.on>*:nth-child(4){animation-delay:.09s}
-.view.on>*:nth-child(n+5){animation-delay:.12s}
+.view{display:none}.view.on{display:block}
+.view.on>*{animation:rise .34s cubic-bezier(.2,.7,.2,1) both}
+.view.on>*:nth-child(2){animation-delay:.03s}.view.on>*:nth-child(3){animation-delay:.06s}
+.view.on>*:nth-child(4){animation-delay:.09s}.view.on>*:nth-child(n+5){animation-delay:.12s}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.view.on>*{animation:none}}
 
-/* header */
-.apphead{position:sticky;top:0;z-index:40;background:rgba(247,248,246,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:38px 18px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:9px}
-.logo{width:32px;height:32px;border-radius:10px;background:var(--teal-grad);color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center;box-shadow:var(--sh-sm)}
-.loc{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
-.loc small{color:var(--ink-3);font-weight:600}
-.hicons{display:flex;align-items:center;gap:8px}
-.mypage-btn{display:flex;align-items:center;gap:6px;background:var(--base);border:1px solid var(--line-2);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:700;color:var(--teal-600);min-height:40px;box-shadow:var(--sh-sm)}
-.bell{width:40px;height:40px;border-radius:999px;background:var(--base);border:1px solid var(--line-2);display:grid;place-items:center;font-size:16px;position:relative;box-shadow:var(--sh-sm)}
-.bell .dot{position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:999px;background:var(--coral-500);border:2px solid var(--base)}
+/* app header */
+.apphead{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:40px 18px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.hh-title{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.hicons{display:flex;align-items:center;gap:16px}
+.ic-btn{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink-2);font-size:11px;font-weight:600;position:relative}
+.ic-btn svg{width:23px;height:23px;stroke:var(--ink);stroke-width:1.7;fill:none}
+.ic-btn .dot{position:absolute;top:-2px;right:6px;width:7px;height:7px;border-radius:999px;background:var(--pink);border:1.5px solid #fff}
 
 /* search */
-.searchbar{margin:14px 18px 6px;background:var(--base);border:1.5px solid var(--teal-300);border-radius:999px;padding:14px 18px;font-size:16px;color:var(--ink-3);display:flex;align-items:center;gap:10px;box-shadow:var(--sh-sm)}
+.searchbar{margin:14px 18px 4px;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:14px 16px;font-size:16px;color:var(--ink-3);display:flex;align-items:center;gap:10px;font-weight:500}
+.searchbar svg{width:20px;height:20px;stroke:var(--ink-3);stroke-width:2;fill:none;flex:0 0 auto}
 
-.sec{padding:20px 18px 6px;position:relative}
-.sec .eb{color:var(--teal-500);margin-bottom:5px;display:block}
+.sec{padding:22px 18px 4px;position:relative}
+.sec .eb{color:var(--pink);margin-bottom:6px;display:block}
 .sec h2{font-size:21px;font-weight:800;letter-spacing:-.02em}
 .sec .subttl{font-size:13.5px;color:var(--ink-3);margin-top:3px}
-.seclink{position:absolute;right:18px;bottom:8px;font-size:13px;color:var(--teal-500);font-weight:700;font-family:var(--mono)}
+.seclink{position:absolute;right:18px;bottom:6px;font-size:13px;color:var(--ink-3);font-weight:700}
 
-/* today hero strip */
+/* image placeholder (photo slot for Figma) */
+.ph{position:relative;background:linear-gradient(135deg,var(--pink-50),var(--blue-50));display:grid;place-items:center;overflow:hidden}
+.ph::after{content:attr(data-label);font-size:12px;font-weight:700;color:rgba(26,26,26,.34);font-family:var(--mono);letter-spacing:.02em}
+.ph .ppl{position:absolute;font-size:34px;opacity:.5}
+
+/* today hero cards */
 .today{display:flex;gap:12px;overflow-x:auto;padding:10px 18px 16px;scroll-snap-type:x mandatory}
 .today::-webkit-scrollbar{height:0}
-.tcard{scroll-snap-align:start;flex:0 0 78%;border-radius:var(--r-lg);padding:20px;color:#fff;box-shadow:var(--sh-md);min-height:144px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.tcard::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 15%,rgba(255,255,255,.18),transparent 55%);pointer-events:none}
-.tcard.t1{background:var(--teal-grad)}
-.tcard.t2{background:linear-gradient(135deg,#E8683D,#C94E27)}
-.tcard.t3{background:linear-gradient(135deg,#E6A817,#C98A0A)}
-.tcard .eb{opacity:.92}
-.tcard .h{font-size:19px;font-weight:800;margin-top:8px;line-height:1.34;letter-spacing:-.01em}
-.tcard .m{font-size:13px;opacity:.96;margin-top:auto;padding-top:12px;font-weight:600}
+.tcard{scroll-snap-align:start;flex:0 0 84%;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm);background:var(--card);border:1px solid var(--line)}
+.tcard .tph{height:118px}
+.tcard .tb{padding:13px 15px}
+.tcard .tb .eb{color:var(--pink)}
+.tcard .tb h3{font-size:16px;font-weight:800;margin-top:5px;letter-spacing:-.01em}
+.tcard .tb p{font-size:13px;color:var(--ink-2);margin-top:3px}
 
 /* quick menu */
-.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;padding:8px 18px 6px}
-.qcard{background:var(--base);border:1px solid var(--line);border-radius:var(--r-md);padding:17px 8px;text-align:center;box-shadow:var(--sh-sm);transition:.18s}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;padding:8px 18px 4px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 8px;text-align:center;box-shadow:var(--sh-sm);transition:.16s}
 .qcard:active{transform:scale(.96)}
-.qcard .emo{font-size:27px}
-.qcard .lb{font-size:15px;font-weight:800;margin-top:7px;color:var(--ink)}
-.qcard .dc{font-size:11.5px;color:var(--ink-3);margin-top:2px;font-family:var(--mono)}
+.qcard .qi{width:30px;height:30px;margin:0 auto;stroke:var(--pink);stroke-width:1.8;fill:none}
+.qcard .lb{font-size:15px;font-weight:800;margin-top:8px;color:var(--ink)}
+.qcard .dc{font-size:11.5px;color:var(--ink-3);margin-top:2px}
 
-/* card (수익=콘텐츠 동일 컴포넌트) */
-.card{background:var(--base);border:1px solid var(--line);border-radius:var(--r-lg);margin:10px 18px;box-shadow:var(--sh-sm);overflow:hidden;transition:.18s}
+/* card */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);margin:10px 18px;box-shadow:var(--sh-sm);overflow:hidden;transition:.16s}
 .card:active{transform:scale(.99);box-shadow:var(--sh-md)}
-.card .thumb{height:128px;background:linear-gradient(135deg,var(--surface-2),var(--surface-3));position:relative;display:grid;place-items:center;font-size:42px}
-.pill{position:absolute;top:12px;left:12px;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;letter-spacing:.02em;backdrop-filter:blur(4px)}
-.pill.teal{background:rgba(15,110,104,.92)} .pill.hot{background:rgba(232,104,61,.95)}
+.card .thumb{height:128px}
+.pill{position:absolute;top:12px;left:12px;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px}
+.pill.pink{background:var(--pink)} .pill.blue{background:var(--blue)}
 .card .bd{padding:15px 17px}
 .card .bd h3{font-size:17px;font-weight:800;letter-spacing:-.01em}
 .card .meta{font-size:13.5px;color:var(--ink-2);margin-top:6px;display:flex;flex-wrap:wrap;gap:5px 13px;align-items:center}
 .card .price{margin-top:10px;font-size:14px;color:var(--ink-3)}
-.card .price s{color:var(--ink-3)}
-.card .price b{color:var(--coral-600);font-size:19px;font-weight:800}
-.seats{color:var(--red);font-weight:800;display:inline-flex;align-items:center;gap:5px}
-.seats::before{content:"";width:7px;height:7px;border-radius:999px;background:var(--red);animation:pulse 1.6s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.35)}}
-.cta{display:block;width:calc(100% - 36px);margin:6px 18px 4px;background:var(--teal-500);color:#fff;border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;text-align:center;min-height:52px;box-shadow:var(--sh-sm);transition:.18s;letter-spacing:-.01em}
+.card .price s{color:var(--ink-3)} .card .price b{color:var(--pink);font-size:19px;font-weight:800}
+.seats{color:var(--danger);font-weight:800;display:inline-flex;align-items:center;gap:5px}
+.seats::before{content:"";width:7px;height:7px;border-radius:999px;background:var(--danger);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+.cta{display:block;width:calc(100% - 36px);margin:6px 18px 4px;background:var(--pink);color:#fff;border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;text-align:center;min-height:52px;box-shadow:var(--sh-sm);transition:.16s;letter-spacing:-.01em}
 .cta:active{transform:scale(.98)}
-.cta.coral{background:var(--coral-500)}
-.cta.ghost{background:var(--base);color:var(--teal-600);border:1.5px solid var(--teal-300);box-shadow:none}
+.cta.blue{background:var(--blue)} .cta.ghost{background:var(--card);color:var(--pink);border:1.5px solid var(--pink-100);box-shadow:none}
+.cta.kakao{background:var(--kakao);color:#3A2E00}
 .cta+.cta{margin-top:8px}
 
-/* horizontal group cards */
+/* group horizontal */
 .hrow{display:flex;gap:13px;overflow-x:auto;padding:8px 18px 16px;scroll-snap-type:x mandatory}
 .hrow::-webkit-scrollbar{height:0}
-.gcard{scroll-snap-align:start;flex:0 0 62%;background:var(--base);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-sm)}
-.gcard .gt{height:96px;background:linear-gradient(135deg,var(--surface-2),var(--surface-3));display:grid;place-items:center;font-size:32px}
+.gcard{scroll-snap-align:start;flex:0 0 60%;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-sm)}
+.gcard .gt{height:92px}
 .gcard .gb{padding:12px 14px}
 .gcard .gb h4{font-size:15px;font-weight:800;letter-spacing:-.01em}
 .gcard .gb .gm{font-size:12.5px;color:var(--ink-3);margin-top:4px}
-.gcard .gb .fill{margin-top:9px;height:6px;border-radius:999px;background:var(--surface-3);overflow:hidden}
-.gcard .gb .fill i{display:block;height:100%;border-radius:999px;background:var(--teal-grad)}
-.gcard .gb .cnt{font-size:12px;color:var(--teal-600);font-weight:700;margin-top:6px;font-family:var(--mono)}
+.gcard .gb .fill{margin-top:9px;height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.gcard .gb .fill i{display:block;height:100%;border-radius:999px;background:var(--pink)}
+.gcard .gb .cnt{font-size:12px;color:var(--pink);font-weight:700;margin-top:6px;font-family:var(--mono)}
 
 /* category grid */
 .catgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;padding:12px 18px}
-.cat{background:var(--base);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 4px;text-align:center;box-shadow:var(--sh-sm);transition:.18s}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 4px;text-align:center;box-shadow:var(--sh-sm);transition:.16s}
 .cat:active{transform:scale(.95)}
-.cat .e{font-size:23px}
-.cat .l{font-size:12.5px;font-weight:700;margin-top:6px;color:var(--ink)}
+.cat svg{width:24px;height:24px;margin:0 auto;stroke:var(--blue);stroke-width:1.8;fill:none}
+.cat .l{font-size:12.5px;font-weight:700;margin-top:7px;color:var(--ink)}
 
 /* list rows */
-.lrow{display:flex;align-items:center;gap:13px;background:var(--base);border:1px solid var(--line);border-radius:var(--r-md);margin:9px 18px;padding:13px 15px;box-shadow:var(--sh-sm);transition:.18s}
+.lrow{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);margin:9px 18px;padding:12px 14px;box-shadow:var(--sh-sm);transition:.16s}
 .lrow:active{transform:scale(.99)}
-.lrow .av{width:48px;height:48px;border-radius:13px;background:var(--teal-50);display:grid;place-items:center;font-size:23px;flex:0 0 auto}
+.lrow .av{width:48px;height:48px;border-radius:13px;flex:0 0 auto}
 .lrow .li{flex:1;min-width:0}
 .lrow .li h4{font-size:16px;font-weight:800;letter-spacing:-.01em}
 .lrow .li p{font-size:13px;color:var(--ink-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lrow .unread{background:var(--coral-500);color:#fff;font-family:var(--mono);font-size:12px;font-weight:700;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;padding:0 6px}
+.lrow .unread{background:var(--pink);color:#fff;font-family:var(--mono);font-size:12px;font-weight:700;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;padding:0 6px}
 .lrow .chev{color:var(--ink-3);font-size:20px}
 
-/* stat row */
-.stats{display:flex;gap:9px;padding:4px 18px 6px}
-.stat{flex:1;background:var(--base);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 8px;text-align:center;box-shadow:var(--sh-sm)}
-.stat .n{font-size:19px;font-weight:800;color:var(--teal-600);font-family:var(--mono);letter-spacing:-.02em}
+/* stat */
+.stats{display:flex;gap:9px;padding:6px 18px}
+.stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 8px;text-align:center;box-shadow:var(--sh-sm)}
+.stat .n{font-size:18px;font-weight:800;color:var(--pink);font-family:var(--mono);letter-spacing:-.02em}
 .stat .l{font-size:11.5px;color:var(--ink-3);margin-top:3px}
 
+/* profile card (내정보 톤) */
+.pcard{margin:14px 18px 4px;background:var(--pink-50);border-radius:var(--r-lg);padding:18px}
+.pcard .top{display:flex;align-items:center;gap:14px}
+.pcard .pic{width:56px;height:56px;border-radius:999px;background:#fff;display:grid;place-items:center;font-size:24px;flex:0 0 auto}
+.pcard h3{font-size:18px;font-weight:800}
+.pcard .sub{font-size:13px;color:var(--ink-2);margin-top:2px}
+.pcard .edit{margin-left:auto;background:var(--pink);color:#fff;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:800}
+.pcard .row3{display:flex;background:#fff;border-radius:var(--r-md);margin-top:14px;overflow:hidden}
+.pcard .row3 div{flex:1;text-align:center;padding:14px 6px}
+.pcard .row3 div+div{border-left:1px solid var(--line)}
+.pcard .row3 .n{font-size:16px;font-weight:800;font-family:var(--mono)}
+.pcard .row3 .l{font-size:12px;color:var(--ink-3);margin-top:3px}
+
 /* meet purpose */
-.purpose{margin:11px 18px;background:var(--base);border:1px solid var(--line);border-radius:var(--r-lg);padding:19px;box-shadow:var(--sh-sm);position:relative;overflow:hidden}
-.purpose::before{content:"";position:absolute;top:0;left:0;bottom:0;width:5px;background:var(--teal-500)}
-.purpose.coral::before{background:var(--coral-500)}
-.purpose.gold::before{background:var(--gold-500)}
+.purpose{margin:11px 18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);position:relative;overflow:hidden}
+.purpose::before{content:"";position:absolute;top:0;left:0;bottom:0;width:5px;background:var(--pink)}
+.purpose.b::before{background:var(--blue)}
 .purpose .eb{color:var(--ink-3)}
 .purpose h3{font-size:19px;font-weight:800;margin:5px 0 7px;letter-spacing:-.02em}
 .purpose p{font-size:14px;color:var(--ink-2)}
-.purpose .go{margin-top:13px;display:inline-flex;align-items:center;gap:6px;color:var(--teal-600);font-weight:800;font-size:15px}
-.badge18{display:inline-block;background:var(--gold-50);color:var(--gold-700);font-family:var(--mono);font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;margin-top:10px}
+.purpose .go{margin-top:12px;display:inline-flex;align-items:center;gap:6px;color:var(--pink);font-weight:800;font-size:15px}
+.purpose.b .go{color:var(--blue)}
+.badge18{display:inline-block;background:var(--surface);color:var(--ink-2);font-family:var(--mono);font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;margin-top:10px}
 
-/* trust block */
-.trust{margin:11px 18px;background:linear-gradient(135deg,var(--teal-50),#DDEEEA);border:1px solid var(--teal-100);border-radius:var(--r-lg);padding:18px 20px}
-.trust h3{font-size:17px;font-weight:800;color:var(--teal-700);letter-spacing:-.01em}
+/* trust */
+.trust{margin:11px 18px;background:var(--pink-50);border:1px solid var(--pink-100);border-radius:var(--r-lg);padding:18px 20px}
+.trust h3{font-size:17px;font-weight:800;color:var(--pink-d);letter-spacing:-.01em}
 .trust ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px}
 .trust li{font-size:14.5px;color:var(--ink);display:flex;gap:9px;align-items:flex-start}
-.trust li b{color:var(--teal-700)}
-.chk{color:var(--green);font-weight:800;flex:0 0 auto}
+.trust li b{color:var(--pink-d)} .chk{color:var(--ok);font-weight:800;flex:0 0 auto}
 
 /* review */
-.review{margin:9px 18px;background:var(--base);border:1px solid var(--line);border-radius:var(--r-md);padding:15px 17px;box-shadow:var(--sh-sm)}
-.review .stars{color:var(--gold-500);font-size:14px;letter-spacing:2px}
-.review p{font-size:14.5px;color:var(--ink);margin:7px 0 7px;line-height:1.55}
+.review{margin:9px 18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:15px 17px;box-shadow:var(--sh-sm)}
+.review .stars{color:#F5A623;font-size:14px;letter-spacing:2px}
+.review p{font-size:14.5px;color:var(--ink);margin:7px 0;line-height:1.55}
 .review .who{font-size:12.5px;color:var(--ink-3);font-family:var(--mono)}
 
-/* my page overlay */
+/* overlay */
 .overlay{position:absolute;inset:0;background:var(--canvas);z-index:70;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
 .overlay.on{transform:none}
-.ovhead{position:sticky;top:0;background:var(--canvas);padding:38px 18px 14px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.ovhead{position:sticky;top:0;background:var(--bg);padding:40px 18px 14px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
 .ovhead button{font-size:23px;color:var(--ink);width:40px;height:40px}
 .ovhead h2{font-size:19px;font-weight:800}
-.ovbody{flex:1;overflow-y:auto;padding:18px 0 24px}
-.profile{display:flex;align-items:center;gap:15px;padding:6px 20px 20px}
-.profile .pic{width:64px;height:64px;border-radius:999px;background:var(--teal-grad);color:#fff;display:grid;place-items:center;font-size:26px;font-weight:800;box-shadow:var(--sh-md)}
-.profile h3{font-size:19px;font-weight:800}
-.profile p{font-size:13.5px;color:var(--ink-3);margin-top:3px}
-.verified{display:inline-flex;align-items:center;gap:5px;background:var(--teal-50);color:var(--teal-700);font-family:var(--mono);font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;margin-top:6px}
-.mlist{display:flex;flex-direction:column;margin-top:4px}
-.mitem{display:flex;align-items:center;gap:15px;padding:16px 20px;border-top:1px solid var(--line);font-size:16px;font-weight:600}
-.mitem .e{font-size:20px;width:26px;text-align:center}
+.ovbody{flex:1;overflow-y:auto;padding:0 0 24px}
+.mlist{display:flex;flex-direction:column;margin-top:6px}
+.mitem{display:flex;align-items:center;gap:14px;padding:16px 20px;border-top:1px solid var(--line);font-size:16px;font-weight:600}
+.mitem .e{width:24px;height:24px;stroke:var(--ink-2);stroke-width:1.8;fill:none}
 .mitem .chev{margin-left:auto;color:var(--ink-3)}
-.mitem .pt{margin-left:auto;color:var(--coral-600);font-weight:800;font-family:var(--mono)}
+.mitem .pt{margin-left:auto;color:var(--pink);font-weight:800;font-family:var(--mono)}
 
-/* bottom nav */
-.tabbar{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line-2);padding:9px 6px calc(10px + env(safe-area-inset-bottom));z-index:50}
-.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:var(--ink-3);font-size:12px;font-weight:700;min-height:50px;transition:.15s}
-.tab .ti{font-size:23px;line-height:1;transition:.2s}
-.tab.on{color:var(--teal-600)}
-.tab.on .ti{transform:translateY(-2px) scale(1.06)}
+/* bottom nav — 텍스트 명확, 라인 아이콘 */
+.tabbar{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid var(--line-2);padding:8px 4px calc(9px + env(safe-area-inset-bottom));z-index:50}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0;color:var(--ink-3);font-size:13px;font-weight:700;min-height:50px;transition:.15s;letter-spacing:-.01em}
+.tab svg{width:25px;height:25px;stroke:var(--ink-3);stroke-width:1.8;fill:none;transition:.18s}
+.tab.on{color:var(--pink)} .tab.on svg{stroke:var(--pink)}
 
 /* web */
 .appwrap.off{display:none}
-.webwrap{display:none}
-.webwrap.on{display:block}
-.webbar{background:var(--surface-2);padding:9px 13px;display:flex;align-items:center;gap:9px;font-size:12px;color:var(--ink-3);border-bottom:1px solid var(--line)}
-.webbar .u{background:var(--base);border-radius:999px;padding:6px 13px;flex:1;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
-.hero{background:var(--teal-grad);color:#fff;padding:34px 22px 30px;text-align:center;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 10%,rgba(255,255,255,.16),transparent 50%);pointer-events:none}
-.hero .eb{color:#BEEEE7}
-.hero h1{font-size:26px;font-weight:800;line-height:1.34;margin-top:10px;letter-spacing:-.02em}
-.hero p{font-size:14.5px;opacity:.94;margin-top:9px}
-.hero .install{margin-top:18px;background:#fff;color:var(--teal-700);border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;width:100%;min-height:52px;box-shadow:var(--sh-md)}
-.webnav{display:flex;gap:7px;padding:13px 16px;overflow-x:auto;background:var(--canvas);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
-.webnav::-webkit-scrollbar{height:0}
-.webnav a{flex:0 0 auto;padding:9px 17px;border-radius:999px;background:var(--base);border:1px solid var(--line-2);font-size:14px;font-weight:700;color:var(--ink);text-decoration:none}
-.webnav a.on{background:var(--teal-500);color:#fff;border-color:var(--teal-500)}
-.note{background:var(--gold-50);border:1px solid #EBD9A0;border-radius:var(--r-md);margin:14px 18px;padding:13px 15px;font-size:13px;color:var(--gold-700);line-height:1.55}
-.note b{color:#5F4A0E}
+.webwrap{display:none}.webwrap.on{display:block}
+.webbar{background:#2B2E33;padding:10px 13px;display:flex;align-items:center;gap:9px}
+.webbar .u{background:#43474D;border-radius:999px;padding:6px 14px;flex:1;font-family:var(--mono);font-size:12px;color:#C8CCD2;text-align:center}
+.wtop{padding:16px 18px 0;display:flex;justify-content:center}
+.wnav{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:14px 0 0}
+.wnav a{flex:1 0 33.33%;text-align:center;padding:15px 6px;font-size:14.5px;font-weight:700;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.wnav a:nth-child(-n+3){border-bottom:1px solid var(--line)}
+.wnav a.on{color:var(--pink)}
+.wsec{padding:20px 18px 4px}
+.wsec .eb{color:var(--pink);display:block;margin-bottom:6px}
+.wsec h2{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.wbanner{margin:14px 18px;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm);border:1px solid var(--line)}
+.wbanner .bimg{height:150px;position:relative}
+.wbanner .btag{position:absolute;top:14px;left:16px;color:#fff}
+.wbanner .btag .eb{opacity:.95}
+.wbanner .btag h3{font-size:20px;font-weight:800;margin-top:5px;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.wfab{position:absolute;right:14px;bottom:14px;display:flex;gap:8px}
+.installrow{display:flex;gap:10px;padding:4px 18px 0}
+.installrow .st{flex:1;background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-md);padding:11px;text-align:center;font-size:13px;font-weight:700;box-shadow:var(--sh-sm)}
+.installrow .st small{display:block;color:var(--ink-3);font-size:11px;font-weight:600;font-family:var(--mono)}
+.startbar{display:flex;gap:8px;margin:14px 18px 0}
+.startbar .go{flex:1;background:var(--pink);color:#fff;border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;text-align:center}
+.startbar .q{width:64px;background:var(--kakao);color:#3A2E00;border-radius:var(--r-md);display:grid;place-items:center;font-size:14px;font-weight:800}
+.note{background:#F4F6FF;border:1px solid var(--blue-50);border-radius:var(--r-md);margin:14px 18px;padding:13px 15px;font-size:13px;color:var(--blue-d);line-height:1.55}
+.note b{color:#1E2A5E}
 
-.legend{max-width:920px;margin:30px auto 0;color:#B6C4BD;font-size:12.5px;line-height:1.75;padding:0 18px}
-.legend b{color:#EAF0EC}
-.legend code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-family:var(--mono);font-size:11.5px;color:#CFE7E1}
+.legend{max-width:920px;margin:30px auto 0;color:#5A5F68;font-size:12.5px;line-height:1.75;padding:0 18px}
+.legend b{color:#1A1A1A}
+.legend code{background:#E7E9ED;padding:2px 7px;border-radius:5px;font-family:var(--mono);font-size:11.5px;color:#43474D}
 .legend .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.legend .chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 13px;font-size:12px;color:#D6E3DD}
+.legend .chip{background:#fff;border:1px solid var(--line-2);border-radius:999px;padding:6px 13px;font-size:12px;color:var(--ink-2)}
 @media(max-width:460px){.phone{height:740px;border-radius:36px}}
 </style>
 </head>
 <body>
 
+<!-- reusable logo (두 하트) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="sinor-hearts" viewBox="0 0 44 26">
+    <path d="M12.5 24C12.5 24 1 16.2 1 8.2 1 4.3 4 1.6 7.4 1.6 9.7 1.6 11.6 2.9 12.5 4.6 13.4 2.9 15.3 1.6 17.6 1.6 21 1.6 24 4.3 24 8.2 24 16.2 12.5 24 12.5 24Z" fill="#FF2D78"/>
+    <path d="M31.5 24C31.5 24 20 16.2 20 8.2 20 4.3 23 1.6 26.4 1.6 28.7 1.6 30.6 2.9 31.5 4.6 32.4 2.9 34.3 1.6 36.6 1.6 40 1.6 43 4.3 43 8.2 43 16.2 31.5 24 31.5 24Z" fill="#3D6AF2"/>
+  </symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></symbol>
+  <symbol id="i-travel" viewBox="0 0 24 24"><path d="M2 12l20-8-8 20-2.5-8.5L2 12z"/></symbol>
+  <symbol id="i-meet" viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></symbol>
+  <symbol id="i-groups" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M17 14.6c2.4.4 4 2.3 4 5.4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-1v-6h4"/><path d="M4 17v-4h4v7H7a3 3 0 0 1-3-3z"/></symbol>
+  <symbol id="i-cat-loc" viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-cat-run" viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M5 20l4-5 3 2 2-4 4 3"/><path d="M9 15l-1-4 5-2 3 3"/></symbol>
+  <symbol id="i-cat-cul" viewBox="0 0 24 24"><path d="M4 20V7l8-4 8 4v13"/><path d="M4 20h16"/><path d="M9 20v-6h6v6"/></symbol>
+  <symbol id="i-cat-hobby" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></symbol>
+</defs></svg>
+
 <div class="stage">
   <div class="stagehead">
     <span class="eb">SINOR PROTOTYPE · 2026.08</span>
     <h1>시놀 · 홈 · 여행 · 만남 · 모임</h1>
-    <p>목적형 4대 메뉴 · 실측 콘텐츠 기반 동작 프로토타입 — 시놀 김연재</p>
+    <p>실제 시놀 브랜드(핑크·블루) 적용 · 4대 메뉴 동작 프로토타입 — 시놀 김연재</p>
     <div class="toggle">
       <button id="tg-app" class="on" onclick="setMode('app')">📱 앱</button>
       <button id="tg-web" onclick="setMode('web')">🌐 웹</button>
     </div>
-    <div class="tapnote">TAP THE BOTTOM MENU & CARDS →</div>
+    <div class="tapnote">TAP BOTTOM MENU &amp; CARDS →</div>
   </div>
 
   <div class="frames">
@@ -272,20 +300,25 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
         <div class="overlay" id="mypage">
           <div class="ovhead"><button onclick="closeMy()" aria-label="닫기">←</button><h2>마이페이지</h2></div>
           <div class="ovbody">
-            <div class="profile">
-              <div class="pic">김</div>
-              <div><h3>김영자 님</h3><p>서울 강남구 · 관심사 등산·여행</p><span class="verified">✓ 얼굴 본인인증 완료</span></div>
+            <div class="pcard">
+              <div class="top">
+                <div class="pic">👤</div>
+                <div><h3>와이제이 님</h3><div class="sub">만 54세 · 서울 종로구</div></div>
+                <button class="edit">수정</button>
+              </div>
+              <div class="row3">
+                <div><div class="n">11,100</div><div class="l">포인트</div></div>
+                <div><div class="n">0</div><div class="l">하트</div></div>
+                <div><div class="n">최근 0건</div><div class="l">결제 내역</div></div>
+              </div>
             </div>
             <div class="mlist">
-              <div class="mitem"><span class="e">👤</span>내 프로필<span class="chev">›</span></div>
-              <div class="mitem"><span class="e">🎯</span>관심사 · 지역<span class="chev">›</span></div>
-              <div class="mitem"><span class="e">🛡️</span>본인인증<span class="chev">›</span></div>
-              <div class="mitem"><span class="e">👥</span>내 모임<span class="chev">›</span></div>
-              <div class="mitem"><span class="e">🎁</span>포인트<span class="pt">11,100P</span></div>
-              <div class="mitem"><span class="e">💳</span>결제 · 구독<span class="chev">›</span></div>
-              <div class="mitem"><span class="e">🔔</span>알림 설정<span class="chev">›</span></div>
-              <div class="mitem"><span class="e">💬</span>고객센터 · 약관<span class="chev">›</span></div>
-              <div class="mitem"><span class="e">↩️</span>로그아웃<span class="chev">›</span></div>
+              <div class="mitem"><svg class="e"><use href="#i-meet"/></svg>내 프로필<span class="chev">›</span></div>
+              <div class="mitem"><svg class="e"><use href="#i-cat-loc"/></svg>관심사 · 지역<span class="chev">›</span></div>
+              <div class="mitem"><svg class="e"><use href="#i-groups"/></svg>내 모임<span class="chev">›</span></div>
+              <div class="mitem"><svg class="e"><use href="#i-travel"/></svg>결제 · 구독<span class="chev">›</span></div>
+              <div class="mitem"><svg class="e"><use href="#i-bell"/></svg>알림 설정<span class="chev">›</span></div>
+              <div class="mitem"><svg class="e"><use href="#i-help"/></svg>고객센터 · 약관<span class="chev">›</span></div>
             </div>
           </div>
         </div>
@@ -293,74 +326,70 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
         <!-- HOME -->
         <div class="view on" id="v-home">
           <div class="apphead">
-            <div class="brand"><div class="logo">시</div><div class="loc">서울 강남 <small>▾</small></div></div>
+            <span class="logo sm"><svg class="hearts"><use href="#sinor-hearts"/></svg><span class="wm">시놀</span></span>
             <div class="hicons">
-              <button class="bell" onclick="go('meet')" aria-label="알림">🔔<span class="dot"></span></button>
-              <button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button>
+              <button class="ic-btn" onclick="go('meet')"><svg><use href="#i-bell"/></svg>알림<span class="dot"></span></button>
+              <button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button>
             </div>
           </div>
-          <div class="searchbar" onclick="go('groups')">🔍 무엇을 찾으세요?</div>
+          <div class="searchbar" onclick="go('groups')"><svg><use href="#i-search"/></svg> 무엇을 찾으세요?</div>
 
-          <div class="sec"><span class="eb">Today</span><h2>오늘 시놀에서 해볼 것</h2><div class="subttl">김영자 님을 위한 추천</div></div>
+          <div class="sec"><span class="eb">Today</span><h2>오늘 시놀에서 해볼 것</h2><div class="subttl">와이제이 님을 위한 추천</div></div>
           <div class="today">
-            <div class="tcard t1" onclick="go('meet')"><span class="eb">단체미팅 · 마감 임박</span><div class="h">8/17 강남 5060 단체미팅</div><div class="m">잔여 3석 · 지금 신청 →</div></div>
-            <div class="tcard t2" onclick="go('travel')"><span class="eb">시놀트립</span><div class="h">제주 한림 2박, 멤버십가로</div><div class="m">정가 32만 → 24만 →</div></div>
-            <div class="tcard t3" onclick="go('groups')"><span class="eb">내 지역 모임</span><div class="h">강남 아침 산책 모임</div><div class="m">토요일 · 4/8명 →</div></div>
+            <div class="tcard" onclick="go('meet')"><div class="tph ph" data-label="단체미팅"><span class="ppl">🍷</span></div><div class="tb"><span class="eb">단체미팅 · 마감 임박</span><h3>8/17 강남 5060 단체미팅</h3><p>잔여 3석 · 지금 신청하기</p></div></div>
+            <div class="tcard" onclick="go('travel')"><div class="tph ph" data-label="시놀트립"><span class="ppl">🏝️</span></div><div class="tb"><span class="eb">시놀트립</span><h3>제주 한림 2박, 멤버십가로</h3><p>정가 32만 → 24만</p></div></div>
+            <div class="tcard" onclick="go('groups')"><div class="tph ph" data-label="지역 모임"><span class="ppl">🥾</span></div><div class="tb"><span class="eb">내 지역 모임</span><h3>강남 아침 산책 모임</h3><p>토요일 · 4/8명</p></div></div>
           </div>
 
           <div class="quick">
-            <button class="qcard" onclick="go('travel')"><div class="emo">✈️</div><div class="lb">여행</div><div class="dc">시놀트립</div></button>
-            <button class="qcard" onclick="go('meet')"><div class="emo">💗</div><div class="lb">만남</div><div class="dc">친구·인연</div></button>
-            <button class="qcard" onclick="go('groups')"><div class="emo">🧑‍🤝‍🧑</div><div class="lb">모임</div><div class="dc">취미·동호회</div></button>
+            <button class="qcard" onclick="go('travel')"><svg class="qi"><use href="#i-travel"/></svg><div class="lb">여행</div><div class="dc">시놀트립</div></button>
+            <button class="qcard" onclick="go('meet')"><svg class="qi"><use href="#i-meet"/></svg><div class="lb">만남</div><div class="dc">친구·인연</div></button>
+            <button class="qcard" onclick="go('groups')"><svg class="qi"><use href="#i-groups"/></svg><div class="lb">모임</div><div class="dc">취미·동호회</div></button>
           </div>
 
           <div class="sec"><span class="eb">Meeting</span><h2>이번 주 단체미팅</h2></div>
           <div class="card" onclick="go('meet')">
-            <div class="thumb">🍷<span class="pill hot">잔여 3석</span></div>
+            <div class="thumb ph" data-label="단체미팅 사진"><span class="pill pink">잔여 3석</span><span class="ppl">🍷</span></div>
             <div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3>
-              <div class="meta"><span>📅 8/17 (토) 오후 5시</span><span>📍 강남</span><span class="seats">잔여 3석</span></div>
+              <div class="meta"><span>8/17 (토) 오후 5시</span><span>강남</span><span class="seats">잔여 3석</span></div>
               <div class="price"><b>99,000원</b> · 성혼비 없음</div></div>
           </div>
           <button class="cta" onclick="go('meet')">신청하기</button>
 
           <div class="sec"><span class="seclink" onclick="go('groups')">전체 ›</span><span class="eb">Near me</span><h2>내 지역 모임</h2></div>
           <div class="hrow">
-            <div class="gcard" onclick="go('groups')"><div class="gt">🥾</div><div class="gb"><h4>강남 아침 산책</h4><div class="gm">토 오전 7시 · 양재천</div><div class="fill"><i style="width:50%"></i></div><div class="cnt">4 / 8명</div></div></div>
-            <div class="gcard" onclick="go('groups')"><div class="gt">♟️</div><div class="gb"><h4>분당 바둑 동호회</h4><div class="gm">매주 화 · 정자동</div><div class="fill"><i style="width:60%"></i></div><div class="cnt">6 / 10명</div></div></div>
-            <div class="gcard" onclick="go('groups')"><div class="gt">🎨</div><div class="gb"><h4>서초 수채화</h4><div class="gm">목 오후 2시</div><div class="fill"><i style="width:75%"></i></div><div class="cnt">9 / 12명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt ph" data-label="산책"></div><div class="gb"><h4>강남 아침 산책</h4><div class="gm">토 오전 7시 · 양재천</div><div class="fill"><i style="width:50%"></i></div><div class="cnt">4 / 8명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt ph" data-label="바둑"></div><div class="gb"><h4>분당 바둑 동호회</h4><div class="gm">매주 화 · 정자동</div><div class="fill"><i style="width:60%"></i></div><div class="cnt">6 / 10명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt ph" data-label="수채화"></div><div class="gb"><h4>서초 수채화</h4><div class="gm">목 오후 2시</div><div class="fill"><i style="width:75%"></i></div><div class="cnt">9 / 12명</div></div></div>
           </div>
 
           <div class="sec"><span class="eb">Match</span><h2>나의 인연 유형은?</h2></div>
-          <div class="card" onclick="go('meet')"><div class="bd"><h3>💗 3문항으로 보는 인연 진단</h3><div class="meta">간단 진단 · 결과 화면에서 바로 전화 상담</div></div></div>
-          <button class="cta coral" onclick="go('meet')">내 유형 보기</button>
+          <div class="card" onclick="go('meet')"><div class="bd"><h3>3문항으로 보는 인연 진단</h3><div class="meta">간단 진단 · 결과 화면에서 바로 전화 상담</div></div></div>
+          <button class="cta blue" onclick="go('meet')">내 유형 보기</button>
 
           <div class="sec"><span class="seclink" onclick="go('groups')">전체 ›</span><span class="eb">New</span><h2>새로 열린 모임</h2></div>
           <div class="hrow">
-            <div class="gcard" onclick="go('groups')"><div class="gt">📷</div><div class="gb"><h4>중년 사진 출사</h4><div class="gm">오늘 개설 · 서울숲</div><div class="fill"><i style="width:20%"></i></div><div class="cnt">2 / 10명</div></div></div>
-            <div class="gcard" onclick="go('groups')"><div class="gt">⛳</div><div class="gb"><h4>파크골프</h4><div class="gm">어제 개설 · 한강</div><div class="fill"><i style="width:33%"></i></div><div class="cnt">3 / 9명</div></div></div>
-            <div class="gcard" onclick="go('groups')"><div class="gt">🎵</div><div class="gb"><h4>추억의 팝송</h4><div class="gm">2일 전 · 홍대</div><div class="fill"><i style="width:45%"></i></div><div class="cnt">5 / 11명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt ph" data-label="사진"></div><div class="gb"><h4>중년 사진 출사</h4><div class="gm">오늘 개설 · 서울숲</div><div class="fill"><i style="width:20%"></i></div><div class="cnt">2 / 10명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt ph" data-label="파크골프"></div><div class="gb"><h4>파크골프</h4><div class="gm">어제 개설 · 한강</div><div class="fill"><i style="width:33%"></i></div><div class="cnt">3 / 9명</div></div></div>
+            <div class="gcard" onclick="go('groups')"><div class="gt ph" data-label="노래"></div><div class="gb"><h4>추억의 팝송</h4><div class="gm">2일 전 · 홍대</div><div class="fill"><i style="width:45%"></i></div><div class="cnt">5 / 11명</div></div></div>
           </div>
 
           <div class="sec"><span class="eb">Travel</span><h2>이번 주 여행</h2></div>
           <div class="card" onclick="go('travel')">
-            <div class="thumb">🏝️<span class="pill teal">시놀트립</span></div>
+            <div class="thumb ph" data-label="여행 사진"><span class="pill blue">시놀트립</span><span class="ppl">🏝️</span></div>
             <div class="bd"><h3>제주 한림 오션뷰 2박 3일</h3>
-              <div class="meta"><span>📅 8월 상시 출발</span><span>🚌 전용 버스</span></div>
+              <div class="meta"><span>8월 상시 출발</span><span>전용 버스</span></div>
               <div class="price"><s>정가 320,000원</s> → <b>240,000원</b> <span>멤버십가</span></div></div>
           </div>
           <button class="cta ghost" onclick="go('travel')">멤버십가로 보기</button>
-
-          <div class="sec"><span class="seclink">전체 ›</span><span class="eb">Column</span><h2>시니어 칼럼</h2></div>
-          <div class="lrow"><div class="av">🦶</div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 조회 1,240</p></div><span class="chev">›</span></div>
-          <div class="lrow"><div class="av">💞</div><div class="li"><h4>60대 재혼, 무엇부터 준비할까</h4><p>재혼 · 조회 980</p></div><span class="chev">›</span></div>
           <div style="height:14px"></div>
         </div>
 
         <!-- TRAVEL -->
         <div class="view" id="v-travel">
-          <div class="apphead"><div class="brand"><div class="logo">시</div><div class="loc">여행 · 시놀트립</div></div><button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button></div>
+          <div class="apphead"><span class="hh-title">여행 · 시놀트립</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
           <div class="today" style="padding-top:16px">
-            <div class="tcard t2" style="flex:0 0 92%"><span class="eb">시놀트립 멤버십</span><div class="h">연 49,900원으로<br>전 여행 상품 멤버십가</div><div class="m">월 4,158원 · 지금 가입 →</div></div>
+            <div class="tcard" style="flex:0 0 92%"><div class="tph ph" data-label="시놀트립 멤버십"><span class="ppl">✈️</span></div><div class="tb"><span class="eb">시놀트립 멤버십</span><h3>연 49,900원으로 전 여행 멤버십가</h3><p>월 4,158원 · 지금 가입</p></div></div>
           </div>
           <div class="stats">
             <div class="stat"><div class="n">49,900</div><div class="l">연 멤버십(원)</div></div>
@@ -369,33 +398,31 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
           </div>
           <div class="sec"><span class="eb">This week</span><h2>이번 주 추천 여행</h2></div>
           <div class="card">
-            <div class="thumb">🏝️<span class="pill teal">오션뷰</span></div>
-            <div class="bd"><h3>제주 한림 오션뷰 2박 3일</h3>
-              <div class="meta"><span>📅 8월 상시</span><span>🚌 전용 버스</span><span>🍽️ 조식</span></div>
+            <div class="thumb ph" data-label="제주 오션뷰"><span class="pill blue">오션뷰</span><span class="ppl">🏝️</span></div>
+            <div class="bd"><h3>제주 한림 오션뷰 2박 3일</h3><div class="meta"><span>8월 상시</span><span>전용 버스</span><span>조식</span></div>
               <div class="price"><s>정가 320,000원</s> → <b>240,000원</b> <span>멤버십가</span></div></div>
           </div>
           <button class="cta">멤버십 가입하고 예약</button>
-          <button class="cta ghost">📞 전화로 예약 · 02-508-5670</button>
+          <button class="cta ghost">전화로 예약 · 02-508-5670</button>
           <div class="sec"><span class="eb">Region</span><h2>지역별 여행</h2></div>
           <div class="catgrid">
-            <div class="cat"><div class="e">🌊</div><div class="l">강원</div></div>
-            <div class="cat"><div class="e">🍊</div><div class="l">제주</div></div>
-            <div class="cat"><div class="e">⛰️</div><div class="l">경상</div></div>
-            <div class="cat"><div class="e">🏞️</div><div class="l">충청</div></div>
-            <div class="cat"><div class="e">🌾</div><div class="l">전라</div></div>
+            <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">강원</div></div>
+            <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">제주</div></div>
+            <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">경상</div></div>
+            <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">충청</div></div>
+            <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">전라</div></div>
           </div>
           <div class="sec"><span class="eb">Reviews</span><h2>다녀온 분들 후기</h2></div>
           <div class="review"><div class="stars">★★★★★</div><p>"혼자였으면 못 갔을 여행인데, 또래분들과 함께라 편하고 즐거웠어요. 버스까지 태워주니 몸이 편합니다."</p><div class="who">김○자 · 제주 2박 3일</div></div>
-          <div class="review"><div class="stars">★★★★★</div><p>"멤버십 가입하니 이번 여행 하나로 회비가 빠졌네요. 다음 강원도도 예약했습니다."</p><div class="who">이○호 · 속초 미팅여행</div></div>
-          <div class="note"><b>운영 메모(비노출):</b> 하나투어 제휴 상품은 이 화면에서 팔지 않습니다. 광고 성과(노출·클릭)만 측정하고, 판매·결제는 시놀트립 멤버십으로 자사 도메인에서 완결합니다.</div>
+          <div class="note"><b>운영 메모:</b> 하나투어 제휴 상품은 이 화면에서 팔지 않습니다. 광고 성과(노출·클릭)만 측정하고, 판매·결제는 시놀트립 멤버십으로 자사에서 완결합니다.</div>
           <div style="height:14px"></div>
         </div>
 
         <!-- MEET -->
         <div class="view" id="v-meet">
-          <div class="apphead"><div class="brand"><div class="logo">시</div><div class="loc">만남</div></div><button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button></div>
+          <div class="apphead"><span class="hh-title">만남</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
           <div class="sec"><span class="eb">Meet</span><h2>어떤 만남을 찾으세요?</h2><div class="subttl">목적에 맞게 골라 보세요</div></div>
-          <div class="purpose gold">
+          <div class="purpose b">
             <span class="eb">가볍게 시작</span><h3>친구 · 이성친구 — 시럽</h3>
             <p>관심사가 비슷한 50+ 친구를 내 주변에서 찾습니다. AI 주선과 5중 여성 안심 기능.</p>
             <span class="badge18">시럽 앱 · 성인(18+) 등급 안내</span>
@@ -412,31 +439,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
               <li><span class="chk">✓</span><span><b>성혼비 없음</b> — 시장 관행은 가입비 외 성혼비 100~500만원 별도</span></li>
               <li><span class="chk">✓</span><span>신원·직업·혼인 서류 <b>3중 검증</b></span></li>
               <li><span class="chk">✓</span><span>전담 매니저 1:1 · 핵심 고객 <b>재결제율 47%</b></span></li>
-              <li><span class="chk">✓</span><span>상담 무료 · 방문 없이 전화로</span></li>
             </ul>
           </div>
           <button class="cta">인연 진단 (3문항) 시작</button>
-          <button class="cta coral">📞 전화 상담 예약 · 무료</button>
-          <div class="sec"><span class="eb">Group meeting</span><h2>함께 만나요 — 단체미팅</h2></div>
-          <div class="card"><div class="thumb">🍷<span class="pill hot">잔여 3석</span></div><div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3><div class="meta"><span>📅 8/17 (토) 17시</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음 · 본인인증 참가자만</div></div></div>
-          <div class="card"><div class="bd"><h3>[경기·분당] 중년 와인 소셜</h3><div class="meta"><span>📅 8/24 (토) 18시</span><span>잔여 8석</span></div><div class="price"><b>120,000원</b></div></div></div>
+          <button class="cta blue">전화 상담 예약 · 무료</button>
+          <div class="sec"><span class="eb">Group</span><h2>함께 만나요 — 단체미팅</h2></div>
+          <div class="card"><div class="thumb ph" data-label="단체미팅"><span class="pill pink">잔여 3석</span><span class="ppl">🍷</span></div><div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3><div class="meta"><span>8/17 (토) 17시</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음 · 본인인증 참가자만</div></div></div>
           <button class="cta">단체미팅 전체 일정 보기</button>
           <div class="sec"><span class="eb">Chat</span><h2>대화</h2></div>
-          <div class="lrow" onclick="alert('모임 대화방으로 진입\n\nchat_entry: source=meeting, room_type=group')"><div class="av">🥾</div><div class="li"><h4>강남 아침 산책 모임</h4><p>내일 7시 양재천 입구에서 만나요</p></div><span class="unread">3</span></div>
-          <div class="lrow" onclick="alert('1:1 대화방으로 진입\n\nchat_entry: source=profile, room_type=direct')"><div class="av">💬</div><div class="li"><h4>이○호 매니저</h4><p>말씀주신 조건으로 두 분 준비했습니다</p></div><span class="unread">1</span></div>
+          <div class="lrow" onclick="alert('모임 대화방 진입\nchat_entry: source=meeting')"><div class="av ph" data-label=""></div><div class="li"><h4>강남 아침 산책 모임</h4><p>내일 7시 양재천에서 만나요</p></div><span class="unread">3</span></div>
+          <div class="lrow" onclick="alert('1:1 대화방 진입\nchat_entry: source=profile')"><div class="av ph" data-label=""></div><div class="li"><h4>이○호 매니저</h4><p>말씀주신 조건으로 두 분 준비했습니다</p></div><span class="unread">1</span></div>
           <div style="height:14px"></div>
         </div>
 
         <!-- GROUPS -->
         <div class="view" id="v-groups">
-          <div class="apphead"><div class="brand"><div class="logo">시</div><div class="loc">모임 찾기</div></div><button class="mypage-btn" onclick="openMy()">◯ 마이페이지</button></div>
-          <div class="searchbar">🔍 어떤 모임을 찾으세요?</div>
+          <div class="apphead"><span class="hh-title">모임 찾기</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
+          <div class="searchbar"><svg><use href="#i-search"/></svg> 어떤 모임을 찾으세요?</div>
           <div class="catgrid">
-            <div class="cat"><div class="e">📍</div><div class="l">지역</div></div>
-            <div class="cat"><div class="e">🏃</div><div class="l">운동</div></div>
-            <div class="cat"><div class="e">✈️</div><div class="l">여행</div></div>
-            <div class="cat"><div class="e">🎭</div><div class="l">문화</div></div>
-            <div class="cat"><div class="e">🎨</div><div class="l">취미</div></div>
+            <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">지역</div></div>
+            <div class="cat"><svg><use href="#i-cat-run"/></svg><div class="l">운동</div></div>
+            <div class="cat"><svg><use href="#i-travel"/></svg><div class="l">여행</div></div>
+            <div class="cat"><svg><use href="#i-cat-cul"/></svg><div class="l">문화</div></div>
+            <div class="cat"><svg><use href="#i-cat-hobby"/></svg><div class="l">취미</div></div>
           </div>
           <div class="stats">
             <div class="stat"><div class="n">1,561</div><div class="l">운영 모임</div></div>
@@ -444,12 +469,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
             <div class="stat"><div class="n">강남</div><div class="l">내 지역</div></div>
           </div>
           <div class="sec"><span class="seclink">전체 ›</span><span class="eb">Near me</span><h2>내 주변 모임</h2></div>
-          <div class="lrow"><div class="av">🥾</div><div class="li"><h4>강남 아침 산책</h4><p>토 오전 7시 · 양재천 · 4/8명</p></div><span class="chev">›</span></div>
-          <div class="lrow"><div class="av">♟️</div><div class="li"><h4>분당 바둑 동호회</h4><p>매주 화 · 정자동 · 6/10명</p></div><span class="chev">›</span></div>
-          <div class="lrow"><div class="av">⛳</div><div class="li"><h4>파크골프 함께해요</h4><p>일 오전 · 한강 · 3/9명</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av ph" data-label=""></div><div class="li"><h4>강남 아침 산책</h4><p>토 오전 7시 · 양재천 · 4/8명</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av ph" data-label=""></div><div class="li"><h4>분당 바둑 동호회</h4><p>매주 화 · 정자동 · 6/10명</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av ph" data-label=""></div><div class="li"><h4>파크골프 함께해요</h4><p>일 오전 · 한강 · 3/9명</p></div><span class="chev">›</span></div>
           <div class="sec"><span class="eb">Popular</span><h2>인기 모임</h2></div>
-          <div class="lrow"><div class="av">🎵</div><div class="li"><h4>추억의 팝송 부르기</h4><p>홍대 · 5/11명 · 이번 주 인기</p></div><span class="chev">›</span></div>
-          <div class="lrow"><div class="av">📷</div><div class="li"><h4>중년 사진 출사</h4><p>서울숲 · 오늘 개설</p></div><span class="chev">›</span></div>
+          <div class="lrow"><div class="av ph" data-label=""></div><div class="li"><h4>추억의 팝송 부르기</h4><p>홍대 · 5/11명 · 이번 주 인기</p></div><span class="chev">›</span></div>
           <button class="cta">＋ 내 모임 만들기</button>
           <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅은 하단 메뉴에서 빠지고 맥락에서 진입합니다 (기존 2탭·안읽음 규칙 유지).</div>
           <div style="height:14px"></div>
@@ -457,10 +481,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
       </div>
       <div class="tabbar">
-        <button class="tab on" id="t-home" onclick="go('home')"><span class="ti">🏠</span>홈</button>
-        <button class="tab" id="t-travel" onclick="go('travel')"><span class="ti">✈️</span>여행</button>
-        <button class="tab" id="t-meet" onclick="go('meet')"><span class="ti">💗</span>만남</button>
-        <button class="tab" id="t-groups" onclick="go('groups')"><span class="ti">🧑‍🤝‍🧑</span>모임</button>
+        <button class="tab on" id="t-home" onclick="go('home')"><svg><use href="#i-home"/></svg>홈</button>
+        <button class="tab" id="t-travel" onclick="go('travel')"><svg><use href="#i-travel"/></svg>여행</button>
+        <button class="tab" id="t-meet" onclick="go('meet')"><svg><use href="#i-meet"/></svg>만남</button>
+        <button class="tab" id="t-groups" onclick="go('groups')"><svg><use href="#i-groups"/></svg>모임</button>
       </div>
     </div>
 
@@ -468,38 +492,44 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <div class="phone webwrap" id="webwrap">
       <div class="notch"></div>
       <div class="screen">
-        <div class="webbar">🔒<span class="u">sinor.co.kr</span>⋮</div>
-        <div class="hero">
-          <span class="eb">50+ LIFE PLATFORM</span>
-          <h1>시놀 — 50+의<br>여행 · 만남 · 모임</h1>
-          <p>회원 10만 명이 함께하는 5060 생활 플랫폼</p>
-          <button class="install" onclick="alert('OS 감지 → 스토어 분기\n\napp_install_click')">📲 시놀 앱 설치하기</button>
+        <div class="webbar"><span class="u">sinor.co.kr</span></div>
+        <div class="wtop"><span class="logo"><svg class="hearts"><use href="#sinor-hearts"/></svg><span class="wm">시놀</span></span></div>
+        <div class="wnav">
+          <a href="#" class="on">시놀 모임앱</a><a href="#">시럽 만남앱</a><a href="#">단체미팅</a>
+          <a href="#">시럽인연</a><a href="#">여행</a><a href="#">시니어칼럼</a>
         </div>
-        <div class="webnav"><a href="#" class="on">홈</a><a href="#">여행</a><a href="#">만남</a><a href="#">모임</a><a href="#">칼럼</a></div>
-        <div class="sec"><span class="eb">Today</span><h2>오늘의 추천</h2></div>
-        <div class="card"><div class="thumb">🍷<span class="pill hot">잔여 3석</span></div><div class="bd"><h3>[서울·강남] 5060 단체미팅</h3><div class="meta"><span>📅 8/17 (토)</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음</div></div></div>
+        <div class="wbanner">
+          <div class="bimg ph" data-label="시럽인연 배너"><div class="btag"><span class="eb">프리미엄 소개팅 · 시럽인연</span><h3>다시 설레는 여름,<br>인연을 만나다</h3></div></div>
+        </div>
+        <div class="installrow">
+          <div class="st">Google Play<small>다운로드</small></div>
+          <div class="st">App Store<small>다운로드</small></div>
+        </div>
+        <div class="startbar"><div class="go">시놀 웹으로 시작하기</div><div class="q">문의</div></div>
+
+        <div class="wsec"><span class="eb">Today</span><h2>오늘의 추천</h2></div>
+        <div class="card"><div class="thumb ph" data-label="단체미팅"><span class="pill pink">잔여 3석</span><span class="ppl">🍷</span></div><div class="bd"><h3>[서울·강남] 5060 단체미팅</h3><div class="meta"><span>8/17 (토)</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음</div></div></div>
         <button class="cta">웹에서 바로 신청</button>
         <div class="trust"><h3>시럽인연 — 진지한 인연</h3><ul><li><span class="chk">✓</span><span><b>성혼비 없음</b>으로 총액이 끝납니다</span></li><li><span class="chk">✓</span><span>신원인증 · 전문 매니저 1:1 매칭</span></li></ul></div>
-        <button class="cta coral">📞 전화 상담 예약 (무료)</button>
-        <div class="sec"><span class="eb">Trip</span><h2>시놀트립 멤버십</h2></div>
-        <div class="card"><div class="thumb">🏝️<span class="pill teal">시놀트립</span></div><div class="bd"><h3>제주 한림 2박 3일</h3><div class="price"><s>320,000원</s> → <b>240,000원</b> <span>멤버십가</span></div></div></div>
+        <button class="cta blue">전화 상담 예약 (무료)</button>
+        <div class="wsec"><span class="eb">Trip</span><h2>시놀트립 멤버십</h2></div>
+        <div class="card"><div class="thumb ph" data-label="여행"><span class="pill blue">시놀트립</span><span class="ppl">🏝️</span></div><div class="bd"><h3>제주 한림 2박 3일</h3><div class="price"><s>320,000원</s> → <b>240,000원</b> <span>멤버십가</span></div></div></div>
         <button class="cta ghost">멤버십 가입하고 예약</button>
-        <div class="sec"><span class="eb">Column · 191</span><h2>시니어 칼럼</h2></div>
-        <div class="lrow"><div class="av">🦶</div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 CTA → 취미 모임 앱 설치</p></div><span class="chev">›</span></div>
-        <div class="lrow"><div class="av">💞</div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 CTA → 시럽인연 상담</p></div><span class="chev">›</span></div>
-        <div class="lrow"><div class="av">👨‍👩‍👧</div><div class="li"><h4>부모님께 재혼을 권하는 법</h4><p>자녀 · 하단 CTA → 카카오/문자 공유</p></div><span class="chev">›</span></div>
-        <div class="note"><b>웹 규칙:</b> 페이지마다 목표는 하나입니다. 칼럼=앱 설치 · 단체미팅=웹 신청 · 시럽인연=전화 상담 · 여행=멤버십 결제 · 자녀=공유. 상담·결제 페이지엔 앱 설치 유도를 넣지 않습니다.</div>
+        <div class="wsec"><span class="eb">Column · 191</span><h2>시니어 칼럼</h2></div>
+        <div class="lrow"><div class="av ph" data-label=""></div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 CTA → 취미 모임 앱 설치</p></div><span class="chev">›</span></div>
+        <div class="lrow"><div class="av ph" data-label=""></div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 CTA → 시럽인연 상담</p></div><span class="chev">›</span></div>
+        <div class="note"><b>웹 규칙:</b> 페이지마다 목표는 하나. 칼럼=앱 설치 · 단체미팅=웹 신청 · 시럽인연=전화 상담 · 여행=멤버십 결제 · 자녀=공유. 상담·결제 페이지엔 앱 설치 유도를 넣지 않습니다.</div>
         <div style="height:20px"></div>
       </div>
     </div>
   </div>
 
   <div class="legend">
-    <p><b>이 프로토타입에 대하여</b> — 시놀 V3 4대 메뉴 IA(홈·여행·만남·모임)를 실제 콘텐츠로 구현한 클릭 가능한 화면입니다. 상단 <b>앱/웹 토글</b>, 하단 <b>4대 메뉴</b>, 카드·마이페이지가 실제로 동작합니다. 디자인은 참조 사이트(banns0104)의 하우스 스타일 — Pretendard + 모노 라벨, 다층 소프트 섀도우, 라디얼 글로우 히어로, 절제된 모션 — 을 시놀 톤(딥틸+감빛 코랄)으로 적용했습니다.</p>
+    <p><b>이 프로토타입에 대하여</b> — 실제 시놀 브랜드(핑크 <code>#FF2D78</code> + 블루 <code>#3D6AF2</code> 두 하트 로고)와 sinor.co.kr 웹 톤을 적용한 V3 4대 메뉴(홈·여행·만남·모임) 동작 프로토타입입니다. 상단 앱/웹 토글, 하단 4대 메뉴, 카드·마이페이지가 실제로 동작합니다. 하단 메뉴는 얇은 라인 아이콘 + 명확한 글자, 사진 영역은 이미지 슬롯으로 표기(피그마 핸드오프용).</p>
     <div class="row">
       <span class="chip">회원 107,735명</span><span class="chip">모임 1,561개</span><span class="chip">시놀트립 49,900원/년</span><span class="chip">단체미팅 99,000원~</span><span class="chip">시럽인연 성혼비 없음</span>
     </div>
-    <p style="margin-top:12px">측정 이벤트: <code>primary_nav_tap</code> <code>mypage_open</code> <code>chat_entry</code> <code>revenue_card_tap</code> <code>trip_membership_view</code> <code>meeting_apply_start</code> <code>consult_call_tap</code>. 색·문구·아이콘은 디자인 단계 확정 초안 · 실제 모임명·후기는 대표 예시. 작성 시놀 김연재 · 2026-08 · 대외비</p>
+    <p style="margin-top:12px">측정: <code>primary_nav_tap</code> <code>mypage_open</code> <code>chat_entry</code> <code>revenue_card_tap</code> <code>trip_membership_view</code> <code>meeting_apply_start</code> <code>consult_call_tap</code>. 사진·최종 카피는 디자인 단계 확정 · 로고는 실제 시놀 두 하트를 SVG로 재현(정식 자산으로 교체 예정). 작성 시놀 김연재 · 2026-08 · 대외비</p>
   </div>
 </div>
 
@@ -509,8 +539,7 @@ function go(name){
   document.getElementById('v-'+name).classList.add('on');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   document.getElementById('t-'+name).classList.add('on');
-  document.getElementById('appscreen').scrollTop=0;
-  closeMy();
+  document.getElementById('appscreen').scrollTop=0; closeMy();
 }
 function openMy(){document.getElementById('mypage').classList.add('on');}
 function closeMy(){document.getElementById('mypage').classList.remove('on');}
