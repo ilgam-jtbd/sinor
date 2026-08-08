@@ -402,6 +402,25 @@ a{color:inherit}
 .webwrap.inapp .wdl,.webwrap.inapp #webdlbar,.webwrap.inapp .dlwrap,.webwrap.inapp .appinline,.webwrap.inapp .sharebar{display:none!important}
 .webwrap.inapp .inappnote{display:block}
 .inappnote{display:none;margin:12px 18px;background:var(--blue-50);border-radius:var(--r-md);padding:12px 14px;font-size:13px;color:var(--blue-d);font-weight:700;line-height:1.5}
+/* 이벤트 스트립 — 친구초대 5,000원 · 모임개설 11만P (앱 설치 + 매출 동시 레버) */
+.evstrip{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 18px 0}
+.evstrip .ev{display:flex;flex-direction:column;gap:5px;border-radius:var(--r-lg);padding:14px;text-decoration:none;box-shadow:var(--sh-sm);min-height:118px;justify-content:space-between}
+.evstrip .ev.iv{background:linear-gradient(145deg,#FFE9F1 0%,#FFD6E4 100%)}
+.evstrip .ev.op{background:linear-gradient(145deg,#E9F0FF 0%,#D9E4FF 100%)}
+.evstrip .evtag{display:inline-block;align-self:flex-start;background:rgba(255,255,255,.85);border-radius:999px;padding:3px 9px;font-size:10.5px;font-weight:800;font-family:var(--mono)}
+.evstrip .ev.iv .evtag{color:var(--pink-d)} .evstrip .ev.op .evtag{color:var(--blue-d)}
+.evstrip .ev b{font-size:15px;font-weight:800;color:var(--ink);line-height:1.35;letter-spacing:-.02em}
+.evstrip .ev b i{font-style:normal;font-size:17px}
+.evstrip .ev.iv b i{color:var(--pink-d)} .evstrip .ev.op b i{color:var(--blue-d)}
+.evstrip .ev .cta2{font-size:12.5px;font-weight:800}
+.evstrip .ev.iv .cta2{color:var(--pink-d)} .evstrip .ev.op .cta2{color:var(--blue-d)}
+.ev-app{display:none} .webwrap.inapp .ev-web{display:none} .webwrap.inapp .ev-app{display:inline}
+.evbig{margin:10px 18px 0;display:flex;align-items:center;gap:13px;background:var(--blue-50);border:1px solid #D9E4FF;border-radius:var(--r-lg);padding:15px 16px;text-decoration:none}
+.evbig .pt{flex:0 0 auto;background:var(--blue);color:#fff;border-radius:13px;padding:10px 12px;font-size:15px;font-weight:800;font-family:var(--mono);letter-spacing:-.02em}
+.evbig .tx{flex:1;min-width:0}
+.evbig .tx b{display:block;font-size:15.5px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.evbig .tx span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.evbig .ch{color:var(--blue-d);font-size:20px;flex:0 0 auto}
 .startbar{display:flex;gap:8px;margin:14px 18px 0}
 .startbar .go{flex:1;background:var(--pink);color:#fff;border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;text-align:center}
 .startbar .q{width:64px;background:var(--kakao);color:#3A2E00;border-radius:var(--r-md);display:grid;place-items:center;font-size:14px;font-weight:800}
@@ -1033,6 +1052,18 @@ footer.pg .r b{color:#fff}
             </div>
             <div class="herohint">앱 설치 없이 <b>웹에서 바로 상담·신청·결제</b>가 됩니다.</div>
             <div class="inappnote">앱 내 웹뷰(<b>web.sinor.co.kr</b>) 상태입니다 — 이미 앱 안이므로 <b>설치 유도를 모두 숨깁니다</b>. 목표는 상담·신청·결제 완결.</div>
+            <div class="evstrip">
+              <a class="ev iv" href="https://sinor.co.kr/?utm_source=app&amp;utm_medium=invite&amp;utm_campaign=inviteFriendsByLink" target="_blank" rel="noopener">
+                <span class="evtag">친구초대 이벤트</span>
+                <b>친구도 나도<br><i>5,000원</i> 받기</b>
+                <span class="cta2 ev-web">앱 받고 초대하기 →</span><span class="cta2 ev-app">친구 초대하기 →</span>
+              </a>
+              <a class="ev op" href="https://sinor.co.kr/download" target="_blank" rel="noopener">
+                <span class="evtag">모임개설 이벤트</span>
+                <b>모임 열면<br><i>11만 포인트</i></b>
+                <span class="cta2 ev-web">앱에서 개설하기 →</span><span class="cta2 ev-app">모임 개설하기 →</span>
+              </a>
+            </div>
 
             <!-- 만남 — 매출 66% (최우선 수익 블록) -->
             <div class="wsec"><span class="eb">만남 · 매출의 66%</span><h2>어떤 만남을 찾으세요?</h2></div>
@@ -1077,6 +1108,11 @@ footer.pg .r b{color:#fff}
             <div class="goaltag app"><span class="dot"></span>이 구역 목표 — <b>앱 설치</b> · 참여·채팅은 앱에서</div>
             <div class="lrow" onclick="window.open('https://sinor.co.kr/moim','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=100&q=80" alt="등산 모임"></div><div class="li"><h4>북한산 둘레길 걷기 모임</h4><p>마포구 · 1,672명 · 이번 주 토요일</p></div><span class="chev">›</span></div>
             <div class="lrow" onclick="window.open('https://sinor.co.kr/moim','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=100&q=80" alt="음악 모임"></div><div class="li"><h4>7080 통기타 · 노래 모임</h4><p>강남구 · 매주 목요일 저녁</p></div><span class="chev">›</span></div>
+            <a class="evbig" href="https://sinor.co.kr/download" target="_blank" rel="noopener">
+              <span class="pt">11만P</span>
+              <span class="tx"><b>모임을 열면 11만 포인트</b><span>모임개설 이벤트 · 개설은 앱에서 합니다</span></span>
+              <span class="ch">›</span>
+            </a>
             <div class="appinline">
               <a href="https://play.google.com/store/apps/details?id=com.sinor.gathering" target="_blank" rel="noopener"><svg><use href="#i-gplay"/></svg>앱에서 모임 참여</a>
               <a href="https://apps.apple.com/kr/app/id6503413274" target="_blank" rel="noopener"><svg><use href="#i-apple"/></svg>앱에서 모임 참여</a>
