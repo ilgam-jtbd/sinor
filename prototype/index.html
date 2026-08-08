@@ -372,6 +372,11 @@ a{color:inherit}
 .appinline{display:flex;gap:9px;margin:12px 18px 0}
 .appinline a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff;border-radius:var(--r-md);padding:12px 8px;text-decoration:none;font-size:14px;font-weight:800;letter-spacing:-.01em}
 .appinline a svg{width:19px;height:19px;fill:#fff;flex:0 0 auto}
+.storystrip{margin:12px 18px 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 14px 6px;box-shadow:var(--sh-sm)}
+.storystrip .sh{display:flex;flex-direction:column;gap:3px;padding:0 2px 4px}
+.storystrip .sh .eb{color:var(--pink)}
+.storystrip .sh .mo{font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
+.storystrip .lrow{margin:8px 0}
 .startbar{display:flex;gap:8px;margin:14px 18px 0}
 .startbar .go{flex:1;background:var(--pink);color:#fff;border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;text-align:center}
 .startbar .q{width:64px;background:var(--kakao);color:#3A2E00;border-radius:var(--r-md);display:grid;place-items:center;font-size:14px;font-weight:800}
@@ -981,7 +986,7 @@ footer.pg .r b{color:#fff}
               <a href="https://sinor.co.kr/jeju" target="_blank" rel="noopener">여행</a>
               <a href="https://sinor.co.kr/silovematch_event" target="_blank" rel="noopener">만남</a>
               <a href="https://sinor.co.kr/moim" target="_blank" rel="noopener">모임</a>
-              <a href="https://sinor.co.kr/information" target="_blank" rel="noopener">스토리</a>
+              <a href="https://sinor.co.kr/information" target="_blank" rel="noopener">칼럼</a>
             </div>
 
             <!-- HERO — 매출 전환 우선(1순위): 상담·신청 -->
@@ -1023,6 +1028,11 @@ footer.pg .r b{color:#fff}
               <div class="er"><div>재혼 이해</div><div>자녀 이해</div><div>사별 공감</div></div>
             </div>
             <button class="cta blue" onclick="window.open('https://sinor.co.kr/silovematch_event','_blank')">무료 상담 예약 (전화)</button>
+            <div class="storystrip">
+              <div class="sh"><span class="eb">우리들의 이야기 · 후기</span><span class="mo">성혼·매칭 후기가 상담 전환을 높입니다</span></div>
+              <div class="lrow" onclick="window.open('https://sinor.co.kr/silovematch_event','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=100&q=80" alt="성혼 후기"></div><div class="li"><h4>“혼자일 줄 알았던 60대, 다시 설렙니다”</h4><p>시럽인연 성혼 · 서울 · 62세</p></div><span class="chev">›</span></div>
+              <div class="lrow" onclick="window.open('https://sinor.co.kr/meeting','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1543096222-72de739f7917?auto=format&fit=crop&w=100&q=80" alt="단체미팅 후기"></div><div class="li"><h4>“단체미팅에서 편하게, 부담 없이 만났어요”</h4><p>5060 단체미팅 · 강남 · 58세</p></div><span class="chev">›</span></div>
+            </div>
 
             <!-- 여행 — 구독 매출 -->
             <div class="wsec"><span class="eb">여행 · 시놀트립</span><h2>구독하고, 이벤트로 떠나기</h2></div>
@@ -1041,12 +1051,12 @@ footer.pg .r b{color:#fff}
               <a href="https://apps.apple.com/kr/app/id6503413274" target="_blank" rel="noopener"><svg><use href="#i-apple"/></svg>앱에서 모임 참여</a>
             </div>
 
-            <!-- 스토리 — 후기 + 칼럼 (신뢰·검색 유입 → 상담·설치) -->
-            <div class="wsec"><span class="eb">스토리</span><h2>우리들의 이야기 · 시니어칼럼</h2></div>
-            <div class="goaltag lead"><span class="dot"></span>이 구역 목표 — <b>신뢰·검색 유입 → 상담·설치</b></div>
-            <div class="lrow" onclick="window.open('https://sinor.co.kr/silovematch_event','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=100&q=80" alt="후기"></div><div class="li"><h4>“혼자일 줄 알았던 60대, 다시 설렙니다”</h4><p>우리들의 이야기 · 시럽인연 성혼 후기</p></div><span class="chev">›</span></div>
-            <div class="lrow" onclick="window.open('https://sinor.co.kr/information','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=100&q=80" alt="맨발걷기"></div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>시니어칼럼 · 191편 중 인기</p></div><span class="chev">›</span></div>
-            <div class="lrow" onclick="window.open('https://sinor.co.kr/information','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=100&q=80" alt="재혼"></div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>시니어칼럼 · 재혼</p></div><span class="chev">›</span></div>
+            <!-- 칼럼 — 검색 유입 엔진 (하단 관련 상품·앱 설치 카드) -->
+            <div class="wsec"><span class="eb">칼럼 · 191편</span><h2>시니어칼럼</h2></div>
+            <div class="goaltag lead"><span class="dot"></span>이 구역 목표 — <b>검색 유입 → 관련 상품·앱 설치</b> · 글 하단 전환 카드</div>
+            <div class="lrow" onclick="window.open('https://sinor.co.kr/information','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=100&q=80" alt="맨발걷기"></div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 카드 → 취미 모임 앱 설치</p></div><span class="chev">›</span></div>
+            <div class="lrow" onclick="window.open('https://sinor.co.kr/information','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=100&q=80" alt="재혼"></div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 카드 → 시럽인연 상담</p></div><span class="chev">›</span></div>
+            <div class="lrow" onclick="window.open('https://sinor.co.kr/information','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="또래 여행"></div><div class="li"><h4>또래와 떠나는 국내 여행 코스 5선</h4><p>여행 · 하단 카드 → 시놀트립 멤버십</p></div><span class="chev">›</span></div>
 
             <!-- 부모님께 공유 — 리드/바이럴 (설치 버튼 아님, 공유) -->
             <div class="sharebar">
@@ -1077,7 +1087,7 @@ footer.pg .r b{color:#fff}
               <div class="dlnote">웹에서 보던 모임 · 단체미팅을 앱에서 이어서 봅니다. <b>채팅과 알림은 앱에서만</b> 동작합니다.</div>
             </div>
             <div class="srcnote">실측 근거 — 경로 <b>/download</b> 「시놀 앱 다운로드」 · Play 제목 「시놀 - 50+ 친구만들기&amp;모임 취미 동호회」(확정) · iOS 앱 ID는 <b>귀속 충돌로 확인 필요</b>(미확인)</div>
-            <div class="note"><b>페이지별 단일 목표(웹 요구서 §5):</b> 같은 앱 버튼을 전 페이지에 달지 않습니다. <b>만남·여행 = 매출</b>(상담·신청·결제, 앱 유도 없음) · <b>모임·스토리 = 앱 설치</b> · 자녀 타깃 = 공유. 시럽 앱 유도는 <b>/silove 내부에서만</b> + 성인(18+) 병기.</div>
+            <div class="note"><b>페이지별 단일 목표(웹 요구서 §5):</b> 같은 앱 버튼을 전 페이지에 달지 않습니다. <b>만남·여행 = 매출</b>(상담·신청·결제, 앱 유도 없음) · <b>모임·칼럼 = 앱 설치</b> · 자녀 타깃 = 공유. 시럽 앱 유도는 <b>/silove 내부에서만</b> + 성인(18+) 병기.</div>
 
             <div class="wfoot">
               <div class="fl">
@@ -1085,7 +1095,7 @@ footer.pg .r b{color:#fff}
                 <a href="https://sinor.co.kr/jeju" target="_blank" rel="noopener">여행</a>
                 <a href="https://sinor.co.kr/silovematch_event" target="_blank" rel="noopener">만남</a>
                 <a href="https://sinor.co.kr/moim" target="_blank" rel="noopener">모임</a>
-                <a href="https://sinor.co.kr/information" target="_blank" rel="noopener">스토리</a>
+                <a href="https://sinor.co.kr/information" target="_blank" rel="noopener">칼럼</a>
                 <a href="https://sinor.co.kr/meeting" target="_blank" rel="noopener">단체미팅</a>
                 <a href="https://sinor.co.kr/silove" target="_blank" rel="noopener">시럽</a>
                 <a href="https://sinor.co.kr/adv" target="_blank" rel="noopener">광고상품</a>
