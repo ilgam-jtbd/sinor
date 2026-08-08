@@ -388,6 +388,20 @@ a{color:inherit}
 .dlbar .dtx span{display:block;font-size:11.5px;color:#C6CAD2;margin-top:2px}
 .dlbar .dgo{background:var(--pink);color:#fff;border-radius:11px;padding:11px 16px;font-size:14px;font-weight:800;text-decoration:none;white-space:nowrap;flex:0 0 auto}
 .dlbar .dx{width:30px;height:30px;flex:0 0 auto;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:17px;line-height:1;display:grid;place-items:center}
+/* 웹 컨텍스트 토글 — 웹 단독 vs 앱 내 웹뷰(web.sinor.co.kr, 역컴파일로 확인) */
+.webctx{display:inline-flex;gap:3px;background:var(--surface);border:1px solid var(--line-2);border-radius:999px;padding:4px;margin-top:10px}
+.webctx button{padding:8px 18px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink-3);transition:.2s}
+.webctx button.on{background:var(--ink);color:#fff}
+/* 앱 내 웹뷰일 때: 브라우저 주소창 대신 앱 헤더, 설치 유도 전부 숨김 */
+.webwrap.inapp .webbar{display:none}
+.webwrap.inapp .appbar{display:flex}
+.appbar{display:none;align-items:center;gap:10px;background:var(--card);border-bottom:1px solid var(--line);padding:12px 14px}
+.appbar .bk{font-size:19px;color:var(--ink);line-height:1;width:26px}
+.appbar .ti{flex:1;font-size:15.5px;font-weight:800;letter-spacing:-.02em}
+.appbar .cl{font-size:17px;color:var(--ink-3);line-height:1}
+.webwrap.inapp .wdl,.webwrap.inapp #webdlbar,.webwrap.inapp .dlwrap,.webwrap.inapp .appinline,.webwrap.inapp .sharebar{display:none!important}
+.webwrap.inapp .inappnote{display:block}
+.inappnote{display:none;margin:12px 18px;background:var(--blue-50);border-radius:var(--r-md);padding:12px 14px;font-size:13px;color:var(--blue-d);font-weight:700;line-height:1.5}
 .startbar{display:flex;gap:8px;margin:14px 18px 0}
 .startbar .go{flex:1;background:var(--pink);color:#fff;border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;text-align:center}
 .startbar .q{width:64px;background:var(--kakao);color:#3A2E00;border-radius:var(--r-md);display:grid;place-items:center;font-size:14px;font-weight:800}
@@ -736,6 +750,10 @@ footer.pg .r b{color:#fff}
           <button id="tg-app" class="on" onclick="setMode('app')">앱 화면</button>
           <button id="tg-web" onclick="setMode('web')">웹 화면</button>
         </div>
+        <div class="webctx" id="webctx" style="display:none">
+          <button id="wc-web" class="on" onclick="setWebCtx('standalone')">웹 단독</button>
+          <button id="wc-app" onclick="setWebCtx('inapp')">앱 내 웹뷰</button>
+        </div>
         <div class="tapnote">TAP BOTTOM MENU &amp; CARDS →</div>
       </div>
 
@@ -991,6 +1009,7 @@ footer.pg .r b{color:#fff}
           <div class="notch"></div>
           <div class="screen">
             <div class="webbar"><span class="u">sinor.co.kr</span></div>
+            <div class="appbar"><span class="bk">‹</span><span class="ti">시놀</span><span class="cl">✕</span></div>
             <div class="wtop"><span class="logo"><span class="lg-fb"><svg class="hearts" viewBox="0 0 128 104"><use href="#sinor-hearts"/></svg><b>시놀</b></span></span><a class="wdl" href="https://sinor.co.kr/download" target="_blank" rel="noopener"><svg><use href="#i-gplay"/></svg>앱 설치</a></div>
             <div class="wnav">
               <a class="on" href="https://sinor.co.kr/" target="_blank" rel="noopener">홈</a>
@@ -1013,6 +1032,7 @@ footer.pg .r b{color:#fff}
               <a class="s" href="https://sinor.co.kr/meeting" target="_blank" rel="noopener">단체미팅 신청<small>이번 주 · 99,000원</small></a>
             </div>
             <div class="herohint">앱 설치 없이 <b>웹에서 바로 상담·신청·결제</b>가 됩니다.</div>
+            <div class="inappnote">앱 내 웹뷰(<b>web.sinor.co.kr</b>) 상태입니다 — 이미 앱 안이므로 <b>설치 유도를 모두 숨깁니다</b>. 목표는 상담·신청·결제 완결.</div>
 
             <!-- 만남 — 매출 66% (최우선 수익 블록) -->
             <div class="wsec"><span class="eb">만남 · 매출의 66%</span><h2>어떤 만남을 찾으세요?</h2></div>
@@ -1325,6 +1345,18 @@ function setMode(m){
   document.getElementById('tg-web').classList.toggle('on',m==='web');
   if(m==='app'){app.classList.remove('off');app.style.display='flex';web.classList.remove('on');}
   else{app.classList.add('off');app.style.display='none';web.classList.add('on');updateDlbar();}
+  var wc=document.getElementById('webctx'); if(wc) wc.style.display = (m==='web') ? 'inline-flex' : 'none';
+}
+/* 웹 컨텍스트 — 웹 단독 vs 앱 내 웹뷰(web.sinor.co.kr).
+   역컴파일 확인: 앱이 web.sinor.co.kr를 웹뷰로 임베드하므로, 그 상태에서는
+   이미 앱 안에 있는 사용자에게 설치를 권하지 않는다(설치 유도 전부 숨김). */
+function setWebCtx(c){
+  var web=document.getElementById('webwrap');
+  var inapp = (c==='inapp');
+  web.classList.toggle('inapp',inapp);
+  document.getElementById('wc-web').classList.toggle('on',!inapp);
+  document.getElementById('wc-app').classList.toggle('on',inapp);
+  if(inapp) dismissDlbar(); else { dlbarDismissed=false; updateDlbar(); }
 }
 /* 웹 하단 고정 다운로드 바 — 스크롤 시 노출, 닫으면 세션 내 유지 */
 var dlbarDismissed=false;
