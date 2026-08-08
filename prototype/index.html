@@ -302,7 +302,7 @@ a{color:inherit}
 .tab.on{color:var(--pink)} .tab.on svg{stroke:var(--pink)}
 
 .appwrap.off{display:none}
-.webwrap{display:none}.webwrap.on{display:block}
+.webwrap{display:none}.webwrap.on{display:flex}
 .webbar{background:#2B2E33;padding:10px 13px;display:flex;align-items:center;gap:9px}
 .webbar .u{background:#43474D;border-radius:999px;padding:6px 14px;flex:1;font-family:var(--mono);font-size:12px;color:#C8CCD2;text-align:center}
 .wtop{padding:16px 18px 0;display:flex;justify-content:center}
@@ -377,6 +377,17 @@ a{color:inherit}
 .storystrip .sh .eb{color:var(--pink)}
 .storystrip .sh .mo{font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
 .storystrip .lrow{margin:8px 0}
+/* 웹 헤더 다운로드 칩 + 스크롤 고정 다운로드 바 (성공지표 2순위 = 앱 다운로드) */
+.wtop{justify-content:space-between;align-items:center}
+.wdl{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:9px 15px;font-size:13.5px;font-weight:800;text-decoration:none;letter-spacing:-.01em;box-shadow:var(--sh-sm)}
+.wdl svg{width:16px;height:16px;fill:#fff;flex:0 0 auto}
+.dlbar{position:absolute;left:11px;right:11px;bottom:11px;z-index:55;display:flex;align-items:center;gap:11px;background:rgba(20,22,28,.97);color:#fff;border-radius:16px;padding:12px 12px 12px 15px;box-shadow:0 12px 30px rgba(0,0,0,.28);transform:translateY(140%);opacity:0;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .32s;pointer-events:none}
+.dlbar.show{transform:translateY(0);opacity:1;pointer-events:auto}
+.dlbar .dtx{flex:1;min-width:0;line-height:1.25}
+.dlbar .dtx b{display:block;font-size:14px;font-weight:800;letter-spacing:-.01em}
+.dlbar .dtx span{display:block;font-size:11.5px;color:#C6CAD2;margin-top:2px}
+.dlbar .dgo{background:var(--pink);color:#fff;border-radius:11px;padding:11px 16px;font-size:14px;font-weight:800;text-decoration:none;white-space:nowrap;flex:0 0 auto}
+.dlbar .dx{width:30px;height:30px;flex:0 0 auto;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:17px;line-height:1;display:grid;place-items:center}
 .startbar{display:flex;gap:8px;margin:14px 18px 0}
 .startbar .go{flex:1;background:var(--pink);color:#fff;border-radius:var(--r-md);padding:15px;font-size:16px;font-weight:800;text-align:center}
 .startbar .q{width:64px;background:var(--kakao);color:#3A2E00;border-radius:var(--r-md);display:grid;place-items:center;font-size:14px;font-weight:800}
@@ -980,7 +991,7 @@ footer.pg .r b{color:#fff}
           <div class="notch"></div>
           <div class="screen">
             <div class="webbar"><span class="u">sinor.co.kr</span></div>
-            <div class="wtop"><span class="logo"><span class="lg-fb"><svg class="hearts" viewBox="0 0 128 104"><use href="#sinor-hearts"/></svg><b>시놀</b></span></span></div>
+            <div class="wtop"><span class="logo"><span class="lg-fb"><svg class="hearts" viewBox="0 0 128 104"><use href="#sinor-hearts"/></svg><b>시놀</b></span></span><a class="wdl" href="https://sinor.co.kr/download" target="_blank" rel="noopener"><svg><use href="#i-gplay"/></svg>앱 설치</a></div>
             <div class="wnav">
               <a class="on" href="https://sinor.co.kr/" target="_blank" rel="noopener">홈</a>
               <a href="https://sinor.co.kr/jeju" target="_blank" rel="noopener">여행</a>
@@ -1105,6 +1116,11 @@ footer.pg .r b{color:#fff}
               <div class="cp">© SINOR · sinor.co.kr</div>
             </div>
             <div style="height:20px"></div>
+          </div>
+          <div class="dlbar" id="webdlbar">
+            <div class="dtx"><b>시놀 앱 설치</b><span>모임·채팅·알림은 앱에서</span></div>
+            <a class="dgo" href="https://sinor.co.kr/download" target="_blank" rel="noopener">다운로드</a>
+            <button class="dx" onclick="dismissDlbar(event)" aria-label="닫기">×</button>
           </div>
         </div>
 
@@ -1308,8 +1324,18 @@ function setMode(m){
   document.getElementById('tg-app').classList.toggle('on',m==='app');
   document.getElementById('tg-web').classList.toggle('on',m==='web');
   if(m==='app'){app.classList.remove('off');app.style.display='flex';web.classList.remove('on');}
-  else{app.classList.add('off');app.style.display='none';web.classList.add('on');}
+  else{app.classList.add('off');app.style.display='none';web.classList.add('on');updateDlbar();}
 }
+/* 웹 하단 고정 다운로드 바 — 스크롤 시 노출, 닫으면 세션 내 유지 */
+var dlbarDismissed=false;
+function dismissDlbar(e){if(e){e.preventDefault();e.stopPropagation();}dlbarDismissed=true;var b=document.getElementById('webdlbar');if(b)b.classList.remove('show');}
+function updateDlbar(){
+  var scr=document.querySelector('#webwrap .screen'),bar=document.getElementById('webdlbar');
+  if(!scr||!bar)return;
+  var show=!dlbarDismissed && scr.scrollTop>300 && (scr.scrollHeight-scr.scrollTop-scr.clientHeight)>160;
+  bar.classList.toggle('show',show);
+}
+(function(){var scr=document.querySelector('#webwrap .screen');if(scr)scr.addEventListener('scroll',updateDlbar,{passive:true});})();
 /* scroll reveal */
 (function(){
   var els=document.querySelectorAll('.reveal');
