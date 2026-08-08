@@ -1,0 +1,346 @@
+<title>시놀 앱·웹 화면 목업 v3.0</title>
+<style>
+:root{
+  --ink:#1B1D21; --ink-2:#4A4F57; --ink-3:#7B818B;
+  --paper:#FFFFFF; --surface:#F3F4F6; --surface-2:#E9EBEF;
+  --line:#D8DBE0; --line-2:#C2C7CF;
+  --new:#0F5F5C; --new-bg:#E4F0EF;
+  --move:#9B2C2C; --move-bg:#F7E8E8;
+  --check:#8A6A15; --check-bg:#F7F0DC;
+  --frame:#FBFBFC;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E8EAED; --ink-2:#B4B9C2; --ink-3:#858B95;
+  --paper:#15171A; --surface:#1D2024; --surface-2:#25292E;
+  --line:#333840; --line-2:#454B54;
+  --new:#5FBFB8; --new-bg:#12302E; --move:#DE8585; --move-bg:#33201F;
+  --check:#D6B45E; --check-bg:#302912; --frame:#1A1D21;
+}}
+:root[data-theme="dark"]{
+  --ink:#E8EAED; --ink-2:#B4B9C2; --ink-3:#858B95;
+  --paper:#15171A; --surface:#1D2024; --surface-2:#25292E;
+  --line:#333840; --line-2:#454B54;
+  --new:#5FBFB8; --new-bg:#12302E; --move:#DE8585; --move-bg:#33201F;
+  --check:#D6B45E; --check-bg:#302912; --frame:#1A1D21;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{text-wrap:balance;margin:0;line-height:1.3}
+.masthead{border-bottom:1px solid var(--line);padding:56px 0 28px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.masthead h1{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.02em;margin:10px 0 8px}
+.masthead .sub{color:var(--ink-2);font-size:17px;max-width:64ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.meta b{color:var(--ink-2);font-weight:600}
+nav.idx{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+nav.idx .row{display:flex;gap:2px;overflow-x:auto;padding:8px 0}
+nav.idx a{flex:0 0 auto;font-family:var(--mono);font-size:12px;color:var(--ink-2);text-decoration:none;padding:6px 12px;border-radius:4px;white-space:nowrap}
+nav.idx a:hover{background:var(--surface);color:var(--ink)}
+nav.idx a:focus-visible{outline:2px solid var(--new);outline-offset:1px}
+section.screen{padding:52px 0;border-top:1px solid var(--line)}
+.shead{margin-bottom:24px}
+.shead .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--new)}
+.shead h2{font-size:26px;font-weight:700;letter-spacing:-.015em;margin:6px 0 6px}
+.shead p{margin:0;color:var(--ink-2);font-size:15px;max-width:72ch}
+.cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+.device{position:sticky;top:56px}
+.phone{width:320px;max-width:100%;border:1.5px solid var(--line-2);border-radius:14px;background:var(--frame);overflow:hidden}
+.phone .top{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--surface);font-size:11px}
+.phone .top .mp{font-family:var(--mono);color:var(--new);font-weight:700}
+.phone .body{padding:10px;display:flex;flex-direction:column;gap:8px;min-height:400px}
+.phone .tabbar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--line-2);background:var(--surface);font-size:11px;text-align:center}
+.phone .tabbar span{padding:9px 0;color:var(--ink-3)}
+.phone .tabbar .on{color:var(--new);font-weight:700}
+.browserbar{display:flex;align-items:center;gap:6px;padding:6px 10px;border-bottom:1px solid var(--line);background:var(--surface);font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--line-2)}
+.b{border:1px dashed var(--line-2);border-radius:5px;padding:9px 10px;font-size:12px;color:var(--ink-2);background:var(--paper)}
+.b.solid{border-style:solid}
+.b.new{border-color:var(--new);background:var(--new-bg);color:var(--ink)}
+.b .t{font-weight:700;color:var(--ink);font-size:12.5px}
+.b .s{font-size:11px;color:var(--ink-3);margin-top:2px;font-family:var(--mono)}
+.searchbar{border:1.5px solid var(--new);border-radius:18px;padding:8px 12px;font-size:12px;color:var(--ink-3);background:var(--paper)}
+.qmenu{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.qmenu i{border:1px solid var(--new);border-radius:6px;padding:12px 2px;font-size:11px;text-align:center;color:var(--new);font-style:normal;font-weight:700;background:var(--new-bg)}
+.hscroll{display:flex;gap:6px;overflow:hidden}
+.hscroll .c{flex:0 0 42%;border:1px dashed var(--line-2);border-radius:5px;padding:14px 6px;font-size:10px;text-align:center;color:var(--ink-3);background:var(--paper)}
+.hscroll .c.peek{flex:0 0 16%;opacity:.5}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.grid5 i{border:1px dashed var(--line-2);border-radius:5px;padding:9px 2px;font-size:9px;text-align:center;color:var(--ink-3);font-style:normal;background:var(--paper)}
+.num{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:var(--new);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;flex:0 0 auto;margin-right:6px}
+:root[data-theme="dark"] .num,:root:not([data-theme="light"]) .num{color:#0B1F1E}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .num{color:#fff}}
+ol.notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+ol.notes li{display:flex;gap:2px;align-items:flex-start}
+ol.notes .txt h4{font-size:14.5px;font-weight:700;margin-bottom:2px}
+ol.notes .txt p{margin:0;font-size:14px;color:var(--ink-2)}
+ol.notes .txt .why{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-top:3px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;margin-top:18px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface);font-weight:700;font-size:12px;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td code{font-family:var(--mono);font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:3px}
+.tnum{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.callout{border:1px solid var(--check);background:var(--check-bg);border-radius:6px;padding:14px 16px;margin:22px 0;font-size:14px}
+.callout.ok{border-color:var(--new);background:var(--new-bg)}
+.callout.warn{border-color:var(--move);background:var(--move-bg)}
+.asis-tobe{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+@media (max-width:640px){.asis-tobe{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--surface)}
+.box h4{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin-bottom:10px;letter-spacing:.05em}
+.pill{display:inline-block;border:1px solid var(--line-2);border-radius:14px;padding:4px 11px;font-size:12px;margin:3px 3px 0 0;background:var(--paper)}
+.pill.on{border-color:var(--new);background:var(--new);color:#fff;font-weight:700}
+:root[data-theme="dark"] .pill.on,:root:not([data-theme="light"]) .pill.on{color:#0B1F1E}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .pill.on{color:#fff}}
+.pill.gone{border-style:dashed;color:var(--move);border-color:var(--move);text-decoration:line-through}
+footer{border-top:1px solid var(--line);padding:32px 0 64px;font-size:13px;color:var(--ink-3)}
+</style>
+
+<header class="masthead"><div class="wrap">
+  <div class="eyebrow">SINOR · SCREEN MOCKUP v3.0 · 대외비</div>
+  <h1>시놀 앱 · 웹 화면 목업 v3.0</h1>
+  <p class="sub">목적형 4대 메뉴 — <b>홈 · 여행 · 만남 · 모임</b>. 개인 설정은 우측 상단 마이페이지, 채팅은 맥락 진입. v2.0의 9섹션·수익 카드·이벤트·컴포넌트 규격을 버리지 않고 4메뉴 안으로 재배치했습니다.</p>
+  <div class="meta">
+    <span><b>작성</b> 시놀 김연재</span><span><b>기준일</b> 2026-08-08</span>
+    <span><b>변경</b> v2.0 5탭 → v3.0 4탭 IA</span><span><b>수치 출처</b> 정합기준 정본 2026-08</span>
+  </div>
+</div></header>
+
+<nav class="idx"><div class="wrap"><div class="row">
+  <a href="#ia">IA 변경</a><a href="#map">9섹션 재배치</a><a href="#home">홈</a><a href="#travel">여행</a>
+  <a href="#meet">만남</a><a href="#groups">모임</a><a href="#mypage">마이페이지</a><a href="#chat">채팅</a>
+  <a href="#web">웹</a><a href="#event">이벤트</a>
+</div></div></nav>
+
+<section class="screen" id="ia" style="border-top:0"><div class="wrap">
+  <div class="shead"><div class="tag">01 · IA change</div><h2>기능 중심 → 목적 중심</h2>
+    <p>기존 5탭은 "무엇을 하러 들어가는 앱인가"가 한눈에 안 보입니다. 시니어 기준으로 "내가 무엇을 하러 왔는가"를 메뉴로 만듭니다.</p></div>
+  <div class="asis-tobe">
+    <div class="box"><h4>AS-IS · v2.0 (기능 분산)</h4>
+      <span class="pill">모임</span><span class="pill">라운지</span><span class="pill">＋</span><span class="pill">채팅</span><span class="pill">마이</span>
+      <p style="font-size:13px;color:var(--ink-2);margin:12px 0 0">채팅·마이까지 상시 메뉴. 수익 서비스(시럽인연·단체미팅·트립)가 메뉴 체계 밖에 존재.</p></div>
+    <div class="box"><h4>TO-BE · v3.0 (목적 중심)</h4>
+      <span class="pill on">홈</span><span class="pill on">여행</span><span class="pill on">만남</span><span class="pill on">모임</span>
+      <span class="pill gone">채팅</span><span class="pill gone">마이</span>
+      <p style="font-size:13px;color:var(--ink-2);margin:12px 0 0">우측 상단 마이페이지 · 채팅은 맥락형 진입 + 헤더 알림. 시럽인연·단체미팅·트립을 목적 메뉴에 통합.</p></div>
+  </div>
+  <div class="callout ok"><b>버리는 것이 아닙니다.</b> IA(네비게이션 뼈대)만 바뀌고, v2.0에서 설계한 9섹션·수익 카드 3종·이벤트 16종·어드민 컴포넌트 8종·채팅 2탭은 그대로 4메뉴 안으로 상속됩니다. 개발자에게 "새로 만들 것이 없다"를 증명하는 것이 다음 섹션입니다.</div>
+</div></section>
+
+<section class="screen" id="map"><div class="wrap">
+  <div class="shead"><div class="tag">02 · Reassignment</div><h2>v2.0 9섹션 → v3.0 4메뉴 매핑</h2>
+    <p>빠지는 섹션은 없습니다. 대부분 홈(발견)과 전용 메뉴(목적 완수)에 이중 배치됩니다.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>v2.0 홈 섹션</th><th>v3.0 위치</th><th>상속 규격</th></tr></thead>
+    <tbody>
+      <tr><td>① 검색바 (sticky)</td><td><b>홈 상단</b></td><td><code>search_term</code> 수집 · 0건 로그</td></tr>
+      <tr><td>② 기획전 배너</td><td>홈</td><td>radius 16px · 세션당 첫 노출</td></tr>
+      <tr><td>③ 카테고리 격자</td><td><b>모임 상단</b></td><td>아이콘+한글 라벨</td></tr>
+      <tr><td>④ 수익카드 단체미팅</td><td><b>홈 + 만남</b></td><td>잔여 3석 강조 · 동일 컴포넌트</td></tr>
+      <tr><td>⑤ 새로 열린 모임</td><td>홈 + 모임</td><td>가로 스크롤 20% · 정원 표시</td></tr>
+      <tr><td>⑥ 수익카드 인연진단</td><td><b>홈 + 만남</b></td><td>결과 화면 전화 원탭</td></tr>
+      <tr><td>⑦ 내 지역 모임</td><td>홈 + 모임</td><td>미설정 시 설정 유도 카드</td></tr>
+      <tr><td>⑧ 수익카드 이번주 여행</td><td><b>홈 + 여행</b></td><td>정가 vs 멤버십가 · 실연동</td></tr>
+      <tr><td>⑨ 광고 슬롯</td><td>홈 (4주 후)</td><td>개편 동시 도입 금지</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="screen" id="home"><div class="wrap">
+  <div class="shead"><div class="tag">03 · Home</div><h2>홈 — 오늘의 발견</h2>
+    <p>"오늘 뭐가 있지?" 개인화된 추천이 중심. 검색은 유지하되 「무엇을 찾으세요?」로 단순화.</p></div>
+  <div class="cols">
+    <div class="device"><div class="phone">
+      <div class="top"><span>시놀 · 서울 ▾</span><span class="mp">◯ 마이페이지</span></div>
+      <div class="body">
+        <div class="searchbar">무엇을 찾으세요?</div>
+        <div class="b new"><span class="t">오늘 시놀에서 해볼 것</span><div class="s">가까운 모임 · 여행 · 만남 3~4개</div></div>
+        <div class="qmenu"><i>여행</i><i>만남</i><i>모임</i></div>
+        <div class="b new"><span class="t">단체미팅 · 8/17 서울 · 잔여 3석</span><div class="s">[신청하기]</div></div>
+        <div class="b"><span class="t">내 지역 모임 →</span><div class="hscroll" style="margin-top:6px"><span class="c">강남 산책<br>4/8</span><span class="c">분당 바둑<br>6/10</span><span class="c peek"></span></div></div>
+        <div class="b new"><span class="t">인연 진단 — 내 유형 보기</span><div class="s">결과에 전화 상담 원탭</div></div>
+        <div class="b"><span class="t">새로 열린 모임 →</span></div>
+        <div class="b new"><span class="t">이번 주 여행 · 시놀트립</span><div class="s">정가 32만 → 멤버십 24만</div></div>
+        <div class="b"><span class="t">칼럼/정보 →</span></div>
+      </div>
+      <div class="tabbar"><span class="on">홈</span><span>여행</span><span>만남</span><span>모임</span></div>
+    </div></div>
+    <ol class="notes">
+      <li><span class="num">1</span><div class="txt"><h4>헤더 — 지역 + 우측 마이페이지</h4><p>'마이' 단독 메뉴명을 쓰지 않습니다. 텍스트 「마이페이지」 + 사람 아이콘으로 개인 설정을 탐색과 분리합니다.</p><div class="why">이벤트 · <code>mypage_open</code></div></div></li>
+      <li><span class="num">2</span><div class="txt"><h4>오늘의 추천 — 발견의 중심</h4><p>광고처럼 보이는 전면 배너보다 추천 카드 중심. "오늘 볼 것"이 없으면 재방문이 생기지 않습니다.</p><div class="why">DAU/MAU 5.8% → 8% 목표</div></div></li>
+      <li><span class="num">3</span><div class="txt"><h4>빠른 메뉴 — 여행/만남/모임</h4><p>4대 메뉴로 가는 지름길. 하단 네비와 중복이지만, 홈에서의 목적 선택을 돕습니다.</p><div class="why">이벤트 · <code>primary_nav_tap</code></div></div></li>
+      <li><span class="num">4</span><div class="txt"><h4>수익 카드 3종 — 콘텐츠와 같은 위계</h4><p>단체미팅·인연진단·이번주 여행. 테두리색·배경색·「광고」 표기 금지, 연속 배치 금지. v2.0 규격 그대로.</p><div class="why">이벤트 · <code>revenue_card_impression / tap</code></div></div></li>
+      <li><span class="num">5</span><div class="txt"><h4>9섹션이 여기 다 있습니다</h4><p>검색·배너·수익카드·지역모임·새모임·칼럼·공지 — v2.0의 9섹션이 홈에 재배치됐고, 상세는 각 메뉴에 있습니다.</p></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="screen" id="travel"><div class="wrap">
+  <div class="shead"><div class="tag">04 · Travel</div><h2>여행 — 시놀트립 멤버십</h2>
+    <p>"어디 갈까?" 자사 유료 상품인 시놀트립 멤버십에 집중. 하나투어는 광고 성과 측정 지면으로 분리.</p></div>
+  <div class="cols">
+    <div class="device"><div class="phone">
+      <div class="top"><span>여행 · 시놀트립</span><span class="mp">◯ 마이페이지</span></div>
+      <div class="body">
+        <div class="b solid"><span class="t">이번 주 추천 여행</span><div class="s">제주 한림 2박</div></div>
+        <div class="b new"><span class="t">정가 320,000원 → 멤버십가 240,000원</span><div class="s">시놀트립 멤버십 49,900원/년</div></div>
+        <div class="b"><span class="t">여행 일정 →</span></div>
+        <div class="b"><span class="t">회원 혜택 →</span></div>
+        <div class="b"><span class="t">여행 후기 →</span></div>
+        <div class="b new"><span class="t">멤버십 가입하고 예약</span><div class="s">+ 전화 예약 번호</div></div>
+      </div>
+      <div class="tabbar"><span>홈</span><span class="on">여행</span><span>만남</span><span>모임</span></div>
+    </div></div>
+    <ol class="notes">
+      <li><span class="num">1</span><div class="txt"><h4>정가 vs 멤버십가 나란히</h4><p>여행 이탈 72.7%의 원인은 멤버십 가치가 그 화면에 없어서입니다. 가격은 실제 상품과 연동, 하드코딩 금지.</p><div class="why">이벤트 · <code>trip_membership_view / purchase</code></div></div></li>
+      <li><span class="num">2</span><div class="txt"><h4>예약 동선 신설</h4><p>「멤버십 가입하고 예약」 원탭 + 전화 예약. 지금은 보고 나갈 곳밖에 없습니다.</p></div></li>
+      <li><span class="num">3</span><div class="txt"><h4>하나투어는 광고 지면</h4><p>판매 상품이 아니라 광고 성과(노출·클릭) 측정 대상입니다. 시놀트립 결제를 자사 도메인에서 완결시키는 것이 여행 부문 유일 KPI.</p><div class="why">Q9 → 광고 단가·지면 계약 확인</div></div></li>
+      <li><span class="num">4</span><div class="txt"><h4>독립 메뉴 승격의 명분</h4><p>시놀트립 멤버십이 이미 존재하고 T1 수익화 대상이므로 여행을 대메뉴로 올릴 근거가 충분합니다.</p></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="screen" id="meet"><div class="wrap">
+  <div class="shead"><div class="tag">05 · Meet</div><h2>만남 — 시럽 / 시럽인연 / 단체미팅</h2>
+    <p>"누구를 만날까?" 세 목적을 명확히 분리합니다. 같은 만남이지만 무게가 다릅니다.</p></div>
+  <div class="cols">
+    <div class="device"><div class="phone">
+      <div class="top"><span>만남</span><span class="mp">◯ 마이페이지</span></div>
+      <div class="body">
+        <div class="b"><span class="t">어떤 만남을 찾으세요?</span></div>
+        <div class="b new"><span class="t">친구를 만나고 싶어요 → 시럽</span><div class="s">50+ 이성친구·관심사 · 성인 등급 안내</div></div>
+        <div class="b new"><span class="t">진지한 인연을 찾고 싶어요 → 시럽인연</span><div class="s">신원인증·전문 매니저</div></div>
+        <div class="b new"><span class="t">인연 진단 → 상담 예약 → 전화</span><div class="s">최단 경로</div></div>
+        <div class="b"><span class="t">단체미팅 → 일정·지역·잔여석</span></div>
+      </div>
+      <div class="tabbar"><span>홈</span><span>여행</span><span class="on">만남</span><span>모임</span></div>
+    </div></div>
+    <ol class="notes">
+      <li><span class="num">1</span><div class="txt"><h4>시럽 vs 시럽인연을 목적으로 가른다</h4><p>"친구·가벼운 만남"(시럽) vs "진지한 인연"(시럽인연). 사용자가 자기 목적을 먼저 고르게 합니다.</p></div></li>
+      <li><span class="num">2</span><div class="txt"><h4>시럽인연은 최단 경로</h4><p>인연 진단 → 상담 예약 → 전화 상담. 시니어는 전화 전환이 강합니다. 상담 이탈 7.0%는 이미 잘 작동하는 페이지.</p><div class="why">이벤트 · <code>diagnosis_complete · consult_call_tap</code></div></div></li>
+      <li><span class="num">3</span><div class="txt"><h4>시럽은 성인 등급 안내 병기</h4><p>시럽 앱은 Play 18+입니다. 만남에서 시럽으로 보낼 때 성인 등급을 함께 안내합니다.</p></div></li>
+      <li><span class="num">4</span><div class="txt"><h4>단체미팅 — 일정·잔여석 중심</h4><p>가격 등급 확정 후 구독은 기본 참석권만 커버(§가격 재설계). 잔여 3석 이하 강조.</p><div class="why">이벤트 · <code>meeting_apply_start / complete</code></div></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="screen" id="groups"><div class="wrap">
+  <div class="shead"><div class="tag">06 · Groups</div><h2>모임 — 커뮤니티 자산 그대로</h2>
+    <p>"무엇을 같이 할까?" 시놀의 핵심 자산인 소모임을 유지합니다. 모임 1,561개는 재고입니다.</p></div>
+  <div class="cols">
+    <div class="device"><div class="phone">
+      <div class="top"><span>모임 찾기</span><span class="mp">◯ 마이페이지</span></div>
+      <div class="body">
+        <div class="grid5"><i>지역</i><i>운동</i><i>여행</i><i>문화</i><i>취미</i></div>
+        <div class="b"><span class="t">내 주변 모임 →</span></div>
+        <div class="b"><span class="t">인기 모임 →</span></div>
+        <div class="b"><span class="t">새로 열린 모임 →</span></div>
+        <div class="b new"><span class="t">모임 만들기 ＋</span></div>
+        <div class="b"><span class="t">모임 상세 → 모임 대화</span><div class="s">채팅은 여기서 진입</div></div>
+      </div>
+      <div class="tabbar"><span>홈</span><span>여행</span><span>만남</span><span class="on">모임</span></div>
+    </div></div>
+    <ol class="notes">
+      <li><span class="num">1</span><div class="txt"><h4>카테고리 — 아이콘 + 한글 라벨</h4><p>지역·운동·여행·문화·취미. 최소 17px, 터치 영역 48px 이상. 아이콘 단독 금지.</p></div></li>
+      <li><span class="num">2</span><div class="txt"><h4>모임 만들기(＋)를 여기로</h4><p>기존 하단 '＋' 탭을 모임 메뉴 안으로 흡수합니다. 모임을 만드는 것은 모임 맥락의 행동입니다.</p></div></li>
+      <li><span class="num">3</span><div class="txt"><h4>모임 → 만남 연결이 핵심</h4><p>부족한 것은 콘텐츠 양이 아니라 연결입니다. 모임 참여자를 시럽인연·단체미팅으로 잇는 동선을 둡니다.</p></div></li>
+      <li><span class="num">4</span><div class="txt"><h4>모임 상세 → 모임 대화</h4><p>채팅 진입점. 기존 채팅 2탭·점/숫자 규칙을 그대로 재사용합니다.</p><div class="why">이벤트 · <code>chat_entry(source=meeting)</code></div></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="screen" id="mypage"><div class="wrap">
+  <div class="shead"><div class="tag">07 · My page</div><h2>마이페이지 — 우측 상단</h2>
+    <p>서비스 탐색과 개인 설정을 분리합니다. 탐색 중 설정 때문에 맥락을 잃지 않게.</p></div>
+  <div class="cols">
+    <div class="device"><div class="phone">
+      <div class="top"><span>← 마이페이지</span><span class="mp"></span></div>
+      <div class="body">
+        <div class="b solid"><span class="t">내 프로필</span></div>
+        <div class="b">관심사 / 지역</div>
+        <div class="b">본인인증</div>
+        <div class="b">내 모임</div>
+        <div class="b">포인트 · 11,100P</div>
+        <div class="b new">결제 / 구독</div>
+        <div class="b">알림 설정</div>
+        <div class="b">고객센터 / 약관</div>
+        <div class="b">로그아웃</div>
+      </div>
+    </div></div>
+    <ol class="notes">
+      <li><span class="num">1</span><div class="txt"><h4>'마이'가 아니라 '마이페이지'</h4><p>단독 메뉴명 '마이'는 무엇인지 모호합니다. 텍스트 + 사람 아이콘으로 명확히 합니다.</p></div></li>
+      <li><span class="num">2</span><div class="txt"><h4>결제/구독을 한곳에</h4><p>시놀트립 멤버십·단체미팅 구독·포인트를 마이페이지에서 관리. 포인트 11,100P는 「포인트로 첫 달」 구독 전환 장치.</p></div></li>
+      <li><span class="num">3</span><div class="txt"><h4>전체 대화 진입</h4><p>맥락형 채팅 외에, 전체 메시지는 마이페이지 또는 헤더 메시지 아이콘에서 접근합니다.</p></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="screen" id="chat"><div class="wrap">
+  <div class="shead"><div class="tag">08 · Chat</div><h2>채팅 — 탭 제거, 맥락 진입</h2>
+    <p>채팅을 하단 대메뉴에서 뺐습니다. 기능·데이터·2탭 구조는 그대로이고 진입 경로만 바뀝니다.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>진입점</th><th>도달 화면</th><th>유지되는 규격</th></tr></thead>
+    <tbody>
+      <tr><td>모임 상세 → 모임 대화</td><td>모임 채팅방</td><td rowspan="3">v2.0 채팅 2탭(모임/1:1 대화) · 탭=점 목록=숫자 · 점 해제는 대화방 실제 열람 시점</td></tr>
+      <tr><td>상대 프로필/만남 → 1:1 대화</td><td>1:1 채팅방</td></tr>
+      <tr><td>헤더 메시지 아이콘 → 전체 대화</td><td>모임/1:1 대화 2탭</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout ok"><b>개발 관점에서는 라우팅 변경입니다.</b> 기존 채팅 컴포넌트·API를 재사용하고, 하단 탭 진입을 맥락형 진입 + 헤더 알림으로 바꿉니다. 안 읽음 카운트 제공 주체(서버/클라이언트) 확인은 여전히 선행(개발 회신 D3).</div>
+</div></section>
+
+<section class="screen" id="web"><div class="wrap">
+  <div class="shead"><div class="tag">09 · Web</div><h2>웹 — 같은 4대 메뉴</h2>
+    <p>sinor.co.kr도 홈/여행/만남/모임 IA로 통일. 기존 URL(<code>/meeting</code>·<code>/information</code>·<code>/download</code>·<code>/silove</code>·<code>/silovematch</code>)을 재사용하고 연결·측정만 붙입니다.</p></div>
+  <div class="cols">
+    <div class="device"><div class="phone">
+      <div class="browserbar"><i class="dot"></i>sinor.co.kr</div>
+      <div class="body">
+        <div class="b new"><span class="t">시놀 — 50+의 여행·만남·모임</span><div class="s">[ 앱 설치하기 ]</div></div>
+        <div class="qmenu" style="grid-template-columns:repeat(4,1fr)"><i>홈</i><i>여행</i><i>만남</i><i>모임</i></div>
+        <div class="b"><span class="t">오늘 추천 · 단체미팅</span></div>
+        <div class="b"><span class="t">시럽인연 상담</span><div class="s">전화 CTA</div></div>
+        <div class="b"><span class="t">시놀트립 멤버십</span></div>
+        <div class="b"><span class="t">시니어 칼럼 191편</span></div>
+        <div class="b new"><span class="t">부모님께 보내기</span><div class="s">카카오·문자 공유</div></div>
+      </div>
+    </div></div>
+    <ol class="notes">
+      <li><span class="num">1</span><div class="txt"><h4>페이지별 단일 목표 유지</h4><p>칼럼=앱 설치 · 단체미팅=웹 신청 · 시럽인연=전화 상담 · 여행=멤버십 결제 · 자녀=공유. v2.0 원칙 그대로.</p></div></li>
+      <li><span class="num">2</span><div class="txt"><h4>칼럼 하단 주제별 CTA 6종</h4><p>건강/운동→취미 모임, 재혼→시럽인연 상담, 여행→시놀트립, 자녀→부모님께 보내기. 어드민에서 매핑 변경.</p></div></li>
+      <li><span class="num">3</span><div class="txt"><h4>/silovematch-consult 광고 직행 금지</h4><p>이탈 75.8%. 소개·신뢰 블록(성혼비 없음) 후 상담으로 유도합니다.</p></div></li>
+      <li><span class="num">4</span><div class="txt"><h4>스마트 앱 링크 + 딥링크</h4><p>iOS meta + Android 배너 + 단일 스마트 링크. 웹에서 보던 모임/상품을 설치 후 바로 엽니다.</p><div class="why">이벤트 · <code>app_install_click · deep_link_open</code></div></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="screen" id="event"><div class="wrap">
+  <div class="shead"><div class="tag">10 · Events</div><h2>측정 — v2.0 16종 + V3 신규 3종</h2>
+    <p>4대 메뉴별 4주 기여도를 측정해 하위 영역을 축소·재배치합니다.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>이벤트명</th><th>파라미터</th><th>구분</th></tr></thead>
+    <tbody>
+      <tr><td><code>primary_nav_tap</code></td><td><code>menu</code>(home/travel/meet/groups)</td><td>V3 신규</td></tr>
+      <tr><td><code>mypage_open</code></td><td><code>entry_point</code></td><td>V3 신규</td></tr>
+      <tr><td><code>chat_entry</code></td><td><code>source</code>, <code>room_type</code></td><td>V3 신규</td></tr>
+      <tr><td><code>home_section_impression / tap</code></td><td><code>section_id</code>, <code>position</code></td><td>v2.0</td></tr>
+      <tr><td><code>revenue_card_impression / tap</code></td><td><code>card_type</code>, <code>cta_label</code></td><td>v2.0</td></tr>
+      <tr><td><code>trip_membership_view / purchase</code></td><td><code>product_id</code>, <code>member_price</code></td><td>v2.0</td></tr>
+      <tr><td><code>meeting_apply_start / complete</code></td><td><code>meeting_id</code>, <code>price</code>, <code>seats_left</code></td><td>v2.0</td></tr>
+      <tr><td><code>diagnosis_complete · consult_call_tap</code></td><td><code>result_type</code>, <code>entry_point</code></td><td>v2.0</td></tr>
+      <tr><td><code>view_search_results · search_no_result</code></td><td><code>search_term</code></td><td>v2.0</td></tr>
+      <tr><td><code>purchase</code></td><td><code>value</code>, <code>payment_method</code></td><td>v2.0 (카드·무통장 모두)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><b>운영자 제어.</b> 메뉴·카드·배너의 순서와 ON/OFF를 서버에서 제어합니다. 개발 배포 없이 바꿀 수 있는 범위가 곧 그로스 실험의 속도입니다 (v2.0 컴포넌트 8종 규격 유지).</div>
+  <div class="callout warn"><b>선행 조건.</b> 성공지표 5종 중 3종, 가드레일 전부가 현재 미측정입니다. 측정 설정(GA4·GTM·서치콘솔·전환추적)이 배포보다 먼저 끝나야 합니다.</div>
+</div></section>
+
+<footer><div class="wrap">
+  수치 기준 — 종합전략 v3 · GA4 실측(2026.07.09~08.05) · Dataroom(2026.07) · 외부 실사(2026.08.08). 단일 출처는 <b>정합기준 정본 2026-08</b>.
+  <br>작성 시놀 김연재 · 2026-08-08 · v3.0 (v2.0 5탭 → 4탭 IA 재정의) · 대외비
+</div></footer>
