@@ -838,6 +838,20 @@ footer.pg .r b{color:#fff}
                 <div class="tcard" onclick="go('groups')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=80" alt="트레킹"></div><div class="tb"><span class="eb">일정 · 참여</span><h3>서울둘레길 트레킹 (제10코스)</h3><p>8/9 · 양재시민의숲역</p></div></div>
               </div>
 
+              <!-- 이벤트 2종 (앱 홈) — 웹 .evstrip 컴포넌트 재사용. 앱은 네이티브 동작이라 앱 내 이동 -->
+              <div class="evstrip">
+                <a class="ev iv" href="#" onclick="return appEvent('invite')">
+                  <span class="evtag">친구초대 이벤트</span>
+                  <b>친구도 나도<br><i>5,000원</i> 받기</b>
+                  <span class="cta2">친구 초대하기 →</span>
+                </a>
+                <a class="ev op" href="#" onclick="return appEvent('group_create')">
+                  <span class="evtag">모임개설 이벤트</span>
+                  <b>모임 열면<br><i>11만 포인트</i></b>
+                  <span class="cta2">모임 개설하기 →</span>
+                </a>
+              </div>
+
               <div class="sec"><span class="eb">Meeting</span><h2>이번 주 단체미팅</h2></div>
               <div class="card" onclick="go('meet')">
                 <div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 단체미팅 파티" onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80'"></div>
@@ -1014,7 +1028,12 @@ footer.pg .r b{color:#fff}
                 <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80" alt="취미배움"></div><div class="gb"><h4>취미 배움 모임</h4><div class="gm">인생을 알차게</div></div></div>
                 <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="노래"></div><div class="gb"><h4>추억의 팝송</h4><div class="gm">홍대 · 5/11명</div></div></div>
               </div>
-              <button class="cta">＋ 내 모임 만들기</button>
+              <a class="evbig" href="#" onclick="return appEvent('group_create')">
+                <span class="pt">11만P</span>
+                <span class="tx"><b>모임을 열면 11만 포인트</b><span>모임개설 이벤트 · 지금 개설하면 바로 적립</span></span>
+                <span class="ch">›</span>
+              </a>
+              <button class="cta" onclick="appEvent('group_create')">＋ 내 모임 만들기</button>
               <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅은 하단 메뉴에서 빠지고 맥락에서 진입합니다.</div>
               <div style="height:14px"></div>
             </div>
@@ -1513,6 +1532,15 @@ function setWebCtx(c){
   document.getElementById('wc-web').classList.toggle('on',!inapp);
   document.getElementById('wc-app').classList.toggle('on',inapp);
   if(inapp) dismissDlbar(); else { dlbarDismissed=false; updateDlbar(); }
+}
+/* 앱 이벤트 2종 — 앱은 네이티브 동작이라 외부 링크가 아니라 앱 내 화면 이동.
+   이벤트: invite_tap / group_create_tap (entry_point).
+   초대 링크에 초대 코드가 붙는 경우, 분석·로그에 원문 적재하지 않고 마스킹/해시 처리한다. */
+function appEvent(kind){
+  var entry = document.getElementById('v-groups').classList.contains('on') ? 'groups' : 'home';
+  /* 실제 앱: invite_tap / group_create_tap 발생 후 초대·개설 화면으로 이동 */
+  if(kind==='group_create'){ go('groups'); }
+  return false;
 }
 /* 웹 하단 고정 다운로드 바 — 스크롤 시 노출, 닫으면 세션 내 유지 */
 var dlbarDismissed=false;
