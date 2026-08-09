@@ -1332,6 +1332,121 @@ footer.pg .r b{color:#fff}
   </section>
 
   <!-- 9. 다음 단계 -->
+  <!-- 확정 사항 -->
+  <section class="sect" id="decided">
+    <div class="sect-hd reveal">
+      <span class="eb">Decided · 신진영 COO · 김민지 대표 확인</span>
+      <h2>확정 사항 10가지</h2>
+      <p>아래는 전부 확정입니다. 문서와 화면이 다르면 <b>화면이 기준</b>입니다. 네 문서(앱 기획·웹 요구서·개발자 프롬프트·목업)는 이것과 일치해야 합니다.</p>
+    </div>
+    <div class="tablewrap reveal">
+      <table class="map">
+        <thead><tr><th>#</th><th>확정 내용</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td><b>1</b></td><td><b>성공지표 1순위 = 매출 전환</b> (결제·상담·신청 완료). 앱 설치 유도 도달률(1.4%→5%)은 2순위</td><td>착수 1순위는 여전히 <b>측정 부착</b> — 결제 20건/7개월 상태에서는 판정 불가</td></tr>
+          <tr><td><b>2</b></td><td><b>웹 홈 히어로 = 매출 CTA</b> (무료 인연 상담 · 단체미팅 신청). 히어로에 앱 설치 버튼 없음</td><td>매출 1순위의 화면 구현</td></tr>
+          <tr><td><b>3</b></td><td><b>페이지별 단일 목표를 목표 배지로 표시</b> — 만남·여행=매출(앱 유도 없음) / 모임·칼럼=앱 설치 / 자녀=공유</td><td>전 페이지에 같은 앱 버튼을 다는 것은 금지</td></tr>
+          <tr><td><b>4</b></td><td><b>만남 = 1:1(시럽) · 단체미팅 · 시럽인연</b> 3분기 + <b>공감 배지</b>(재혼 이해·자녀 이해·사별 공감)</td><td>일본 마리슈 「리본 마크」 벤치마크. <b>본인이 스스로 다는 신호</b>이며 시스템 낙인이 아님</td></tr>
+          <tr><td><b>5</b></td><td><b>칼럼 명칭 유지.</b> 후기(우리들의 이야기)는 별도 메뉴 없이 <b>만남 블록 직후 사회적 증거</b>로 배치</td><td>후기가 상담 전환에 기여하는 자리</td></tr>
+          <tr><td><b>6</b></td><td><b>앱 다운로드 = 2순위 CTA</b> — 헤더 「앱 설치」 칩(상시) + 스크롤 시 하단 고정 바(닫기 가능)</td><td>상담·결제 흐름은 침범하지 않음</td></tr>
+          <tr><td><b>7</b></td><td><b>웹은 두 맥락으로 존재</b> — 앱이 <b>web.sinor.co.kr</b>를 웹뷰로 임베드. 인앱에서는 설치 유도 전면 숨김</td><td>APK 역컴파일로 확정 · 아래 섹션 참조</td></tr>
+          <tr><td><b>8</b></td><td><b>앱 하단탭 = 4개</b>(홈·여행·만남·모임). <b>칼럼 탭 신설 안 함</b> — 홈 「칼럼·정보」 + 주제별 맥락 메뉴에 배치</td><td>건강→모임 / 재혼→만남 / 여행→여행</td></tr>
+          <tr><td><b>9</b></td><td><b>이벤트 2종 상시 노출</b> — 친구초대 5,000원 · 모임개설 11만 포인트</td><td>기간 한정 아님 · 예산·어뷰징 정책은 운영 결정 대기</td></tr>
+          <tr><td><b>10</b></td><td><b>실측 개발 스택 확정</b> — Flutter+Kotlin · Easemob · TossPayments · Agora · ML Kit Face</td><td>아래 섹션 참조</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 실측 스택 -->
+  <section class="sect" id="stack">
+    <div class="sect-hd reveal">
+      <span class="eb">Stack · 자사 APK 역컴파일 (2026-08-08)</span>
+      <h2>실제로 무엇으로 만들어져 있나</h2>
+      <p>스토어 배포본을 역컴파일해 확인한 <b>확정</b> 정보입니다. 추정이 아닙니다. 개발 Phase 0에서 이 항목은 <b>다시 조사하지 않습니다</b>.</p>
+    </div>
+    <div class="tablewrap reveal">
+      <table class="map">
+        <thead><tr><th>항목</th><th>시놀 · com.sinor.gathering 1.8.37</th><th>시럽 · com.sinor_app_front 150.3.8</th></tr></thead>
+        <tbody>
+          <tr><td>프레임워크</td><td><b>Flutter(Dart AOT) + Kotlin</b> · minSdk 24 / target 36</td><td>동일</td></tr>
+          <tr><td>채팅</td><td><b>Easemob/Hyphenate</b> — 자체 구현 아님</td><td>동일</td></tr>
+          <tr><td>실시간</td><td>—</td><td><b>Agora RTC</b> (화상·음성 · AI 노이즈/에코 제거)</td></tr>
+          <tr><td>안면인증</td><td>—</td><td><b>ML Kit Face</b> + 네이티브 얼굴검출</td></tr>
+          <tr><td>결제</td><td><b>TossPayments</b> (웹결제)</td><td><b>TossPayments + Play Billing v8</b></td></tr>
+          <tr><td>인증</td><td>Firebase Auth + <b>Facebook 로그인</b></td><td>Firebase Auth</td></tr>
+          <tr><td>광고</td><td>AppLovin · <b>ByteDance Pangle 7.8</b> · Adrop · AdMob</td><td>Adrop</td></tr>
+          <tr><td>인프라</td><td colspan="2">Firebase(FCM·Crashlytics·RemoteConfig, <b>sinor-8b864</b>) · S3 <b>sinor-production</b>(서울) + CloudFront</td></tr>
+          <tr><td>런처</td><td colspan="2"><b>Adrop 광고 스플래시</b>로 앱이 시작 — 첫 액션 지연(가드레일)에 직접 영향</td></tr>
+          <tr><td>민감 권한</td><td>위치(대략)·카메라·저장소</td><td><b>정밀위치·연락처·마이크·전화상태·블루투스</b> — 스토어 「데이터 안전」 재제출과 직결</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note reveal" style="margin:18px 0 0;max-width:none"><b>한계 —</b> 비즈니스 로직은 <b>Dart AOT로 컴파일</b>돼 소스 복원이 불가능합니다. 스택·SDK·권한·엔드포인트만 확정 범위입니다. Agora App ID·Easemob AppKey 같은 키 값은 <b>자사 콘솔에서 확인</b>하는 것이 원칙이며, 산출물에 서버 secret key는 기재하지 않습니다.</div>
+    <div style="height:14px"></div>
+    <div class="lvr reveal"><div class="big">확인</div><div class="t"><h4>D8 회신 — web.sinor.co.kr의 정체가 밝혀졌습니다</h4><p>개발요구서에서 「용도 미확인」이던 서브도메인은 <b>앱 내 웹뷰 콘텐츠 호스트</b>였습니다(<span class="schema-tag" style="margin:0">/GatheringContentsDetailPage</span> · <span class="schema-tag" style="margin:0">/MbtiResultScreen</span>). 앱 개편 시 웹뷰 대상 페이지도 함께 점검해야 하고, 중복 색인 여부 확인이 필요합니다.</p></div></div>
+  </section>
+
+  <!-- 웹뷰 두 맥락 -->
+  <section class="sect" id="webview">
+    <div class="sect-hd reveal">
+      <span class="eb">Context · 같은 웹, 두 개의 얼굴</span>
+      <h2>웹 단독 vs 앱 내 웹뷰</h2>
+      <p>앱이 웹을 품고 있으므로, <b>이미 앱 안에 있는 사용자에게 설치를 권하면 모순</b>입니다. 그래서 같은 페이지가 맥락에 따라 다르게 동작합니다. 위 프로토타입의 <b>웹 화면 → [웹 단독] / [앱 내 웹뷰]</b> 토글로 직접 확인할 수 있습니다.</p>
+    </div>
+    <div class="tablewrap reveal">
+      <table class="map">
+        <thead><tr><th>구분</th><th>웹 단독 (브라우저)</th><th>앱 내 웹뷰 (web.sinor.co.kr)</th></tr></thead>
+        <tbody>
+          <tr><td>상단</td><td>브라우저 주소창</td><td><b>앱 헤더</b> (뒤로 · 닫기)</td></tr>
+          <tr><td>헤더 「앱 설치」 칩</td><td>노출</td><td><b>숨김</b></td></tr>
+          <tr><td>하단 고정 다운로드 바</td><td>노출</td><td><b>숨김</b></td></tr>
+          <tr><td>다운로드 블록 · 부모님 공유</td><td>노출</td><td><b>숨김</b></td></tr>
+          <tr><td>매출 CTA · 목표 배지</td><td>유지</td><td><b>유지</b> — 인앱의 목표는 상담·신청·결제 완결</td></tr>
+          <tr><td>이벤트 문구</td><td>앱 받고 초대하기 / 앱에서 개설하기</td><td>친구 초대하기 / 모임 개설하기</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note reveal" style="margin:18px 0 0;max-width:none"><b>구현 —</b> 앱이 웹뷰 로드 시 인앱 표식(User-Agent 토큰 또는 <span class="schema-tag" style="margin:0">?ctx=inapp</span>)을 주입하고, 웹은 그 표식으로 설치 유도를 숨깁니다.</div>
+  </section>
+
+  <!-- 이벤트 2종 -->
+  <section class="sect" id="events">
+    <div class="sect-hd reveal">
+      <span class="eb">Events · 매출 + 앱설치 동시 레버</span>
+      <h2>상시 이벤트 2종</h2>
+      <p>히어로 매출 CTA <b>바로 아래</b>에 2분할로 배치했습니다. 위가 아니라 아래에 둔 이유는 <b>1순위 매출 CTA를 밀어내지 않기 위해서</b>입니다.</p>
+    </div>
+    <div class="lvr reveal"><div class="big">5,000원</div><div class="t"><h4>친구초대 — 친구도 나도 5,000원</h4><p>링크의 utm 파라미터를 <b>원형 그대로 보존</b>합니다 (<span class="schema-tag" style="margin:0">utm_source=app</span> · <span class="schema-tag" style="margin:0">utm_medium=invite</span> · <span class="schema-tag" style="margin:0">utm_campaign=inviteFriendsByLink</span>). 이 3개는 순수 캠페인 태그로 <b>개인정보가 없습니다.</b> 다만 실제 발급 링크에 초대 코드가 붙는 경우, 그 값이 GA4·로그에 원문 적재되지 않도록 마스킹·해시 처리합니다.</p></div></div>
+    <div style="height:12px"></div>
+    <div class="lvr blue reveal"><div class="big">11만P</div><div class="t"><h4>모임개설 — 모임 열면 11만 포인트</h4><p>히어로 아래 + <b>모임 섹션에도 강조 배너로 이중 배치</b>합니다. 모임 구역은 이미 목표가 「앱 설치」라 맥락 전환율이 가장 높은 자리입니다.</p></div></div>
+    <div class="note reveal" style="margin:18px 0 0;max-width:none"><b>운영 결정 대기 —</b> 화면 노출은 상시로 확정됐습니다. <b>예산 한도 · 어뷰징 방지 정책</b>(초대 1인당 지급 상한 · 중복 계정 차단 · 모임개설 포인트 지급 조건)은 경영 결정 대상입니다.</div>
+  </section>
+
+  <!-- 문서 현황 -->
+  <section class="sect" id="docs">
+    <div class="sect-hd reveal">
+      <span class="eb">Docs · v3.0 산출물</span>
+      <h2>문서 4종과 남은 차이</h2>
+      <p>확정 사항은 네 문서에 모두 반영됐습니다(웹 요구서 11항목 · 앱 기획서 9항목 · 개발자 프롬프트 7항목 전수 확인). 다만 <b>문서와 화면이 어긋난 2건</b>이 남아 있습니다.</p>
+    </div>
+    <div class="tablewrap reveal">
+      <table class="map">
+        <thead><tr><th>문서</th><th>형식</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>앱 화면 기획서 v3.0</td><td>Word</td><td>4대 메뉴 · 9섹션 재배치 · 만남 3분기+공감 배지 · 마이페이지 · 대화 2탭</td></tr>
+          <tr><td>웹 개발 요구서 v3.0</td><td>Word</td><td>매출 우선 IA 9구역 · 웹뷰 맥락 규칙 · 앱 설치 동선 · 검색 채널 4종</td></tr>
+          <tr><td>개발자 작업 프롬프트 v3.0</td><td>Word <b>(정본)</b></td><td>CC 지시 2종 · Codex 티켓 5종 · 이벤트 명세 · 채널 최적화 6개 — md 재생성본은 저장소 <span class="schema-tag" style="margin:0">docs/prompts/</span></td></tr>
+          <tr><td>화면 목업 v3.0</td><td>PowerPoint</td><td>11장 · 전 장 슬라이드 노트</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="height:16px"></div>
+    <div class="lvr reveal"><div class="big">차이 ①</div><div class="t"><h4>「부모님께 공유」가 문서 순서에서 누락</h4><p>문서는 <b>칼럼 → FAQ → 앱 다운로드</b>인데, 화면은 <b>칼럼 → 부모님께 공유 → FAQ → 앱 다운로드</b>입니다. 목표 배지 규칙에는 「자녀 타깃 = 공유」가 살아 있어 <b>규칙과 순서가 어긋난 상태</b>입니다.</p></div></div>
+    <div style="height:12px"></div>
+    <div class="lvr blue reveal"><div class="big">차이 ②</div><div class="t"><h4>앱 홈 이벤트 2종 — 문서에는 있고 화면에는 없음</h4><p>이벤트 2종은 <b>현재 웹 화면에만</b> 있습니다. 앱 홈에도 넣을지 결정이 필요합니다. <b>화면을 임의로 바꾸지 않았습니다.</b></p></div></div>
+  </section>
+
   <section class="sect" id="next">
     <div class="sect-hd reveal">
       <span class="eb">Next · 착수 순서</span>
