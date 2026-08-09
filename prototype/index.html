@@ -1015,6 +1015,22 @@ footer.pg .r b{color:#fff}
                 <div class="hlbar">가입비 외 추가 비용이 없습니다 — <b>성혼비 없이 총액이 끝납니다</b></div>
                 <div class="go">인연 진단부터 시작 →</div>
               </div>
+
+              <!-- 쇼핑 패턴 — 만남 상품 3종을 가격과 함께 한 화면에서 비교 -->
+              <div class="sec"><span class="eb">Shop · 만남 상품</span><h2>상품별로 골라 보세요</h2><div class="subttl">목적과 예산에 맞게 · 가격은 실제 판매가 기준</div></div>
+              <div class="tablewrap" style="margin:10px 18px">
+                <table class="map" style="min-width:0;font-size:13.5px">
+                  <thead><tr><th>상품</th><th>가격</th><th>목적</th></tr></thead>
+                  <tbody>
+                    <tr><td><b>단체미팅</b></td><td>회당 <b>99,000원~</b></td><td>6:6 · 본인인증 참가자만</td></tr>
+                    <tr><td><b>시럽</b></td><td>앱 내 결제</td><td>1:1 · 친구·이성친구 (18+)</td></tr>
+                    <tr><td><b>시럽인연</b></td><td>상담 후 안내<br><b>성혼비 없음</b></td><td>결혼·재혼 · 매니저 1:1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="srcnote">시장 관행은 가입비 외 성혼비 100~500만원이 별도입니다 — 시놀은 총액으로 끝납니다</div>
+              <button class="cta" onclick="go('meet')">단체미팅 신청하기</button>
+              <button class="cta blue" onclick="go('meet')">시럽인연 무료 상담</button>
               <div class="trust">
                 <h3>시럽인연이 다른 점</h3>
                 <ul>
@@ -1088,6 +1104,26 @@ footer.pg .r b{color:#fff}
                 <span class="ch">›</span>
               </a>
               <button class="cta" onclick="appEvent('group_create')">＋ 내 모임 만들기</button>
+
+              <!-- 커뮤니티 패턴 — 모임 + 스토리 탭 통합 (기존 앱 story 탭 흡수) -->
+              <div class="sec"><span class="eb">Community</span><h2>우리들의 이야기</h2><div class="subttl">모임 후기와 시니어칼럼을 한 곳에서</div></div>
+              <div class="chattabs">
+                <button class="cht on" onclick="chatTab(this,'st-review')">모임 후기</button>
+                <button class="cht" onclick="chatTab(this,'st-column')">시니어칼럼</button>
+              </div>
+              <div id="st-review" class="chatpane on">
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=100&q=80" alt="성혼 후기"></div><div class="li"><h4>“혼자일 줄 알았던 60대, 다시 설렙니다”</h4><p>시럽인연 성혼 · 서울 · 62세</p></div><span class="chev">›</span></div>
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1543096222-72de739f7917?auto=format&fit=crop&w=100&q=80" alt="단체미팅 후기"></div><div class="li"><h4>“단체미팅에서 편하게, 부담 없이 만났어요”</h4><p>5060 단체미팅 · 강남 · 58세</p></div><span class="chev">›</span></div>
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=100&q=80" alt="여행 후기"></div><div class="li"><h4>“또래분들과 함께라 몸도 마음도 편했어요”</h4><p>시놀트립 · 제주 2박 3일</p></div><span class="chev">›</span></div>
+                <button class="cta ghost">후기 더 보기</button>
+              </div>
+              <div id="st-column" class="chatpane">
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=100&q=80" alt="맨발걷기"></div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 카드 → 취미 모임</p></div><span class="chev">›</span></div>
+                <div class="lrow" onclick="go('meet')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=100&q=80" alt="재혼"></div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 카드 → 시럽인연 상담</p></div><span class="chev">›</span></div>
+                <div class="lrow" onclick="go('travel')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="또래 여행"></div><div class="li"><h4>또래와 떠나는 국내 여행 코스 5선</h4><p>여행 · 하단 카드 → 시놀트립</p></div><span class="chev">›</span></div>
+                <button class="cta ghost">칼럼 191편 전체 보기</button>
+              </div>
+
               <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅은 하단 메뉴에서 빠지고 맥락에서 진입합니다.</div>
               <div style="height:14px"></div>
             </div>
@@ -1634,11 +1670,19 @@ setInterval(function(){tks[i].classList.remove('on');i=(i+1)%tks.length;tks[i].c
 </script>
 
 <script>
+/* 탭 전환 — 같은 .chattabs 안의 버튼이 가리키는 패널들만 대상으로 한다.
+   (대화 모임/1:1, 커뮤니티 후기/칼럼 등 여러 탭 그룹에서 공용) */
 function chatTab(btn,id){
-  var tabs=btn.parentNode.querySelectorAll('.cht');
-  tabs.forEach(function(t){t.classList.remove('on')});
+  var group=btn.parentNode;
+  var tabs=group.querySelectorAll('.cht');
+  var ids=[];
+  tabs.forEach(function(t){
+    t.classList.remove('on');
+    var m=(t.getAttribute('onclick')||'').match(/'([^']+)'\s*\)\s*$/);
+    if(m) ids.push(m[1]);
+  });
   btn.classList.add('on');
-  ['cm','c1'].forEach(function(x){var e=document.getElementById(x); if(e) e.classList.toggle('on', x===id);});
+  ids.forEach(function(x){var e=document.getElementById(x); if(e) e.classList.toggle('on', x===id);});
 }
 </script>
 
