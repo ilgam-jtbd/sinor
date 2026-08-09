@@ -974,6 +974,32 @@ footer.pg .r b{color:#fff}
                 <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">충청</div></div>
                 <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">전라</div></div>
               </div>
+              <!-- 시놀트립 멤버십 — 실제 앱 membership 에셋 구조(문제→해법→혜택→추천→FAQ) 반영 -->
+              <div class="sec"><span class="eb">Membership · 시놀트립</span><h2>혼자 가기 어려운 이유</h2><div class="subttl">50+ 여행에서 가장 자주 막히는 네 가지</div></div>
+              <div class="feat3" style="grid-template-columns:repeat(2,1fr);margin:10px 18px 0">
+                <div><svg><use href="#i-groups"/></svg><b>같이 갈<br>사람이 없다</b></div>
+                <div><svg><use href="#i-pin"/></svg><b>숙소를<br>고르기 어렵다</b></div>
+                <div><svg><use href="#i-tune"/></svg><b>일정 짜기가<br>번거롭다</b></div>
+                <div><svg><use href="#i-search"/></svg><b>검색해도<br>또래가 없다</b></div>
+              </div>
+              <div class="sec"><span class="eb">Solution</span><h2>시놀트립이 대신합니다</h2></div>
+              <div class="feat3" style="grid-template-columns:repeat(2,1fr);margin:10px 18px 0">
+                <div><svg><use href="#i-groups"/></svg><b>또래 동행<br>자동 매칭</b></div>
+                <div><svg><use href="#i-verify"/></svg><b>검증된 숙소<br>제휴가</b></div>
+                <div><svg><use href="#i-mgr"/></svg><b>인솔 가이드<br>동행</b></div>
+                <div><svg><use href="#i-bell"/></svg><b>출발·집결<br>운영 공지</b></div>
+              </div>
+              <div class="sec"><span class="eb">Benefit</span><h2>멤버십 혜택</h2></div>
+              <div class="trust">
+                <h3>연 49,900원 · 한 번 가입으로 1년</h3>
+                <ul>
+                  <li><span class="chk">✓</span><span>전 상품 <b>멤버십가</b> 적용 — 제주 2박 3일 정가 320,000원 → <b>240,000원</b></span></li>
+                  <li><span class="chk">✓</span><span>동행 매칭 · 인솔 가이드 · 집결 안내 포함</span></li>
+                  <li><span class="chk">✓</span><span>신청 완료 시 <b>일정 대화방 자동 초대</b> — 출발 전까지 공지를 한곳에서</span></li>
+                </ul>
+              </div>
+              <button class="cta" onclick="alert('멤버십 결제 · trip_membership_purchase')">멤버십 가입하고 예약</button>
+              <div class="srcnote">첫 여행 한 번으로 멤버십 비용을 넘는 할인 — 가입이 곧 재방문 장치</div>
               <div class="sec"><span class="eb">Reviews</span><h2>다녀온 분들 후기</h2></div>
               <div class="review"><div class="stars">★★★★★</div><p>"혼자였으면 못 갔을 여행인데, 또래분들과 함께라 편하고 즐거웠어요. 버스까지 태워주니 몸이 편합니다."</p><div class="who">김○자 · 제주 2박 3일</div></div>
               <div class="note"><b>운영 메모:</b> 하나투어 제휴 상품은 이 화면에서 팔지 않습니다. 광고 성과(노출·클릭)만 측정하고, 판매·결제는 시놀트립 멤버십으로 자사에서 완결합니다.</div>
@@ -1048,27 +1074,53 @@ footer.pg .r b{color:#fff}
               <div class="srcnote">실제 시럽인연(sinor.co.kr) 콘텐츠</div>
               <button class="cta">인연 진단 (3문항) 시작</button>
               <button class="cta blue">전화 상담 예약 · 무료</button>
-              <div class="sec"><span class="eb">Chat</span><h2>대화 — 모임 / 1:1</h2><div class="subttl">모임·여행·단체미팅을 한 곳에서 · 안 읽음은 점으로 · 운영 공지 채널</div></div>
-              <div class="chattabs">
-                <button class="cht on" onclick="chatTab(this,'cm')">모임<span class="cdot"></span></button>
-                <button class="cht" onclick="chatTab(this,'c1')">1:1 대화<span class="cdot"></span></button>
+              <!-- 시럽인연 3-depth — 총액 비교가 최대 전환 자산 (외부 실사 권고) -->
+              <div class="sec"><span class="eb">시럽인연 · 왜 총액이 중요한가</span><h2>가격표를 끝까지 보세요</h2><div class="subttl">결혼정보 업계는 가입비와 별도로 성혼비를 받습니다</div></div>
+              <div class="tablewrap" style="margin:10px 18px">
+                <table class="map" style="min-width:0;font-size:13.5px">
+                  <thead><tr><th>구분</th><th>업계 관행</th><th>시럽인연</th></tr></thead>
+                  <tbody>
+                    <tr><td>가입비</td><td>200~500만원</td><td><b>300~400만원</b></td></tr>
+                    <tr><td><b>성혼비</b></td><td><b>별도 100~500만원</b></td><td><b>없음</b></td></tr>
+                    <tr><td>총 부담</td><td>300~1,000만원</td><td><b>가입비로 끝</b></td></tr>
+                  </tbody>
+                </table>
               </div>
-              <div id="cm" class="chatpane on">
-                <div class="chips-row">
-                  <button class="chip on" onclick="chatFilter(this,'all')">전체</button>
-                  <button class="chip" onclick="chatFilter(this,'club')">취미모임</button>
-                  <button class="chip" onclick="chatFilter(this,'trip')">여행</button>
-                  <button class="chip" onclick="chatFilter(this,'meet')">단체미팅</button>
+              <div class="hlbar" style="margin:10px 18px 0">성혼비가 없으면 실질 부담이 <b>40~60% 낮아집니다</b></div>
+              <div class="srcnote">노블레스 300~500만 · VIP 1,000~3,000만 · 50대 재혼 특화는 1,000만원 이상 견적 사례</div>
+
+              <div class="sec"><span class="eb">Process · 상담부터 만남까지</span><h2>어떻게 진행되나요</h2></div>
+              <div class="steps" style="margin:6px 24px 0">
+                <div class="step"><h4>① 인연 진단 (3문항)</h4><p>내 유형과 원하는 조건을 확인합니다. 무료입니다.</p></div>
+                <div class="step blue"><h4>② 무료 상담 예약</h4><p>전화 상담으로 조건·일정·비용을 안내받습니다.</p></div>
+                <div class="step"><h4>③ 신원 3중 검증</h4><p>신분·직업·혼인 서류를 단계별로 확인합니다.</p></div>
+                <div class="step blue"><h4>④ 전담 매니저 1:1 매칭</h4><p>담당 매니저가 조건에 맞는 분을 직접 연결합니다.</p></div>
+                <div class="step gray"><h4>⑤ 만남 · 이후 관리</h4><p>핵심 고객 재결제율 47% — 한 번으로 끝나지 않습니다.</p></div>
+              </div>
+              <button class="cta" onclick="alert('인연 진단 시작 · consult_start')">인연 진단 (3문항) 무료</button>
+              <button class="cta blue" onclick="alert('전화 상담 예약 · consult_call_tap')">무료 상담 예약 (전화)</button>
+
+              <div class="sec"><span class="eb">시럽 · 가볍게 시작</span><h2>친구부터 만나고 싶다면</h2></div>
+              <div class="purpose b">
+                <div class="ptop"><div class="pico"><svg><use href="#i-groups"/></svg></div>
+                  <div><span class="eb">1:1 · 시럽 앱</span><h3>친구 · 이성친구</h3><div class="tag">내 주변에서 관심사로 편하게</div></div></div>
+                <div class="feat3">
+                  <div><svg><use href="#i-pin"/></svg><b>내 주변<br>동네친구</b></div>
+                  <div><svg><use href="#i-tune"/></svg><b>관심사·거리<br>나이로 검색</b></div>
+                  <div><svg><use href="#i-block"/></svg><b>연락처 차단<br>지인 회피</b></div>
                 </div>
-                <div class="lrow" data-k="club" onclick="alert('모임 대화방 진입 · chat_entry: source=group')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=100&q=80" alt="아침 산책"></div><div class="li"><h4>강남 아침 산책 모임 <span class="rtag club">취미</span></h4><p>내일 7시 양재천에서 만나요</p></div><span class="unread">3</span></div>
-                <div class="lrow" data-k="trip" onclick="alert('여행 단체 대화방 · chat_entry: source=trip')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=100&q=80" alt="시놀트립"></div><div class="li"><h4>시놀트립 · 8/30 영종도 <span class="rtag trip">✈️ 여행</span></h4><p><b>[운영 공지]</b> 07시 마포 집결 · 준비물 안내</p></div><span class="unread">5</span></div>
-                <div class="lrow" data-k="meet" onclick="alert('단체미팅 대화방 · chat_entry: source=meeting')"><div class="av img-slot"><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="단체미팅" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=100&q=80'"></div><div class="li"><h4>8/17 강남 단체미팅 <span class="rtag meet">🍷 미팅</span></h4><p><b>[운영 공지]</b> 오후 5시 · 드레스코드 안내 · 후기 이벤트</p></div><span class="unread">2</span></div>
-                <div class="lrow" data-k="club" onclick="alert('모임 대화방 진입 · chat_entry: source=group')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=100&q=80" alt="사랑방"></div><div class="li"><h4>5학년 사랑방 <span class="rtag club">취미</span></h4><p>오늘 저녁 번개 어떠세요?</p></div><span class="chev">›</span></div>
+                <span class="badge18">시럽 앱 · 성인(18+) 등급 안내</span>
+                <div class="go">시럽 보러가기 →</div>
               </div>
-              <div id="c1" class="chatpane">
-                <div class="lrow" onclick="alert('1:1 대화방 진입 · chat_entry: source=profile')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="매니저"></div><div class="li"><h4>이○호 매니저</h4><p>말씀주신 조건으로 두 분 준비했습니다</p></div><span class="unread">1</span></div>
-                <div class="lrow" onclick="alert('1:1 대화방 진입 · chat_entry: source=profile')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="상대"></div><div class="li"><h4>김○자 님</h4><p>사진 잘 봤습니다. 반가워요 :)</p></div><span class="chev">›</span></div>
+
+              <div class="sec"><span class="eb">FAQ</span><h2>자주 묻는 질문</h2></div>
+              <div class="faq">
+                <div class="fq">성혼비가 따로 있나요?<small>없습니다. 가입비로 끝납니다. 업계 관행인 성혼비 100~500만원이 시럽인연에는 없습니다.</small></div>
+                <div class="fq">회원 검증은 어떻게 하나요?<small>신분·직업·혼인 서류를 단계별로 확인합니다. 중소벤처기업부 장관 표창(2025.11).</small></div>
+                <div class="fq">단체미팅은 어떤 분이 신청하나요?<small>50~60대 싱글, 앱 프로필 공개가 부담스러운 분입니다. 6:6 · 본인인증 참가자만 참여합니다.</small></div>
+                <div class="fq">상담하면 바로 가입해야 하나요?<small>아닙니다. 상담은 무료이고, 조건과 비용을 확인한 뒤 결정하시면 됩니다.</small></div>
               </div>
+              <div class="srcnote">회원 46,366 · 누적 매칭 9,273+ · 재결제율 47%</div>
               <div style="height:14px"></div>
             </div>
 
