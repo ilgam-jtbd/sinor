@@ -130,9 +130,10 @@ tbody tr:last-child td{border-bottom:0}
 <div class="wrap">
 
   <div class="hd">
-    <span class="eb">Back Office · 설계 목업 v1.0</span>
-    <h1>시놀 운영 백오피스</h1>
-    <p class="sub">콘텐츠·이벤트·상품을 <b>개발 배포 없이</b> 운영자가 직접 바꾸는 도구입니다. 개발 요구서 §4 「어드민 관리 대상 8종」을 운영 화면으로 옮긴 설계본이며, 실제 데이터가 아닌 <b>구조 합의용 와이어프레임</b>입니다.</p>
+    <span class="eb">Back Office · 초안(draft) v1.0</span>
+    <h1>시놀 운영 백오피스 <span class="inh">초안 — 구조 합의용</span></h1>
+    <p class="sub">콘텐츠·이벤트·상품을 <b>개발 배포 없이</b> 운영자가 직접 바꾸는 도구입니다. 개발 요구서 §4 「어드민 관리 대상 8종」을 운영 화면으로 옮긴 설계본이며, 실제 데이터가 아닌 <b>구조 합의용 와이어프레임</b>입니다. <b>구축 방식(아임웹 확장 vs 신규 구축)이 정해지기 전까지 개발 착수 문서가 아닙니다.</b></p>
+    <div class="note"><b>2026-08-09 경영 확정 3건 반영 —</b> ① <b>GitHub + Linear 병행</b>(상태의 원본은 GitHub 이슈, Linear로 단방향 반영) · ② <b>분석 도구 초과분 예산 집행 허용</b>(조건: 최소 비용 · 월 상한은 미정이라 종량 기능 기본 OFF) · ③ <b>QA 창구 통합</b>(접수는 백오피스 단일, 슬랙은 통지처). 원본 <span style="font-family:var(--mono)">docs/10_경영결정_기록_2026-08.md</span></div>
     <div class="note warn"><b>기존 관리자 화면 추적 결과 —</b> 자사 앱(시놀·시럽) APK 역컴파일에서 <b>시놀 전용 관리자 화면은 발견되지 않았습니다.</b> 검출된 admin 문자열은 전부 SDK 소속입니다(Easemob 그룹 방장·AppLovin MAX·MySQL 드라이버). 웹은 아임웹 페이지 편집형이라 동적 제어가 불가합니다. 따라서 이 문서는 <b>기존 화면 업데이트가 아니라 신설 설계</b>입니다.</div>
   </div>
 
@@ -485,7 +486,7 @@ tbody tr:last-child td{border-bottom:0}
             <thead><tr><th>MCP</th><th>에이전트가 하는 일</th><th>레벨</th></tr></thead>
             <tbody>
               <tr><td><b>GitHub</b></td><td>이슈 생성·중복 검색 · PR 연결 · <b>릴리즈 노트 초안 · 릴리즈 발행</b></td><td><span class="lv l2">L2</span></td></tr>
-              <tr><td><b>Linear</b></td><td>티켓 생성·상태 동기화·사이클 배치</td><td><span class="lv l2">L2</span></td></tr>
+              <tr><td><b>Linear</b></td><td>티켓 생성·사이클 배치 · <b>GitHub → Linear 단방향 반영</b></td><td><span class="lv l2">L2</span></td></tr>
               <tr><td><b>Sentry</b></td><td>접수 건을 실제 오류와 자동 연결 (건수·영향 사용자)</td><td><span class="lv l1">L1</span></td></tr>
               <tr><td><b>Slack</b></td><td>담당자 호출 · 처리 결과 통지</td><td><span class="lv l1">L1</span></td></tr>
             </tbody>
@@ -509,9 +510,10 @@ tbody tr:last-child td{border-bottom:0}
             <tr><td>개발 이관 건수</td><td>D분류 건수</td><td><span class="tag on">성공지표</span></td></tr>
             <tr><td><b>재오픈율</b></td><td>종결 후 같은 문제 재접수</td><td><span class="tag rev">가드레일</span></td></tr>
             <tr><td><b>오답률</b></td><td>운영자가 「해결 안 됨」으로 되돌린 비율</td><td><span class="tag rev">가드레일</span></td></tr>
+            <tr><td><b>백오피스 접수 비율</b></td><td>전체 요청 중 이 메뉴로 들어온 비율 (나머지는 카톡·구두)</td><td><span class="tag wait">창구 통합 판정</span></td></tr>
           </tbody>
         </table>
-        <div class="pb"><div class="note warn">가드레일이 없으면 <b>빨리 닫기만 하는</b> 에이전트가 성공으로 읽힙니다.</div></div>
+        <div class="pb"><div class="note warn">가드레일이 없으면 <b>빨리 닫기만 하는</b> 에이전트가 성공으로 읽힙니다. 창구 통합도 <b>접수 비율이 오르지 않으면 실패</b>입니다 — 통합했다고 선언하는 것과 실제로 여기로 오는 것은 다릅니다. 접수가 번거로우면 사람들은 다시 카톡으로 갑니다.</div></div>
       </div>
     </div>
   </div>
@@ -533,6 +535,7 @@ tbody tr:last-child td{border-bottom:0}
           <tr><td>제품 분석·세션 리플레이</td><td>PostHog Cloud</td><td><span class="free pay">무료 구간</span></td><td>초과 시 종량 — <b>계약 시점 재확인</b></td></tr>
           <tr><td>오류 추적</td><td>Sentry</td><td><span class="free pay">무료 구간</span></td><td>QA 메뉴와 공용</td></tr>
           <tr><td>Google Optimize</td><td>—</td><td><span class="free no">사용 안 함</span></td><td>2023년 서비스 종료</td></tr>
+          <tr><td>세션 리플레이 등 종량 기능</td><td>—</td><td><span class="free no">기본 OFF</span></td><td><b>월 예산 상한 확정 전까지</b> 켜지 않음</td></tr>
           <tr><td>유료 CRO SaaS (Optimizely 등)</td><td>—</td><td><span class="free no">사용 안 함</span></td><td>현 트래픽에서 비용 대비 얻는 것 없음</td></tr>
         </tbody>
       </table>
