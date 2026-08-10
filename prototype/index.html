@@ -306,7 +306,9 @@ a{color:inherit}
 .tabbar{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid var(--line-2);padding:8px 4px calc(9px + env(safe-area-inset-bottom));z-index:50}
 .tab{display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0;color:var(--ink-3);font-size:13px;font-weight:700;min-height:50px;transition:.15s;letter-spacing:-.01em}
 .tab svg{width:25px;height:25px;stroke:var(--ink-3);stroke-width:1.8;fill:none;transition:.18s}
+.tab{position:relative}
 .tab.on{color:var(--pink)} .tab.on svg{stroke:var(--pink)}
+.tab .tdot{position:absolute;top:3px;left:calc(50% + 9px);width:8px;height:8px;border-radius:999px;background:var(--pink);border:1.5px solid #fff}
 
 .appwrap.off{display:none}
 .webwrap{display:none}.webwrap.on{display:flex}
@@ -906,11 +908,11 @@ footer.pg .r b{color:#fff}
                 <div class="stat"><div class="n">9,273+</div><div class="l">누적 매칭</div></div>
                 <div class="stat"><div class="n">47%</div><div class="l">재결제율</div></div>
               </div>
-              <button class="cta blue" onclick="go('meet')">무료 상담 예약 (전화)</button>
+              <button class="cta blue" onclick="window.open('https://silovematch.sinor.co.kr','_blank')">시럽인연 알아보기</button>
 
-              <div class="sec"><span class="eb">Match</span><h2>나의 인연 유형은?</h2></div>
-              <div class="card" onclick="go('meet')"><div class="bd"><h3>3문항으로 보는 인연 진단</h3><div class="meta">간단 진단 · 결과 화면에서 바로 전화 상담</div></div></div>
-              <button class="cta blue" onclick="go('meet')">내 유형 보기</button>
+              <div class="sec"><span class="eb">Fortune</span><h2>사주로 보는 나의 연애운</h2></div>
+              <div class="card" onclick="openMy()"><div class="bd"><h3>생년월일로 보는 올해 연애운</h3><div class="meta">무료 · 오늘의 운세 · 정통 사주와 함께</div></div></div>
+              <button class="cta blue" onclick="openMy()">무료로 연애운 보기</button>
 
               <div class="sec"><span class="seclink" onclick="go('groups')">전체 ›</span><span class="eb">New</span><h2>새로 열린 모임</h2></div>
               <div class="hrow">
@@ -1028,18 +1030,17 @@ footer.pg .r b{color:#fff}
                 <span class="badge18">시럽 앱 · 성인(18+) 등급 안내</span>
                 <div class="go">시럽으로 이동 →</div>
               </div>
-              <div class="purpose">
+              <div class="purpose clk" onclick="window.open('https://silovematch.sinor.co.kr','_blank')">
                 <div class="ptop">
                   <div class="pico"><svg><use href="#i-meet"/></svg></div>
-                  <div><span class="eb">진지한 인연</span><h3>결혼 · 재혼 — 시럽인연</h3><div class="tag">전문 매니저가 직접 연결합니다</div></div>
+                  <div><span class="eb">진지한 인연 · 프리미엄</span><h3>결혼 · 재혼 — 시럽인연</h3><div class="tag">전문 매니저가 직접 연결합니다</div></div>
                 </div>
                 <div class="feat3">
                   <div><svg><use href="#i-verify"/></svg><b>신원<br>3중 인증</b></div>
                   <div><svg><use href="#i-mgr"/></svg><b>매니저<br>1:1 매칭</b></div>
-                  <div><svg><use href="#i-won"/></svg><b>성혼비<br>없음</b></div>
+                  <div><svg><use href="#i-won"/></svg><b>품격 있는<br>1:1 상담</b></div>
                 </div>
-                <div class="hlbar">가입비 외 추가 비용이 없습니다 — <b>성혼비 없이 총액이 끝납니다</b></div>
-                <div class="go">인연 진단부터 시작 →</div>
+                <div class="go">시럽인연 전용 사이트에서 상담 →</div>
               </div>
 
               <!-- 쇼핑 패턴 — 만남 상품 3종을 가격과 함께 한 화면에서 비교 -->
@@ -1050,13 +1051,13 @@ footer.pg .r b{color:#fff}
                   <tbody>
                     <tr><td><b>단체미팅</b></td><td>회당 <b>99,000원~</b></td><td>6:6 · 본인인증 참가자만</td></tr>
                     <tr><td><b>시럽</b></td><td>앱 내 결제</td><td>1:1 · 친구·이성친구 (18+)</td></tr>
-                    <tr><td><b>시럽인연</b></td><td>상담 후 안내<br><b>성혼비 없음</b></td><td>결혼·재혼 · 매니저 1:1</td></tr>
+                    <tr><td><b>시럽인연</b></td><td>전용 사이트 상담</td><td>결혼·재혼 · 매니저 1:1</td></tr>
                   </tbody>
                 </table>
               </div>
-              <div class="srcnote">시장 관행은 가입비 외 성혼비 100~500만원이 별도입니다 — 시놀은 총액으로 끝납니다</div>
+              <div class="srcnote">단체미팅은 이 화면에서 바로 신청 · 시럽인연은 전용 사이트에서 프리미엄 상담으로 진행됩니다</div>
               <button class="cta" onclick="go('meet')">단체미팅 신청하기</button>
-              <button class="cta blue" onclick="go('meet')">시럽인연 무료 상담</button>
+              <button class="cta blue" onclick="window.open('https://silovematch.sinor.co.kr','_blank')">시럽인연 알아보기</button>
               <div class="trust">
                 <h3>시럽인연이 다른 점</h3>
                 <ul>
@@ -1071,34 +1072,14 @@ footer.pg .r b{color:#fff}
                 <figure><div class="im"><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/ba3aaf7d81608.png" alt="전문 매니저 1:1 매칭" onerror="this.parentNode.parentNode.style.display='none'"></div><figcaption>전문 매니저 1:1</figcaption></figure>
                 <figure><div class="im"><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="다양한 미팅 파티" onerror="this.parentNode.parentNode.style.display='none'"></div><figcaption>다양한 미팅 파티</figcaption></figure>
               </div>
-              <div class="srcnote">실제 시럽인연(sinor.co.kr) 콘텐츠</div>
-              <button class="cta">인연 진단 (3문항) 시작</button>
-              <button class="cta blue">전화 상담 예약 · 무료</button>
-              <!-- 시럽인연 3-depth — 총액 비교가 최대 전환 자산 (외부 실사 권고) -->
-              <div class="sec"><span class="eb">시럽인연 · 왜 총액이 중요한가</span><h2>가격표를 끝까지 보세요</h2><div class="subttl">결혼정보 업계는 가입비와 별도로 성혼비를 받습니다</div></div>
-              <div class="tablewrap" style="margin:10px 18px">
-                <table class="map" style="min-width:0;font-size:13.5px">
-                  <thead><tr><th>구분</th><th>업계 관행</th><th>시럽인연</th></tr></thead>
-                  <tbody>
-                    <tr><td>가입비</td><td>200~500만원</td><td><b>300~400만원</b></td></tr>
-                    <tr><td><b>성혼비</b></td><td><b>별도 100~500만원</b></td><td><b>없음</b></td></tr>
-                    <tr><td>총 부담</td><td>300~1,000만원</td><td><b>가입비로 끝</b></td></tr>
-                  </tbody>
-                </table>
+              <div class="srcnote">실제 시럽인연 콘텐츠 · 상세 상담과 가격 안내는 전용 사이트에서 진행합니다</div>
+              <!-- 시럽인연 = 프리미엄 별도 사이트(silovematch.sinor.co.kr). 앱 내 가격표는 제거, 상담은 전용 사이트로 링크아웃 (대표님 피드백) -->
+              <div class="purpose clk" onclick="window.open('https://silovematch.sinor.co.kr','_blank')" style="border-color:var(--blue-50)">
+                <div class="ptop"><div class="pico"><svg><use href="#i-meet"/></svg></div>
+                  <div><span class="eb">시럽인연 전용관</span><h3>품격 있는 결혼·재혼 상담</h3><div class="tag">전담 매니저가 조건에 맞는 분을 직접 연결합니다</div></div></div>
+                <div class="go">silovematch.sinor.co.kr에서 상담 예약 →</div>
               </div>
-              <div class="hlbar" style="margin:10px 18px 0">성혼비가 없으면 실질 부담이 <b>40~60% 낮아집니다</b></div>
-              <div class="srcnote">노블레스 300~500만 · VIP 1,000~3,000만 · 50대 재혼 특화는 1,000만원 이상 견적 사례</div>
-
-              <div class="sec"><span class="eb">Process · 상담부터 만남까지</span><h2>어떻게 진행되나요</h2></div>
-              <div class="steps" style="margin:6px 24px 0">
-                <div class="step"><h4>① 인연 진단 (3문항)</h4><p>내 유형과 원하는 조건을 확인합니다. 무료입니다.</p></div>
-                <div class="step blue"><h4>② 무료 상담 예약</h4><p>전화 상담으로 조건·일정·비용을 안내받습니다.</p></div>
-                <div class="step"><h4>③ 신원 3중 검증</h4><p>신분·직업·혼인 서류를 단계별로 확인합니다.</p></div>
-                <div class="step blue"><h4>④ 전담 매니저 1:1 매칭</h4><p>담당 매니저가 조건에 맞는 분을 직접 연결합니다.</p></div>
-                <div class="step gray"><h4>⑤ 만남 · 이후 관리</h4><p>핵심 고객 재결제율 47% — 한 번으로 끝나지 않습니다.</p></div>
-              </div>
-              <button class="cta" onclick="alert('인연 진단 시작 · consult_start')">인연 진단 (3문항) 무료</button>
-              <button class="cta blue" onclick="alert('전화 상담 예약 · consult_call_tap')">무료 상담 예약 (전화)</button>
+              <button class="cta blue" onclick="window.open('https://silovematch.sinor.co.kr','_blank')">시럽인연 전용 사이트로 상담하기</button>
 
               <div class="sec"><span class="eb">시럽 · 가볍게 시작</span><h2>친구부터 만나고 싶다면</h2></div>
               <div class="purpose b">
@@ -1176,7 +1157,7 @@ footer.pg .r b{color:#fff}
                 <button class="cta ghost">칼럼 191편 전체 보기</button>
               </div>
 
-              <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅은 하단 메뉴에서 빠지고 맥락에서 진입합니다.</div>
+              <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅 탭은 따로 없지만, <b>새 대화가 오면 하단 「모임」 탭에 빨간 점</b>이 떠서 놓치지 않습니다(대표님 피드백 반영). 목록에서는 숫자, 탭에서는 점 — 점은 대화방을 실제로 열면 사라집니다.</div>
               <div style="height:14px"></div>
             </div>
 
@@ -1185,7 +1166,7 @@ footer.pg .r b{color:#fff}
             <button class="tab on" id="t-home" onclick="go('home')"><svg><use href="#i-home"/></svg>홈</button>
             <button class="tab" id="t-travel" onclick="go('travel')"><svg><use href="#i-travel"/></svg>여행</button>
             <button class="tab" id="t-meet" onclick="go('meet')"><svg><use href="#i-meet"/></svg>만남</button>
-            <button class="tab" id="t-groups" onclick="go('groups')"><svg><use href="#i-groups"/></svg>모임</button>
+            <button class="tab" id="t-groups" onclick="go('groups')"><svg><use href="#i-groups"/></svg>모임<span class="tdot" title="새 대화"></span></button>
           </div>
         </div>
 
@@ -1199,7 +1180,7 @@ footer.pg .r b{color:#fff}
             <div class="wnav">
               <a class="on" href="https://sinor.co.kr/" target="_blank" rel="noopener">홈</a>
               <a href="https://sinor.co.kr/jeju" target="_blank" rel="noopener">여행</a>
-              <a href="https://sinor.co.kr/silovematch_event" target="_blank" rel="noopener">만남</a>
+              <a href="https://sinor.co.kr/meeting" target="_blank" rel="noopener">만남</a>
               <a href="https://sinor.co.kr/moim" target="_blank" rel="noopener">모임</a>
               <a href="https://sinor.co.kr/information" target="_blank" rel="noopener">칼럼</a>
             </div>
@@ -1213,7 +1194,7 @@ footer.pg .r b{color:#fff}
               </div>
             </div>
             <div class="herobtns">
-              <a class="p" href="https://sinor.co.kr/silovematch_event" target="_blank" rel="noopener">무료 인연 상담<small>결혼·재혼 · 성혼비 없음</small></a>
+              <a class="p" href="https://silovematch.sinor.co.kr" target="_blank" rel="noopener">무료 인연 상담<small>결혼·재혼 · 전담 매니저 1:1</small></a>
               <a class="s" href="https://sinor.co.kr/meeting" target="_blank" rel="noopener">단체미팅 신청<small>이번 주 · 99,000원</small></a>
             </div>
             <div class="herohint">앱 설치 없이 <b>웹에서 바로 상담·신청·결제</b>가 됩니다.</div>
@@ -1240,23 +1221,24 @@ footer.pg .r b{color:#fff}
             </div>
             <div class="card" onclick="window.open('https://sinor.co.kr/meeting','_blank')"><div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 단체미팅" onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80'"></div><div class="bd"><span class="eb" style="color:var(--pink)">단체미팅 · 함께</span><h3>[서울·강남] 5060 품격 단체미팅</h3><div class="meta"><span>8/17 (토) 17시</span><span class="seats">잔여 3석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음 · 본인인증 참가자만</div></div></div>
             <button class="cta" onclick="window.open('https://sinor.co.kr/meeting','_blank')">웹에서 바로 신청</button>
-            <div class="purpose">
+            <div class="purpose clk" onclick="window.open('https://silovematch.sinor.co.kr','_blank')">
               <div class="ptop"><div class="pico"><svg><use href="#i-meet"/></svg></div>
-                <div><span class="eb">진지한 인연 · 결혼·재혼</span><h3>시럽인연</h3><div class="tag">전문 매니저가 직접 연결합니다</div></div></div>
+                <div><span class="eb">진지한 인연 · 프리미엄</span><h3>시럽인연</h3><div class="tag">전문 매니저가 직접 연결합니다</div></div></div>
               <div class="feat3">
                 <div><svg><use href="#i-verify"/></svg><b>신원<br>3중 인증</b></div>
                 <div><svg><use href="#i-mgr"/></svg><b>매니저<br>1:1 매칭</b></div>
-                <div><svg><use href="#i-won"/></svg><b>성혼비<br>없음</b></div>
+                <div><svg><use href="#i-won"/></svg><b>품격 있는<br>1:1 상담</b></div>
               </div>
+              <div class="go">silovematch.sinor.co.kr 전용관 →</div>
             </div>
             <div class="empathy">
               <div class="eh">재혼도, 자녀도, 사별도 — 눈치 보지 않아도 됩니다<span>일본 마리슈 「리본 마크」 벤치마크 · 본인이 스스로 다는 공감 배지</span></div>
               <div class="er"><div>재혼 이해</div><div>자녀 이해</div><div>사별 공감</div></div>
             </div>
-            <button class="cta blue" onclick="window.open('https://sinor.co.kr/silovematch_event','_blank')">무료 상담 예약 (전화)</button>
+            <button class="cta blue" onclick="window.open('https://silovematch.sinor.co.kr','_blank')">시럽인연 전용 사이트로 상담하기</button>
             <div class="storystrip">
               <div class="sh"><span class="eb">우리들의 이야기 · 후기</span><span class="mo">성혼·매칭 후기가 상담 전환을 높입니다</span></div>
-              <div class="lrow" onclick="window.open('https://sinor.co.kr/silovematch_event','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=100&q=80" alt="성혼 후기"></div><div class="li"><h4>“혼자일 줄 알았던 60대, 다시 설렙니다”</h4><p>시럽인연 성혼 · 서울 · 62세</p></div><span class="chev">›</span></div>
+              <div class="lrow" onclick="window.open('https://silovematch.sinor.co.kr','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=100&q=80" alt="성혼 후기"></div><div class="li"><h4>“혼자일 줄 알았던 60대, 다시 설렙니다”</h4><p>시럽인연 성혼 · 서울 · 62세</p></div><span class="chev">›</span></div>
               <div class="lrow" onclick="window.open('https://sinor.co.kr/meeting','_blank')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1543096222-72de739f7917?auto=format&fit=crop&w=100&q=80" alt="단체미팅 후기"></div><div class="li"><h4>“단체미팅에서 편하게, 부담 없이 만났어요”</h4><p>5060 단체미팅 · 강남 · 58세</p></div><span class="chev">›</span></div>
             </div>
 
@@ -1324,7 +1306,7 @@ footer.pg .r b{color:#fff}
               <div class="fl">
                 <a href="https://sinor.co.kr/" target="_blank" rel="noopener">홈</a>
                 <a href="https://sinor.co.kr/jeju" target="_blank" rel="noopener">여행</a>
-                <a href="https://sinor.co.kr/silovematch_event" target="_blank" rel="noopener">만남</a>
+                <a href="https://sinor.co.kr/meeting" target="_blank" rel="noopener">만남</a>
                 <a href="https://sinor.co.kr/moim" target="_blank" rel="noopener">모임</a>
                 <a href="https://sinor.co.kr/information" target="_blank" rel="noopener">칼럼</a>
                 <a href="https://sinor.co.kr/meeting" target="_blank" rel="noopener">단체미팅</a>
