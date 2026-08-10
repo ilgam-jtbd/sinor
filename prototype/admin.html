@@ -122,12 +122,64 @@ tbody tr:last-child td{border-bottom:0}
 .free.pay{background:#FFF3E0;color:var(--warn)}
 .free.no{background:var(--surface-2);color:var(--ink-3)}
 .inh{display:inline-block;font-size:11px;font-weight:800;background:var(--surface-2);color:var(--ink-2);border-radius:6px;padding:3px 8px;margin-left:9px;vertical-align:middle}
+
+/* 상단 고정 메뉴 — 12화면 이동 */
+.topnav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.tninner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:0 22px}
+.tnbrand{display:flex;align-items:center;gap:8px;flex:0 0 auto;text-decoration:none;color:var(--ink);font-size:14.5px;font-weight:800;letter-spacing:-.02em;padding:13px 0}
+.tnbrand i{width:9px;height:9px;border-radius:3px;background:var(--pink);display:block}
+.tnbrand em{font-style:normal;font-size:10.5px;font-weight:800;background:var(--surface-2);color:var(--ink-3);border-radius:5px;padding:2px 6px}
+.tnscroll{display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.tnscroll a{flex:0 0 auto;text-decoration:none;color:var(--ink-3);font-size:13px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;padding:14px 11px;border-bottom:3px solid transparent;min-height:48px;display:flex;align-items:center}
+.tnscroll a:hover{color:var(--ink-2);background:var(--surface)}
+.tnscroll a.on{color:var(--ink);border-bottom-color:var(--pink)}
+.sect{scroll-margin-top:66px}
+@media (max-width:860px){
+  .tninner{flex-direction:column;align-items:stretch;gap:0;padding:0 14px}
+  .tnbrand{padding:11px 0}
+  .tnscroll a{padding:11px 10px}
+}
+@media print{.topnav{position:static}}
+
+/* 역할별 안내 */
+.guide{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;box-shadow:var(--sh-sm)}
+.guide h3{margin:0;font-size:17px;font-weight:800;letter-spacing:-.02em}
+.guide .gsub{margin:6px 0 14px;font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.gtb{width:100%;border-collapse:collapse}
+.gtb th{text-align:left;font-size:11.5px;font-weight:800;color:var(--ink-3);letter-spacing:.02em;padding:8px 10px;border-bottom:1px solid var(--line)}
+.gtb td{font-size:13px;line-height:1.65;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.gtb tr:last-child td{border-bottom:0}
+.gtb td:first-child{white-space:nowrap}
+.gtb a{color:var(--blue-d);text-decoration:none;font-weight:700;border-bottom:1px solid rgba(0,0,0,.12)}
+.gtb a:hover{background:var(--blue-50)}
+@media (max-width:720px){.gtb td:first-child{white-space:normal}}
 .foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--line-2);font-size:12px;color:var(--ink-3);line-height:1.7}
 @media(max-width:900px){.shell{grid-template-columns:1fr}.side{min-height:0;display:flex;overflow-x:auto;padding:10px}.side .brand,.side .grp{display:none}.side a{white-space:nowrap}.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.gl{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
+
+<nav class="topnav" id="topnav">
+  <div class="tninner">
+    <a class="tnbrand" href="#top"><i></i>시놀 백오피스<em>초안</em></a>
+    <div class="tnscroll">
+      <a href="#s1" class="on">01 대시보드</a>
+      <a href="#s2">02 콘텐츠</a>
+      <a href="#s3">03 이벤트</a>
+      <a href="#s4">04 상품·구매</a>
+      <a href="#s5">05 커뮤니티·매칭</a>
+      <a href="#s6">06 회원</a>
+      <a href="#s7">07 알림</a>
+      <a href="#s8">08 자동화</a>
+      <a href="#s9">09 QA·개선</a>
+      <a href="#s10">10 그로스·A/B</a>
+      <a href="#s11">11 측정</a>
+      <a href="#s12">12 가드레일</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
 
   <div class="hd">
     <span class="eb">Back Office · 초안(draft) v1.0</span>
@@ -136,10 +188,46 @@ tbody tr:last-child td{border-bottom:0}
     <div class="note"><b>2026-08-09 경영 확정 3건 반영 —</b> ① <b>GitHub + Linear 병행</b>(상태의 원본은 GitHub 이슈, Linear로 단방향 반영) · ② <b>분석 도구 초과분 예산 집행 허용</b>(조건: 최소 비용 · 월 상한은 미정이라 종량 기능 기본 OFF) · ③ <b>QA 창구 통합</b>(접수는 백오피스 단일, 슬랙은 통지처). 원본 <span style="font-family:var(--mono)">docs/10_경영결정_기록_2026-08.md</span></div>
     <div class="note warn"><b>기존 관리자 화면 추적 결과 — 2026-08-09 정정.</b> <b>어드민은 이미 존재합니다.</b> 시놀 어드민·시럽인연 어드민 2종이 운영·개발 중입니다 — 대시보드(월별 매출·매칭 현황·매니저별 현황·인구통계) · 매니저 관리 · 준회원 관리. APK에 <b>앱 내</b> 관리자 화면이 없었던 것은 사실이나(어드민은 별도 웹), 이를 근거로 「어드민 부재 → 신설」로 본 초판 판단은 오류였습니다. 이 목업은 <b>신설이 아니라 「기존 어드민 2종 + 운영 레이어 확장」</b>입니다. 웹(아임웹)의 동적 제어 불가는 여전히 유효하며, <b>아임웹 종료가 임박</b>했다는 보고가 있습니다(2026-08-10 추정 · 확인 필요).</div>
     <div class="note"><b>선행 과제 —</b> 기존 어드민의 <b>실제 화면 목록</b>을 받아 대조하기 전에는 아래 12메뉴 중 무엇이 신규인지 셀 수 없습니다. 콘텐츠·이벤트·수익 카드·홈 섹션 제어처럼 <b>지금 어디에도 없는 것</b>이 신규 범위이고, 대시보드·회원·매칭처럼 <b>이미 있는 것</b>은 중복 개발 대상이 아닙니다.</div>
+
+    <div class="guide">
+      <h3>누가 어디를 보면 되는가</h3>
+      <p class="gsub">전부 읽지 않아도 됩니다. 역할별로 <b>먼저 볼 곳</b>과 <b>여기서 답해야 할 것</b>만 적었습니다. 상단 메뉴로 바로 이동합니다.</p>
+      <table class="gtb">
+        <thead><tr><th>역할</th><th>먼저 볼 곳</th><th>여기서 답해야 할 것</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>대표 · COO</b></td>
+            <td><a href="#s1">01 대시보드</a> · <a href="#s3">03 이벤트</a> · <a href="#s10">10 그로스·A/B</a> · <a href="#s12">12 가드레일</a></td>
+            <td>구축 방식(아임웹 확장 vs 신규) · 이벤트 예산 한도와 어뷰징 정책 · 분석 도구 월 예산 상한 · 단체미팅 가격 등급</td>
+          </tr>
+          <tr>
+            <td><b>PO · 기획</b></td>
+            <td><a href="#s2">02 콘텐츠</a> · <a href="#s4">04 상품·구매</a> · <a href="#s9">09 QA·개선</a> · <a href="#s11">11 측정</a></td>
+            <td>배포 없이 바꿀 범위가 충분한가 · 빠진 운영 조작이 있는가 · 측정 이벤트가 항목마다 붙는가</td>
+          </tr>
+          <tr>
+            <td><b>개발</b></td>
+            <td><a href="#s8">08 자동화</a> · <a href="#s9">09 QA·개선</a> · <a href="#s11">11 측정</a> · <a href="#s12">12 가드레일</a></td>
+            <td><b>기존 어드민 실제 화면 목록</b>(선행 과제) · 자동화 레벨이 구현 가능한 선인가 · MCP 연동 범위</td>
+          </tr>
+          <tr>
+            <td><b>디자이너</b></td>
+            <td><a href="#s2">02 콘텐츠</a> · <a href="#s6">06 회원</a> · <a href="#s7">07 알림</a> · <a href="#s9">09 QA·개선</a></td>
+            <td>목록·큐·폼 3가지 패턴으로 12화면이 덮이는가 · 승인 대기 상태를 어떻게 보여줄 것인가</td>
+          </tr>
+          <tr>
+            <td><b>운영 · CS</b></td>
+            <td><a href="#s5">05 커뮤니티·매칭</a> · <a href="#s6">06 회원</a> · <a href="#s7">07 알림</a> · <a href="#s9">09 QA·개선</a></td>
+            <td>지금 손으로 하는 일 중 여기 없는 것 · 「신고」 버튼 하나로 접수가 실제로 되는가</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="hint">이 화면은 <b>와이어프레임</b>입니다. 색·간격·아이콘은 확정 디자인이 아니고, 표의 숫자는 구조를 보여주기 위한 예시값이며 실제 데이터가 아닙니다.</div>
+    </div>
   </div>
 
   <!-- ① 대시보드 -->
-  <div class="sect">
+  <div class="sect" id="s1">
     <div class="shd"><span class="n">01</span><h2>대시보드 — 오늘 무엇을 봐야 하는가</h2></div>
     <div class="shell">
       <nav class="side">
@@ -186,7 +274,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ② 콘텐츠 -->
-  <div class="sect">
+  <div class="sect" id="s2">
     <div class="shd"><span class="n">02</span><h2>콘텐츠 관리 — 배포 없이 바꾸는 범위</h2></div>
     <div class="two">
       <div>
@@ -234,7 +322,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ③ 이벤트 -->
-  <div class="sect">
+  <div class="sect" id="s3">
     <div class="shd"><span class="n">03</span><h2>이벤트 관리 — 예산·어뷰징·성과</h2></div>
     <div class="panel">
       <div class="ph"><h3>운영 중 이벤트</h3><button class="btn b">새 이벤트</button></div>
@@ -258,7 +346,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ④ 상품·가격 -->
-  <div class="sect">
+  <div class="sect" id="s4">
     <div class="shd"><span class="n">04</span><h2>상품·구매 관리 — 하드코딩 금지, DB 연동<span class="inh">기존 확정분 승계</span></h2></div>
     <div class="note">이 화면은 <b>새로 설계한 것이 아니라</b> 개발 요구서 §4·기획 확정본의 상품 구조를 운영 조작 화면으로 옮긴 것입니다. 가격 정책·등급·성혼비는 여기서 다시 정하지 않습니다.</div>
     <div class="panel">
@@ -300,7 +388,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ⑤ 커뮤니티 -->
-  <div class="sect">
+  <div class="sect" id="s5">
     <div class="shd"><span class="n">05</span><h2>커뮤니티 · 매칭 · 대화 운영<span class="inh">기존 확정분 승계</span></h2></div>
     <div class="note">매칭 규칙(단체미팅 참가 배정 · 시럽인연 매니저 배정 · 시놀트립 동행)은 <b>기존 확정 내용을 그대로 사용</b>합니다. 백오피스는 배정 결과를 확인하고 대화방·공지를 운영하는 자리입니다.</div>
     <div class="panel">
@@ -316,7 +404,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ⑥ 회원 관리 -->
-  <div class="sect">
+  <div class="sect" id="s6">
     <div class="shd"><span class="n">06</span><h2>회원 관리 — 개인정보 최소 접근</h2></div>
     <div class="note warn"><b>이 도구는 회원 정보를 들여다보는 창구가 아닙니다.</b> 이름·연락처는 기본 마스킹이고, 해제하려면 <b>사유 입력과 로그 기록</b>이 필요합니다. 목록에는 개인 식별 열이 없고 <b>CSV·엑셀 내보내기 기능은 만들지 않습니다.</b></div>
     <div class="two" style="margin-top:13px">
@@ -361,7 +449,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ⑦ 알림 관리 -->
-  <div class="sect">
+  <div class="sect" id="s7">
     <div class="shd"><span class="n">07</span><h2>알림 관리 — 리텐션의 실행 도구</h2></div>
     <div class="panel">
       <div class="ph"><h3>발송 시나리오</h3><button class="btn b">새 알림</button></div>
@@ -388,7 +476,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ⑧ 자동화 -->
-  <div class="sect">
+  <div class="sect" id="s8">
     <div class="shd"><span class="n">08</span><h2>에이전트 자동화 — 무엇을 맡기고 무엇을 사람이 하는가</h2></div>
     <div class="gl" style="margin-bottom:13px">
       <div class="rule"><span class="ic">⚡</span><div><h4><span class="lv l1">L1</span> 자동 실행</h4><p>되돌릴 수 있고, 규칙이 명확하고, 개인에게 불이익이 없는 일. 에이전트가 바로 수행합니다.</p></div></div>
@@ -424,7 +512,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ⑨ QA · 개선 요청 -->
-  <div class="sect">
+  <div class="sect" id="s9">
     <div class="shd"><span class="n">09</span><h2>QA · 개선 요청 — 운영자↔개발자 창구를 하나로</h2></div>
     <div class="note"><b>말할 곳이 정해져 있지 않으면 재현 정보가 사라집니다.</b> 카톡·구두로 흩어진 요청을 한 메뉴 두 탭으로 모읍니다. 운영자는 화면에서 「신고」만 누르고, <b>재현 절차를 글로 쓰지 않습니다</b> — 화면 경로·앱 버전·기기·콘솔 오류·스크린샷은 시스템이 붙입니다.</div>
 
@@ -520,7 +608,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ⑩ 그로스 · A/B -->
-  <div class="sect">
+  <div class="sect" id="s10">
     <div class="shd"><span class="n">10</span><h2>그로스 · A/B 테스트 · CRO — 있는 도구로, 싸게</h2></div>
     <div class="note"><b>새로 사지 않는 것이 원칙입니다.</b> 실험 배분은 <b>Firebase Remote Config</b>로 처리합니다 — 역컴파일에서 <b>이미 앱에 탑재된 것이 확인</b>됐습니다. SDK를 새로 넣지 않습니다.</div>
 
@@ -609,7 +697,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- ⑪ 측정 -->
-  <div class="sect">
+  <div class="sect" id="s11">
     <div class="shd"><span class="n">11</span><h2>측정 연결</h2></div>
     <div class="panel">
       <table>
@@ -628,7 +716,7 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 
   <!-- 가드레일 -->
-  <div class="sect">
+  <div class="sect" id="s12">
     <div class="shd"><span class="n">12</span><h2>운영 가드레일 — 저장 단계에서 막습니다</h2></div>
     <div class="gl">
       <div class="rule"><span class="ic">🚫</span><div><h4>앱 유도 금지 구역</h4><p>시럽인연 상담·여행 결제 페이지에는 앱 유도를 넣을 수 없습니다. 이탈 7.0%의 상담 흐름을 보호합니다.</p></div></div>
@@ -650,6 +738,32 @@ tbody tr:last-child td{border-bottom:0}
 
 </div>
 <script>
+/* 상단 메뉴 — 현재 보고 있는 화면 표시 + 메뉴가 화면 밖으로 나가지 않게 따라가기 */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.tnscroll a'));
+  var box=document.querySelector('.tnscroll');
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function activate(i){
+    if(i<0||links[i].classList.contains('on')) return;
+    links.forEach(function(a){a.classList.remove('on');});
+    var a=links[i]; a.classList.add('on');
+    var l=a.offsetLeft, r=l+a.offsetWidth;
+    if(l<box.scrollLeft) box.scrollLeft=l-12;
+    else if(r>box.scrollLeft+box.clientWidth) box.scrollLeft=r-box.clientWidth+12;
+  }
+  function spy(){
+    var y=window.scrollY+90, cur=0;
+    for(var i=0;i<secs.length;i++){ if(secs[i]&&secs[i].offsetTop<=y) cur=i; }
+    activate(cur);
+  }
+  var tick=false;
+  window.addEventListener('scroll',function(){
+    if(tick) return; tick=true;
+    requestAnimationFrame(function(){spy();tick=false;});
+  },{passive:true});
+  spy();
+})();
+
 function qaTab(btn,id){
   var group=btn.parentNode, ids=[];
   group.querySelectorAll('button').forEach(function(b){
