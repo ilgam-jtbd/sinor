@@ -1,3 +1,6 @@
 node_modules/
 *.pdf
 slide-*.jpg
+
+# IR 대외비 — 공개 저장소에 커밋 금지 (2026-08-11)
+ir-data/
