@@ -308,7 +308,17 @@ a{color:inherit}
 .tab svg{width:25px;height:25px;stroke:var(--ink-3);stroke-width:1.8;fill:none;transition:.18s}
 .tab{position:relative}
 .tab.on{color:var(--pink)} .tab.on svg{stroke:var(--pink)}
-.tab .tdot{position:absolute;top:3px;left:calc(50% + 9px);width:8px;height:8px;border-radius:999px;background:var(--pink);border:1.5px solid #fff}
+/* 대화방 리스트 (홈 「나에게 온 대화방」 · 모임 대화 탭 공용) */
+.croom{display:flex;align-items:center;gap:12px;margin:9px 18px 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:13px 14px;box-shadow:var(--sh-sm);cursor:pointer}
+.croom .cav{flex:0 0 auto;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:21px;background:linear-gradient(135deg,var(--pink-50),var(--blue-50))}
+.croom .cbd{flex:1;min-width:0}
+.croom .cbd h4{font-size:16px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.croom .cbd p{margin-top:3px;font-size:13.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.croom .cmeta{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.croom .ctime{font-size:11.5px;color:var(--ink-3)}
+.croom .cnum{min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:var(--pink);color:#fff;font-size:11.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.croom .ctag{font-size:10.5px;font-weight:800;border-radius:5px;padding:2px 6px;background:var(--surface-2);color:var(--ink-3)}
+.croom .ctag.b{background:var(--blue-50);color:var(--blue-d)}
 
 .appwrap.off{display:none}
 .webwrap{display:none}.webwrap.on{display:flex}
@@ -829,6 +839,24 @@ footer.pg .r b{color:#fff}
                     <div><div class="mi">🧾</div><div class="l">결제 내역</div><div class="n">최근 0건</div></div>
                   </div>
                 </div>
+                <!-- 나에게 온 대화방 — 마이페이지 상단 (대표님 지시) -->
+                <div class="mysec" style="display:flex;align-items:center;justify-content:space-between">나에게 온 대화방 <span class="cnum" style="background:var(--pink);color:#fff">3</span></div>
+                <div class="croom" onclick="closeMy();go('groups')">
+                  <span class="cav">👥</span>
+                  <div class="cbd"><h4>8/17 강남 단체미팅</h4><p>[운영 공지] 집결 장소는 강남역 3번 출구입니다</p></div>
+                  <span class="cmeta"><span class="ctime">10분 전</span><span class="cnum">2</span></span>
+                </div>
+                <div class="croom" onclick="closeMy();go('groups')">
+                  <span class="cav">💬</span>
+                  <div class="cbd"><h4>김○수 님</h4><p>안녕하세요, 모임에서 뵀습니다</p></div>
+                  <span class="cmeta"><span class="ctime">1시간 전</span><span class="cnum">1</span></span>
+                </div>
+                <div class="croom" onclick="closeMy();go('groups')">
+                  <span class="cav">✈️</span>
+                  <div class="cbd"><h4>제주 한림 2박3일 · 8월 출발</h4><p>출발 3일 전 준비물 안내드립니다</p></div>
+                  <span class="cmeta"><span class="ctime">어제</span><span class="ctag b">여행</span></span>
+                </div>
+
                 <div class="mybanner">
                   <div class="mbtxt"><span class="logo sm on-dark"><span class="lg-fb"><svg class="hearts" viewBox="0 0 128 104"><use href="#sinor-hearts"/></svg><b>시놀</b></span></span><h3>매월 고민 없이<br><b>시놀트립</b> 같이 떠나요</h3><p>여행 떠날 때마다 따라오는 혜택</p></div>
                   <div class="mbimg">✈️🧳</div>
@@ -851,8 +879,8 @@ footer.pg .r b{color:#fff}
               <div class="apphead">
                 <span class="logo sm"><span class="lg-fb"><svg class="hearts" viewBox="0 0 128 104"><use href="#sinor-hearts"/></svg><b>시놀</b></span></span>
                 <div class="hicons">
-                  <button class="ic-btn" onclick="go('meet')"><svg><use href="#i-bell"/></svg>알림<span class="dot"></span></button>
-                  <button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button>
+                  <button class="ic-btn" onclick="go('groups')"><svg><use href="#i-bell"/></svg>알림</button>
+                  <button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이<span class="dot" title="새 대화 3"></span></button>
                 </div>
               </div>
               <div class="searchbar" onclick="go('groups')"><svg><use href="#i-search"/></svg> 무엇을 찾으세요?</div>
@@ -869,10 +897,28 @@ footer.pg .r b{color:#fff}
                 </a>
               </div>
 
+              <!-- 나에게 온 대화방 — 대표님 피드백: 대화 발견성. 홈 상단 + 마이 뱃지 -->
+              <div class="sec"><span class="seclink" onclick="openMy()">전체 ›</span><span class="eb">Chat · 새 대화 3</span><h2>나에게 온 대화방</h2></div>
+              <div class="croom" onclick="go('groups')">
+                <span class="cav">👥</span>
+                <div class="cbd"><h4>8/17 강남 단체미팅</h4><p>[운영 공지] 집결 장소는 강남역 3번 출구입니다</p></div>
+                <span class="cmeta"><span class="ctime">10분 전</span><span class="cnum">2</span></span>
+              </div>
+              <div class="croom" onclick="go('groups')">
+                <span class="cav">💬</span>
+                <div class="cbd"><h4>김○수 님</h4><p>안녕하세요, 모임에서 뵀습니다</p></div>
+                <span class="cmeta"><span class="ctime">1시간 전</span><span class="cnum">1</span></span>
+              </div>
+              <div class="croom" onclick="go('groups')">
+                <span class="cav">✈️</span>
+                <div class="cbd"><h4>제주 한림 2박3일 · 8월 출발</h4><p>출발 3일 전 준비물 안내드립니다</p></div>
+                <span class="cmeta"><span class="ctime">어제</span><span class="ctag b">여행</span></span>
+              </div>
+
               <div class="sec"><span class="eb">Today</span><h2>오늘 시놀에서 해볼 것</h2><div class="subttl">와이제이 님을 위한 추천</div></div>
               <div class="today">
                 <div class="tcard" onclick="go('meet')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=500&q=80" alt="단체미팅"></div><div class="tb"><span class="eb">단체미팅 · 마감 임박</span><h3>8/17 강남 5060 단체미팅</h3><p>잔여 3석 · 지금 신청하기</p></div></div>
-                <div class="tcard" onclick="go('travel')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="시놀트립"></div><div class="tb"><span class="eb">시놀트립</span><h3>제주 한림 2박, 멤버십가로</h3><p>정가 32만 → 24만</p></div></div>
+                <div class="tcard" onclick="go('life')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="시놀트립"></div><div class="tb"><span class="eb">시놀트립</span><h3>제주 한림 2박, 멤버십가로</h3><p>정가 32만 → 24만</p></div></div>
                 <div class="tcard" onclick="go('groups')"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=80" alt="트레킹"></div><div class="tb"><span class="eb">일정 · 참여</span><h3>서울둘레길 트레킹 (제10코스)</h3><p>8/9 · 양재시민의숲역</p></div></div>
               </div>
 
@@ -926,7 +972,7 @@ footer.pg .r b{color:#fff}
               <div class="mygrid" style="padding:0 18px">
                 <button class="myq" onclick="openMy()"><span class="mqi">🔮</span><span class="mql">오늘의 운세</span></button>
                 <button class="myq" onclick="openMy()"><span class="mqi">🍀</span><span class="mql">행운 번호</span></button>
-                <button class="myq" onclick="go('travel')"><span class="mqi">🏨</span><span class="mql">리조트 할인</span></button>
+                <button class="myq" onclick="go('life')"><span class="mqi">🏨</span><span class="mql">리조트 할인</span></button>
                 <button class="myq" onclick="openMy()"><span class="mqi">🏥</span><span class="mql">병원 · 임플란트</span></button>
                 <button class="myq" onclick="openMy()"><span class="mqi">💐</span><span class="mql">꽃 배달</span></button>
                 <button class="myq" onclick="openMy()"><span class="mqi">🕊️</span><span class="mql">장례 상조</span></button>
@@ -936,22 +982,103 @@ footer.pg .r b{color:#fff}
               <div class="sec"><span class="seclink">전체 ›</span><span class="eb">Column · 191</span><h2>칼럼 · 정보</h2></div>
               <div class="lrow" onclick="go('groups')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=100&q=80" alt="맨발걷기"></div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 카드 → <b>취미 모임</b></p></div><span class="chev">›</span></div>
               <div class="lrow" onclick="go('meet')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=100&q=80" alt="재혼"></div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 카드 → <b>시럽인연 상담</b></p></div><span class="chev">›</span></div>
-              <div class="lrow" onclick="go('travel')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="또래 여행"></div><div class="li"><h4>또래와 떠나는 국내 여행 코스 5선</h4><p>여행 · 하단 카드 → <b>시놀트립</b></p></div><span class="chev">›</span></div>
+              <div class="lrow" onclick="go('life')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="또래 여행"></div><div class="li"><h4>또래와 떠나는 국내 여행 코스 5선</h4><p>여행 · 하단 카드 → <b>시놀트립</b></p></div><span class="chev">›</span></div>
 
               <div class="sec"><span class="eb">Travel</span><h2>이번 주 여행</h2></div>
-              <div class="card" onclick="go('travel')">
+              <div class="card" onclick="go('life')">
                 <div class="thumb img-slot"><span class="pill blue">시놀트립</span><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="여행"></div>
                 <div class="bd"><h3>제주 한림 오션뷰 2박 3일</h3>
                   <div class="meta"><span>8월 상시 출발</span><span>전용 버스</span></div>
                   <div class="price"><s>정가 320,000원</s> → <b>240,000원</b> <span>멤버십가</span></div></div>
               </div>
-              <button class="cta ghost" onclick="go('travel')">멤버십가로 보기</button>
+              <button class="cta ghost" onclick="go('life')">멤버십가로 보기</button>
               <div style="height:14px"></div>
             </div>
 
             <!-- TRAVEL -->
-            <div class="view" id="v-travel">
-              <div class="apphead"><span class="hh-title">여행 · 시놀트립</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
+            <div class="view" id="v-life">
+              <div class="apphead"><span class="hh-title">여가</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이<span class="dot" title="새 대화 3"></span></button></div>
+              <div class="chattabs">
+                <button class="cht on" onclick="chatTab(this,'lf-class')">클래스</button>
+                <button class="cht" onclick="chatTab(this,'lf-saju')">운세</button>
+                <button class="cht" onclick="chatTab(this,'lf-trip')">여행</button>
+              </div>
+
+              <!-- ① 클래스 — sinorclass.netlify.app 실제 프로그램 반영 -->
+              <div id="lf-class" class="chatpane on">
+                <div class="sec"><span class="eb">50+ 액티브 라이프스타일</span><h2>오늘 배우고 싶은 것</h2><div class="subttl">전체 71개 프로그램 · 신청은 앱에서</div></div>
+                <div class="catgrid">
+                  <div class="cat"><svg><use href="#i-cat-run"/></svg><div class="l">신체활동 21</div></div>
+                  <div class="cat"><svg><use href="#i-cat-cul"/></svg><div class="l">문화활동 17</div></div>
+                  <div class="cat"><svg><use href="#i-cat-hobby"/></svg><div class="l">정서·인지 14</div></div>
+                  <div class="cat"><svg><use href="#i-help"/></svg><div class="l">정보제공 19</div></div>
+                </div>
+
+                <div class="sec"><span class="seclink">전체 시간표 ›</span><span class="eb">Today · 화요일</span><h2>오늘의 시간표</h2></div>
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=100&q=80" alt="파크골프"></div><div class="li"><h4>파크골프 자율 라운딩 <span class="pill pink" style="position:static;display:inline-block;margin-left:4px">인기</span></h4><p>오전 8:00~9:00 · 파크골프장 · 신체활동</p></div><span class="chev">›</span></div>
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=100&q=80" alt="근육마사지"></div><div class="li"><h4>뭉친 근육 풀고 가뿐한 하루, 소도구 근육마사지</h4><p>오전 10:30~11:30 · GX룸 · 신체활동</p></div><span class="chev">›</span></div>
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=100&q=80" alt="퍼스널컬러"></div><div class="li"><h4>나에게 맞는 퍼스널컬러로 뷰티&amp;스타일링 <span class="pill pink" style="position:static;display:inline-block;margin-left:4px">인기</span></h4><p>오후 2:00~3:00 · 세미나실 · 문화활동</p></div><span class="chev">›</span></div>
+                <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=100&q=80" alt="맥주"></div><div class="li"><h4>비어도슨트 — 맥주를 말하다 <span class="pill pink" style="position:static;display:inline-block;margin-left:4px">인기</span></h4><p>저녁 7:00~8:30 · 라운지 · 문화활동</p></div><span class="chev">›</span></div>
+
+                <div class="sec"><span class="eb">Popular</span><h2>이번 달 인기 프로그램</h2></div>
+                <div class="hrow">
+                  <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="트롯트"></div><div class="gb"><h4>트롯트 보컬 트레이닝</h4><div class="gm">문화활동 · 대강당</div></div></div>
+                  <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" alt="스마트폰"></div><div class="gb"><h4>스마트폰 내 손안의 컴퓨터</h4><div class="gm">정보제공 · 커뮤니티룸</div></div></div>
+                  <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=400&q=80" alt="라인댄스"></div><div class="gb"><h4>시니어 라인댄스</h4><div class="gm">신체활동 · 대강당</div></div></div>
+                  <div class="gcard"><div class="gt img-slot"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80" alt="핸드드립"></div><div class="gb"><h4>핸드드립 전문가 과정</h4><div class="gm">문화활동 · 라운지</div></div></div>
+                </div>
+
+                <div class="sec"><span class="eb">Special · 자격증</span><h2>취미에서 일자리까지</h2><div class="subttl">국가기술자격 취득 과정</div></div>
+                <div class="purpose">
+                  <div class="ptop"><div class="pico"><svg><use href="#i-verify"/></svg></div>
+                    <div><span class="eb">건축도장기능사 · 방수기능사</span><h3>집수리 자격증 과정</h3><div class="tag">노후에 기술 하나를 남기고 싶다면</div></div></div>
+                  <div class="hlbar">건설 현장 도장공 일당 <b>15만~25만원</b> 수준 · 3~5년이면 숙련공</div>
+                  <div class="go">과정 문의하기 →</div>
+                </div>
+                <div class="purpose b">
+                  <div class="ptop"><div class="pico"><svg><use href="#i-cat-cul"/></svg></div>
+                    <div><span class="eb">실습 중심</span><h3>바리스타 자격증 과정</h3><div class="tag">카페 근무 · 소규모 창업으로</div></div></div>
+                  <div class="go">과정 문의하기 →</div>
+                </div>
+                <div class="srcnote">실제 시놀클래스(sinorclass) 프로그램 반영 — 정보제공 19 · 신체활동 21 · 정서/인지 14 · 문화활동 17</div>
+                <div class="note"><b>운영 메모:</b> 시놀클래스 원본은 <b>기관·기업 대상 B2B 도입 페이지</b>입니다. 이 탭은 <b>회원이 직접 신청하는 B2C 화면</b>으로 각색했습니다 — 강의료·정원·신청 방식은 B2C 기준으로 별도 확정이 필요합니다(미확정).</div>
+                <div style="height:14px"></div>
+              </div>
+
+              <!-- ② 운세 — silovesaju.netlify.app 실제 구조 반영 -->
+              <div id="lf-saju" class="chatpane">
+                <div class="sec"><span class="eb">사주인연 · by 시럽인연</span><h2>사주는 참고용, 인생은 실전</h2></div>
+                <div class="today">
+                  <div class="tcard"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=500&q=80" alt="만세력 사주"></div><div class="tb"><span class="eb">🔮 만세력 사주</span><h3>사주팔자 원국 풀이</h3><p>종합운·연애운·재물운·직업운·건강운</p></div></div>
+                  <div class="tcard"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80" alt="커플 궁합"></div><div class="tb"><span class="eb">💘 커플 궁합</span><h3>두 사람의 궁합</h3><p>연애·결혼 상대와의 합</p></div></div>
+                  <div class="tcard"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=500&q=80" alt="업무 궁합"></div><div class="tb"><span class="eb">🤝 업무 궁합</span><h3>일에서 맞는 사람</h3><p>동료·동업자와의 합</p></div></div>
+                </div>
+                <div class="hlbar" style="margin:12px 18px 0">생년월일을 <b>한 번만 등록</b>하면 매일 <b>오늘의 운세</b>를 여기서 바로 봅니다</div>
+
+                <div class="sec"><span class="eb">만세력 사주풀이</span><h2>생년월일시를 넣어 보세요</h2><div class="subttl">결혼 상태에 맞춰 연애운·결혼운을 풀어드립니다</div></div>
+                <div class="purpose">
+                  <div class="feat3">
+                    <div><svg><use href="#i-tune"/></svg><b>양력·음력<br>선택</b></div>
+                    <div><svg><use href="#i-verify"/></svg><b>미혼·기혼<br>이혼·사별</b></div>
+                    <div><svg><use href="#i-help"/></svg><b>태어난 시간<br>몰라도 가능</b></div>
+                  </div>
+                  <div class="hlbar">결과를 다 보시면 <b>사주요정</b>과 추가로 대화할 수 있습니다</div>
+                </div>
+                <button class="cta blue">무료로 사주 보기</button>
+                <div class="srcnote">사주 풀이는 전통 해석 기반의 <b>참고 자료</b>이며 의료·투자·법률·인사 결정을 대신하지 않습니다</div>
+
+                <div class="sec"><span class="eb">Daily</span><h2>오늘의 운세 · 행운 번호</h2></div>
+                <div class="mygrid" style="padding:0 18px">
+                  <button class="myq"><span class="mqi">🔮</span><span class="mql">오늘의 운세</span></button>
+                  <button class="myq"><span class="mqi">🥠</span><span class="mql">정통 사주</span></button>
+                  <button class="myq"><span class="mqi">🍀</span><span class="mql">행운 번호</span></button>
+                </div>
+                <div class="srcnote">실제 사주인연(silovesaju) 구조 반영 · 한국어·English·中文 지원</div>
+                <div style="height:14px"></div>
+              </div>
+
+              <!-- ③ 여행 — 기존 시놀트립 전체 이관 -->
+              <div id="lf-trip" class="chatpane">
               <div class="today" style="padding-top:16px">
                 <div class="tcard" style="flex:0 0 92%"><div class="tph img-slot"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80" alt="멤버십"></div><div class="tb"><span class="eb">시놀트립 멤버십</span><h3>연 49,900원으로 전 여행 멤버십가</h3><p>월 4,158원 · 지금 가입</p></div></div>
               </div>
@@ -1005,12 +1132,17 @@ footer.pg .r b{color:#fff}
               <div class="sec"><span class="eb">Reviews</span><h2>다녀온 분들 후기</h2></div>
               <div class="review"><div class="stars">★★★★★</div><p>"혼자였으면 못 갔을 여행인데, 또래분들과 함께라 편하고 즐거웠어요. 버스까지 태워주니 몸이 편합니다."</p><div class="who">김○자 · 제주 2박 3일</div></div>
               <div class="note"><b>운영 메모:</b> 하나투어 제휴 상품은 이 화면에서 팔지 않습니다. 광고 성과(노출·클릭)만 측정하고, 판매·결제는 시놀트립 멤버십으로 자사에서 완결합니다.</div>
+              <div class="sec"><span class="eb">Group tour</span><h2>단체 여행도 함께</h2><div class="subttl">시놀클래스 특별 프로그램 연계</div></div>
+              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=100&q=80" alt="국내 단체여행"></div><div class="li"><h4>국내 단체 여행</h4><p>당일 · 1박2일 · 2박3일 · <b>Door-to-door 픽업</b></p></div><span class="chev">›</span></div>
+              <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=100&q=80" alt="해외 단체여행"></div><div class="li"><h4>해외 단체 여행</h4><p>출국부터 귀국까지 <b>동반 인솔</b> · 한식 포함 식사</p></div><span class="chev">›</span></div>
+              <div class="srcnote">운영 사례 — 울릉도·독도, 안동 묵계마을 체험, 제주 여가마을, 요트투어</div>
               <div style="height:14px"></div>
+              </div>
             </div>
 
             <!-- MEET -->
             <div class="view" id="v-meet">
-              <div class="apphead"><span class="hh-title">만남</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
+              <div class="apphead"><span class="hh-title">만남</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이<span class="dot" title="새 대화 3"></span></button></div>
               <div class="sec"><span class="eb">Group · 가장 인기</span><h2>함께 만나요 — 단체미팅</h2><div class="subttl">6:6 · 본인인증 참가자만 · 구매 의도가 가장 높은 상품</div></div>
               <div class="card"><div class="thumb img-slot"><span class="pill pink">잔여 3석</span><img src="https://cdn.imweb.me/upload/S20220224fb2dc3639636b/dab66cdd6546c.png" alt="시놀 단체미팅 파티" onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80'"></div><div class="bd"><h3>[서울·강남] 5060 품격 단체미팅</h3><div class="meta"><span>8/17 (토) 17시</span><span class="seats">잔여 3석</span></div><div class="meta"><span style="color:var(--ink-3)">중앙일보 보도 · 6:6 · 국내 최초 품격있는 중년의 만남</span></div><div class="price"><b>99,000원</b> · 성혼비 없음 · 본인인증 참가자만</div></div></div>
               <div class="card"><div class="thumb img-slot"><span class="pill blue">모집 중</span><img src="https://images.unsplash.com/photo-1543096222-72de739f7917?auto=format&fit=crop&w=600&q=80" alt="대구 단체미팅"></div><div class="bd"><h3>[대구·수성] 5060 단체미팅</h3><div class="meta"><span>8/24 (토) 17시</span><span class="seats">잔여 7석</span></div><div class="price"><b>99,000원</b> · 성혼비 없음</div></div></div>
@@ -1107,7 +1239,7 @@ footer.pg .r b{color:#fff}
 
             <!-- GROUPS -->
             <div class="view" id="v-groups">
-              <div class="apphead"><span class="hh-title">모임 찾기</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이</button></div>
+              <div class="apphead"><span class="hh-title">모임 찾기</span><button class="ic-btn" onclick="openMy()"><svg><use href="#i-help"/></svg>마이<span class="dot" title="새 대화 3"></span></button></div>
               <div class="searchbar"><svg><use href="#i-search"/></svg> 어떤 모임을 찾으세요?</div>
               <div class="catgrid">
                 <div class="cat"><svg><use href="#i-cat-loc"/></svg><div class="l">지역</div></div>
@@ -1153,20 +1285,58 @@ footer.pg .r b{color:#fff}
               <div id="st-column" class="chatpane">
                 <div class="lrow"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=100&q=80" alt="맨발걷기"></div><div class="li"><h4>맨발걷기, 정말 효과 있을까</h4><p>건강 · 하단 카드 → 취미 모임</p></div><span class="chev">›</span></div>
                 <div class="lrow" onclick="go('meet')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=100&q=80" alt="재혼"></div><div class="li"><h4>60대 재혼 준비 체크리스트</h4><p>재혼 · 하단 카드 → 시럽인연 상담</p></div><span class="chev">›</span></div>
-                <div class="lrow" onclick="go('travel')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="또래 여행"></div><div class="li"><h4>또래와 떠나는 국내 여행 코스 5선</h4><p>여행 · 하단 카드 → 시놀트립</p></div><span class="chev">›</span></div>
+                <div class="lrow" onclick="go('life')"><div class="av img-slot"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="또래 여행"></div><div class="li"><h4>또래와 떠나는 국내 여행 코스 5선</h4><p>여행 · 하단 카드 → 시놀트립</p></div><span class="chev">›</span></div>
                 <button class="cta ghost">칼럼 191편 전체 보기</button>
               </div>
 
-              <div class="note"><b>모임 상세 → 모임 대화</b>로 채팅이 열립니다. 채팅 탭은 따로 없지만, <b>새 대화가 오면 하단 「모임」 탭에 빨간 점</b>이 떠서 놓치지 않습니다(대표님 피드백 반영). 목록에서는 숫자, 탭에서는 점 — 점은 대화방을 실제로 열면 사라집니다.</div>
+              <!-- 대화방 — 모임 / 1:1 탭 분리 (대표님 피드백) -->
+              <div class="sec"><span class="eb">Chat</span><h2>대화방</h2><div class="subttl">모임 대화와 1:1 대화를 나눠 봅니다</div></div>
+              <div class="chattabs">
+                <button class="cht on" onclick="chatTab(this,'gc-group')">모임 대화 <span class="cnum" style="min-width:18px;height:18px;font-size:11px">2</span></button>
+                <button class="cht" onclick="chatTab(this,'gc-direct')">1:1 대화 <span class="cnum" style="min-width:18px;height:18px;font-size:11px">1</span></button>
+              </div>
+              <div id="gc-group" class="chatpane on">
+                <div class="croom">
+                  <span class="cav">👥</span>
+                  <div class="cbd"><h4>8/17 강남 단체미팅</h4><p>[운영 공지] 집결 장소는 강남역 3번 출구입니다</p></div>
+                  <span class="cmeta"><span class="ctime">10분 전</span><span class="cnum">2</span></span>
+                </div>
+                <div class="croom">
+                  <span class="cav">✈️</span>
+                  <div class="cbd"><h4>제주 한림 2박3일 · 8월 출발</h4><p>출발 3일 전 준비물 안내드립니다</p></div>
+                  <span class="cmeta"><span class="ctime">어제</span><span class="ctag b">여행</span></span>
+                </div>
+                <div class="croom">
+                  <span class="cav">🥾</span>
+                  <div class="cbd"><h4>북한산 둘레길 걷기 모임</h4><p>이번 주 토요일 9시 불광역에서 뵈어요</p></div>
+                  <span class="cmeta"><span class="ctime">2일 전</span></span>
+                </div>
+                <div class="srcnote">여행·단체미팅은 <b>결제 완료 시 해당 일정 방에 자동 초대</b>됩니다</div>
+              </div>
+              <div id="gc-direct" class="chatpane">
+                <div class="croom">
+                  <span class="cav">💬</span>
+                  <div class="cbd"><h4>김○수 님</h4><p>안녕하세요, 모임에서 뵀습니다</p></div>
+                  <span class="cmeta"><span class="ctime">1시간 전</span><span class="cnum">1</span></span>
+                </div>
+                <div class="croom">
+                  <span class="cav">💬</span>
+                  <div class="cbd"><h4>박○영 님</h4><p>다음 정모 때 뵐게요</p></div>
+                  <span class="cmeta"><span class="ctime">3일 전</span></span>
+                </div>
+                <div class="srcnote">1:1 대화는 <b>모임장·참여 회원</b>과의 개인 대화입니다</div>
+              </div>
+
+              <div class="note"><b>대화 진입은 세 곳입니다</b> — ① 홈 「나에게 온 대화방」 ② 여기 모임 탭의 대화방(모임/1:1) ③ 마이페이지 상단. 새 대화가 오면 <b>헤더의 「마이」에 빨간 점</b>이 뜹니다(대표님 피드백 반영). 목록에서는 숫자, 탭·아이콘에서는 점 — 점은 <b>대화방을 실제로 열 때</b> 사라집니다.</div>
               <div style="height:14px"></div>
             </div>
 
           </div>
           <div class="tabbar">
             <button class="tab on" id="t-home" onclick="go('home')"><svg><use href="#i-home"/></svg>홈</button>
-            <button class="tab" id="t-travel" onclick="go('travel')"><svg><use href="#i-travel"/></svg>여행</button>
+            <button class="tab" id="t-groups" onclick="go('groups')"><svg><use href="#i-groups"/></svg>모임</button>
+            <button class="tab" id="t-life" onclick="go('life')"><svg><use href="#i-travel"/></svg>여가</button>
             <button class="tab" id="t-meet" onclick="go('meet')"><svg><use href="#i-meet"/></svg>만남</button>
-            <button class="tab" id="t-groups" onclick="go('groups')"><svg><use href="#i-groups"/></svg>모임<span class="tdot" title="새 대화"></span></button>
           </div>
         </div>
 
