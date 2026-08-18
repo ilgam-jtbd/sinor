@@ -1,0 +1,37 @@
+{
+  "rules": {
+    "settings": {
+      ".read": "auth != null",
+      "userPermissions": { ".write": "auth != null" },
+      "team": { ".write": "auth != null" },
+      "teamV2": { ".write": "auth != null" },
+      "mediaConfig": { ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()" },
+      "issueTemplates": { ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()" },
+      "allowedEmails": { ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()" },
+      "serviceTypes": { ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()" },
+      "deployVersion": { ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()" }
+    },
+    "projects": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()"
+    },
+    "issues": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()"
+    },
+    "deployBundles": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()"
+    },
+    "history": {
+      ".read": "auth != null",
+      "changes": { ".write": "auth != null" },
+      "access": { ".write": "auth != null" },
+      "deploy": { ".write": "auth != null && root.child('settings/userPermissions').child(auth.uid).exists()" }
+    },
+    "chats": { ".read": "auth != null", ".write": "auth != null" },
+    "presence": { ".read": "auth != null", "$memberId": { ".write": "auth != null" } },
+    "notifications": { ".read": "auth != null", "newMembers": { ".write": "auth != null" } },
+    "staging": { ".read": "auth != null", ".write": "auth != null" }
+  }
+}
