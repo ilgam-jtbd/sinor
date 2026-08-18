@@ -5110,6 +5110,9 @@
     /* ========== AUTH & LOGIN ========== */
     function _isLocalMode() {
       var url = window.location.href;
+      // 예시(데모) 배포는 로그인 없이 열람 — GitHub Pages 호스트는 자동 스킵
+      var host = window.location.hostname || '';
+      if (host.endsWith('github.io')) return true;
       return url.startsWith('http://localhost') || url.startsWith('file://');
     }
 
