@@ -3743,15 +3743,6 @@
         Google 계정으로 로그인
       </button>
       <div class="login-error" id="loginError"></div>
-      <div class="login-divider" style="margin-top:16px;"><span>또는 임시 비밀번호로 보기</span></div>
-      <div style="display:flex;gap:8px;">
-        <input type="password" id="tempPwInput" placeholder="임시 비밀번호" autocomplete="off"
-          onkeydown="if(event.key==='Enter'){viewWithTempPassword();}"
-          style="flex:1;padding:11px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:14px;min-height:44px;">
-        <button class="login-btn" onclick="viewWithTempPassword()"
-          style="flex:0 0 auto;width:auto;padding:0 16px;min-height:44px;">보기</button>
-      </div>
-      <div style="margin-top:8px;font-size:11px;color:#9ca3af;line-height:1.5;">임시 비밀번호는 <b>보기 전용</b>입니다. 편집·팀 공유는 Google 로그인(회사 계정) 필요.</div>
       <div class="login-footer">시놀㈜ 운영보드</div>
     </div>
   </div>
@@ -4831,6 +4822,7 @@
       { id: 'mgr_lead', name: '시럽 매칭 관리자', role: '매칭 운영·배정',            color: '#f43f5e', email: 'match.lead@sinor.co.kr' },
       { id: 'mgr_a',    name: '시럽 매니저 A',   role: '시럽인연 상담·매칭',         color: '#fb7185', email: 'manager.a@sinor.co.kr' },
       { id: 'mgr_b',    name: '시럽 매니저 B',   role: '시럽인연 상담·매칭',         color: '#fda4af', email: 'manager.b@sinor.co.kr' },
+      { id: 'dev',      name: '우종선',        role: '개발 총괄 · 이슈·배포·릴리즈', color: '#0891b2', email: 'dev@sinor.co.kr' },
       { id: 'dev_app',  name: '앱 개발',        role: '시놀·시럽 앱',              color: '#06b6d4', email: 'dev.app@sinor.co.kr' },
       { id: 'dev_web',  name: '웹 개발',        role: 'sinor.co.kr',              color: '#0ea5e9', email: 'dev.web@sinor.co.kr' },
       { id: 'dev_adm',  name: '어드민 개발',     role: '어드민 · 백오피스',          color: '#10b981', email: 'dev.admin@sinor.co.kr' },
@@ -5292,21 +5284,6 @@
       errorEl.textContent = msg;
       errorEl.classList.add('show');
       setTimeout(function() { errorEl.classList.remove('show'); }, 5000);
-    }
-
-    // 임시 비밀번호 보기 — Firebase 없이 보드를 열람만. 공개 배포이므로 보안이 아니라 편의용.
-    var TEMP_VIEW_PASSWORD = '1234';
-    function viewWithTempPassword() {
-      var el = document.getElementById('tempPwInput');
-      var v = el ? el.value.trim() : '';
-      if (v === TEMP_VIEW_PASSWORD) {
-        state.tempView = true;          // 보기 전용 플래그
-        hideLoginScreen();              // 오버레이만 걷으면 이미 렌더된 보드가 보임
-        if (typeof renderAll === 'function') renderAll();
-      } else {
-        showLoginError('임시 비밀번호가 올바르지 않습니다.');
-        if (el) { el.value=''; el.focus(); }
-      }
     }
 
     function loginWithGoogle() {
@@ -6786,7 +6763,7 @@
       var statusHTML = _mediaConfigured()
         ? '<div style="font-size:12px;color:#15803d;background:#dcfce7;border:1px solid #86efac;border-radius:6px;padding:8px 12px;margin-bottom:12px;">✅ Cloudinary 연동 활성 — 사진/동영상이 원본 화질로 업로드됩니다 (최대 100MB)</div>'
         : '<div style="font-size:12px;color:#92400e;background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:8px 12px;margin-bottom:12px;">⚠️ 미연동 — 현재는 Firebase RTDB(base64)에 저장되어 이미지는 압축되고 동영상은 8MB 제한이 있습니다</div>';
-      var envLine = (typeof AF_ENV !== 'undefined' && AF_ENV === 'staging')
+      var envLine = (typeof SINOR_ENV !== 'undefined' && SINOR_ENV === 'staging')
         ? '<div style="font-size:11px;font-weight:700;color:#7c2d12;background:#ffedd5;border:1px solid #fdba74;border-radius:6px;padding:6px 10px;margin-bottom:10px;">🧪 현재 스테이징(테스트) 환경 — 이 설정은 스테이징에만 저장됩니다. 운영에 적용하려면 일반 URL에서 다시 저장하세요.</div>'
         : '<div style="font-size:11px;color:#6b7280;margin-bottom:10px;">현재 환경: <b>운영</b> — 저장 시 전 팀원에게 적용됩니다.</div>';
       modal.innerHTML = '<h3 style="margin-bottom:12px;font-size:16px;font-weight:700;">🖼 미디어 저장소 설정 (Cloudinary)</h3>' +
@@ -7376,22 +7353,22 @@
     // === 환경 분리 (테스트베드) ===
     // ?env=staging 으로 접속하면 Firebase RTDB의 staging/ 경로만 읽고 쓴다.
     // 운영 데이터(루트 경로)는 절대 건드리지 않는다.
-    var AF_ENV = (function() {
+    var SINOR_ENV = (function() {
       try {
         var p = new URLSearchParams(window.location.search).get('env');
         if (p === 'staging' || p === 'test') return 'staging';
       } catch(e) {}
       return 'prod';
     })();
-    var AF_DB_PREFIX = (AF_ENV === 'staging') ? 'staging/' : '';
+    var SINOR_DB_PREFIX = (SINOR_ENV === 'staging') ? 'staging/' : '';
     function dbRef(path) {
       if (!_fb.db) return null;
       if (path && path.charAt(0) === '.') return _fb.db.ref(path); // .info 등 시스템 경로는 프리픽스 제외
-      if (!path) return AF_DB_PREFIX ? _fb.db.ref('staging') : _fb.db.ref();
-      return _fb.db.ref(AF_DB_PREFIX + path);
+      if (!path) return SINOR_DB_PREFIX ? _fb.db.ref('staging') : _fb.db.ref();
+      return _fb.db.ref(SINOR_DB_PREFIX + path);
     }
     // staging 모드: localStorage 키 분리 (운영 로컬 캐시 오염 방지)
-    if (AF_ENV === 'staging') {
+    if (SINOR_ENV === 'staging') {
       (function() {
         var _g = Storage.prototype.getItem, _s = Storage.prototype.setItem, _r = Storage.prototype.removeItem;
         function _k(key) { return (typeof key === 'string' && (key.indexOf('sinor_') === 0 || key.indexOf('qa_') === 0)) ? 'stg_' + key : key; }
@@ -7402,7 +7379,7 @@
     }
     // staging 배너 + 운영 데이터 복사 도구
     function _initStagingUI() {
-      if (AF_ENV !== 'staging') return;
+      if (SINOR_ENV !== 'staging') return;
       var bar = document.createElement('div');
       bar.id = 'stagingBar';
       bar.style.cssText = 'position:fixed;bottom:16px;left:16px;z-index:99999;display:flex;align-items:center;gap:10px;background:#7c2d12;color:#fff;padding:8px 14px;border-radius:10px;font-size:12px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
@@ -7413,7 +7390,7 @@
       document.title = '[TEST] ' + document.title;
     }
     function _stagingCopyProdData() {
-      if (AF_ENV !== 'staging' || !_fb.db) return;
+      if (SINOR_ENV !== 'staging' || !_fb.db) return;
       if (!state.currentUser) { alert('로그인 후에 복사할 수 있습니다. (Firebase 규칙상 로그인 필요)'); return; }
       if (!confirm('운영 데이터를 스테이징으로 복사할까요?\n기존 스테이징 데이터는 덮어씌워집니다. (운영 데이터는 읽기만 하며 변경되지 않습니다)')) return;
       var paths = ['projects', 'issues', 'deployBundles', 'settings', 'history', 'chats'];
@@ -7447,7 +7424,7 @@
       });
     }
     function _stagingClearData() {
-      if (AF_ENV !== 'staging' || !_fb.db) return;
+      if (SINOR_ENV !== 'staging' || !_fb.db) return;
       if (!confirm('스테이징 데이터를 모두 삭제할까요? (운영 데이터는 영향 없음)')) return;
       _fb.db.ref('staging').remove().then(function() {
         _showToast('스테이징 데이터 초기화 완료', 2000, 'success');
@@ -7560,7 +7537,7 @@
         try { _fb.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function(e) { console.warn('persistence:', e); }); } catch(e) {}
         _fb.available = true;
         console.log('Firebase initialized OK');
-        if (AF_ENV === 'staging') { try { _initStagingUI(); } catch(e) { console.warn(e); } }
+        if (SINOR_ENV === 'staging') { try { _initStagingUI(); } catch(e) { console.warn(e); } }
         _startFirebaseSync();
         _loadSettingsFromFirebase(function() {
           console.log('Settings loaded, starting auth check');
@@ -13112,7 +13089,7 @@ function renderDeployBundles() {
     DEFAULT_PROJECTS.push(...[
   {
     "id": "P01",
-    "name": "4대 메뉴 개편 — 홈·여행·만남·모임",
+    "name": "4대 메뉴 개편 — 홈·모임·여가·만남",
     "tier": "CRITICAL",
     "status": "진행",
     "impact": 9,
@@ -14589,7 +14566,7 @@ function renderDeployBundles() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'AF_Schedule_' + new Date().toISOString().slice(0,10) + '.csv';
+      a.download = 'SINOR_Schedule_' + new Date().toISOString().slice(0,10) + '.csv';
       a.click();
       URL.revokeObjectURL(url);
       _showToast('CSV 내보내기 완료');
