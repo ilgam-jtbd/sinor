@@ -3743,6 +3743,15 @@
         Google 계정으로 로그인
       </button>
       <div class="login-error" id="loginError"></div>
+      <div class="login-divider" style="margin-top:16px;"><span>또는 임시 비밀번호로 보기</span></div>
+      <div style="display:flex;gap:8px;">
+        <input type="password" id="tempPwInput" placeholder="임시 비밀번호" autocomplete="off"
+          onkeydown="if(event.key==='Enter'){viewWithTempPassword();}"
+          style="flex:1;padding:11px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:14px;min-height:44px;">
+        <button class="login-btn" onclick="viewWithTempPassword()"
+          style="flex:0 0 auto;width:auto;padding:0 16px;min-height:44px;">보기</button>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:#9ca3af;line-height:1.5;">임시 비밀번호는 <b>보기 전용</b>입니다. 편집·팀 공유는 Google 로그인(회사 계정) 필요.</div>
       <div class="login-footer">시놀㈜ 운영보드</div>
     </div>
   </div>
@@ -5280,6 +5289,21 @@
       errorEl.textContent = msg;
       errorEl.classList.add('show');
       setTimeout(function() { errorEl.classList.remove('show'); }, 5000);
+    }
+
+    // 임시 비밀번호 보기 — Firebase 없이 보드를 열람만. 공개 배포이므로 보안이 아니라 편의용.
+    var TEMP_VIEW_PASSWORD = '1234';
+    function viewWithTempPassword() {
+      var el = document.getElementById('tempPwInput');
+      var v = el ? el.value.trim() : '';
+      if (v === TEMP_VIEW_PASSWORD) {
+        state.tempView = true;          // 보기 전용 플래그
+        hideLoginScreen();              // 오버레이만 걷으면 이미 렌더된 보드가 보임
+        if (typeof renderAll === 'function') renderAll();
+      } else {
+        showLoginError('임시 비밀번호가 올바르지 않습니다.');
+        if (el) { el.value=''; el.focus(); }
+      }
     }
 
     function loginWithGoogle() {
