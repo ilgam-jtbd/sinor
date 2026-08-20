@@ -24,8 +24,7 @@ open prototype/index.html          # macOS
 3. Branch: `main` (또는 배포 브랜치) · 폴더: `/root` 또는 `/docs`
 4. 저장 후 1~2분 → `https://<계정>.github.io/sinor/prototype/` 로 접속
 
-> 참조 예시(banns0104.github.io/velor-seo 등)와 같은 방식의 정적 페이지 배포입니다.
-> 이 프로토타입은 빌드 도구 없이 그대로 호스팅됩니다.
+> 빌드 도구 없이 그대로 호스팅되는 정적 페이지 배포입니다.
 
 ## 주의
 
