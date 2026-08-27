@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시놀 SEO·AEO·GEO 학습 — 기본기와 실전 (2026-08)</title>
+<meta name="description" content="시놀 대표·실무자용 SEO/AEO/GEO/ASO 학습 자료 — 개념, 2026 트렌드, 실전 파이프라인, 시놀 5채널 진단과 실행 로드맵. 내부용.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --ink:#22303A; --sub:#5A6982; --teal:#0E5A5A; --teal2:#12726E;
+  --coral:#E8734A; --blue:#2E7BB0; --blue2:#22608C;
+  --ok:#2E9E6B; --warn:#E8A13A; --danger:#D9534F;
+  --bg:#FFFFFF; --wash:#F4F7F7; --line:#DCE4E4; --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',-apple-system,sans-serif;
+  color:var(--ink);background:var(--bg);font-size:17px;line-height:1.65;word-break:keep-all}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+a{color:var(--blue2)}
+strong{font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+
+/* ── 상단 네비 ── */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 12px}
+nav a{display:flex;align-items:center;min-height:48px;padding:0 13px;font-size:14.5px;font-weight:600;
+  color:var(--sub);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── 히어로 ── */
+header{background:linear-gradient(150deg,#0B4A4A 0%,var(--teal2) 62%,#15807A 100%);color:#fff;
+  padding:52px 0 44px}
+header .eyebrow{font-size:13.5px;letter-spacing:.14em;font-weight:700;color:#9FD4CB;text-transform:uppercase}
+header h1{font-size:clamp(27px,4.6vw,40px);line-height:1.25;margin:10px 0 6px;font-weight:800}
+header .sub{font-size:17.5px;color:#D7EAE6;max-width:640px}
+.scale{margin-top:30px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+  border-radius:14px;padding:20px 22px}
+.scale .cap{font-size:13.5px;font-weight:700;color:#9FD4CB;letter-spacing:.08em;margin-bottom:12px}
+.bar-row{display:grid;grid-template-columns:120px 1fr 96px;align-items:center;gap:12px;margin:9px 0}
+.bar-row .lb{font-size:15px;font-weight:700;color:#EAF5F2}
+.bar-track{display:block;height:14px;border-radius:7px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:7px;background:var(--coral);min-width:8px}
+.bar-fill.thin{background:#CFE9E3;min-width:8px}
+.bar-row .val{font-size:14.5px;font-weight:700;text-align:right;color:#fff}
+.scale .note{font-size:14px;color:#C6E2DC;margin-top:12px}
+.tldr{margin-top:26px;display:grid;gap:10px}
+.tldr li{list-style:none;background:rgba(255,255,255,.07);border-left:4px solid var(--coral);
+  border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;color:#F1FAF8}
+.tldr li b{color:#FFD9C7}
+
+/* ── 공통 섹션 ── */
+section{padding:46px 0 8px}
+.sec-eyebrow{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--coral)}
+h2{font-size:clamp(22px,3.4vw,29px);margin:6px 0 8px;color:var(--teal);font-weight:800}
+.lede{color:var(--sub);font-size:17px;max-width:700px;margin-bottom:22px}
+h3{font-size:19px;margin:26px 0 10px;color:var(--ink)}
+p{margin:0 0 14px}
+.fig{margin:22px 0;border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--wash)}
+.fig svg{width:100%;height:auto;display:block}
+.fig figcaption{font-size:14px;color:var(--sub);margin-top:10px}
+
+/* 카드 그리드 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:20px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 17px}
+.card .tag{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.08em;
+  padding:4px 10px;border-radius:20px;color:#fff;margin-bottom:10px}
+.card h4{font-size:17.5px;margin-bottom:6px}
+.card p{font-size:15px;color:var(--sub);margin:0 0 8px}
+.card .kpi{font-size:13.5px;font-weight:700;color:var(--teal2)}
+
+/* 표 */
+.tbl{width:100%;border-collapse:collapse;margin:18px 0;font-size:15.5px}
+.tbl th{background:var(--teal);color:#fff;text-align:left;padding:10px 12px;font-size:14.5px}
+.tbl td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}
+.tbl tr:nth-child(even) td{background:var(--wash)}
+.tbl .b{font-weight:700}
+.tbl-scroll{overflow-x:auto}
+
+/* 강조 박스 */
+.callout{border-left:5px solid var(--coral);background:#FDF3ED;border-radius:0 12px 12px 0;
+  padding:15px 18px;margin:20px 0;font-size:16px}
+.callout.blue{border-color:var(--blue);background:#EEF5FA}
+.callout.warn{border-color:var(--warn);background:#FCF6E9}
+.callout b{color:var(--teal)}
+
+/* 아코디언 */
+details{border:1px solid var(--line);border-radius:12px;margin:10px 0;background:#fff;overflow:hidden}
+details summary{cursor:pointer;list-style:none;display:flex;gap:12px;align-items:center;
+  min-height:52px;padding:12px 16px;font-weight:700;font-size:16.5px}
+details summary::-webkit-details-marker{display:none}
+details summary .no{flex:0 0 34px;height:34px;border-radius:50%;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:15px}
+details summary .who{margin-left:auto;font-size:13px;font-weight:600;color:var(--sub);white-space:nowrap}
+details[open] summary{border-bottom:1px solid var(--line);background:var(--wash)}
+details .body{padding:14px 18px 16px;font-size:15.5px;color:var(--ink)}
+details .body code{background:var(--wash);border:1px solid var(--line);border-radius:6px;
+  padding:1px 7px;font-size:14px;font-family:Consolas,'Nanum Gothic Coding',monospace}
+
+/* 신호등 배지 */
+.lamp{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:14px;
+  padding:5px 12px;border-radius:20px;color:#fff}
+.lamp::before{content:"";width:9px;height:9px;border-radius:50%;background:#fff}
+.lamp.ok{background:var(--ok)} .lamp.warn{background:var(--warn)} .lamp.danger{background:var(--danger)}
+
+/* 확인 현황 스탬프 */
+.audit{border:2px solid var(--teal);border-radius:16px;margin:26px 0;overflow:hidden}
+.audit .head{background:var(--teal);color:#fff;padding:13px 18px;font-weight:800;font-size:16.5px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.audit .head .stamp{font-size:13px;font-weight:700;background:var(--coral);border-radius:16px;padding:4px 12px}
+.audit .tbl{margin:0}
+.st{display:inline-block;font-size:12.5px;font-weight:800;border-radius:14px;padding:3px 10px;color:#fff;white-space:nowrap}
+.st.done{background:var(--ok)} .st.part{background:var(--warn)} .st.no{background:#8895A3}
+
+/* 스텝퍼 */
+.steps{margin:24px 0;padding-left:0}
+.step{list-style:none;position:relative;padding:0 0 26px 58px}
+.step::before{content:"";position:absolute;left:19px;top:42px;bottom:-2px;width:3px;background:var(--line)}
+.step:last-child::before{display:none}
+.step .dot{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;
+  background:var(--teal);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
+.step h4{font-size:17.5px;margin-bottom:4px}
+.step p{font-size:15.5px;color:var(--sub);margin-bottom:4px}
+.step .judge{font-size:13.5px;font-weight:700;color:var(--teal2)}
+
+/* 용어집·푸터 */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:18px 0}
+.gloss div{background:var(--wash);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14.5px}
+.gloss b{color:var(--teal)}
+footer{margin-top:50px;background:var(--ink);color:#B9C4CE;padding:26px 0 34px;font-size:14px}
+footer .wrap{display:grid;gap:6px}
+.pill{display:inline-block;background:var(--wash);border:1px solid var(--line);border-radius:16px;
+  padding:3px 11px;font-size:13px;font-weight:700;color:var(--teal2);margin:2px 4px 2px 0}
+@media (max-width:640px){ .bar-row{grid-template-columns:92px 1fr 84px} }
+</style>
+</head>
+<body>
+
+<nav aria-label="섹션 이동"><div class="wrap">
+  <a href="#s0">요약</a><a href="#s1">① 개념</a><a href="#s2">② 트렌드</a><a href="#s3">③ 파이프라인</a>
+  <a href="#s4">④ 코드 7계층</a><a href="#s5">⑤ 키워드·ASO</a><a href="#s7">⑥ 시놀 진단</a><a href="#s8">⑦ 로드맵</a><a href="#gl">용어</a>
+</div></nav>
+
+<header id="s0"><div class="wrap">
+  <div class="eyebrow">SINOR INTERNAL · LEARNING BASE · 2026-08</div>
+  <h1>SEO · AEO · GEO 학습 — 기본기와 실전, 그리고 시놀의 현주소</h1>
+  <p class="sub">대표의 경영 판단과 실무자(PO·개발·디자인·마케팅)의 실행이 같은 지도를 보도록 만든 자료입니다. 모든 시놀 수치는 정합기준 정본 인용입니다.</p>
+
+  <div class="scale" role="img" aria-label="오늘의운세 월 525만 검색과 결정사 1만1천 검색의 규모 비교 막대">
+    <div class="cap">왜 지금 이 학습인가 — 검색량의 자릿수가 다릅니다 (월간, 네이버 실측)</div>
+    <div class="bar-row"><span class="lb">오늘의운세</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="val num">5,249,500</span></div>
+    <div class="bar-row"><span class="lb">결정사</span><span class="bar-track"><span class="bar-fill thin" style="width:2.1%"></span></span><span class="val num">11,020</span></div>
+    <div class="bar-row"><span class="lb">5060</span><span class="bar-track"><span class="bar-fill thin" style="width:2%"></span></span><span class="val num">10,660</span></div>
+    <div class="note">운세는 시놀이 <b>이미 앱 안에 가진 기능</b>입니다. 만들 것 없이, 검색어와 연결하는 일만 남았습니다.</div>
+  </div>
+
+  <ul class="tldr">
+    <li><b>1 · AI 검색은 SEO를 대체하지 않습니다.</b> ChatGPT 인용의 88.46%가 일반 검색 인덱스에서 나옵니다 — GEO/AEO는 SEO의 확장입니다.</li>
+    <li><b>2 · 그래서 순서가 있습니다.</b> ① 측정 연결 → ② SEO 본체 → ③ 스키마 → ④ 브랜드 언급. 앞을 건너뛰면 뒤가 작동하지 않습니다.</li>
+    <li><b>3 · 시놀의 0단계가 비어 있습니다.</b> 서치콘솔·서치어드바이저 미연결, 결제 이벤트 7개월 20건 — 이 상태로 화면을 바꾸면 개선 여부를 판정할 수 없습니다.</li>
+    <li><b>4 · 가장 큰 기회는 운세입니다.</b> 월 525만 검색을 이미 보유한 기능이 받게 하십시오.</li>
+    <li><b>5 · 자산은 이미 있습니다.</b> 칼럼 191편 · 단체미팅(이탈 12.0%) · 언론 보도 — 새로 만들기 전에 있는 것을 검색어와 연결합니다.</li>
+  </ul>
+</div></header>
+
+<main>
+
+<!-- §1 개념 -->
+<section id="s1"><div class="wrap">
+  <div class="sec-eyebrow">PART 1 · 기초</div>
+  <h2>SEO·AEO·GEO·ASO — 무엇이고 왜 다 필요한가</h2>
+  <p class="lede">사용자가 검색하는 경로마다 최적화 대상이 다릅니다. 하나가 아니라 여러 독자(봇·AI·스토어)에게 동시에 말하는 것이 핵심입니다.</p>
+
+  <div class="cards">
+    <div class="card"><span class="tag" style="background:var(--teal)">SEO</span>
+      <h4>검색 상위 노출</h4><p>'5060 소개팅' 검색 → 링크 클릭 → 방문. 독자는 구글 봇·네이버 봇.</p>
+      <div class="kpi">지표 — 순위 · CTR · 오가닉 트래픽</div></div>
+    <div class="card"><span class="tag" style="background:var(--blue)">AEO</span>
+      <h4>AI 요약 답변 인용</h4><p>'결정사 비용' 검색 → AI 요약만 읽음. 독자는 AI Overview·네이버 AI답변.</p>
+      <div class="kpi">지표 — 제로클릭 노출 · 답변 내 인용</div></div>
+    <div class="card"><span class="tag" style="background:var(--coral)">GEO</span>
+      <h4>생성형 AI 브랜드 인용</h4><p>ChatGPT·Perplexity에 물어봄. 독자는 LLM 자체.</p>
+      <div class="kpi">지표 — AI 인용 횟수 · 브랜드 멘션</div></div>
+    <div class="card"><span class="tag" style="background:var(--teal2)">ASO</span>
+      <h4>앱스토어 검색·설치</h4><p>스토어에서 '소개팅 어플' 검색. 독자는 Play·App Store 검색엔진.</p>
+      <div class="kpi">지표 — 노출 · 설치 · 리뷰</div></div>
+  </div>
+
+  <div class="callout"><b>핵심 원칙 — SEO가 탄탄해야 GEO·AEO가 작동합니다.</b> AI가 답을 만들 때 가장 먼저 참고하는 것은 구글에 잘 인덱싱된 신뢰도 높은 웹페이지입니다. 세 채널은 대체가 아니라 상호보완입니다.</div>
+
+  <figure class="fig"><svg role="img" aria-label="그림 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="640" height="460" fill="#FFFFFF"/>
+  <text x="320" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#22303A">SEO · AEO · GEO — 대체가 아니라 상호보완</text>
+  <text x="320" y="66" text-anchor="middle" font-size="13" fill="#5A6982">AI 엔진은 "구글에 잘 인덱싱된 신뢰 높은 페이지"를 먼저 참고한다 · SEO가 토대</text>
+
+  <!-- circles -->
+  <circle cx="248" cy="228" r="130" fill="#12726E" fill-opacity="0.20" stroke="#0E5A5A" stroke-width="2.5"/>
+  <circle cx="392" cy="228" r="130" fill="#E8734A" fill-opacity="0.20" stroke="#C8552F" stroke-width="2.5"/>
+  <circle cx="320" cy="330" r="130" fill="#2E7BB0" fill-opacity="0.18" stroke="#22608C" stroke-width="2.5"/>
+
+  <!-- labels -->
+  <text x="176" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#0E5A5A">SEO</text>
+  <text x="176" y="216" text-anchor="middle" font-size="11.5" fill="#0E5A5A">검색 상위 노출</text>
+  <text x="176" y="232" text-anchor="middle" font-size="11" fill="#5A6982">구글·네이버 봇</text>
+
+  <text x="466" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#C8552F">AEO</text>
+  <text x="466" y="216" text-anchor="middle" font-size="11.5" fill="#C8552F">AI 요약 답변 인용</text>
+  <text x="466" y="232" text-anchor="middle" font-size="11" fill="#5A6982">AI Overview·스니펫</text>
+
+  <text x="320" y="392" text-anchor="middle" font-size="19" font-weight="700" fill="#22608C">GEO</text>
+  <text x="320" y="412" text-anchor="middle" font-size="11.5" fill="#22608C">생성형 AI 브랜드 인용</text>
+  <text x="320" y="428" text-anchor="middle" font-size="11" fill="#5A6982">ChatGPT·Perplexity·Claude</text>
+
+  <!-- center overlap -->
+  <text x="320" y="252" text-anchor="middle" font-size="12.5" font-weight="700" fill="#22303A">콘텐츠 권위</text>
+  <text x="320" y="270" text-anchor="middle" font-size="11" fill="#3A4A57">+ 구조화 + 언급</text>
+</svg><figcaption>그림 1 · SEO·AEO·GEO는 겹치는 상호보완 관계이며, 토대는 SEO입니다.</figcaption></figure>
+</div></section>
+
+<!-- §2 트렌드 -->
+<section id="s2"><div class="wrap">
+  <div class="sec-eyebrow">PART 2 · 2026 트렌드</div>
+  <h2>반드시 알아야 할 다섯 결론</h2>
+  <figure class="fig"><svg role="img" aria-label="그림 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 490" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="640" height="490" fill="#FFFFFF"/>
+  <text x="320" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">AI Overview 인용 비율 × 오가닉 검색 순위</text>
+  <text x="320" y="56" text-anchor="middle" font-size="12.5" fill="#5A6982">구글 상위일수록 AI 답변에 인용될 확률이 높다 (개념도, Ahrefs 조사)</text>
+
+  <!-- y grid + labels -->
+  <g font-size="11" fill="#8A97A8">
+    <line x1="70" y1="410" x2="610" y2="410" stroke="#D3DBE7"/><text x="60" y="414" text-anchor="end">0%</text>
+    <line x1="70" y1="346" x2="610" y2="346" stroke="#EEF2F6"/><text x="60" y="350" text-anchor="end">20%</text>
+    <line x1="70" y1="282" x2="610" y2="282" stroke="#EEF2F6"/><text x="60" y="286" text-anchor="end">40%</text>
+    <line x1="70" y1="218" x2="610" y2="218" stroke="#EEF2F6"/><text x="60" y="222" text-anchor="end">60%</text>
+    <line x1="70" y1="154" x2="610" y2="154" stroke="#EEF2F6"/><text x="60" y="158" text-anchor="end">80%</text>
+    <line x1="70" y1="90" x2="610" y2="90" stroke="#EEF2F6"/><text x="60" y="94" text-anchor="end">100%</text>
+  </g>
+
+  <!-- bars: coral(top)=Not in AIO, blue(bottom)=In AIO -->
+  <g>
+    <rect x="78" y="90" width="38" height="160" fill="#F0A28A"/><rect x="78" y="250" width="38" height="160" fill="#2E7BB0"/>
+    <rect x="132" y="90" width="38" height="188.8" fill="#F0A28A"/><rect x="132" y="278.8" width="38" height="131.2" fill="#2E7BB0"/>
+    <rect x="186" y="90" width="38" height="224" fill="#F0A28A"/><rect x="186" y="314" width="38" height="96" fill="#2E7BB0"/>
+    <rect x="240" y="90" width="38" height="243.2" fill="#F0A28A"/><rect x="240" y="333.2" width="38" height="76.8" fill="#2E7BB0"/>
+    <rect x="294" y="90" width="38" height="259.2" fill="#F0A28A"/><rect x="294" y="349.2" width="38" height="60.8" fill="#2E7BB0"/>
+    <rect x="348" y="90" width="38" height="268.8" fill="#F0A28A"/><rect x="348" y="358.8" width="38" height="51.2" fill="#2E7BB0"/>
+    <rect x="402" y="90" width="38" height="294.4" fill="#F0A28A"/><rect x="402" y="384.4" width="38" height="25.6" fill="#2E7BB0"/>
+    <rect x="456" y="90" width="38" height="300.8" fill="#F0A28A"/><rect x="456" y="390.8" width="38" height="19.2" fill="#2E7BB0"/>
+    <rect x="510" y="90" width="38" height="307.2" fill="#F0A28A"/><rect x="510" y="397.2" width="38" height="12.8" fill="#2E7BB0"/>
+    <rect x="564" y="90" width="38" height="310.4" fill="#F0A28A"/><rect x="564" y="400.4" width="38" height="9.6" fill="#2E7BB0"/>
+  </g>
+
+  <!-- x labels -->
+  <g font-size="11.5" fill="#5A6982" text-anchor="middle">
+    <text x="97" y="430">1</text><text x="151" y="430">2</text><text x="205" y="430">3</text><text x="259" y="430">4</text><text x="313" y="430">5</text>
+    <text x="367" y="430">6</text><text x="421" y="430">7</text><text x="475" y="430">8</text><text x="529" y="430">9</text><text x="583" y="430">10</text>
+  </g>
+  <text x="340" y="454" text-anchor="middle" font-size="12" fill="#5A6982">오가닉 검색 순위 (Organic position)</text>
+
+  <!-- legend -->
+  <rect x="200" y="468" width="14" height="14" fill="#2E7BB0"/><text x="220" y="480" font-size="12" fill="#22303A">AI Overview에 인용됨</text>
+  <rect x="400" y="468" width="14" height="14" fill="#F0A28A"/><text x="420" y="480" font-size="12" fill="#22303A">인용 안 됨</text>
+</svg><figcaption>그림 2 · AI Overview 인용 비율 × 오가닉 순위 — 1위 약 50%에서 10위로 갈수록 급감. (Ahrefs 개념 재구성 · 근사값)</figcaption></figure>
+
+  <table class="tbl"><thead><tr><th style="width:56px">#</th><th>결론</th><th style="width:38%">근거 · 함의</th></tr></thead><tbody>
+    <tr><td class="b">1</td><td><b>AI 검색은 기존 SEO를 대체하지 않는다</b></td><td>ChatGPT 인용의 88.46%가 일반 검색 인덱스에서 발생</td></tr>
+    <tr><td class="b">2</td><td><b>SEO + GEO 병행이 정답</b></td><td>구글이 ChatGPT보다 웹 트래픽 약 190배 — SEO 중심에 AI 가시성을 추가</td></tr>
+    <tr><td class="b">3</td><td><b>백링크보다 '브랜드 언급'</b></td><td>AI 가시성 상관 — YouTube 언급 0.74 · 웹 언급 0.66~0.71 · 백링크 0.19~0.24</td></tr>
+    <tr><td class="b">4</td><td><b>'우리가 최고' 자사 콘텐츠는 효과 제한</b></td><td>AI가 그 글을 인용하면서 경쟁사를 추천할 수 있음 — 제3자가 말하게 만들 것</td></tr>
+    <tr><td class="b">5</td><td><b>llms.txt·Schema는 GEO의 만능키가 아니다</b></td><td>llms.txt 97%가 안 읽힘 · 스키마는 리치결과용으로는 여전히 유효</td></tr>
+  </tbody></table>
+
+  <div class="callout blue"><b>체류시간 관점 —</b> 웹 평균 약 1분 · 네이버 2~3분 · <b>AI 유입 5~7분.</b> 시놀의 AI 유입이 아직 61명으로 작아도 고관여 트래픽일 수 있습니다. 다만 973개 이커머스 조사에서 생성 AI 트래픽의 구매전환은 오가닉보다 낮았습니다(RPS 약 1,950원 vs 2,262원) — <b>GEO는 인지·발견 채널, 최종 전환은 여전히 검색이 주력</b>입니다.</div>
+
+  <p style="font-size:15px;color:var(--sub)">하지 말 것 — 프롬프트 숨김, 선호 조작 공격, 프롬프트 인젝션, 지역 트래픽 어뷰징. 단기 효과처럼 보여도 정책 위반이며 신뢰를 훼손합니다.</p>
+</div></section>
+
+<!-- §3 파이프라인 -->
+<section id="s3"><div class="wrap">
+  <div class="sec-eyebrow">PART 3 · 실전 파이프라인</div>
+  <h2>무엇을, 어떤 순서로 다루는가 — 8요소 지도</h2>
+  <figure class="fig"><svg role="img" aria-label="그림 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="740" height="430" fill="#FFFFFF"/>
+  <text x="370" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">실전 SEO 8요소 — 무엇을 순서대로 다루는가</text>
+
+  <!-- 샌드박스 bracket (over col3-4 top) -->
+  <path d="M448 92 v-14 h192 v14" fill="none" stroke="#C8552F" stroke-width="2"/>
+  <rect x="512" y="58" width="64" height="22" rx="11" fill="#FBE8E0"/>
+  <text x="544" y="74" text-anchor="middle" font-size="12.5" font-weight="700" fill="#C8552F">샌드박스</text>
+
+  <!-- Row 1 -->
+  <g>
+    <circle cx="110" cy="170" r="64" fill="#0E5A5A"/>
+    <text x="110" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">알고리즘</text>
+
+    <circle cx="290" cy="170" r="64" fill="#12726E"/>
+    <text x="290" y="162" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">시장조사</text>
+    <text x="290" y="182" text-anchor="middle" font-size="11" fill="#DDF0EE">경쟁사 키워드 추출</text>
+
+    <circle cx="470" cy="170" r="64" fill="#12726E"/>
+    <text x="470" y="164" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">도메인</text>
+    <text x="470" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">·호스팅</text>
+
+    <circle cx="640" cy="170" r="64" fill="#12726E"/>
+    <text x="640" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">CMS</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g>
+    <circle cx="110" cy="312" r="64" fill="#2E7BB0"/>
+    <text x="110" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">검색엔진</text>
+    <text x="110" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">등록</text>
+
+    <circle cx="290" cy="312" r="64" fill="#2E7BB0"/>
+    <text x="290" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">외부유입</text>
+    <text x="290" y="326" text-anchor="middle" font-size="11" fill="#DCEAF4">백링크</text>
+
+    <circle cx="470" cy="312" r="64" fill="#2E7BB0"/>
+    <text x="470" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">콘텐츠</text>
+    <text x="470" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">발행</text>
+
+    <circle cx="640" cy="312" r="64" fill="#E8734A"/>
+    <text x="640" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">성과측정</text>
+    <text x="640" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">시스템</text>
+  </g>
+
+  <!-- 백링크 bracket (under col1-2 bottom) -->
+  <path d="M46 388 v14 h384 v-14" fill="none" stroke="#22608C" stroke-width="2"/>
+  <rect x="176" y="402" width="124" height="22" rx="11" fill="#E1EEF7"/>
+  <text x="238" y="418" text-anchor="middle" font-size="12" font-weight="700" fill="#22608C">백링크 (네이버·구글)</text>
+</svg><figcaption>그림 3 · 실전 SEO 8요소 — 샌드박스 구간은 도메인·호스팅과 CMS, 사이트맵은 검색엔진 등록의 기초.</figcaption></figure>
+
+  <h3>사전진단 — 시놀은 '기존 홈페이지 보유' 갈래입니다</h3>
+  <p>순서 넷: <b>① sitemap.xml 상태 → ② robots.txt 상태 → ③ 구글 서치콘솔 연결 → ④ 네이버 서치어드바이저 연결.</b> 아래 ⑥ 진단에서 보듯 시놀은 이 넷이 전부 비어 있거나 미확인입니다.</p>
+
+  <h3>도메인·URL 구조 — 처음부터 짜는 것</h3>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>형태</th><th>예시</th><th>성격</th></tr></thead><tbody>
+    <tr><td>루트 도메인</td><td><code>example.co.kr</code></td><td>최상위 권위</td></tr>
+    <tr><td>서브 도메인</td><td><code>blog.example.co.kr</code></td><td>검색엔진이 <b>별개 사이트</b>로 인식 — 권위 분산 가능</td></tr>
+    <tr><td>디렉토리</td><td><code>example.co.kr/blog</code></td><td>루트 권위를 그대로 이어받음 — <b>권장</b></td></tr>
+  </tbody></table></div>
+  <p style="font-size:15px;color:var(--sub)">1년 미만 신규 도메인은 높은 확률로 샌드박스(노출 지연)에 들어갑니다. 시놀 웹 확장은 새 도메인이 아니라 <b>sinor.co.kr 아래 디렉토리</b>가 원칙입니다 — 예: 오늘의운세는 <code>sinor.co.kr/fortune</code>.</p>
+
+  <div class="callout warn"><b>시놀 연결 — 아임웹 리스크.</b> 시놀 웹은 아임웹 유력(칼럼 URL 패턴). 아임웹이면 head 코드 삽입·페이지별 메타가 가능해 최악을 피합니다. 다만 <b>여가 탭의 운세·클래스가 외부 JS 페이지라면</b> 크롤러가 본문을 못 읽는 리스크(SPA 문제)를 같이 확인해야 합니다. <span class="pill">신뢰도 · 플랫폼=유력 / 렌더링=미확인</span></div>
+</div></section>
+
+<!-- §4 코드 7계층 -->
+<section id="s4"><div class="wrap">
+  <div class="sec-eyebrow">PART 4 · 실무 교본</div>
+  <h2>SEO 코드 7계층 — 왜 이렇게 짜는가</h2>
+  <p class="lede">크롤러는 head부터 위→아래로 읽고, 위에 있을수록 중요하다고 판단합니다. 각 계층은 서로 다른 독자를 위해 존재합니다. 눌러서 펼쳐 보세요.</p>
+
+  <details><summary><span class="no">1</span> head 메타 — title·description·canonical <span class="who">독자 · 구글/네이버 봇</span></summary>
+    <div class="body"><b>title 맨 앞에 검색어</b>, 브랜드는 뒤로. description 155자 이내. <code>canonical</code>으로 원본 URL 지정.<br>
+    처방 예시 — 시럽인연: <code>중장년 결혼정보 시럽인연 | 50·60대 재혼 상담 · 성혼비 없음</code><br>
+    흔한 실수 — 브랜드를 앞에 두는 것. <b>인지도 낮은 초기엔 검색어가 앞</b>입니다.</div></details>
+  <details><summary><span class="no">2</span> JSON-LD @graph — 구조화 데이터 묶음 <span class="who">독자 · 리치결과 엔진</span></summary>
+    <div class="body">LocalBusiness + FAQPage + ItemList를 <b>하나의 script</b>에 @graph로 묶습니다. 시럽인연 FAQ는 이미 본문에 있으므로 표시만 붙이면 스니펫 후보가 됩니다.</div></details>
+  <details><summary><span class="no">3</span> Microdata — Product + Offer <span class="who">독자 · 상품 크롤러</span></summary>
+    <div class="body"><b>price는 반드시 Offer 안에.</b> Product 직속에 두면 서치콘솔이 "offers/review/aggregateRating 필요" 에러를 냅니다. 시놀트립·여행 상품에 적용.</div></details>
+  <details><summary><span class="no">4</span> 이미지 alt — 전부 키워드로 시작, 전부 고유 <span class="who">독자 · 이미지 검색 봇</span></summary>
+    <div class="body">alt는 핵심 키워드로 시작하되 <b>모두 서로 달라야</b> 합니다. 같은 alt 반복은 키워드 스터핑=스팸 판정.</div></details>
+  <details><summary><span class="no">5</span> HTML 시맨틱 — h1 하나, 위가 중요 <span class="who">독자 · 모든 크롤러</span></summary>
+    <div class="body"><code>h1</code>은 페이지당 1개. 상품 카드는 <code>&lt;article&gt;</code>. 문서의 위→아래가 중요도 순서라는 전제로 배치합니다.</div></details>
+  <details><summary><span class="no">6</span> 링크·CTA — PageRank 집중 <span class="who">독자 · 구글 + 사용자</span></summary>
+    <div class="body">내부 링크를 <b>한 URL에 집중</b>합니다. 버튼 앵커텍스트에 키워드를 넣습니다 — "자세히 보기"는 버립니다.</div></details>
+  <details><summary><span class="no">7</span> OG · Twitter Card — SNS 미리보기 <span class="who">독자 · SNS 크롤러</span></summary>
+    <div class="body"><code>og:image</code>는 <b>절대 URL 필수</b>(상대경로면 SNS 인식 실패). <code>twitter:card=summary_large_image</code>.</div></details>
+
+  <div class="callout blue" style="margin-top:22px"><b>배포 전 체크 14 (요지)</b> — title 검색어 앞 · description 155자 · canonical · JSON-LD 유효 · Product에 Offer · 모든 img에 alt · alt 고유 · og:image 절대 URL · h1 1개 · 모바일 안 잘림 · PageSpeed 모바일 70+ · sitemap · robots 허용. <b>검증 도구</b> — 리치결과 테스트 · 서치콘솔 · PageSpeed Insights · Schema Validator · 네이버 웹마스터.</div>
+</div></section>
+
+<!-- §5 키워드·ASO -->
+<section id="s5"><div class="wrap">
+  <div class="sec-eyebrow">PART 5 · 키워드 · ASO</div>
+  <h2>시놀·시럽인연 키워드 전략 — 실측이 정한 순서</h2>
+
+  <h3>가장 큰 발견 — 운세</h3>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>키워드</th><th style="width:150px">월간 검색수</th><th>시사점</th></tr></thead><tbody>
+    <tr><td class="b">오늘의운세</td><td class="num b" style="color:var(--coral)">5,249,500</td><td>결정사(11,020)의 <b>476배</b> · 시놀이 이미 앱에 보유</td></tr>
+    <tr><td>운세 계열 합계</td><td class="num">11,251,335</td><td>키워드 385개 — 이름만 붙이면 되는 유입구</td></tr>
+    <tr><td>사주</td><td class="num">118,100</td><td>시놀 보유</td></tr>
+    <tr><td>궁합 계열 합계</td><td class="num">63,100</td><td><b>미보유</b> — 사주 데이터로 소규모 개발 시 진입 가능</td></tr>
+  </tbody></table></div>
+  <p>웹 <b>오늘의운세 페이지가 최대 채널</b>입니다(순수 전환은 웹이 정답). 유입 규모가 목적이라 Google Play 앱 이름에도 운세를 실었습니다 — 단, 설치 후 이탈을 상쇄하려면 <b>앱 첫 화면 가까이에 운세가 보여야</b> 합니다. 궁합은 현재 미보유이므로 스토어 문구에서 전량 제외했습니다(없는 기능 표기 = 정책 위반).</p>
+
+  <h3>네이버 복합 키워드 원칙</h3>
+  <div class="cards">
+    <div class="card"><h4>검색량 있는 단어를 앞에</h4><p>함께 검색되는 단어는 붙여서 — <code>5060 만남</code> · <code>5060 소개팅</code></p></div>
+    <div class="card"><h4>5060은 반드시 붙여서</h4><p>5060(10,660) vs 50대·60대(각 수백) — 20배 차이</p></div>
+    <div class="card"><h4>시니어는 단독 금지</h4><p>일자리·모델 의도가 섞임 → <b>시니어 5060</b> 복합으로 분리</p></div>
+    <div class="card"><h4>검색량 커도 맥락 다르면 제외</h4><p>5080(치약) · 마담4060(의류) · 나는솔로(TV)</p></div>
+  </div>
+
+  <h3>시놀 4개 리스팅 현황 <span class="pill">신뢰도 · 확정 (2026.08.06)</span></h3>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>항목</th><th>시놀 Play</th><th>시놀 App Store</th><th>시럽 Play</th></tr></thead><tbody>
+    <tr><td>설치</td><td>10,000+</td><td>비공개</td><td>50,000+</td></tr>
+    <tr><td class="b">등록 언어</td><td>한국어</td><td style="color:var(--danger)" class="b">영어(EN)만 ⚠️</td><td>한국어</td></tr>
+    <tr><td>연령 등급</td><td>12+</td><td>15+</td><td>18+</td></tr>
+    <tr><td>데이터 안전</td><td>암호화 안 됨</td><td>—</td><td style="color:var(--danger)">개인정보·금융정보 제3자 공유 ⚠️</td></tr>
+  </tbody></table></div>
+  <div class="callout"><b>최우선 조치 순서</b> — ① App Store 한국어 등록(한국 전용 서비스인데 한국어 키워드가 인덱싱되지 않음) → ② 데이터 안전 재제출 → ③ iOS 리뷰 확보(Play 154 vs iOS 10) → ④ 제목에 실측 검색어(5060).</div>
+
+  <h3>AEO 질의응답 원칙 — 네이버·구글 AI가 인용하게</h3>
+  <p>실제 검색어를 그대로 질문으로("결정사 비용은 얼마인가요?") · <b>첫 문장에서 답을 끝냄</b>(AI는 앞부분만 발췌) · 숫자와 고유명사 포함 · 질의응답 5개 이내(과반복=스팸) · 스토어 상세 하단 + 웹 FAQ(FAQPage JSON-LD) 두 곳에 배치.</p>
+  <p style="font-size:15px;color:var(--sub)">수치 주의 — 마케팅 문구 "회원 11만"은 대외 표기값. 정본 확정치는 누적 107,735명(시럽 49,862 · 시놀 57,873), 시럽인연 46,366명은 사이트 표기(유력). 문구 작성 시 정본 값에 "사이트 표기"를 병기합니다.</p>
+</div></section>
+
+<!-- §7 진단 -->
+<section id="s7"><div class="wrap">
+  <div class="sec-eyebrow">PART 6 · 시놀 현주소</div>
+  <h2>5채널 진단 — 실측이 말하는 것</h2>
+  <figure class="fig"><svg role="img" aria-label="그림 4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="700" height="430" fill="#FFFFFF"/>
+  <text x="350" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">시놀 SEO/AEO/GEO/UX 진단 — 5채널 신호등</text>
+  <text x="350" y="60" text-anchor="middle" font-size="12" fill="#5A6982">실측 2026.08.06 · 근거: 정합기준 정본(GA4·앱 리스팅·루커스튜디오)</text>
+
+  <!-- rows -->
+  <!-- SEO -->
+  <g>
+    <rect x="40" y="82" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="111" r="11" fill="#E8A13A"/>
+    <text x="100" y="106" font-size="16" font-weight="700" fill="#22303A">SEO</text>
+    <rect x="152" y="99" width="52" height="24" rx="12" fill="#FBEFD8"/><text x="178" y="116" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B67C1E">주의</text>
+    <text x="224" y="107" font-size="12.5" fill="#3A4A57">검색이 유입의 57% · 칼럼 191편 보유 · 상위 페이지 제목에 검색어 없음</text>
+    <text x="224" y="126" font-size="12" font-weight="700" fill="#0E5A5A">→ 페이지 제목에 검색어 삽입</text>
+  </g>
+  <!-- ASO -->
+  <g>
+    <rect x="40" y="148" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="177" r="11" fill="#D9534F"/>
+    <text x="100" y="172" font-size="16" font-weight="700" fill="#22303A">ASO</text>
+    <rect x="152" y="165" width="52" height="24" rx="12" fill="#FADEDD"/><text x="178" y="182" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B23A36">위험</text>
+    <text x="224" y="173" font-size="12.5" fill="#3A4A57">App Store 언어가 '영어'만 — 한국 전용인데 한국어 키워드 미인덱싱</text>
+    <text x="224" y="192" font-size="12" font-weight="700" fill="#0E5A5A">→ App Store 한국어 등록</text>
+  </g>
+  <!-- AEO -->
+  <g>
+    <rect x="40" y="214" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="243" r="11" fill="#2E9E6B"/>
+    <text x="100" y="238" font-size="16" font-weight="700" fill="#22303A">AEO</text>
+    <rect x="152" y="231" width="52" height="24" rx="12" fill="#DBF0E4"/><text x="178" y="248" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1F7A4D">양호</text>
+    <text x="224" y="239" font-size="12.5" fill="#3A4A57">시럽인연 페이지에 이미 FAQ 존재 · 구글이 본문 읽는 중 · 표시만 없음</text>
+    <text x="224" y="258" font-size="12" font-weight="700" fill="#0E5A5A">→ FAQPage 스키마 얹기</text>
+  </g>
+  <!-- GEO -->
+  <g>
+    <rect x="40" y="280" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="309" r="11" fill="#E8A13A"/>
+    <text x="100" y="304" font-size="16" font-weight="700" fill="#22303A">GEO</text>
+    <rect x="152" y="297" width="52" height="24" rx="12" fill="#FBEFD8"/><text x="178" y="314" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B67C1E">주의</text>
+    <text x="224" y="305" font-size="12.5" fill="#3A4A57">AI 유입 61명(챗GPT 47) 실측 · 다만 sinor.co.kr이 봇 접근 차단</text>
+    <text x="224" y="324" font-size="12" font-weight="700" fill="#0E5A5A">→ AI 크롤러 허용 확인</text>
+  </g>
+  <!-- UX -->
+  <g>
+    <rect x="40" y="346" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="375" r="11" fill="#D9534F"/>
+    <text x="100" y="370" font-size="16" font-weight="700" fill="#22303A">UX</text>
+    <rect x="152" y="363" width="52" height="24" rx="12" fill="#FADEDD"/><text x="178" y="380" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B23A36">위험</text>
+    <text x="224" y="371" font-size="12.5" fill="#3A4A57">결제 기본값 무통장 · 광고 직행 랜딩 이탈 75.8% · 앱 유도 도달 1.4%</text>
+    <text x="224" y="390" font-size="12" font-weight="700" fill="#0E5A5A">→ 결제·랜딩·여행 동선 수리</text>
+  </g>
+</svg><figcaption>그림 4 · 시놀 5채널 신호등 — SEO 주의 · ASO 위험 · AEO 양호 · GEO 주의 · UX 위험.</figcaption></figure>
+
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>채널</th><th style="width:96px">등급</th><th>지금 상태 (실측)</th><th>가장 큰 한 가지</th></tr></thead><tbody>
+    <tr><td class="b">SEO</td><td><span class="lamp warn">주의</span></td><td>검색이 유입의 57% · 칼럼 191편 보유 · 상위 페이지 제목에 검색어 없음</td><td class="b">페이지 제목에 검색어</td></tr>
+    <tr><td class="b">ASO</td><td><span class="lamp danger">위험</span></td><td>App Store 언어 영어만 — 한국어 키워드 미인덱싱</td><td class="b">한국어 등록</td></tr>
+    <tr><td class="b">AEO</td><td><span class="lamp ok">양호</span></td><td>시럽인연 페이지에 FAQ 존재 · 구글이 본문 읽는 중 · 구조화 표시만 없음</td><td class="b">FAQPage 스키마</td></tr>
+    <tr><td class="b">GEO</td><td><span class="lamp warn">주의</span></td><td>AI 유입 61명 실측(챗GPT 47) · sinor.co.kr이 봇 접근 차단</td><td class="b">AI 크롤러 허용</td></tr>
+    <tr><td class="b">UX</td><td><span class="lamp danger">위험</span></td><td>결제 기본값 무통장 · 광고 랜딩 이탈 75.8% · 앱 유도 도달 1.4%</td><td class="b">결제·랜딩 동선 수리</td></tr>
+  </tbody></table></div>
+
+  <div class="callout"><b>측정 공백 = 개편의 선행 조건.</b> 서치콘솔 미연결 · 서치어드바이저 미연결 · GA4 purchase 7개월 20건 · 네이버 전환추적 미설치(7일 75,922원 집행, 클릭 427, 전환 0). <b>이 상태로 화면을 바꾸면 개선 여부를 판정할 수 없습니다.</b></div>
+
+  <p><b>바꾸지 말 것(잘 되는 것)</b> — 단체미팅 페이지(이탈 12.0%, 사이트 최고) · 시럽인연 상담(이탈 7.0%) · 언론 보도(GEO 인용 근거) · 자녀 타깃 글(이탈 7.7%, 다만 1편뿐).</p>
+
+  <!-- 확인 현황 스탬프 -->
+  <div class="audit">
+    <div class="head"><span>확인 현황 — 이번 점검에서 실물로 본 것</span><span class="stamp">2026-08-27 Cowork 점검</span></div>
+    <div class="tbl-scroll"><table class="tbl"><thead><tr><th>항목</th><th style="width:96px">상태</th><th>확인 결과 / 다음 확인 방법</th></tr></thead><tbody>
+      <tr><td class="b">www.sinor.co.kr 봇 차단</td><td><span class="st done">실증</span></td><td>자동화 접근이 봇 감지로 차단됨(직접 재현) — 정본의 '차단(추정)'이 실물로 확인. <b>AI 크롤러도 본문을 못 읽는 상태</b>이므로 GEO 0단계는 크롤러 허용 정책부터.</td></tr>
+      <tr><td class="b">web.sinor.co.kr 용도</td><td><span class="st done">확정</span></td><td>"시놀과 시럽의 빠른 웹 화면" — 웹앱 로그인 게이트(Flutter Web 유력). <b>봇 접근은 가능</b> — 마케팅 사이트(www)는 막히고 웹앱(web)은 열린 역전 상태. 로그인 페이지 색인 방지(noindex) 검토.</td></tr>
+      <tr><td class="b">robots.txt · sitemap.xml</td><td><span class="st part">미확인</span></td><td>확인 방법 — 브라우저에서 <code>sinor.co.kr/robots.txt</code> · <code>/sitemap.xml</code> 직접 열람(로그인 불필요, 1분). AI 크롤러(GPTBot·PerplexityBot·ClaudeBot·Google-Extended) 차단 여부와 사이트맵 갱신일 확인.</td></tr>
+      <tr><td class="b">구글 서치콘솔 · 네이버 서치어드바이저</td><td><span class="st no">미확인</span></td><td>확인 방법 — 각 콘솔 로그인 후 sinor.co.kr 속성 존재·소유확인·사이트맵 제출 여부. <b>개발(우종선) 점검표</b>(키워드관리 요구서 v1.0 §8)로 진행.</td></tr>
+      <tr><td class="b">GA4 search_term 수집</td><td><span class="st no">미확인</span></td><td>확인 방법 — GA4 관리 → 데이터 스트림 → 향상된 측정에서 사이트 검색 수집 여부(앱·웹 내 검색 4,232명의 검색어).</td></tr>
+      <tr><td class="b">아임웹 확정 · head 삽입 · API</td><td><span class="st part">유력</span></td><td>칼럼 URL 패턴으로 유력. 확정 방법 — 관리자 <code>admin/config/seo</code>에서 페이지별 메타·head 삽입 가능 범위 확인, API 키 발급 후 페이지 목록 대사. <b>head 삽입 가능이 확정되면 로드맵 1·2단계 전부 실행 가능.</b></td></tr>
+    </tbody></table></div>
+  </div>
+</div></section>
+
+<!-- §8 로드맵 -->
+<section id="s8"><div class="wrap">
+  <div class="sec-eyebrow">PART 7 · 실행 로드맵</div>
+  <h2>순서가 핵심 — 앞을 건너뛰면 뒤가 작동하지 않습니다</h2>
+  <figure class="fig"><svg role="img" aria-label="그림 5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 240" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="780" height="240" fill="#FFFFFF"/>
+  <text x="390" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">시놀 실행 로드맵 — 앞 단계를 건너뛰면 뒤가 작동하지 않는다</text>
+
+  <!-- connecting line -->
+  <line x1="90" y1="96" x2="690" y2="96" stroke="#CFE0DE" stroke-width="4"/>
+
+  <!-- steps -->
+  <g text-anchor="middle">
+    <!-- 0 -->
+    <circle cx="90" cy="96" r="34" fill="#0E5A5A"/><text x="90" y="105" font-size="24" font-weight="700" fill="#FFFFFF">0</text>
+    <text x="90" y="156" font-size="14" font-weight="700" fill="#22303A">측정 연결</text>
+    <text x="90" y="176" font-size="10.5" fill="#5A6982">서치콘솔·SA</text>
+    <text x="90" y="190" font-size="10.5" fill="#5A6982">결제 이벤트</text>
+
+    <!-- 1 -->
+    <circle cx="240" cy="96" r="34" fill="#12726E"/><text x="240" y="105" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+    <text x="240" y="156" font-size="14" font-weight="700" fill="#22303A">SEO 본체</text>
+    <text x="240" y="176" font-size="10.5" fill="#5A6982">제목·시맨틱</text>
+    <text x="240" y="190" font-size="10.5" fill="#5A6982">모바일·속도</text>
+
+    <!-- 2 -->
+    <circle cx="390" cy="96" r="34" fill="#2E7BB0"/><text x="390" y="105" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+    <text x="390" y="156" font-size="14" font-weight="700" fill="#22303A">리치결과</text>
+    <text x="390" y="176" font-size="10.5" fill="#5A6982">FAQPage</text>
+    <text x="390" y="190" font-size="10.5" fill="#5A6982">Product+Offer</text>
+
+    <!-- 3 -->
+    <circle cx="540" cy="96" r="34" fill="#22608C"/><text x="540" y="105" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+    <text x="540" y="156" font-size="14" font-weight="700" fill="#22303A">브랜드 언급</text>
+    <text x="540" y="176" font-size="10.5" fill="#5A6982">PR·YouTube</text>
+    <text x="540" y="190" font-size="10.5" fill="#5A6982">제3자 멘션</text>
+
+    <!-- 4 -->
+    <circle cx="690" cy="96" r="34" fill="#E8734A"/><text x="690" y="105" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+    <text x="690" y="156" font-size="14" font-weight="700" fill="#22303A">ASO</text>
+    <text x="690" y="176" font-size="10.5" fill="#5A6982">한국어 등록</text>
+    <text x="690" y="190" font-size="10.5" fill="#5A6982">운세 탑재</text>
+  </g>
+
+  <text x="390" y="222" text-anchor="middle" font-size="11.5" fill="#8A97A8">0단계(측정)가 비면 개선 여부를 판정할 수 없다 — 정합기준 정본 §4</text>
+</svg><figcaption>그림 5 · 시놀 실행 로드맵 — 0.측정 연결 → 1.SEO 본체 → 2.리치결과 → 3.브랜드 언급 → 4.ASO.</figcaption></figure>
+
+  <ol class="steps">
+    <li class="step"><span class="dot">0</span><h4>측정 연결</h4>
+      <p>서치콘솔·서치어드바이저 연결 · GA4 결제/상담/신청 3지점 이벤트 · 네이버 전환추적. 88.46%가 검색 인덱스에서 나오므로, 먼저 무엇이 들어오는지 보이게 만듭니다.</p>
+      <div class="judge">판정 — 이벤트 기록률 90% 이상 (8주)</div></li>
+    <li class="step"><span class="dot">1</span><h4>SEO 본체</h4>
+      <p>페이지 title 재작성(검색어 앞) · h1·시맨틱 · 모바일·속도 · robots 크롤러 허용. AI가 먼저 읽는 것은 잘 인덱싱된 페이지입니다.</p>
+      <div class="judge">판정 — 조회 상위 페이지의 노출·CTR 개선</div></li>
+    <li class="step"><span class="dot">2</span><h4>리치결과</h4>
+      <p>시럽인연 FAQPage 스키마 · 상품엔 Product+Offer 규격. 이미 있는 FAQ에 표시만 붙이면 스니펫 후보가 됩니다.</p>
+      <div class="judge">판정 — 스니펫 노출</div></li>
+    <li class="step"><span class="dot">3</span><h4>브랜드 언급</h4>
+      <p>언론 보도·YouTube·커뮤니티의 제3자 언급 확대 · 회사소개에 팩트 문장 집약. 언급이 백링크보다 강한 신호(0.66~0.74)입니다.</p>
+      <div class="judge">판정 — AI 인용·멘션 월 추적</div></li>
+    <li class="step"><span class="dot">4</span><h4>ASO</h4>
+      <p>App Store 한국어 등록 · 운세 이름 탑재 · 데이터 안전 재제출. 최대 기회(운세 525만)와 신뢰 신호를 함께 잡습니다.</p>
+      <div class="judge">판정 — iOS 노출·설치 (4주 기준선 비교)</div></li>
+  </ol>
+
+  <div class="callout warn"><b>가드레일 — 악화되면 실패입니다.</b> 시럽인연 상담 신청 수 · 단체미팅 신청 완료율 · 페이지 로딩 시간 · "화면 바뀌어서 못 찾겠다" CS. 성공지표만 보지 마십시오.</div>
+</div></section>
+
+<!-- 용어집 -->
+<section id="gl"><div class="wrap">
+  <div class="sec-eyebrow">APPENDIX</div>
+  <h2>용어집</h2>
+  <div class="gloss">
+    <div><b>샌드박스</b> — 신규 도메인이 일정 기간 검색 노출이 지연되는 현상</div>
+    <div><b>canonical</b> — 중복 URL 중 원본을 지정해 순위 분산을 막는 태그</div>
+    <div><b>JSON-LD / @graph</b> — 구글 권장 구조화 데이터 형식 / 여러 스키마를 묶는 배열</div>
+    <div><b>Featured Snippet</b> — 검색 상단 강조 스니펫(표·목록·정의형)</div>
+    <div><b>AI Overview</b> — 구글 검색 상단의 AI 요약 답변</div>
+    <div><b>RPS</b> — 세션당 매출</div>
+    <div><b>SSR / 프리렌더</b> — 서버에서 HTML을 완성해 크롤러가 본문을 읽게 하는 방식</div>
+    <div><b>제로클릭</b> — 검색 결과에서 답을 얻고 클릭 없이 떠나는 행동</div>
+  </div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">
+  <div><b style="color:#fff">시놀 SEO·AEO·GEO 학습 자료</b> · 2026-08-27 · 내부용(대외비)</div>
+  <div>수치 출처 — 시놀 정합기준 정본(2026-08) · 네이버 키워드도구 실측(2026-08-24/25) · GA4 2026.07.09~08.05 · 앱 리스팅 2026.08.06</div>
+  <div>방법론 — 외부 교육자료 재구성(타 프로젝트 명칭·실적 미이관) · 그림 1~5 자체 제작 SVG</div>
+  <div>확인 현황 스탬프 — 2026-08-27 Cowork 공개 실물 점검 · 로그인 필요 항목은 개발 점검표(키워드관리 요구서 v1.0 §8)로 이관</div>
+</div></footer>
+
+</body>
+</html>
