@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="640" height="460" fill="#FFFFFF"/>
+  <text x="320" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#22303A">SEO · AEO · GEO — 대체가 아니라 상호보완</text>
+  <text x="320" y="66" text-anchor="middle" font-size="13" fill="#5A6982">AI 엔진은 "구글에 잘 인덱싱된 신뢰 높은 페이지"를 먼저 참고한다 · SEO가 토대</text>
+
+  <!-- circles -->
+  <circle cx="248" cy="228" r="130" fill="#12726E" fill-opacity="0.20" stroke="#0E5A5A" stroke-width="2.5"/>
+  <circle cx="392" cy="228" r="130" fill="#E8734A" fill-opacity="0.20" stroke="#C8552F" stroke-width="2.5"/>
+  <circle cx="320" cy="330" r="130" fill="#2E7BB0" fill-opacity="0.18" stroke="#22608C" stroke-width="2.5"/>
+
+  <!-- labels -->
+  <text x="176" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#0E5A5A">SEO</text>
+  <text x="176" y="216" text-anchor="middle" font-size="11.5" fill="#0E5A5A">검색 상위 노출</text>
+  <text x="176" y="232" text-anchor="middle" font-size="11" fill="#5A6982">구글·네이버 봇</text>
+
+  <text x="466" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#C8552F">AEO</text>
+  <text x="466" y="216" text-anchor="middle" font-size="11.5" fill="#C8552F">AI 요약 답변 인용</text>
+  <text x="466" y="232" text-anchor="middle" font-size="11" fill="#5A6982">AI Overview·스니펫</text>
+
+  <text x="320" y="392" text-anchor="middle" font-size="19" font-weight="700" fill="#22608C">GEO</text>
+  <text x="320" y="412" text-anchor="middle" font-size="11.5" fill="#22608C">생성형 AI 브랜드 인용</text>
+  <text x="320" y="428" text-anchor="middle" font-size="11" fill="#5A6982">ChatGPT·Perplexity·Claude</text>
+
+  <!-- center overlap -->
+  <text x="320" y="252" text-anchor="middle" font-size="12.5" font-weight="700" fill="#22303A">콘텐츠 권위</text>
+  <text x="320" y="270" text-anchor="middle" font-size="11" fill="#3A4A57">+ 구조화 + 언급</text>
+</svg>

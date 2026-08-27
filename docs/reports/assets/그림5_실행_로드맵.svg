@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 240" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="780" height="240" fill="#FFFFFF"/>
+  <text x="390" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">시놀 실행 로드맵 — 앞 단계를 건너뛰면 뒤가 작동하지 않는다</text>
+
+  <!-- connecting line -->
+  <line x1="90" y1="96" x2="690" y2="96" stroke="#CFE0DE" stroke-width="4"/>
+
+  <!-- steps -->
+  <g text-anchor="middle">
+    <!-- 0 -->
+    <circle cx="90" cy="96" r="34" fill="#0E5A5A"/><text x="90" y="105" font-size="24" font-weight="700" fill="#FFFFFF">0</text>
+    <text x="90" y="156" font-size="14" font-weight="700" fill="#22303A">측정 연결</text>
+    <text x="90" y="176" font-size="10.5" fill="#5A6982">서치콘솔·SA</text>
+    <text x="90" y="190" font-size="10.5" fill="#5A6982">결제 이벤트</text>
+
+    <!-- 1 -->
+    <circle cx="240" cy="96" r="34" fill="#12726E"/><text x="240" y="105" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+    <text x="240" y="156" font-size="14" font-weight="700" fill="#22303A">SEO 본체</text>
+    <text x="240" y="176" font-size="10.5" fill="#5A6982">제목·시맨틱</text>
+    <text x="240" y="190" font-size="10.5" fill="#5A6982">모바일·속도</text>
+
+    <!-- 2 -->
+    <circle cx="390" cy="96" r="34" fill="#2E7BB0"/><text x="390" y="105" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+    <text x="390" y="156" font-size="14" font-weight="700" fill="#22303A">리치결과</text>
+    <text x="390" y="176" font-size="10.5" fill="#5A6982">FAQPage</text>
+    <text x="390" y="190" font-size="10.5" fill="#5A6982">Product+Offer</text>
+
+    <!-- 3 -->
+    <circle cx="540" cy="96" r="34" fill="#22608C"/><text x="540" y="105" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+    <text x="540" y="156" font-size="14" font-weight="700" fill="#22303A">브랜드 언급</text>
+    <text x="540" y="176" font-size="10.5" fill="#5A6982">PR·YouTube</text>
+    <text x="540" y="190" font-size="10.5" fill="#5A6982">제3자 멘션</text>
+
+    <!-- 4 -->
+    <circle cx="690" cy="96" r="34" fill="#E8734A"/><text x="690" y="105" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+    <text x="690" y="156" font-size="14" font-weight="700" fill="#22303A">ASO</text>
+    <text x="690" y="176" font-size="10.5" fill="#5A6982">한국어 등록</text>
+    <text x="690" y="190" font-size="10.5" fill="#5A6982">운세 탑재</text>
+  </g>
+
+  <text x="390" y="222" text-anchor="middle" font-size="11.5" fill="#8A97A8">0단계(측정)가 비면 개선 여부를 판정할 수 없다 — 정합기준 정본 §4</text>
+</svg>

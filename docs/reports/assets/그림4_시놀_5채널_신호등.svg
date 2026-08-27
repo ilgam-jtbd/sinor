@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="700" height="430" fill="#FFFFFF"/>
+  <text x="350" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">시놀 SEO/AEO/GEO/UX 진단 — 5채널 신호등</text>
+  <text x="350" y="60" text-anchor="middle" font-size="12" fill="#5A6982">실측 2026.08.06 · 근거: 정합기준 정본(GA4·앱 리스팅·루커스튜디오)</text>
+
+  <!-- rows -->
+  <!-- SEO -->
+  <g>
+    <rect x="40" y="82" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="111" r="11" fill="#E8A13A"/>
+    <text x="100" y="106" font-size="16" font-weight="700" fill="#22303A">SEO</text>
+    <rect x="152" y="99" width="52" height="24" rx="12" fill="#FBEFD8"/><text x="178" y="116" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B67C1E">주의</text>
+    <text x="224" y="107" font-size="12.5" fill="#3A4A57">검색이 유입의 57% · 칼럼 191편 보유 · 상위 페이지 제목에 검색어 없음</text>
+    <text x="224" y="126" font-size="12" font-weight="700" fill="#0E5A5A">→ 페이지 제목에 검색어 삽입</text>
+  </g>
+  <!-- ASO -->
+  <g>
+    <rect x="40" y="148" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="177" r="11" fill="#D9534F"/>
+    <text x="100" y="172" font-size="16" font-weight="700" fill="#22303A">ASO</text>
+    <rect x="152" y="165" width="52" height="24" rx="12" fill="#FADEDD"/><text x="178" y="182" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B23A36">위험</text>
+    <text x="224" y="173" font-size="12.5" fill="#3A4A57">App Store 언어가 '영어'만 — 한국 전용인데 한국어 키워드 미인덱싱</text>
+    <text x="224" y="192" font-size="12" font-weight="700" fill="#0E5A5A">→ App Store 한국어 등록</text>
+  </g>
+  <!-- AEO -->
+  <g>
+    <rect x="40" y="214" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="243" r="11" fill="#2E9E6B"/>
+    <text x="100" y="238" font-size="16" font-weight="700" fill="#22303A">AEO</text>
+    <rect x="152" y="231" width="52" height="24" rx="12" fill="#DBF0E4"/><text x="178" y="248" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1F7A4D">양호</text>
+    <text x="224" y="239" font-size="12.5" fill="#3A4A57">시럽인연 페이지에 이미 FAQ 존재 · 구글이 본문 읽는 중 · 표시만 없음</text>
+    <text x="224" y="258" font-size="12" font-weight="700" fill="#0E5A5A">→ FAQPage 스키마 얹기</text>
+  </g>
+  <!-- GEO -->
+  <g>
+    <rect x="40" y="280" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="309" r="11" fill="#E8A13A"/>
+    <text x="100" y="304" font-size="16" font-weight="700" fill="#22303A">GEO</text>
+    <rect x="152" y="297" width="52" height="24" rx="12" fill="#FBEFD8"/><text x="178" y="314" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B67C1E">주의</text>
+    <text x="224" y="305" font-size="12.5" fill="#3A4A57">AI 유입 61명(챗GPT 47) 실측 · 다만 sinor.co.kr이 봇 접근 차단</text>
+    <text x="224" y="324" font-size="12" font-weight="700" fill="#0E5A5A">→ AI 크롤러 허용 확인</text>
+  </g>
+  <!-- UX -->
+  <g>
+    <rect x="40" y="346" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <circle cx="72" cy="375" r="11" fill="#D9534F"/>
+    <text x="100" y="370" font-size="16" font-weight="700" fill="#22303A">UX</text>
+    <rect x="152" y="363" width="52" height="24" rx="12" fill="#FADEDD"/><text x="178" y="380" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B23A36">위험</text>
+    <text x="224" y="371" font-size="12.5" fill="#3A4A57">결제 기본값 무통장 · 광고 직행 랜딩 이탈 75.8% · 앱 유도 도달 1.4%</text>
+    <text x="224" y="390" font-size="12" font-weight="700" fill="#0E5A5A">→ 결제·랜딩·여행 동선 수리</text>
+  </g>
+</svg>

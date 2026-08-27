@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 490" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="640" height="490" fill="#FFFFFF"/>
+  <text x="320" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">AI Overview 인용 비율 × 오가닉 검색 순위</text>
+  <text x="320" y="56" text-anchor="middle" font-size="12.5" fill="#5A6982">구글 상위일수록 AI 답변에 인용될 확률이 높다 (개념도, Ahrefs 조사)</text>
+
+  <!-- y grid + labels -->
+  <g font-size="11" fill="#8A97A8">
+    <line x1="70" y1="410" x2="610" y2="410" stroke="#D3DBE7"/><text x="60" y="414" text-anchor="end">0%</text>
+    <line x1="70" y1="346" x2="610" y2="346" stroke="#EEF2F6"/><text x="60" y="350" text-anchor="end">20%</text>
+    <line x1="70" y1="282" x2="610" y2="282" stroke="#EEF2F6"/><text x="60" y="286" text-anchor="end">40%</text>
+    <line x1="70" y1="218" x2="610" y2="218" stroke="#EEF2F6"/><text x="60" y="222" text-anchor="end">60%</text>
+    <line x1="70" y1="154" x2="610" y2="154" stroke="#EEF2F6"/><text x="60" y="158" text-anchor="end">80%</text>
+    <line x1="70" y1="90" x2="610" y2="90" stroke="#EEF2F6"/><text x="60" y="94" text-anchor="end">100%</text>
+  </g>
+
+  <!-- bars: coral(top)=Not in AIO, blue(bottom)=In AIO -->
+  <g>
+    <rect x="78" y="90" width="38" height="160" fill="#F0A28A"/><rect x="78" y="250" width="38" height="160" fill="#2E7BB0"/>
+    <rect x="132" y="90" width="38" height="188.8" fill="#F0A28A"/><rect x="132" y="278.8" width="38" height="131.2" fill="#2E7BB0"/>
+    <rect x="186" y="90" width="38" height="224" fill="#F0A28A"/><rect x="186" y="314" width="38" height="96" fill="#2E7BB0"/>
+    <rect x="240" y="90" width="38" height="243.2" fill="#F0A28A"/><rect x="240" y="333.2" width="38" height="76.8" fill="#2E7BB0"/>
+    <rect x="294" y="90" width="38" height="259.2" fill="#F0A28A"/><rect x="294" y="349.2" width="38" height="60.8" fill="#2E7BB0"/>
+    <rect x="348" y="90" width="38" height="268.8" fill="#F0A28A"/><rect x="348" y="358.8" width="38" height="51.2" fill="#2E7BB0"/>
+    <rect x="402" y="90" width="38" height="294.4" fill="#F0A28A"/><rect x="402" y="384.4" width="38" height="25.6" fill="#2E7BB0"/>
+    <rect x="456" y="90" width="38" height="300.8" fill="#F0A28A"/><rect x="456" y="390.8" width="38" height="19.2" fill="#2E7BB0"/>
+    <rect x="510" y="90" width="38" height="307.2" fill="#F0A28A"/><rect x="510" y="397.2" width="38" height="12.8" fill="#2E7BB0"/>
+    <rect x="564" y="90" width="38" height="310.4" fill="#F0A28A"/><rect x="564" y="400.4" width="38" height="9.6" fill="#2E7BB0"/>
+  </g>
+
+  <!-- x labels -->
+  <g font-size="11.5" fill="#5A6982" text-anchor="middle">
+    <text x="97" y="430">1</text><text x="151" y="430">2</text><text x="205" y="430">3</text><text x="259" y="430">4</text><text x="313" y="430">5</text>
+    <text x="367" y="430">6</text><text x="421" y="430">7</text><text x="475" y="430">8</text><text x="529" y="430">9</text><text x="583" y="430">10</text>
+  </g>
+  <text x="340" y="454" text-anchor="middle" font-size="12" fill="#5A6982">오가닉 검색 순위 (Organic position)</text>
+
+  <!-- legend -->
+  <rect x="200" y="468" width="14" height="14" fill="#2E7BB0"/><text x="220" y="480" font-size="12" fill="#22303A">AI Overview에 인용됨</text>
+  <rect x="400" y="468" width="14" height="14" fill="#F0A28A"/><text x="420" y="480" font-size="12" fill="#22303A">인용 안 됨</text>
+</svg>

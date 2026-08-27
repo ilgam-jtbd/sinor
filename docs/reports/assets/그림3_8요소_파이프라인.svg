@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <rect width="740" height="430" fill="#FFFFFF"/>
+  <text x="370" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">실전 SEO 8요소 — 무엇을 순서대로 다루는가</text>
+
+  <!-- 샌드박스 bracket (over col3-4 top) -->
+  <path d="M448 92 v-14 h192 v14" fill="none" stroke="#C8552F" stroke-width="2"/>
+  <rect x="512" y="58" width="64" height="22" rx="11" fill="#FBE8E0"/>
+  <text x="544" y="74" text-anchor="middle" font-size="12.5" font-weight="700" fill="#C8552F">샌드박스</text>
+
+  <!-- Row 1 -->
+  <g>
+    <circle cx="110" cy="170" r="64" fill="#0E5A5A"/>
+    <text x="110" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">알고리즘</text>
+
+    <circle cx="290" cy="170" r="64" fill="#12726E"/>
+    <text x="290" y="162" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">시장조사</text>
+    <text x="290" y="182" text-anchor="middle" font-size="11" fill="#DDF0EE">경쟁사 키워드 추출</text>
+
+    <circle cx="470" cy="170" r="64" fill="#12726E"/>
+    <text x="470" y="164" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">도메인</text>
+    <text x="470" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">·호스팅</text>
+
+    <circle cx="640" cy="170" r="64" fill="#12726E"/>
+    <text x="640" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">CMS</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g>
+    <circle cx="110" cy="312" r="64" fill="#2E7BB0"/>
+    <text x="110" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">검색엔진</text>
+    <text x="110" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">등록</text>
+
+    <circle cx="290" cy="312" r="64" fill="#2E7BB0"/>
+    <text x="290" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">외부유입</text>
+    <text x="290" y="326" text-anchor="middle" font-size="11" fill="#DCEAF4">백링크</text>
+
+    <circle cx="470" cy="312" r="64" fill="#2E7BB0"/>
+    <text x="470" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">콘텐츠</text>
+    <text x="470" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">발행</text>
+
+    <circle cx="640" cy="312" r="64" fill="#E8734A"/>
+    <text x="640" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">성과측정</text>
+    <text x="640" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">시스템</text>
+  </g>
+
+  <!-- 백링크 bracket (under col1-2 bottom) -->
+  <path d="M46 388 v14 h384 v-14" fill="none" stroke="#22608C" stroke-width="2"/>
+  <rect x="176" y="402" width="124" height="22" rx="11" fill="#E1EEF7"/>
+  <text x="238" y="418" text-anchor="middle" font-size="12" font-weight="700" fill="#22608C">백링크 (네이버·구글)</text>
+</svg>
