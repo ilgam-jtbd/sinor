@@ -37,8 +37,8 @@
     <circle cx="72" cy="309" r="11" fill="#E8A13A"/>
     <text x="100" y="304" font-size="16" font-weight="700" fill="#22303A">GEO</text>
     <rect x="152" y="297" width="52" height="24" rx="12" fill="#FBEFD8"/><text x="178" y="314" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B67C1E">주의</text>
-    <text x="224" y="305" font-size="12.5" fill="#3A4A57">AI 유입 61명(챗GPT 47) · Googlebot은 통과·색인 / 자동화만 선별 차단</text>
-    <text x="224" y="324" font-size="12" font-weight="700" fill="#0E5A5A">→ AI 크롤러(GPTBot 등) 허용 여부 robots.txt 확인</text>
+    <text x="224" y="305" font-size="12.5" fill="#3A4A57">AI 유입 61명(챗GPT 47) 실측 · 다만 www는 선별적 차단(자동화만)</text>
+    <text x="224" y="324" font-size="12" font-weight="700" fill="#0E5A5A">→ AI 크롤러 허용 확인</text>
   </g>
   <!-- UX -->
   <g>
