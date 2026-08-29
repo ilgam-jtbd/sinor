@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시놀 GA4 고급 — 앱·웹에 실제로 붙이는 법</title>
+<meta name="description" content="시놀·시럽 개발자용 GA4 고급. 앱 스트림 4개 추가(Firebase), purchase 카드·무통장 2경로, 이벤트 코드, DebugView 검증, 개인정보 라벨. 내부용.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --ink:#33302B; --sub:#6E675C; --line:#E8E2D6; --bg:#FFFDF8; --wash:#F7F3EA;
+  --orange:#E37400; --orange-soft:#FBEEDD; --deep:#7A4400;
+  --green:#188038; --green-soft:#E6F4EA; --red:#C5221F; --red-soft:#FCE8E6;
+  --blue:#1A73E8; --blue-soft:#E8F0FE;
+  --term:#2A241C; --term-ink:#F0E6D2; --term-c:#FFC46B; --term-d:#A99878;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:'Pretendard','Apple SD Gothic Neo','맑은 고딕',-apple-system,sans-serif;
+  color:var(--ink);background:var(--bg);font-size:17px;line-height:1.68;word-break:keep-all}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+a{color:var(--blue)} b{font-weight:700}
+code{background:var(--wash);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:14.5px;font-family:Consolas,'Nanum Gothic Coding',monospace}
+nav{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 10px}
+nav a{display:flex;align-items:center;min-height:48px;padding:0 12px;font-size:14.5px;font-weight:600;color:var(--sub);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--orange);border-bottom-color:var(--orange)}
+.lvl{background:var(--wash);border-bottom:1px solid var(--line)}
+.lvl .wrap{display:flex;gap:8px;padding:9px 20px;overflow-x:auto}
+.lvl a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;text-decoration:none;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px 13px}
+.lvl a.cur{background:var(--deep);border-color:var(--deep);color:#fff}
+header{background:linear-gradient(160deg,#5C3300 0%,var(--deep) 55%,#A35B00 100%);color:#fff;padding:48px 0 40px}
+header .eyebrow{font-size:13px;letter-spacing:.14em;font-weight:700;color:#FFD9A0;text-transform:uppercase}
+header h1{font-size:clamp(25px,4.4vw,36px);line-height:1.3;margin:10px 0 10px;font-weight:800}
+header .sub{font-size:17.5px;color:#FFEBD1;max-width:660px}
+section{padding:42px 0 6px}
+.eyebrow2{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--orange)}
+h2{font-size:clamp(21px,3.3vw,27px);margin:6px 0 10px;color:var(--deep);font-weight:800}
+.lede{color:var(--sub);font-size:17px;max-width:700px;margin-bottom:18px}
+h3{font-size:18.5px;margin:24px 0 10px}
+p{margin:0 0 14px}
+.callout{border-left:5px solid var(--orange);background:var(--orange-soft);border-radius:0 12px 12px 0;padding:14px 17px;margin:18px 0;font-size:16px}
+.callout.good{border-color:var(--green);background:var(--green-soft)}
+.callout.bad{border-color:var(--red);background:var(--red-soft)}
+.callout.info{border-color:var(--blue);background:var(--blue-soft)}
+.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.8px}
+.tbl th{background:var(--deep);color:#fff;text-align:left;padding:9px 11px;font-size:13.8px}
+.tbl td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;background:#fff}
+.tbl tr:nth-child(even) td{background:var(--wash)}
+.tbl .b{font-weight:700}
+.tbl-scroll{overflow-x:auto}
+.term{background:var(--term);border-radius:12px;margin:14px 0;overflow:hidden}
+.term .bar{padding:9px 14px;background:#1E1A14;border-bottom:1px solid #4A4032;font-size:12.5px;font-weight:700;color:#E0B36B;letter-spacing:.05em}
+.term pre{margin:0;padding:14px 16px;overflow-x:auto;font-family:Consolas,'Nanum Gothic Coding',monospace;font-size:13.5px;line-height:1.6;color:var(--term-ink);white-space:pre}
+.term .c{color:var(--term-c)} .term .d{color:var(--term-d)}
+.steps{margin:22px 0;padding-left:0}
+.step{list-style:none;position:relative;padding:0 0 24px 56px}
+.step::before{content:"";position:absolute;left:18px;top:42px;bottom:-2px;width:3px;background:var(--line)}
+.step:last-child::before{display:none}
+.step .dot{position:absolute;left:0;top:0;width:38px;height:38px;border-radius:10px;background:var(--deep);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+.step h4{font-size:17.5px;margin-bottom:4px}
+.step p{font-size:15.5px;color:var(--sub);margin-bottom:4px}
+.chk{list-style:none;margin:14px 0;display:grid;gap:9px}
+.chk li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;font-size:15.5px;display:flex;gap:11px;align-items:flex-start;min-width:0;overflow-wrap:anywhere}
+.chk li::before{content:"☐";font-weight:800;color:var(--orange);flex:0 0 auto}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin:14px 0}
+.lk{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff}
+.lk .t{font-size:15.5px;font-weight:700;margin-bottom:3px}
+.lk .u{font-size:12.5px;color:var(--blue);word-break:break-all}
+.lk .d{font-size:14px;color:var(--sub);margin-top:4px}
+.rel{background:var(--wash);border-top:1px solid var(--line);padding:26px 0 10px}
+.rel h3{margin-top:0}
+footer{background:#3A332A;color:#CFC6B8;padding:24px 0 32px;font-size:13.5px}
+footer .wrap{display:grid;gap:5px}
+</style>
+</head>
+<body>
+
+<div class="lvl"><div class="wrap">
+  <a href="../">🌱 초급 — 보는 법</a>
+  <a href="../mid/">🌿 중급 — 설계하는 법</a>
+  <a class="cur" href="./">🌳 고급 — 붙이는 법 (현재 · 개발)</a>
+</div></div>
+
+<nav aria-label="섹션 이동"><div class="wrap">
+  <a href="#s1">① 전체 지도</a><a href="#s2">② 웹 이벤트</a><a href="#s3">③ purchase 2경로</a>
+  <a href="#s4">④ 앱 스트림 4개</a><a href="#s4b">⑤ 구글 연결 지도</a><a href="#s5">⑥ 검증</a><a href="#s6">⑦ 개인정보</a><a href="#s7">⑧ 체크리스트</a><a href="#s9">공식 문서</a>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">SINOR · GA4 LEVEL 3 · DEV · 2026-08</div>
+  <h1>GA4 고급 — 시놀·시럽 앱과 웹에 실제로 붙여요</h1>
+  <p class="sub">중급의 이벤트 명세와 화면 변경 지도를 <b>코드와 콘솔 작업으로</b> 옮기는 페이지예요. 대상: 개발팀(우종선님). 원칙은 하나 — 화면 변경과 측정은 같은 티켓, 같은 배포예요.</p>
+</div></header>
+
+<main>
+
+<!-- 1 -->
+<section id="s1"><div class="wrap">
+  <div class="eyebrow2">PART 1 · 전체 지도</div>
+  <h2>지금 상태와 목표 상태</h2>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>항목</th><th>지금 (실측)</th><th>목표</th></tr></thead><tbody>
+    <tr><td class="b">데이터 스트림</td><td>웹 1개 (G-DLK29GEJDF)</td><td>웹 1 + <b>앱 4</b> (시놀·시럽 × AOS·iOS) — 같은 속성 336035335에</td></tr>
+    <tr><td class="b">purchase</td><td>7개월 20건 (무통장 미기록 추정)</td><td>카드·무통장 <b>2경로 모두</b> 기록 — 기록률 90%+</td></tr>
+    <tr><td class="b">신청 이벤트</td><td>없음</td><td><code>consult_submit</code> · <code>meeting_apply</code> + 중급 명세 전체</td></tr>
+    <tr><td class="b">검색어</td><td>search_term 수집 미확인</td><td>향상된 측정 "사이트 검색" 확인 — 월 4,232명의 검색어 확보</td></tr>
+    <tr><td class="b">외부 연결</td><td>서치콘솔·네이버 전환 미설치</td><td>서치콘솔 링크 + 네이버 전환 스크립트</td></tr>
+  </tbody></table></div>
+  <div class="callout info"><b>플랫폼 전제</b> — 시놀 웹은 아임웹 유력(정본 §7). 아임웹이면 관리자에서 <code>&lt;head&gt;</code> 코드 삽입이 가능해 gtag/GTM을 붙일 수 있어요. 확정 안 됐다면 이 확인이 0순위예요(코워크 확인 요청 문서 참조).</div>
+</div></section>
+
+<!-- 2 -->
+<section id="s2"><div class="wrap">
+  <div class="eyebrow2">PART 2 · 웹</div>
+  <h2>웹 이벤트 — gtag 예시</h2>
+  <p class="lede">중급 명세의 이벤트를 그대로 코드로 옮겨요. 이름·파라미터는 명세가 정본이에요(임의 변경 금지).</p>
+  <div class="term"><div class="bar">신청 완료 — consult_submit / meeting_apply</div>
+<pre><span class="d">// 시럽인연 상담 신청 완료 시점</span>
+gtag('event', 'consult_submit', { source_page: 'internal' });  <span class="d">// 'landing' = 광고 직행</span>
+
+<span class="d">// 단체미팅 신청 완료 시점</span>
+gtag('event', 'meeting_apply', { region: 'busan', month: '2026-09' });</pre></div>
+  <div class="term"><div class="bar">노출·탭 세트 — 앱 배너 예시 (IntersectionObserver로 노출 1회)</div>
+<pre>const seen = new WeakSet();
+new IntersectionObserver((es) =&gt; es.forEach(e =&gt; {
+  if (e.isIntersecting &amp;&amp; !seen.has(e.target)) {
+    seen.add(e.target);
+    gtag('event', 'app_banner_view', { placement: e.target.dataset.place });
+  }
+}), { threshold: 0.5 }).observe(document.querySelector('.app-banner'));
+
+document.querySelector('.app-banner a').addEventListener('click', () =&gt;
+  gtag('event', 'app_banner_tap', { placement: 'home' }));</pre></div>
+  <p style="font-size:14.5px;color:var(--sub)">제한 두 가지만 기억해요 — 이벤트 이름 <b>40자</b>, 이벤트당 파라미터 <b>25개</b>. 그리고 파라미터를 보고서에서 보려면 <b>관리 → 맞춤 정의</b>에 측정기준 등록(이벤트 배포와 동시에 — 소급 안 됨).</p>
+</div></section>
+
+<!-- 3 -->
+<section id="s3"><div class="wrap">
+  <div class="eyebrow2">PART 3 · ⭐ 최우선</div>
+  <h2>purchase 2경로 — 무통장이 빠지면 이번에도 실패예요</h2>
+  <p class="lede">7개월 20건의 원인이 이거예요. 카드 결제는 브라우저에서, <b>무통장 입금은 입금 확인이 오프라인/어드민에서 일어나서</b> 브라우저 이벤트로는 잡을 수 없어요. 경로를 나눠요.</p>
+  <h3>경로 A — 카드 (브라우저, 결제 완료 콜백)</h3>
+  <div class="term"><div class="bar">TossPayments 등 결제 성공 콜백에서</div>
+<pre>gtag('event', 'purchase', {
+  transaction_id: 'T-20260829-0001',   <span class="d">// 중복 방지 키 — 주문번호 그대로</span>
+  value: 49900, currency: 'KRW',
+  items: [{ item_id: 'trip_membership', item_name: '시놀트립 멤버십(1년)' }],
+  method: 'card'
+});</pre></div>
+  <h3>경로 B — 무통장 (서버 → GA4, Measurement Protocol)</h3>
+  <p>어드민에서 <b>입금 확인 처리하는 순간</b>, 서버가 GA4로 직접 쏘는 방식이에요. 구글 공식 기능(Measurement Protocol)이고, <code>api_secret</code>은 GA4 관리 → 데이터 스트림 → 측정 프로토콜 API 비밀번호에서 발급해요.</p>
+  <div class="term"><div class="bar">서버 사이드 — 입금 확인 시점 (예: Node)</div>
+<pre>await fetch(`https://www.google-analytics.com/mp/collect`
+  + `?measurement_id=G-DLK29GEJDF&amp;api_secret=${SECRET}`, {   <span class="d">// SECRET은 환경변수로 — 코드·문서 기재 금지</span>
+  method: 'POST',
+  body: JSON.stringify({
+    client_id: order.gaClientId,   <span class="d">// 주문 생성 때 _ga 쿠키에서 저장해 둔 값</span>
+    events: [{ name: 'purchase', params: {
+      transaction_id: order.id, value: order.amount, currency: 'KRW', method: 'bank'
+    }}]
+  })
+});</pre></div>
+  <div class="callout bad"><b>주문 생성 시 <code>client_id</code>를 저장해 두는 게 열쇠예요.</b> 브라우저의 <code>_ga</code> 쿠키 값(또는 <code>gtag('get', …, 'client_id')</code>)을 주문 레코드에 함께 저장해야, 나중에 서버가 쏘는 purchase가 그 사람의 여정(어디서 왔는지)과 이어져요. 이게 없으면 숫자는 잡혀도 출처 분석이 끊겨요.</div>
+</div></section>
+
+<!-- 4 -->
+<section id="s4"><div class="wrap">
+  <div class="eyebrow2">PART 4 · 앱</div>
+  <h2>앱 스트림 4개 — 시놀·시럽 × AOS·iOS</h2>
+  <p class="lede">같은 속성(336035335)에 추가해요 — 시놀→시럽인연으로 넘어가는 여정을 한 화면에서 봐야 하니까요. 앱에 Firebase가 이미 있어 큰 개발이 아니에요(앱당 반나절 · ASO v5.1 §11).</p>
+  <ol class="steps">
+    <li class="step"><span class="dot">1</span><h4>GA4에서 스트림 추가</h4><p>관리 → 데이터 수집 및 수정 → 데이터 스트림 → 스트림 추가 → Android/iOS. 기존 Firebase 프로젝트(<code>sinor-8b864</code>)를 이 속성에 연결해요.</p></li>
+    <li class="step"><span class="dot">2</span><h4>설정 파일 교체</h4><p>Android: 패키지명 입력(<code>com.sinor.gathering</code> / <code>com.sinor_app_front</code>) → <code>google-services.json</code> 교체. iOS: 번들 ID 입력 → <code>GoogleService-Info.plist</code> 교체. 각 앱 릴리스에 포함.</p></li>
+    <li class="step"><span class="dot">3</span><h4>앱 이벤트 부착</h4><p>중급 명세의 앱 이벤트를 Firebase Analytics로 — <code>logEvent("tab_view", bundleOf("tab" to "home"))</code> 식. 앱 내 결제는 <code>purchase</code>(Play Billing/인앱)로 동일 스키마.</p></li>
+    <li class="step"><span class="dot">4</span><h4>수신 확인</h4><p>실시간 보고서에서 스트림별 <code>first_open</code>이 잡히면 연결 완료. 이때부터 설치·앱 내 행동·앱 결제가 GA4에 보여요.</p></li>
+  </ol>
+  <div class="callout">교차 기기 연결이 필요해지면 <b>user_id</b>(로그인 회원 ID의 해시)를 웹·앱 양쪽에 설정하는 걸 다음 단계로 검토해요 — 시놀↔시럽 계정 구조 확정(정본 §6 가설) 후가 좋아요.</div>
+</div></section>
+
+<!-- 4b 구글 연결 지도 -->
+<section id="s4b"><div class="wrap">
+  <div class="eyebrow2">PART 5 · 구글 생태계</div>
+  <h2>시놀·시럽 구글 연결 지도 — 무엇을, 왜 연결하나</h2>
+  <p class="lede">전부 <b>무료</b>예요. "연결하는 이유"가 시놀 실측과 어떻게 이어지는지까지 적었어요 — 이유가 약한 건 뒤로 미뤄도 돼요.</p>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr>
+    <th style="width:17%">도구</th><th style="width:88px">우선순위</th><th>연결하는 이유 (시놀 관점)</th><th>어떻게</th>
+  </tr></thead><tbody>
+    <tr><td class="b">GTM<br>(태그 관리자)</td><td class="b" style="color:var(--red)">① 지금</td><td>아임웹 <code>&lt;head&gt;</code>에 <b>컨테이너 한 번만</b> 심으면, 이후 이벤트 추가·수정을 <b>개발 배포 없이</b> 콘솔에서 해요. 중급 명세의 웹 이벤트 전부를 GTM으로 운영하면 아임웹 제약을 우회할 수 있어요. 네이버 전환 스크립트도 GTM 안에서 관리</td><td>tagmanager.google.com → 컨테이너 생성 → head 스니펫 1회 삽입 → GA4 구성 태그 + 이벤트 태그</td></tr>
+    <tr><td class="b">Search Console<br>(서치콘솔)</td><td class="b" style="color:var(--red)">① 지금</td><td>유입의 57%가 검색인데 <b>무슨 검색어인지 모르는 상태</b>를 끝내요. 제목 재작성(SEO 로드맵 1단계)의 전후 비교가 여기서만 가능. GA4와 연결하면 검색어→행동을 한 화면에서</td><td>search.google.com/search-console 속성 등록·소유확인 → GA4 관리 → 제품 링크</td></tr>
+    <tr><td class="b">Firebase</td><td class="b" style="color:var(--red)">① 지금</td><td>앱 스트림 4개의 <b>기반</b>(PART 4). 이미 프로젝트(<code>sinor-8b864</code>)가 있어 재사용. 덤으로 <b>FCM 푸시</b>(무료 — 마이 뱃지·대화 알림)·<b>Crashlytics</b>(무료 — 앱 오류 수집)까지 같은 콘솔에서</td><td>기존 프로젝트를 GA4 속성에 연결 (PART 4 절차)</td></tr>
+    <tr><td class="b">Looker Studio</td><td style="color:var(--orange)" class="b">② 곧</td><td>이미 쓰고 있어요(장기 리포트가 루커스튜디오 실측). GA4·서치콘솔을 붙여 <b>대표 보고용 한 장 대시보드</b>로 — 화면 변경 지도(중급 ③)의 목표·가드레일을 한 화면에</td><td>lookerstudio.google.com → GA4·Search Console 커넥터</td></tr>
+    <tr><td class="b">비즈니스 프로필</td><td style="color:var(--orange)" class="b">② 곧</td><td>구글 지도·검색의 회사 패널. <b>GEO(브랜드 엔티티) 전략의 무료 앵커</b> — 시놀(주)를 구글이 "실체 있는 회사"로 인식하게. 언론보도·sameAs와 한 세트</td><td>business.google.com 등록·소유확인</td></tr>
+    <tr><td class="b">Google Ads</td><td style="color:var(--sub)" class="b">③ 나중</td><td>지금 광고는 네이버 중심이라 급하지 않아요. 연결해 두면 GA4 <b>잠재고객</b>(중급 ⑤ — "상담 보고 신청 안 한 사람")으로 리마케팅 가능. <b>전제: purchase·신청 이벤트가 먼저</b> — 전환 없이 광고 연결은 의미 없음</td><td>GA4 관리 → 제품 링크 → Google Ads (집행 시점에)</td></tr>
+    <tr><td class="b">BigQuery</td><td style="color:var(--sub)" class="b">③ 나중</td><td>GA4 원본 데이터 무료 내보내기. 지금은 불필요 — 이벤트가 쌓인 뒤 "무통장 vs 카드 고객 여정 차이" 같은 정밀 분석이 필요해질 때</td><td>GA4 관리 → 제품 링크 → BigQuery (무료 링크)</td></tr>
+    <tr><td class="b">PageSpeed Insights</td><td style="color:var(--orange)" class="b">② 곧</td><td>가드레일 "페이지 로딩 시간"(시니어 회선에 치명적)의 측정기. 화면 변경 전후로 같은 페이지를 재요 — 연결이 아니라 <b>주기 측정 습관</b></td><td>pagespeed.web.dev (설치 불요)</td></tr>
+  </tbody></table></div>
+  <div class="callout"><b>순서가 곧 이유예요</b> — ①(GTM·서치콘솔·Firebase)은 측정 공백을 끝내는 도구라 지금, ②는 측정이 흐르기 시작하면, ③은 데이터가 쌓인 뒤에. 도구를 먼저 늘리는 게 아니라 <b>"보이게 만든다 → 보여준다 → 깊게 판다"</b> 순서예요. 네이버 서치어드바이저(구글 밖)는 서치콘솔과 같은 ①순위로 함께 진행해요 — 시놀은 네이버 유입이 구글의 2.2배니까요.</div>
+</div></section>
+
+<!-- 5 -->
+<section id="s5"><div class="wrap">
+  <div class="eyebrow2">PART 6 · 검증</div>
+  <h2>붙였으면 DebugView로 확인해요</h2>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>어디</th><th>방법</th></tr></thead><tbody>
+    <tr><td class="b">웹</td><td>URL에 <code>?debug_mode=1</code>을 붙여 접속(또는 gtag config에 <code>debug_mode: true</code>) → GA4 관리 → <b>DebugView</b>에서 이벤트가 초 단위로 흐르는지 확인</td></tr>
+    <tr><td class="b">Android</td><td><code>adb shell setprop debug.firebase.analytics.app 패키지명</code> → DebugView</td></tr>
+    <tr><td class="b">iOS</td><td>실행 인자 <code>-FIRDebugEnabled</code> → DebugView</td></tr>
+    <tr><td class="b">무통장 (MP)</td><td>전송 전 <b>/debug/mp/collect</b> 엔드포인트로 보내면 페이로드 검증 응답을 받아요 — 실전 전 여기서 스키마 확인</td></tr>
+  </tbody></table></div>
+  <p>검증 기준은 하나예요 — <b>테스트 결제(카드 1건·무통장 1건)가 둘 다 DebugView에 purchase로 뜨는 것.</b> 그 캡처가 티켓의 완료 증빙이에요.</p>
+</div></section>
+
+<!-- 6 -->
+<section id="s6"><div class="wrap">
+  <div class="eyebrow2">PART 7 · 잊기 쉬운 것</div>
+  <h2>개인정보 — 수집을 켜면 고지도 갱신해요</h2>
+  <ul class="chk">
+    <li>앱에서 분석 수집을 시작하면 <b>Play 데이터 안전 섹션</b>과 <b>App Store 개인정보 라벨</b>을 실제 수집 내용에 맞게 재제출 — 지금 두 앱 모두 "암호화 안 됨" 표시라(정본 §6), ASO의 데이터 안전 재제출과 <b>한 번에</b> 처리하는 게 좋아요</li>
+    <li>개인정보처리방침에 Google 애널리틱스(Firebase 포함) 사용 명시</li>
+    <li>이벤트 파라미터에 <b>개인정보(이름·전화·이메일)를 넣지 않기</b> — 회원 식별이 필요하면 내부 ID의 해시만</li>
+    <li>Measurement Protocol의 <code>api_secret</code>은 환경변수로 — 코드·문서·커밋 어디에도 기재 금지</li>
+  </ul>
+</div></section>
+
+<!-- 7 -->
+<section id="s7"><div class="wrap">
+  <div class="eyebrow2">PART 8 · 완료 기준</div>
+  <h2>배포 전 체크리스트</h2>
+  <ul class="chk">
+    <li>이벤트 이름·파라미터가 중급 명세와 100% 일치 (임의 명명 없음)</li>
+    <li>노출·탭·전환 3종이 세트로 들어감 (하나만 있는 기능 없음)</li>
+    <li>맞춤 측정기준 등록을 이벤트 배포와 같은 날 완료</li>
+    <li>카드·무통장 테스트 purchase가 DebugView에서 확인됨 (캡처 첨부)</li>
+    <li>주문 레코드에 client_id 저장 로직 포함</li>
+    <li>앱 4스트림 first_open 수신 확인</li>
+    <li>서치콘솔 연결 + 네이버 전환 스크립트 설치</li>
+    <li>Play 데이터 안전·iOS 라벨 재제출 일정 잡힘</li>
+    <li>측정 배포 후 화면 변경 착수 (순서 역전 금지 — 중급 ③ 지도)</li>
+  </ul>
+</div></section>
+
+<!-- 공식 문서 -->
+<section id="s9"><div class="wrap">
+  <div class="eyebrow2">근거</div>
+  <h2>구글 공식 문서 — 고급용</h2>
+  <div class="links">
+    <div class="lk"><div class="t">전자상거래 측정 (purchase) — 개발자 문서</div><div class="u">developers.google.com/analytics/devguides/collection/ga4/ecommerce?hl=ko</div><div class="d">purchase 이벤트 공식 스키마 (PART 3-A)</div></div>
+    <div class="lk"><div class="t">Measurement Protocol (GA4) — 개발자 문서</div><div class="u">developers.google.com/analytics/devguides/collection/protocol/ga4?hl=ko</div><div class="d">서버→GA4 전송 — 무통장 경로의 공식 근거 (PART 3-B)</div></div>
+    <div class="lk"><div class="t">Firebase 애널리틱스 시작하기</div><div class="u">firebase.google.com/docs/analytics/get-started?hl=ko</div><div class="d">앱 스트림·logEvent (PART 4)</div></div>
+    <div class="lk"><div class="t">[GA4] DebugView에서 이벤트 확인</div><div class="u">support.google.com/analytics/answer/7201382?hl=ko</div><div class="d">웹·앱 디버그 검증 (PART 5)</div></div>
+    <div class="lk"><div class="t">[GA4] 웹사이트·앱에 애널리틱스 설정</div><div class="u">support.google.com/analytics/answer/9304153?hl=ko</div><div class="d">스트림 추가의 전체 그림 (PART 4)</div></div>
+    <div class="lk"><div class="t">Google 태그 관리자 도움말</div><div class="u">support.google.com/tagmanager?hl=ko</div><div class="d">gtag 대신 GTM으로 운영할 경우</div></div>
+  </div>
+  <p style="font-size:14px;color:var(--sub)">링크가 안 열리면 각 도움말 홈에서 제목으로 검색하세요.</p>
+</div></section>
+
+<!-- 함께 보기 -->
+<section class="rel"><div class="wrap">
+  <h3>함께 보는 시놀 페이지</h3>
+  <div class="links">
+    <div class="lk"><div class="t">🌿 GA4 중급 — 이벤트 명세·화면 변경 지도</div><div class="u"><a href="../mid/">/ga4/mid/</a></div><div class="d">이 페이지가 구현하는 명세의 정본</div></div>
+    <div class="lk"><div class="t">🌱 GA4 초급 — 보는 법</div><div class="u"><a href="../">/ga4/</a></div><div class="d">PO·실무자 온보딩</div></div>
+    <div class="lk"><div class="t">SEO·AEO·GEO 학습자료</div><div class="u"><a href="../../learn/">/learn/</a></div><div class="d">서치콘솔·크롤러·제목 재작성 — 측정과 한 몸</div></div>
+    <div class="lk"><div class="t">개발팀 토큰 최적화</div><div class="u"><a href="../../devops/">/devops/</a></div><div class="d">Claude Code·Codex 운영</div></div>
+  </div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">
+  <div><b style="color:#fff">시놀 GA4 고급</b> · 2026-08-29 · 내부용 (대외비)</div>
+  <div>수치·현황 출처 — 정합기준 정본(2026-08) · ASO 설계 v5.1 §11 · 키워드관리 요구서 v1.0 §8</div>
+  <div>구현 근거 — Google 애널리틱스·Firebase 공식 개발자 문서(한국어) · api_secret 등 실값은 문서 미기재 원칙</div>
+</div></footer>
+
+</body>
+</html>
