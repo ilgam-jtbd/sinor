@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시놀 워크허브 — 모든 작업이 여기서 이어져요</title>
+<meta name="description" content="시놀 내부 작업 허브 — 우선순위, 최지영님 시작 순서, 라이브 페이지 지도, 키워드 관리 3문서 담당별 액션, 운영보드. 내부용.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --ink:#22303A; --sub:#5A6982; --line:#DCE4E4; --bg:#FFFFFF; --wash:#F4F7F7;
+  --teal:#0E5A5A; --teal2:#12726E; --coral:#E8734A; --coral-soft:#FDF0EA;
+  --blue:#2E7BB0; --blue-soft:#EDF4FA; --green:#2E9E6B; --green-soft:#E9F5EF;
+  --red:#C0392B; --red-soft:#FBEBE8; --amber:#B67C1E; --amber-soft:#FBF3E1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:'Pretendard','Apple SD Gothic Neo','맑은 고딕',-apple-system,sans-serif;
+  color:var(--ink);background:var(--bg);font-size:17px;line-height:1.68;word-break:keep-all}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+a{color:var(--blue)} b{font-weight:700}
+code{background:var(--wash);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:14px;font-family:Consolas,monospace}
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 10px}
+nav a{display:flex;align-items:center;min-height:48px;padding:0 12px;font-size:14.5px;font-weight:600;color:var(--sub);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--teal);border-bottom-color:var(--teal)}
+header{background:linear-gradient(150deg,#0B4A4A 0%,var(--teal2) 62%,#15807A 100%);color:#fff;padding:48px 0 40px}
+header .eyebrow{font-size:13px;letter-spacing:.14em;font-weight:700;color:#9FD4CB;text-transform:uppercase}
+header h1{font-size:clamp(25px,4.4vw,36px);line-height:1.3;margin:10px 0 8px;font-weight:800}
+header .sub{font-size:17.5px;color:#D7EAE6;max-width:660px}
+section{padding:42px 0 6px}
+.eyebrow2{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--coral)}
+h2{font-size:clamp(21px,3.3vw,27px);margin:6px 0 10px;color:var(--teal);font-weight:800}
+.lede{color:var(--sub);font-size:17px;max-width:700px;margin-bottom:18px}
+h3{font-size:18.5px;margin:24px 0 10px}
+p{margin:0 0 14px}
+.callout{border-left:5px solid var(--coral);background:var(--coral-soft);border-radius:0 12px 12px 0;padding:14px 17px;margin:18px 0;font-size:16px}
+.callout.blue{border-color:var(--blue);background:var(--blue-soft)}
+.callout.green{border-color:var(--green);background:var(--green-soft)}
+.prio{display:grid;gap:12px;margin:18px 0}
+.prio .p{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.prio .n{flex:0 0 40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:17px}
+.prio .p h4{font-size:17px;margin-bottom:3px}
+.prio .p p{font-size:15px;color:var(--sub);margin:0}
+.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+.tbl th{background:var(--teal);color:#fff;text-align:left;padding:9px 11px;font-size:14px}
+.tbl td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;background:#fff}
+.tbl tr:nth-child(even) td{background:var(--wash)}
+.tbl .b{font-weight:700}
+.tbl-scroll{overflow-x:auto}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0}
+.lk{border:1px solid var(--line);border-radius:14px;padding:15px 17px;background:#fff}
+.lk .t{font-size:16px;font-weight:700;margin-bottom:3px}
+.lk .u{font-size:13px;word-break:break-all}
+.lk .d{font-size:14px;color:var(--sub);margin-top:5px}
+.lk .who{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:700;border-radius:12px;padding:3px 10px;background:var(--wash);color:var(--teal2);border:1px solid var(--line)}
+.file{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:8px 0;font-size:15.5px}
+.file .no{flex:0 0 30px;height:30px;border-radius:8px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:800}
+.file b{font-family:Consolas,monospace;font-size:14.5px}
+.file span{color:var(--sub);font-size:14.5px}
+.pill{display:inline-block;font-size:12.5px;font-weight:800;border-radius:12px;padding:3px 10px;color:#fff;margin-right:6px}
+.pill.r{background:var(--red)}.pill.b{background:var(--blue)}.pill.g{background:var(--green)}
+footer{margin-top:44px;background:var(--ink);color:#B9C4CE;padding:24px 0 32px;font-size:13.5px}
+footer .wrap{display:grid;gap:5px}
+</style>
+</head>
+<body>
+
+<nav aria-label="섹션 이동"><div class="wrap">
+  <a href="#s1">① 지금 우선순위</a><a href="#s2">② 최지영님 시작</a><a href="#s3">③ 라이브 페이지</a>
+  <a href="#s4">④ 키워드 3문서</a><a href="#s5">⑤ 스케줄 보드</a><a href="#s6">⑥ 문서 저장소</a>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">SINOR WORK HUB · 2026-08</div>
+  <h1>시놀 워크허브 — 지금까지 만든 게 전부 여기서 이어져요</h1>
+  <p class="sub">프로토타입·운영보드·학습 페이지·키워드 문서·온보딩 패키지가 흩어지지 않게 한 장으로 묶었어요. 새 멤버는 이 페이지 하나만 받으면 돼요.</p>
+</div></header>
+
+<main>
+
+<!-- 1 -->
+<section id="s1"><div class="wrap">
+  <div class="eyebrow2">① 방향</div>
+  <h2>지금 우선순위 — 개편은 기획, 개발은 안정과 운영부터</h2>
+  <p class="lede">앱·웹 전면 개편은 <b>기획을 계속 진행하되</b>, 개발 착수는 아래 순서가 먼저예요. (신진영 이사님 의견 + PO 동일 판단 — KPI 주간회의가 돌아가려면 이 기반이 먼저 서야 해요.)</p>
+  <div class="prio">
+    <div class="p"><span class="n" style="background:var(--red)">1</span><div><h4>시스템 안정</h4><p>지금 서비스가 흔들리지 않는 것이 모든 것의 전제예요.</p></div></div>
+    <div class="p"><span class="n" style="background:var(--coral)">2</span><div><h4>실무자 백오피스 · 운영보드</h4><p>운영보드(v1.13)로 일정·QA를 한 화면에서, 백오피스로 실무자가 직접 처리하게.</p></div></div>
+    <div class="p"><span class="n" style="background:var(--amber)">3</span><div><h4>영업관리 (SFA)</h4><p>상담→매칭→결제의 영업 파이프라인이 시스템에 있어야 <b>KPI 주간회의</b>가 숫자로 돌아가요.</p></div></div>
+    <div class="p"><span class="n" style="background:var(--teal2)">4</span><div><h4>전면 개편 (P01) — 기획 트랙</h4><p>4대 메뉴 개편은 기획·목업·측정 설계를 계속 진행하고, 개발 투입은 위 1~3 이후 보드 일정대로.</p></div></div>
+  </div>
+  <div class="callout"><b>의사결정 라인</b> — 모든 결정은 <b>김민지 대표님·신진영 이사님과 확인</b> 후 진행해요. 문서의 빨간 칸이 그 자리예요.</div>
+</div></section>
+
+<!-- 2 -->
+<section id="s2"><div class="wrap">
+  <div class="eyebrow2">② 온보딩</div>
+  <h2>최지영님 — 여기부터 이 순서로 보세요</h2>
+  <p class="lede">받으신 파일 패키지(v3.1)는 이 순서로 열면 30분이면 전체 그림이 잡혀요. 파일명이 영문인 건 압축 한글 깨짐 방지용이고 내용은 전부 한글이에요.</p>
+  <div class="file"><span class="no">1</span><div><b>01_start_here_guide.docx</b><br><span>실무자 안내 — 전체 목차 한 장. 여기부터</span></div></div>
+  <div class="file"><span class="no">2</span><div><b>06_prototype.html</b><br><span>동작하는 화면 — 더블클릭. 온라인은 아래 프로토타입 링크와 같아요</span></div></div>
+  <div class="file"><span class="no">3</span><div><b>02_app_screen_spec.docx</b><br><span>앱 화면 기획서 — 4대 메뉴·화면 구성·대화 확장</span></div></div>
+  <div class="file"><span class="no">4</span><div><b>03_web_requirements.docx</b><br><span>웹 개발 요구서 — 매출 우선 IA·웹뷰 두 맥락·검색 채널</span></div></div>
+  <div class="file"><span class="no">5</span><div><b>05_screen_mockup.pptx</b><br><span>화면 목업 11장 (발표 노트 포함)</span></div></div>
+  <div class="file"><span class="no">6</span><div><b>04_dev_work_prompt.docx</b><br><span>개발자 작업 지시 — 개발 전달용이라 마지막에</span></div></div>
+
+  <h3>v3.1에서 바뀐 것 — 한 줄이에요</h3>
+  <p>4대 메뉴가 <b>홈 · 모임 · 여가 · 만남</b>으로 확정됐어요. 여행은 없어진 게 아니라 <b>여가의 하위</b>로 들어갔어요(여가 = 여행·문화공연·배움·운세재미). 대메뉴 이름만 '여가'로 바뀌고, 시놀트립·이번 주 여행 같은 <b>상품 이름은 '여행' 그대로</b>예요.</p>
+
+  <h3>회신은 파란 칸만 채우면 돼요</h3>
+  <p><span class="pill r">빨강</span>대표님·이사님(경영 판단) <span class="pill b">파랑</span><b>PO·UX — 최지영님 자리예요</b> <span class="pill g">초록</span>개발(우종선님). 문서와 화면이 다르면 <b>화면이 기준</b>이에요.</p>
+  <div class="callout blue"><b>GA4는 짝꿍 페이지가 있어요</b> — 오늘 물어보신 측정 쪽은 <a href="../ga4/">GA4 초급(보는 법)</a>부터 시작하시고, 개편 기획과 이어지는 건 <a href="../ga4/mid/">중급의 "화면 변경 측정 지도"</a>예요. 정식 합류 후 태그매니저·플레이콘솔 권한이 나오면 직접 작업 예정 — 그때까지는 기준선 기록이 최지영님 몫이에요.</div>
+</div></section>
+
+<!-- 3 -->
+<section id="s3"><div class="wrap">
+  <div class="eyebrow2">③ 지도</div>
+  <h2>라이브 페이지 — 전부 링크로 열려요</h2>
+  <div class="links">
+    <div class="lk"><div class="t">📱 앱·웹 프로토타입 (v3.1)</div><div class="u"><a href="../">ilgam-jtbd.github.io/sinor/</a></div><div class="d">4대 메뉴가 실제로 동작하는 화면 — 문서와 다르면 이게 기준</div><span class="who">전원</span></div>
+    <div class="lk"><div class="t">📅 운영보드 (v1.13)</div><div class="u"><a href="../board/">/board/</a></div><div class="d">스케줄·이슈·QA 한 화면 — 관리 포인트는 전부 여기로</div><span class="who">PO · 개발</span></div>
+    <div class="lk"><div class="t">🗂 백오피스 설계 목업</div><div class="u"><a href="../admin.html">/admin.html</a></div><div class="d">우선순위 ②의 밑그림 — 12개 섹션 + QA/그로스</div><span class="who">PO · 개발</span></div>
+    <div class="lk"><div class="t">🔍 SEO·AEO·GEO 학습자료</div><div class="u"><a href="../learn/">/learn/</a></div><div class="d">검색 57%의 전략 — 대표·실무자 공용 교재</div><span class="who">전원</span></div>
+    <div class="lk"><div class="t">📊 GA4 시리즈 (초·중·고급)</div><div class="u"><a href="../ga4/">/ga4/</a> · <a href="../ga4/mid/">mid</a> · <a href="../ga4/pro/">pro</a></div><div class="d">보는 법 → 설계하는 법(화면 변경 측정 지도) → 붙이는 법(앱 스트림·purchase 2경로·구글 연결 지도)</div><span class="who">최지영 → 개발</span></div>
+    <div class="lk"><div class="t">⚙️ 개발팀 토큰 최적화</div><div class="u"><a href="../devops/">/devops/</a></div><div class="d">Claude Code·Codex 운영 — 공식 출처만으로 검증됨</div><span class="who">개발</span></div>
+  </div>
+  <p style="font-size:14px;color:var(--sub)">디자인 아티팩트(클릭 편집용): claude.ai/code/artifact/bac52e13… — 패키지 READ_ME에 전체 주소가 있어요.</p>
+</div></section>
+
+<!-- 4 -->
+<section id="s4"><div class="wrap">
+  <div class="eyebrow2">④ 키워드 관리</div>
+  <h2>키워드 3문서 — 어제 회의 7번의 후속이에요</h2>
+  <div class="callout"><b>핵심 숫자 하나</b> — <b>오늘의운세 월 525만 검색</b>, 결정사(11,020)의 <b>476배</b>. 시놀이 이미 가진 운세·사주가 최대 유입구예요.</div>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:34%">문서</th><th>무엇</th></tr></thead><tbody>
+    <tr><td class="b">① ASO 키워드 설계 v5.1</td><td>스토어 문구 전체안(글자수 검증 완료). 앱 이름 확정안: <b>시놀 - 시니어 5060 만남 소개팅 모임 운세 앱</b>. <b>모든 판단의 기준 문서</b></td></tr>
+    <tr><td class="b">② 어드민 키워드 관리 요구사항 v1.0</td><td>admin.senor.co.kr 신규 메뉴 개발 정의서 (Codex 붙여넣기 프롬프트 포함)</td></tr>
+    <tr><td class="b">③ sinor_keywords_seed_v1</td><td>1차 키워드 67건 — 네이버 키워드도구 실측 기반 (엑셀 필터 적용본)</td></tr>
+  </tbody></table></div>
+  <h3>담당별 — 시스템 안정 이후, 확인란만 채워 주세요</h3>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:22%">누가</th><th>무엇을</th></tr></thead><tbody>
+    <tr><td class="b">우종선 님 <span class="pill g" style="margin-left:4px">초록</span></td><td>v5.1로 스토어 문구 교체 — <b>App Store 한국어 등록이 최우선</b>(미등록이라 iOS 검색에 안 걸려요) · GA4 앱 스트림 4개(<a href="../ga4/pro/">고급 페이지 PART 4</a>, 앱당 반나절) · 정의서 초록 확인란 회신</td></tr>
+    <tr><td class="b">최지영 님 <span class="pill b" style="margin-left:4px">파랑</span></td><td>앱 스트림 연결 후 first_open·purchase 측정 설계(<a href="../ga4/mid/">중급 지도</a>) · <b>교체 전 기준선 기록</b> · 정의서 파란 확인란(클러스터·/fortune 경로)</td></tr>
+    <tr><td class="b">박지영 님</td><td><b>웹 오늘의운세 페이지 신설이 최대 과제</b> · FAQ는 v5.1 9장 질의응답 그대로 · 이미지 파일명·alt 규칙은 10장</td></tr>
+    <tr><td class="b">김민지 대표님 <span class="pill r" style="margin-left:4px">빨강</span></td><td>결정 2건 — ① 어드민 디자인 통일 먼저 vs 키워드 메뉴 바로 추가 ② 앱 이름에 운세 반영 승인(유입 우선으로 반영해 둔 상태)</td></tr>
+  </tbody></table></div>
+  <p style="font-size:14px;color:var(--sub)">참조 주신 onthe.ai/healthcare는 어드민 메뉴 설계 때 추가 검토 예정이에요.</p>
+</div></section>
+
+<!-- 5 -->
+<section id="s5"><div class="wrap">
+  <div class="eyebrow2">⑤ 관리 포인트</div>
+  <h2>스케줄은 운영보드가 정본이에요</h2>
+  <p class="lede">P01(4대 메뉴)~P08(단체미팅 프로세스)까지 프로젝트 8개가 CRITICAL/TIER1/TIER2로 보드에 올라 있어요. 일정 질문이 생기면 문서 말고 <b>보드부터</b> 여세요.</p>
+  <div class="links">
+    <div class="lk"><div class="t">📅 스케줄 보드 열기</div><div class="u"><a href="../board/">ilgam-jtbd.github.io/sinor/board/</a></div><div class="d">간트(프로젝트별·이슈별·담당자별) · 이슈 · QA · 릴리즈 — 로그인 없이 열람(예시 배포)</div></div>
+  </div>
+  <p style="font-size:14px;color:var(--sub)">정식 운영 전 필수 3가지(보드 README): Firebase 연결 · 관리자 비밀번호 변경 · 공개 노출 처리. 지금 상태는 "예시 공개"예요.</p>
+</div></section>
+
+<!-- 6 -->
+<section id="s6"><div class="wrap">
+  <div class="eyebrow2">⑥ 더 깊이</div>
+  <h2>저장소 문서 — 수치·규칙의 원본</h2>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:44%">문서 (repo: ilgam-jtbd/sinor · docs/)</th><th>역할</th></tr></thead><tbody>
+    <tr><td><code>03_정합기준_정본_2026-08.md</code></td><td class="b">모든 수치의 단일 출처 — 다른 숫자와 다르면 정본이 맞아요</td></tr>
+    <tr><td><code>11_IA_메뉴개편_2026-08.md</code></td><td>홈·모임·여가·만남 확정 근거</td></tr>
+    <tr><td><code>reports/시놀_SEO·AEO·GEO_학습정리…</code></td><td>/learn/의 원본 + 그림 SVG</td></tr>
+    <tr><td><code>prompts/시놀_발행킷_20260827.md</code></td><td>유튜브 링크 표준 블록·UTM·sameAs</td></tr>
+    <tr><td><code>09_백오피스_설계서_v1.0.md</code></td><td>우선순위 ② 설계서 (충돌 자동 Hold 규칙 포함)</td></tr>
+  </tbody></table></div>
+  <div class="callout green"><b>대외비 원칙</b> — docx·pptx 원본 파일은 웹·저장소에 올리지 않아요(요약본만). 패키지 파일은 받은 채널(카톡·슬랙)에서 보관하고, 이 허브에는 이름과 순서만 둬요.</div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">
+  <div><b style="color:#fff">시놀 워크허브</b> · 2026-08-29 · 내부용 (대외비)</div>
+  <div>우선순위 — 신진영 이사님 의견 + PO 판단 · 최종 결정은 대표님·이사님 라인</div>
+  <div>수치 출처 — 정합기준 정본(2026-08) · ASO v5.1 · 운영보드 v1.13</div>
+</div></footer>
+
+</body>
+</html>
