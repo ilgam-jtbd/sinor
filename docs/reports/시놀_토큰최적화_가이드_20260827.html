@@ -329,9 +329,9 @@ paths:
 
   <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:18%">구분</th><th style="width:26%">Claude Code</th><th>Codex</th></tr></thead><tbody>
     <tr><td>규칙 파일</td><td><code>CLAUDE.md</code></td><td><code>AGENTS.md</code> — <code>agents.md</code> 오픈 스펙(agentsmd, 2025-08 · OpenAI 주도, Google·Cursor 등 공동). Gemini CLI·Copilot 등도 같은 형식</td></tr>
-    <tr><td>탐색 위치</td><td>루트 + 하위 폴더</td><td>git 루트→작업폴더의 모든 <code>AGENTS.md</code>를 <b>이어붙임</b>(root 먼저) + 홈 <code>~/.codex/AGENTS.md</code>. 디렉터리별 덮어쓰기는 별도 파일 <code>AGENTS.override.md</code></td></tr>
+    <tr><td>탐색 위치</td><td>루트 + 하위 폴더</td><td>홈(<code>~/.codex</code>) 1개 → git 루트에서 작업폴더로 내려가며 <b>디렉터리당 최대 1파일</b>(<code>AGENTS.override.md</code> &gt; <code>AGENTS.md</code> &gt; fallback명)을 <b>이어붙임</b> — <b>작업폴더에 가까운 파일이 뒤에 붙어 우선</b>. 매 실행마다 체인 재구성(캐시 없음)</td></tr>
     <tr><td>생성·로드 확인</td><td><code>/memory</code></td><td><b><code>/init</code></b> = AGENTS.md 스캐폴드 생성 · <code>/status</code> = <b>컨텍스트 사용량</b>·rate limit (공식 문서) · <code>/debug-config</code>(CLI)</td></tr>
-    <tr><td>컨텍스트 관리</td><td><code>/context</code> · <code>/compact</code> · <code>/clear</code> · <code>/btw</code></td><td><code>/compact</code>(수동) + 자동 압축 · <b><code>/side</code></b> = 메인을 끊지 않는 곁가지 대화(<code>/btw</code> 대응). AGENTS.md는 <b>32KB 상한</b>(초과분 잘림·설정 가능)</td></tr>
+    <tr><td>컨텍스트 관리</td><td><code>/context</code> · <code>/compact</code> · <code>/clear</code> · <code>/btw</code></td><td><code>/compact</code>(수동) + 자동 압축 · <b><code>/side</code></b> = 메인을 끊지 않는 곁가지 대화(<code>/btw</code> 대응). AGENTS.md는 기본 <b>32KiB 상한</b> — 공식 안내: <b>상한에 걸리면 한도를 올리거나 중첩 디렉터리로 분할</b></td></tr>
   </tbody></table></div>
 
   <div class="term">
@@ -359,7 +359,7 @@ paths:
   <div class="callout blue"><b>Codex에서 토큰이 빨리 닳는 가장 흔한 이유</b>는 배경 설명을 프롬프트에 매번 길게 붙이는 것입니다. 반복되는 배경은 프롬프트가 아니라 AGENTS.md에 한 번만 적고, 프롬프트에는 <b>이번에 할 일</b>만 씁니다.</div>
 
   <div class="callout"><b>두 파일이 갈라지지 않게 —</b> 공통 규칙(보안·수치·금지어)은 한쪽을 정본으로 정하고 다른 쪽은 <b>포인터</b>로 둡니다. 같은 규칙을 양쪽에 복사해 두면 한쪽만 고쳐지고 두 도구가 다르게 동작합니다. 이 저장소는 <code>CLAUDE.md</code>를 정본으로 하고 <code>AGENTS.md</code>에는 "공통 규칙은 CLAUDE.md 참조" 한 줄을 두는 방식을 권합니다.</div>
-  <p style="font-size:15px;color:var(--sub)">참고 — Codex도 <b>서브에이전트·훅·MCP를 공식 지원</b>합니다(공식 문서 <code>agent-configuration/subagents</code> · <code>hooks</code> · <code>extend/mcp</code> 페이지 존재 확인). 컨텍스트 분리 위임(③장)의 원칙은 두 도구 모두에 적용됩니다.</p>
+  <p style="font-size:15px;color:var(--sub)">참고 — Codex도 <b>서브에이전트·훅·MCP를 공식 지원</b>합니다(공식 문서 본문 확인). 서브에이전트: 기본 3종 <code>default</code>·<code>worker</code>·<code>explorer</code> + <code>.codex/agents/*.toml</code> 커스텀, CLI <code>/agent</code>로 스레드 전환 — <b>컨텍스트 오염·rot 완화(요약만 반환)가 공식 근거</b>이며 "싱글런보다 토큰을 더 쓴다"고 공식 명시(읽기 중심 병렬에 권장). 훅: <code>.codex/hooks.json</code>·<code>config.toml</code>, <b>Codex CLI에는 <code>/hooks</code> 커맨드가 있음</b>(Claude Code는 설정 파일로만). 컨텍스트 분리 위임(③장)의 원칙은 두 도구 모두에 적용됩니다.</p>
 </div></section>
 
 <!-- 6 저장소 적용 -->
@@ -418,7 +418,7 @@ paths:
   </div>
   <h3>OpenAI — Codex 공식 · 오픈 스펙</h3>
   <div class="links">
-    <div class="lk"><div class="t">learn.chatgpt.com — 공식 문서 홈 (2026-08 URL 이전)</div><div class="u">/llms.txt 인덱스 · 페이지 URL+.md = 마크다운 · docs/agent-configuration/agents-md · docs/extend/mcp · docs/hooks · docs/agent-configuration/subagents</div><div class="d">Slash commands 공식 확인 — /compact·/status(컨텍스트 사용량)·/init(AGENTS.md 스캐폴드)·/mcp·/side(곁가지)</div></div>
+    <div class="lk"><div class="t">learn.chatgpt.com — 공식 문서 홈 (2026-08 URL 이전)</div><div class="u">/llms.txt 인덱스 · 페이지 URL+.md = 마크다운 · docs/agent-configuration/agents-md · docs/extend/mcp · docs/hooks · docs/agent-configuration/subagents</div><div class="d">본문 확인 완료(2026-08-29) — /compact·/status·/init(AGENTS.md 스캐폴드)·/mcp·/side·/agent·/hooks(Codex CLI) · AGENTS.md 탐색·32KiB 분할 안내 · 서브에이전트·훅 공식</div></div>
     <div class="lk"><div class="t">github.com/openai/codex</div><div class="u">core/agents_md.rs · compact.rs · tui/slash_command.rs · config/defaults.toml</div><div class="d">AGENTS.md 탐색·이어붙임, /compact·자동압축, /debug-config(CLI), 32KB 상한</div></div>
     <div class="lk"><div class="t">agents.md — 오픈 스펙</div><div class="u">github.com/agentsmd/agents.md</div><div class="d">크로스벤더 표준(2025-08, OpenAI 주도 · Google·Cursor 등 공동)</div></div>
   </div>
