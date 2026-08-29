@@ -330,8 +330,8 @@ paths:
   <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:18%">구분</th><th style="width:26%">Claude Code</th><th>Codex</th></tr></thead><tbody>
     <tr><td>규칙 파일</td><td><code>CLAUDE.md</code></td><td><code>AGENTS.md</code> — <code>agents.md</code> 오픈 스펙(agentsmd, 2025-08 · OpenAI 주도, Google·Cursor 등 공동). Gemini CLI·Copilot 등도 같은 형식</td></tr>
     <tr><td>탐색 위치</td><td>루트 + 하위 폴더</td><td>git 루트→작업폴더의 모든 <code>AGENTS.md</code>를 <b>이어붙임</b>(root 먼저) + 홈 <code>~/.codex/AGENTS.md</code>. 디렉터리별 덮어쓰기는 별도 파일 <code>AGENTS.override.md</code></td></tr>
-    <tr><td>로드 확인</td><td><code>/memory</code></td><td><code>/status</code> · <code>/debug-config</code> (또는 <code>codex doctor</code>)</td></tr>
-    <tr><td>컨텍스트 관리</td><td><code>/context</code> · <code>/compact</code> · <code>/clear</code></td><td><code>/compact</code>(수동) + 자동 압축 모두 지원. AGENTS.md는 <b>32KB 상한</b>(초과분 잘림·설정 가능)</td></tr>
+    <tr><td>생성·로드 확인</td><td><code>/memory</code></td><td><b><code>/init</code></b> = AGENTS.md 스캐폴드 생성 · <code>/status</code> = <b>컨텍스트 사용량</b>·rate limit (공식 문서) · <code>/debug-config</code>(CLI)</td></tr>
+    <tr><td>컨텍스트 관리</td><td><code>/context</code> · <code>/compact</code> · <code>/clear</code> · <code>/btw</code></td><td><code>/compact</code>(수동) + 자동 압축 · <b><code>/side</code></b> = 메인을 끊지 않는 곁가지 대화(<code>/btw</code> 대응). AGENTS.md는 <b>32KB 상한</b>(초과분 잘림·설정 가능)</td></tr>
   </tbody></table></div>
 
   <div class="term">
@@ -374,7 +374,7 @@ paths:
       <div class="j">완료 기준 — 새 세션 <code>/context</code>에서 규칙 항목이 줄어듦</div></li>
     <li class="step"><span class="dot">3</span><h4>AGENTS.md 신설</h4>
       <p>Codex용 골격을 만들고, 공통 규칙은 CLAUDE.md를 가리키게 합니다. 출력 규칙(로그 3줄, 변경분만)을 반드시 포함합니다.</p>
-      <div class="j">완료 기준 — Codex <code>/status</code>·<code>/debug-config</code>(또는 <code>codex doctor</code>)로 로드 확인</div></li>
+      <div class="j">완료 기준 — <code>/init</code> 스캐폴드로 시작, Codex <code>/status</code>·<code>/debug-config</code>로 로드 확인</div></li>
     <li class="step"><span class="dot">4</span><h4>조사 위임 에이전트 정의</h4>
       <p><code>.claude/agents/researcher.md</code>에 "경로와 결론만 반환" 규칙을 넣어 둡니다. 저장소 탐색·로그 분석은 전부 이쪽으로 보냅니다.</p>
       <div class="j">완료 기준 — 조사 작업 후 메인 세션에 파일 본문이 안 남음</div></li>
@@ -417,7 +417,8 @@ paths:
   </div>
   <h3>OpenAI — Codex 공식 · 오픈 스펙</h3>
   <div class="links">
-    <div class="lk"><div class="t">github.com/openai/codex</div><div class="u">core/agents_md.rs · compact.rs · tui/slash_command.rs · config/defaults.toml</div><div class="d">AGENTS.md 탐색·이어붙임, /compact·자동압축, /status·/debug-config, 32KB 상한</div></div>
+    <div class="lk"><div class="t">learn.chatgpt.com — 공식 문서 홈 (2026-08 URL 이전)</div><div class="u">learn.chatgpt.com · /llms.txt 인덱스 · 페이지 URL+.md = 마크다운</div><div class="d">Slash commands 공식 페이지 — /compact·/status(컨텍스트 사용량)·/init(AGENTS.md 스캐폴드)·/mcp·/side</div></div>
+    <div class="lk"><div class="t">github.com/openai/codex</div><div class="u">core/agents_md.rs · compact.rs · tui/slash_command.rs · config/defaults.toml</div><div class="d">AGENTS.md 탐색·이어붙임, /compact·자동압축, /debug-config(CLI), 32KB 상한</div></div>
     <div class="lk"><div class="t">agents.md — 오픈 스펙</div><div class="u">github.com/agentsmd/agents.md</div><div class="d">크로스벤더 표준(2025-08, OpenAI 주도 · Google·Cursor 등 공동)</div></div>
   </div>
   <h3>공식 공인 오픈 표준 — 서드파티 운영이지만 양사가 공식 채택</h3>
