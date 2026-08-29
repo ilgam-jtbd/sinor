@@ -334,7 +334,7 @@ footer .wrap{display:grid;gap:6px}
 </svg><figcaption>그림 3 · 실전 SEO 8요소 — 샌드박스 구간은 도메인·호스팅과 CMS, 사이트맵은 검색엔진 등록의 기초.</figcaption></figure>
 
   <h3>사전진단 — 시놀은 '기존 홈페이지 보유' 갈래입니다</h3>
-  <p>순서 넷: <b>① sitemap.xml 상태 → ② robots.txt 상태 → ③ 구글 서치콘솔 연결 → ④ 네이버 서치어드바이저 연결.</b> 아래 ⑥ 진단에서 보듯 시놀은 이 넷이 전부 비어 있거나 미확인입니다.</p>
+  <p>순서 넷: <b>① sitemap.xml 상태 → ② robots.txt 상태 → ③ 구글 서치콘솔 연결 → ④ 네이버 서치어드바이저 연결.</b> ①·②는 판독 완료(2026-08-30 — robots.txt 전면 허용·사이트맵 선언 확인, ⑥ 스탬프 참조), <b>③·④ 연결이 남은 미확인</b>입니다.</p>
 
   <h3>도메인·URL 구조 — 처음부터 짜는 것</h3>
   <div class="tbl-scroll"><table class="tbl"><thead><tr><th>형태</th><th>예시</th><th>성격</th></tr></thead><tbody>
@@ -490,10 +490,10 @@ footer .wrap{display:grid;gap:6px}
       <tr><td class="b">88다방 상태</td><td><span class="st part">정정 필요</span></td><td>시럽 버전 기록 150.3.2(2026-07-05)에 <b>"88다방 비활성화"</b>. IR·소개 자료가 88다방을 리텐션 기능으로 계속 쓰고 있다면 정합성 정정이 필요합니다.</td></tr>
       <tr><td class="b">하트링크 (4번째 앱)</td><td><span class="st part">신규</span></td><td>(주)시놀 개발자 페이지에 <b>하트링크 id6755093556</b> "장애를 넘어 마음이 연결되는 곳" 존재. 정본 §6의 리스팅 4개에 미포함 — 진단 범위 확장 필요.</td></tr>
       <tr><td class="b">시럽 인앱 결제 구조</td><td><span class="st done">확정</span></td><td>하트 10개 ₩5,000 · 50개 ₩21,000 · 100개 ₩40,000 · 300개 ₩100,000. GA4 purchase 이벤트 설계 시 이 SKU 기준.</td></tr>
-      <tr><td class="b">www.sinor.co.kr 크롤러 접근</td><td><span class="st part">정밀화</span></td><td><b>선별적 차단</b> — 자동화 도구는 봇 감지로 차단되나, 홈·다운로드·칼럼 페이지는 검색에 <b>색인되어 있음</b>. Googlebot은 통과, 일반 자동화는 차단. 남은 질문은 <b>AI 크롤러가 어느 쪽인지</b>이며 robots.txt로 판정됩니다.</td></tr>
+      <tr><td class="b">www.sinor.co.kr 크롤러 접근</td><td><span class="st part">정밀화</span></td><td><b>선별적 차단</b> — 자동화 도구는 봇 감지로 차단되나, 홈·다운로드·칼럼 페이지는 검색에 <b>색인되어 있음</b>. Googlebot은 통과, 일반 자동화는 차단. AI 크롤러는 robots.txt 판독(아래 행)으로 <b>허용 확정</b>.</td></tr>
       <tr><td class="b">web.sinor.co.kr 용도</td><td><span class="st done">확정</span></td><td>"시놀과 시럽의 빠른 웹 화면" — 웹앱 로그인 게이트. 봇 접근 가능. www는 막히고 web은 열린 역전 상태 — 로그인 페이지 noindex 검토.</td></tr>
-      <tr><td class="b">아임웹 플랫폼</td><td><span class="st part">유력↑</span></td><td>칼럼 URL <code>/information/?bmode=view&amp;idx=…</code> 패턴이 검색에 노출 — 근거 보강. head 삽입 가능 여부는 관리자 로그인 필요.</td></tr>
-      <tr><td class="b">robots.txt · sitemap.xml</td><td><span class="st part">미확인</span></td><td>브라우저에서 <code>sinor.co.kr/robots.txt</code> 직접 열람(1분). AI 크롤러 차단 여부 — <b>GEO 0단계의 유일한 미결</b>.</td></tr>
+      <tr><td class="b">아임웹 플랫폼</td><td><span class="st part">유력↑</span></td><td>칼럼 URL <code>/information/?bmode=view&amp;idx=…</code> 패턴이 검색에 노출 + robots.txt의 <code>/logout.cm</code> 경로(<code>.cm</code>은 아임웹 규격) — 근거 이중 보강. head 삽입 가능 여부는 관리자 로그인 필요.</td></tr>
+      <tr><td class="b">robots.txt · sitemap.xml</td><td><span class="st done">확정</span></td><td><b>원문 판독 완료(2026-08-30)</b> — <code>User-agent: *</code> + <code>Allow: /</code>, Disallow는 가입·로그인·장바구니·어드민 등 유틸 경로 7종뿐. <b>AI 크롤러(GPTBot·ClaudeBot 등) 차단 규칙 없음 → 허용 확정, GEO 0단계 종결.</b> <code>Sitemap: sinor.co.kr/sitemap.xml</code> 선언 확인(내용물·갱신일은 서치콘솔 연결 시 점검).</td></tr>
       <tr><td class="b">서치콘솔 · 서치어드바이저 · GA4 search_term · 아임웹 관리자</td><td><span class="st no">미확인</span></td><td>로그인 필요 — 개발 점검표(키워드관리 요구서 v1.0 §8)로 이관.</td></tr>
       </tbody></table></div>
   </div>
