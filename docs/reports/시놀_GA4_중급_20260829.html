@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시놀 GA4 중급 — 이벤트 설계와 화면 변경 측정 지도</title>
+<meta name="description" content="시놀·시럽 실무자용 GA4 중급. 이벤트 설계 원칙, UTM 체계, 화면 변경 전체의 측정 지도, 탐색 보고서와 서치콘솔 연계. 내부용.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --ink:#33302B; --sub:#6E675C; --line:#E8E2D6; --bg:#FFFDF8; --wash:#F7F3EA;
+  --orange:#E37400; --orange-soft:#FBEEDD; --brown:#8C6D1F; --deep:#9A5600;
+  --green:#188038; --green-soft:#E6F4EA; --red:#C5221F; --red-soft:#FCE8E6;
+  --blue:#1A73E8; --blue-soft:#E8F0FE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:'Pretendard','Apple SD Gothic Neo','맑은 고딕',-apple-system,sans-serif;
+  color:var(--ink);background:var(--bg);font-size:17px;line-height:1.68;word-break:keep-all}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+a{color:var(--blue)} b{font-weight:700}
+code{background:var(--wash);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:14.5px;font-family:Consolas,'Nanum Gothic Coding',monospace}
+nav{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 10px}
+nav a{display:flex;align-items:center;min-height:48px;padding:0 12px;font-size:14.5px;font-weight:600;color:var(--sub);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--orange);border-bottom-color:var(--orange)}
+.lvl{background:var(--wash);border-bottom:1px solid var(--line)}
+.lvl .wrap{display:flex;gap:8px;padding:9px 20px;overflow-x:auto}
+.lvl a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;text-decoration:none;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px 13px}
+.lvl a.cur{background:var(--orange);border-color:var(--orange);color:#fff}
+header{background:linear-gradient(160deg,#8A4500 0%,#C46200 55%,var(--orange) 100%);color:#fff;padding:48px 0 40px}
+header .eyebrow{font-size:13px;letter-spacing:.14em;font-weight:700;color:#FFE3BD;text-transform:uppercase}
+header h1{font-size:clamp(25px,4.4vw,36px);line-height:1.3;margin:10px 0 10px;font-weight:800}
+header .sub{font-size:17.5px;color:#FFF3E0;max-width:660px}
+section{padding:42px 0 6px}
+.eyebrow2{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--orange)}
+h2{font-size:clamp(21px,3.3vw,27px);margin:6px 0 10px;color:var(--deep);font-weight:800}
+.lede{color:var(--sub);font-size:17px;max-width:700px;margin-bottom:18px}
+h3{font-size:18.5px;margin:24px 0 10px}
+p{margin:0 0 14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:14px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px;margin:16px 0}
+.cards .card{margin:0}
+.card h4{font-size:16.5px;margin-bottom:6px}
+.card p{font-size:15px;color:var(--sub);margin:0}
+.callout{border-left:5px solid var(--orange);background:var(--orange-soft);border-radius:0 12px 12px 0;padding:14px 17px;margin:18px 0;font-size:16px}
+.callout.good{border-color:var(--green);background:var(--green-soft)}
+.callout.bad{border-color:var(--red);background:var(--red-soft)}
+.callout.info{border-color:var(--blue);background:var(--blue-soft)}
+.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.8px}
+.tbl th{background:var(--deep);color:#fff;text-align:left;padding:9px 11px;font-size:13.8px}
+.tbl td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;background:#fff}
+.tbl tr:nth-child(even) td{background:var(--wash)}
+.tbl .b{font-weight:700}
+.tbl-scroll{overflow-x:auto}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:12px;padding:2px 9px;color:#fff;white-space:nowrap}
+.tag.app{background:#7B1FA2}.tag.web{background:var(--blue)}.tag.both{background:var(--green)}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin:14px 0}
+.gloss div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14.5px}
+.gloss b{color:var(--deep)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin:14px 0}
+.lk{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff}
+.lk .t{font-size:15.5px;font-weight:700;margin-bottom:3px}
+.lk .u{font-size:12.5px;color:var(--blue);word-break:break-all}
+.lk .d{font-size:14px;color:var(--sub);margin-top:4px}
+.rel{background:var(--wash);border-top:1px solid var(--line);padding:26px 0 10px}
+.rel h3{margin-top:0}
+footer{margin-top:0;background:#3A332A;color:#CFC6B8;padding:24px 0 32px;font-size:13.5px}
+footer .wrap{display:grid;gap:5px}
+</style>
+</head>
+<body>
+
+<div class="lvl"><div class="wrap">
+  <a href="../">🌱 초급 — 보는 법</a>
+  <a class="cur" href="./">🌿 중급 — 설계하는 법 (현재)</a>
+  <a href="../pro/">🌳 고급 — 붙이는 법 (개발)</a>
+</div></div>
+
+<nav aria-label="섹션 이동"><div class="wrap">
+  <a href="#s1">① 이벤트 설계</a><a href="#s2">② 시놀 이벤트 명세</a><a href="#s3">③ 화면 변경 측정 지도</a>
+  <a href="#s4">④ UTM 체계</a><a href="#s5">⑤ 탐색·잠재고객</a><a href="#s6">⑥ 검색과 연결</a><a href="#s9">공식 문서</a>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">SINOR · GA4 LEVEL 2 · 2026-08</div>
+  <h1>GA4 중급 — 이제 "설계하는 쪽"으로 가요</h1>
+  <p class="sub">초급이 "보는 법"이었다면, 중급은 <b>무엇을 측정할지 정하는 법</b>이에요. 시놀·시럽의 화면 변경 전체를 측정 가능하게 만드는 지도가 이 페이지의 핵심이에요. 대상: PO·기획·마케팅 실무자.</p>
+</div></header>
+
+<main>
+
+<!-- 1 -->
+<section id="s1"><div class="wrap">
+  <div class="eyebrow2">PART 1 · 원칙</div>
+  <h2>이벤트 설계 — 세 가지만 지키면 돼요</h2>
+  <div class="cards">
+    <div class="card"><h4>① 노출 · 탭 · 전환 세트로</h4><p>기능 하나를 붙일 때 이벤트는 항상 셋이 한 묶음이에요 — <b>보였다(노출) → 눌렀다(탭) → 됐다(전환)</b>. 하나라도 빠지면 어디서 새는지 알 수 없어요. 시놀 완료 조건(DoD)에도 이미 들어있는 규칙이에요.</p></div>
+    <div class="card"><h4>② 이름은 규칙대로</h4><p>영문 소문자+밑줄(스네이크케이스), 40자 이내 — 예: <code>consult_submit</code>, <code>meeting_apply</code>. 같은 뜻의 이벤트를 두 이름으로 만들지 않아요. 이름 사전은 이 페이지 ②가 정본이에요.</p></div>
+    <div class="card"><h4>③ 파라미터로 쪼개기</h4><p>이벤트를 늘리는 대신 <b>파라미터</b>로 구분해요. 단체미팅 신청은 <code>meeting_apply</code> 하나에 <code>region</code>(부산·서울…) 파라미터. 보고서에서 보려면 "맞춤 측정기준" 등록이 한 번 필요해요(고급 페이지 참고).</p></div>
+  </div>
+  <div class="callout"><b>측정을 나중으로 미루지 않아요.</b> "기능 먼저 열고 측정은 다음에"는 시놀 절대 규칙 위반이에요 — 나중에 붙이겠다는 이벤트는 대부분 안 붙어요. 티켓에 이벤트 3종(노출·탭·전환)이 없으면 그 티켓은 미완성이에요.</div>
+</div></section>
+
+<!-- 2 -->
+<section id="s2"><div class="wrap">
+  <div class="eyebrow2">PART 2 · 이름 사전</div>
+  <h2>시놀·시럽 이벤트 명세 — 이 표가 정본이에요</h2>
+  <p class="lede">웹(sinor.co.kr)과 앱(시놀·시럽) 어디에 붙는지 <span class="tag web">웹</span> <span class="tag app">앱</span> <span class="tag both">둘 다</span> 로 표시했어요. 구현은 고급 페이지(개발)에서 다뤄요.</p>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>이벤트</th><th style="width:84px">어디</th><th>언제 찍히나</th><th>주요 파라미터</th><th style="width:120px">주요 이벤트?</th></tr></thead><tbody>
+    <tr><td class="b">purchase</td><td><span class="tag both">둘 다</span></td><td>결제 완료 — <b>카드·무통장 모두</b> (무통장은 입금 확인 시점, 서버 전송)</td><td>transaction_id · value · currency · items · <code>method</code>(card/bank)</td><td class="b">✅ 최우선</td></tr>
+    <tr><td class="b">consult_submit</td><td><span class="tag web">웹</span></td><td>시럽인연 상담 신청 완료</td><td><code>source_page</code>(내부/랜딩)</td><td class="b">✅</td></tr>
+    <tr><td class="b">meeting_apply</td><td><span class="tag web">웹</span></td><td>단체미팅 신청 완료</td><td><code>region</code> · <code>month</code></td><td class="b">✅</td></tr>
+    <tr><td>app_banner_view / _tap</td><td><span class="tag web">웹</span></td><td>웹의 앱 설치 배너 노출/탭</td><td><code>placement</code>(홈/칼럼하단/운세)</td><td>—</td></tr>
+    <tr><td>fortune_view</td><td><span class="tag both">둘 다</span></td><td>운세 콘텐츠 조회 (웹 /fortune · 앱 운세)</td><td><code>type</code>(오늘의운세/띠별/사주)</td><td>—</td></tr>
+    <tr><td>trip_cta_tap</td><td><span class="tag web">웹</span></td><td>여행 객실의 "멤버십 가입하고 예약" 탭</td><td><code>room_id</code></td><td>—</td></tr>
+    <tr><td>column_card_view / _tap</td><td><span class="tag web">웹</span></td><td>칼럼 하단 상품 카드 노출/탭</td><td><code>card</code>(시럽인연/앱/트립)</td><td>—</td></tr>
+    <tr><td>outbound_silovematch</td><td><span class="tag web">웹</span></td><td>프리미엄(silovematch) 링크아웃 클릭</td><td><code>source_page</code></td><td>—</td></tr>
+    <tr><td>tab_view</td><td><span class="tag app">앱</span></td><td>4대 탭(홈/모임/여가/만남) 진입</td><td><code>tab</code></td><td>—</td></tr>
+    <tr><td>my_badge_tap</td><td><span class="tag app">앱</span></td><td>마이(우측 상단) 뱃지 탭 → 대화 목록 진입</td><td><code>unread</code>(수)</td><td>—</td></tr>
+    <tr><td>share_child</td><td><span class="tag web">웹</span></td><td>자녀 타깃 글의 "부모님께 공유" 탭</td><td><code>article_id</code></td><td>—</td></tr>
+  </tbody></table></div>
+  <p style="font-size:14.5px;color:var(--sub)">참고 — <code>first_open</code>(앱 첫 실행)·<code>view_search_results</code>(사이트 내 검색)는 GA4/Firebase가 자동으로 찍어줘요. 우리가 만들 건 위 표의 것들이에요.</p>
+</div></section>
+
+<!-- 3 -->
+<section id="s3"><div class="wrap">
+  <div class="eyebrow2">PART 3 · ⭐ 핵심</div>
+  <h2>화면 변경 전체 — 측정 지도</h2>
+  <p class="lede">지금 계획된 시놀·시럽의 화면 변경을 <b>하나도 빠짐없이</b> 올렸어요. 변경마다 "올리려는 숫자"와 "지키려는 숫자(가드레일)"를 짝으로 봐요. 가드레일이 나빠지면 그 변경은 실패로 판정해요.</p>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr>
+    <th style="width:20%">화면 변경</th><th style="width:82px">어디</th><th>올리려는 숫자 (목표)</th><th>보는 이벤트·화면</th><th>지키려는 숫자 (가드레일)</th><th style="width:86px">판정</th>
+  </tr></thead><tbody>
+    <tr><td class="b">① 4대 메뉴 개편<br>홈·모임·여가·만남 + 마이 뱃지</td><td><span class="tag app">앱</span></td><td>DAU/MAU 5.8% → <b>8%</b></td><td><code>tab_view</code> · <code>my_badge_tap</code> · 첫 액션까지 시간</td><td>첫 액션 시간 증가 시 화면 복잡 신호 · CS "못 찾겠다" 태깅</td><td>8주</td></tr>
+    <tr><td class="b">② 웹→앱 유도 배너</td><td><span class="tag web">웹</span></td><td>다운로드 도달 1.4% → <b>5%</b>(≈288명)</td><td><code>app_banner_view/_tap</code> · /download 조회</td><td><b>상담 신청 수 감소 시 실패</b> — 유도가 상담 흐름 침범 신호</td><td>8주</td></tr>
+    <tr><td class="b">③ 결제 기본값 카드로</td><td><span class="tag both">둘 다</span></td><td>purchase 기록률 <b>90%+</b> · 결제 완료율</td><td><code>purchase</code>(method별) · 결제 화면 이탈</td><td>무통장 선호 고객 이탈 여부 — method 비중 관찰</td><td>8주</td></tr>
+    <tr><td class="b">④ 광고 랜딩 규칙<br>(상담 폼 직행 금지)</td><td><span class="tag web">웹</span></td><td>유료 랜딩 이탈 75.8% → 단체미팅형 수준(16.7%)</td><td>트래픽 획득(세션 캠페인) · 랜딩별 이탈률</td><td>상담 신청 절대량</td><td>4주</td></tr>
+    <tr><td class="b">⑤ 여행 객실 27p 개편<br>(멤버십가·예약 버튼)</td><td><span class="tag web">웹</span></td><td>객실 이탈 78~100% → 개선 · CTA 탭 발생</td><td><code>trip_cta_tap</code> · 페이지 이탈률</td><td>페이지 로딩 시간(시니어 회선)</td><td>8주</td></tr>
+    <tr><td class="b">⑥ 오늘의운세 웹 신설<br>(/fortune)</td><td><span class="tag web">웹</span></td><td>신규 검색 유입 세션 (최대 기회 — 월 525만 검색)</td><td><code>fortune_view</code> · 트래픽 획득 · 서치콘솔 노출</td><td><b>기존 색인 URL(칼럼 191편) 불변</b> · 기존 유입 유지</td><td>8주</td></tr>
+    <tr><td class="b">⑦ 칼럼 하단 상품 카드</td><td><span class="tag web">웹</span></td><td>칼럼→상품 전환 (재혼글→시럽인연, 모임글→앱, 여행글→트립)</td><td><code>column_card_view/_tap</code></td><td>칼럼 이탈률(현재 38.1%) 악화 여부</td><td>8주</td></tr>
+    <tr><td class="b">⑧ 프리미엄 분리 링크아웃<br>(silovematch)</td><td><span class="tag web">웹</span></td><td>프리미엄 인지·진입</td><td><code>outbound_silovematch</code></td><td><b>상담 신청 수</b>(이탈 7.0% 페이지는 손대지 않기)</td><td>4주</td></tr>
+    <tr><td class="b">⑨ 단체미팅 독립 URL 기준선</td><td><span class="tag web">웹</span></td><td>웹 신청 기준선 확정 (현재 미측정)</td><td><code>meeting_apply</code> · /meeting 조회</td><td>신청 완료율</td><td>4주</td></tr>
+    <tr><td class="b">⑩ 앱 운세 첫 화면 노출<br>(ASO 연계)</td><td><span class="tag app">앱</span></td><td>운세 검색 설치 유입의 잔존 (설치 후 이탈 상쇄)</td><td><code>first_open</code> → <code>fortune_view</code> 도달률</td><td>기존 사용자 홈 동선 불편 CS</td><td>4주</td></tr>
+    <tr><td class="b">⑪ 자녀 타깃 공유 버튼</td><td><span class="tag web">웹</span></td><td>공유 발생 (읽는 사람=4050 자녀, 쓰는 사람=60대 부모)</td><td><code>share_child</code></td><td>— (설치 버튼 넣지 않기가 곧 가드레일)</td><td>8주</td></tr>
+  </tbody></table></div>
+  <div class="callout bad"><b>순서 주의</b> — 이 지도의 전제는 <b>측정이 먼저 붙는 것</b>이에요. ③⑨처럼 기준선이 없는 항목은 "변경 전 4주 기준선 → 변경 → 8주 비교"의 순서를 지켜요. 측정 없이 화면부터 바꾸면 좋아졌는지 영영 알 수 없어요(정본 §4).</div>
+  <div class="callout good"><b>손대지 않는 것도 측정 지도의 일부예요</b> — 단체미팅 페이지(이탈 12.0%)·시럽인연 상담(7.0%)·자녀 타깃 글(7.7%)은 성적이 좋아서 구조를 바꾸지 않아요. 이 셋의 숫자가 흔들리면 다른 변경의 부작용을 의심해요.</div>
+</div></section>
+
+<!-- 4 -->
+<section id="s4"><div class="wrap">
+  <div class="eyebrow2">PART 4 · 채널 꼬리표</div>
+  <h2>UTM 체계 — 시놀 표준</h2>
+  <p class="lede">외부에서 들어오는 링크에만 붙여요. 내부 링크에 붙이면 SEO의 canonical이 흔들려요(SEO 학습자료 참고).</p>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>자리</th><th>규칙</th><th>예</th></tr></thead><tbody>
+    <tr><td><code>utm_source</code></td><td>어느 서비스에서 — 소문자</td><td>youtube · naver · kakao · newsletter</td></tr>
+    <tr><td><code>utm_medium</code></td><td>어떤 형태로</td><td>description(영상 설명란) · cpc(유료) · social · share</td></tr>
+    <tr><td><code>utm_campaign</code></td><td><b>주제-연월</b> (발행킷 슬러그 규칙)</td><td>fortune-202609 · meet5060-202609 · remarriage-202609</td></tr>
+  </tbody></table></div>
+  <p>보는 곳은 초급 ⑥과 같아요 — <b>보고서 → 획득 → 트래픽 획득 → 세션 캠페인</b>. 스토어 링크(플레이스토어·앱스토어)에는 UTM을 붙이지 않아요. 스토어는 자기 파라미터 체계를 써요.</p>
+</div></section>
+
+<!-- 5 -->
+<section id="s5"><div class="wrap">
+  <div class="eyebrow2">PART 5 · 한 단계 더</div>
+  <h2>탐색과 잠재고객 — 기본 보고서 다음</h2>
+  <div class="cards">
+    <div class="card"><h4>탐색 (Explorations)</h4><p>기본 보고서에 없는 질문에 답하는 자유 분석 도구예요. 시놀에서 제일 먼저 만들 것: <b>유입경로 탐색</b> — "칼럼 → 상품 카드 → 신청"이 몇 %씩 새는지 깔때기로 보기. 왼쪽 메뉴 <b>탐색</b>에서 시작해요.</p></div>
+    <div class="card"><h4>잠재고객 (Audiences)</h4><p>조건에 맞는 사람 묶음이에요 — 예: "상담 페이지는 봤는데 신청 안 한 사람". 광고 리마케팅과 연결할 수 있어요. 단, 광고 연결은 전환추적이 먼저 살아있어야 의미가 있어요(측정 공백 해소 후).</p></div>
+    <div class="card"><h4>맞춤 측정기준</h4><p>②의 파라미터(<code>region</code>, <code>method</code> 등)를 보고서에서 열로 보려면 <b>관리 → 맞춤 정의</b>에서 한 번 등록해야 해요. 등록 전 데이터는 소급이 안 되니, 이벤트 붙일 때 같이 등록하는 게 규칙이에요.</p></div>
+  </div>
+</div></section>
+
+<!-- 6 -->
+<section id="s6"><div class="wrap">
+  <div class="eyebrow2">PART 6 · 연결</div>
+  <h2>검색·광고와 연결 — GA4 혼자로는 안 보여요</h2>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>연결</th><th>무엇이 보이게 되나</th><th>어디서</th></tr></thead><tbody>
+    <tr><td class="b">구글 서치콘솔</td><td><b>무슨 검색어로</b> 구글에서 들어오는지 — SEO 로드맵 0단계</td><td>관리 → 제품 링크 → Search Console (개발과 함께)</td></tr>
+    <tr><td class="b">네이버 서치어드바이저</td><td>네이버 쪽 검색어·색인 (GA4 밖, 별도 도구 — 시놀은 네이버가 구글의 2.2배)</td><td>searchadvisor.naver.com (개발과 함께)</td></tr>
+    <tr><td class="b">네이버 검색광고 전환</td><td>광고비 → 신청·결제 연결 (현재 전환 0으로 기록 중 — 미설치라서)</td><td>네이버 광고 전환 스크립트 (개발 작업)</td></tr>
+  </tbody></table></div>
+  <div class="callout info"><b>SEO와 한 몸이에요</b> — 검색이 시놀 유입의 57%라서, GA4 숫자의 절반은 사실 SEO 이야기예요. 왜 페이지 제목을 바꾸는지, 왜 크롤러 허용을 확인하는지는 <a href="../../learn/">SEO 학습자료</a> ⑥·⑦에서 그대로 이어져요.</div>
+</div></section>
+
+<!-- 공식 문서 -->
+<section id="s9"><div class="wrap">
+  <div class="eyebrow2">더 알고 싶을 때</div>
+  <h2>구글 공식 한글 문서 — 중급용</h2>
+  <div class="links">
+    <div class="lk"><div class="t">[GA4] 이벤트 정보</div><div class="u">support.google.com/analytics/answer/9322688?hl=ko</div><div class="d">자동 수집·추천·맞춤 이벤트의 구분 (PART 1·2)</div></div>
+    <div class="lk"><div class="t">[GA4] 주요 이벤트</div><div class="u">support.google.com/analytics/answer/12844695?hl=ko</div><div class="d">주요 이벤트 지정 (PART 2)</div></div>
+    <div class="lk"><div class="t">[GA4] 맞춤 측정기준 및 측정항목</div><div class="u">support.google.com/analytics/answer/14239696?hl=ko</div><div class="d">파라미터를 보고서 열로 만드는 등록 (PART 5)</div></div>
+    <div class="lk"><div class="t">[GA4] 탐색 분석 시작하기</div><div class="u">support.google.com/analytics/answer/7579450?hl=ko</div><div class="d">깔때기·자유 탐색 (PART 5)</div></div>
+    <div class="lk"><div class="t">[GA4] Search Console 통합</div><div class="u">support.google.com/analytics/answer/10737381?hl=ko</div><div class="d">서치콘솔 연결 (PART 6)</div></div>
+    <div class="lk"><div class="t">캠페인 URL 빌더 (공식 도구)</div><div class="u">ga-dev-tools.google/campaign-url-builder/</div><div class="d">UTM 만들기 (PART 4)</div></div>
+  </div>
+  <p style="font-size:14px;color:var(--sub)">링크가 안 열리면 도움말 홈(support.google.com/analytics?hl=ko)에서 대괄호 안 제목으로 검색하세요 — 구글이 가끔 주소를 바꿔요.</p>
+</div></section>
+
+<!-- 함께 보기 -->
+<section class="rel"><div class="wrap">
+  <h3>함께 보는 시놀 페이지</h3>
+  <div class="links">
+    <div class="lk"><div class="t">🌱 GA4 초급 — 보는 법</div><div class="u"><a href="../">/ga4/</a></div><div class="d">로그인·실시간·매일 3화면 (최지영님 시작 지점)</div></div>
+    <div class="lk"><div class="t">🌳 GA4 고급 — 붙이는 법</div><div class="u"><a href="../pro/">/ga4/pro/</a></div><div class="d">앱 스트림·purchase 2경로·코드 예시 (개발팀)</div></div>
+    <div class="lk"><div class="t">SEO·AEO·GEO 학습자료</div><div class="u"><a href="../../learn/">/learn/</a></div><div class="d">검색 57%의 나머지 절반 이야기 — 제목·스키마·브랜드 언급</div></div>
+    <div class="lk"><div class="t">개발팀 토큰 최적화</div><div class="u"><a href="../../devops/">/devops/</a></div><div class="d">Claude Code·Codex 운영 가이드</div></div>
+  </div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">
+  <div><b style="color:#fff">시놀 GA4 중급</b> · 2026-08-29 · 내부용 (대외비)</div>
+  <div>수치 출처 — 정합기준 정본(2026-08) §3·§8·§9 · IA 메뉴개편(2026-08) · 발행킷(2026-08-27) · CLAUDE.md 완료조건</div>
+  <div>문서 링크 — 구글 애널리틱스 공식 한국어 도움말</div>
+</div></footer>
+
+</body>
+</html>

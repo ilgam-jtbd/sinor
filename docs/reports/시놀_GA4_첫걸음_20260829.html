@@ -94,9 +94,21 @@ p{margin:0 0 15px}
 
 footer{margin-top:48px;background:#3A332A;color:#CFC6B8;padding:26px 0 34px;font-size:14px}
 footer .wrap{display:grid;gap:6px}
+.lvl{background:var(--wash);border-bottom:1px solid var(--line)}
+.lvl .wrap{display:flex;gap:8px;padding:9px 20px;overflow-x:auto}
+.lvl a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;text-decoration:none;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px 13px}
+.lvl a.cur{background:var(--orange);border-color:var(--orange);color:#fff}
+.rel{background:var(--wash);border-top:1px solid var(--line);padding:26px 0 10px;margin-top:40px}
+.rel h3{margin-top:0}
 </style>
 </head>
 <body>
+
+<div class="lvl"><div class="wrap">
+  <a class="cur" href="./">🌱 초급 — 보는 법 (현재)</a>
+  <a href="mid/">🌿 중급 — 설계하는 법</a>
+  <a href="pro/">🌳 고급 — 붙이는 법 (개발)</a>
+</div></div>
 
 <nav aria-label="섹션 이동"><div class="wrap">
   <a href="#s0">시작</a><a href="#s1">① GA4란</a><a href="#s2">② 오늘 10분</a><a href="#s3">③ 매일 3화면</a>
@@ -235,6 +247,16 @@ footer .wrap{display:grid;gap:6px}
     <div class="lk"><div class="t">캠페인 URL 빌더 (구글 공식 도구)</div><div class="u">ga-dev-tools.google/campaign-url-builder/</div><div class="d">UTM 꼬리표를 만들어 주는 도구 — 발행킷 링크가 이 방식이에요 (STEP 6)</div></div>
   </div>
   <p style="font-size:14.5px;color:var(--sub)">참고 — 구글이 가끔 문서 주소를 바꿔요. 링크가 안 열리면 당황하지 말고, 도움말 홈에서 <b>대괄호 안 제목 그대로</b> 검색하면 같은 문서가 나와요.</p>
+</div></section>
+
+<section class="rel"><div class="wrap">
+  <h3>다음 단계 · 함께 보는 페이지</h3>
+  <div class="links">
+    <div class="lk"><div class="t">🌿 GA4 중급 — 설계하는 법</div><div class="u"><a href="mid/">/ga4/mid/</a></div><div class="d">이벤트 이름 사전과 <b>화면 변경 전체의 측정 지도</b> — 익숙해지면 여기로</div></div>
+    <div class="lk"><div class="t">🌳 GA4 고급 — 붙이는 법 (개발)</div><div class="u"><a href="pro/">/ga4/pro/</a></div><div class="d">앱 스트림·결제 2경로·구글 도구 연결 — 개발팀(우종선님) 페이지</div></div>
+    <div class="lk"><div class="t">SEO·AEO·GEO 학습자료</div><div class="u"><a href="../learn/">/learn/</a></div><div class="d">"어디서 왔나"의 절반은 검색 이야기 — 대표·실무자용</div></div>
+    <div class="lk"><div class="t">개발팀 토큰 최적화</div><div class="u"><a href="../devops/">/devops/</a></div><div class="d">Claude Code·Codex 운영 가이드</div></div>
+  </div>
 </div></section>
 
 </main>
