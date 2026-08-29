@@ -69,7 +69,7 @@ footer .wrap{display:grid;gap:5px}
 
 <nav aria-label="섹션 이동"><div class="wrap">
   <a href="#s1">① 지금 우선순위</a><a href="#s2">② 최지영님 시작</a><a href="#s3">③ 라이브 페이지</a>
-  <a href="#s4">④ 키워드 3문서</a><a href="#s5">⑤ 스케줄 보드</a><a href="#s6">⑥ 문서 저장소</a>
+  <a href="#s4">④ 키워드 3문서</a><a href="#s5">⑤ 스케줄 보드</a><a href="#s6">⑥ 자산 대장</a>
 </div></nav>
 
 <header><div class="wrap">
@@ -163,15 +163,25 @@ footer .wrap{display:grid;gap:5px}
 <!-- 6 -->
 <section id="s6"><div class="wrap">
   <div class="eyebrow2">⑥ 더 깊이</div>
-  <h2>저장소 문서 — 수치·규칙의 원본</h2>
-  <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:44%">문서 (repo: ilgam-jtbd/sinor · docs/)</th><th>역할</th></tr></thead><tbody>
-    <tr><td><code>03_정합기준_정본_2026-08.md</code></td><td class="b">모든 수치의 단일 출처 — 다른 숫자와 다르면 정본이 맞아요</td></tr>
+  <h2>자산 대장 — 어디 있고, 지금 믿어도 되는지</h2>
+  <p class="lede">코워크·CC·배포 페이지에 흩어진 문서의 위치와 상태는 <b>자산 대장</b>에서 확인해요. 문서를 인용하기 전에 대장의 ⚠ 플래그부터 봐 주세요.</p>
+  <div class="callout"><b>⚠ 인용 전 필수 확인 3가지</b><br>
+    ① <b>2026E 매출은 10억 확정</b>(2026-08-30 하향) — 구표기 <b>16억·15억 인용 금지</b>. VC 47문항·재무모델 v4 가정·발표스크립트 v4는 재대사 대기예요<br>
+    ② <b>TIPS 검토 1p</b>는 06월판 구표기 위험 — 확정치(정부매칭 최대 8억·실효 14억)는 코워크 정합기준 정본 §7로만 인용해요<br>
+    ③ <b>CAC 2,836원은 계획값</b> — 실측 병기 없이 단독 표기 금지예요</div>
+  <div class="links">
+    <div class="lk"><div class="t">📒 자산 대장 (2026-08)</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/12_%EC%9E%90%EC%82%B0%EB%8C%80%EC%9E%A5_2026-08.md">docs/12_자산대장_2026-08.md</a></div><div class="d">전략·IR / 제품 v3.1 / 키워드·채널 / 프로세스·학습 — 문서별 위치·상태·⚠ 플래그. 근거: 코워크 대장 1·2차(v1.1)</div></div>
+    <div class="lk"><div class="t">📌 위치 해소 2건</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/10_%EA%B2%BD%EC%98%81%EA%B2%B0%EC%A0%95_%EA%B8%B0%EB%A1%9D_2026-08.md">docs/10_경영결정_기록_2026-08.md</a></div><div class="d">경영결정 기록 v1.01/1.02 반영본 · PO 교육자료 W1~W4 요약은 <code>docs/00_문서학습_지식베이스.md</code> — 원본은 CC 업로드 채널 수신분이에요</div></div>
+  </div>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:44%">저장소 원본 (repo: ilgam-jtbd/sinor · docs/)</th><th>역할</th></tr></thead><tbody>
+    <tr><td><code>03_정합기준_정본_2026-08.md</code></td><td class="b">공개용 축약 정본 — 재무·라운드 상세는 코워크 확장 정본이 우선이에요</td></tr>
+    <tr><td><code>12_자산대장_2026-08.md</code></td><td class="b">문서 자산의 위치·상태 지도 — 이 섹션의 원본</td></tr>
     <tr><td><code>11_IA_메뉴개편_2026-08.md</code></td><td>홈·모임·여가·만남 확정 근거</td></tr>
     <tr><td><code>reports/시놀_SEO·AEO·GEO_학습정리…</code></td><td>/learn/의 원본 + 그림 SVG</td></tr>
     <tr><td><code>prompts/시놀_발행킷_20260827.md</code></td><td>유튜브 링크 표준 블록·UTM·sameAs</td></tr>
     <tr><td><code>09_백오피스_설계서_v1.0.md</code></td><td>우선순위 ② 설계서 (충돌 자동 Hold 규칙 포함)</td></tr>
   </tbody></table></div>
-  <div class="callout green"><b>대외비 원칙</b> — docx·pptx 원본 파일은 웹·저장소에 올리지 않아요(요약본만). 패키지 파일은 받은 채널(카톡·슬랙)에서 보관하고, 이 허브에는 이름과 순서만 둬요.</div>
+  <div class="callout green"><b>대외비 원칙</b> — docx·pptx 원본 파일은 웹·저장소에 올리지 않아요(요약본만). 패키지 파일은 받은 채널(카톡·슬랙)에서 보관하고, 이 허브에는 이름과 순서만 둬요. <b>구버전 묶음 9종(v1.0~v3.0)은 허브에 링크하지 않아요</b> — 실무자가 구버전을 집는 사고를 막기 위해서예요.</div>
 </div></section>
 
 </main>
