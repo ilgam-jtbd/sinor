@@ -186,14 +186,14 @@ document.querySelector('.app-banner a').addEventListener('click', () =&gt;
   <div class="tbl-scroll"><table class="tbl"><thead><tr>
     <th style="width:17%">도구</th><th style="width:88px">우선순위</th><th>연결하는 이유 (시놀 관점)</th><th>어떻게</th>
   </tr></thead><tbody>
-    <tr><td class="b">GTM<br>(태그 관리자)</td><td class="b" style="color:var(--red)">① 지금</td><td>아임웹 <code>&lt;head&gt;</code>에 <b>컨테이너 한 번만</b> 심으면, 이후 이벤트 추가·수정을 <b>개발 배포 없이</b> 콘솔에서 해요. 중급 명세의 웹 이벤트 전부를 GTM으로 운영하면 아임웹 제약을 우회할 수 있어요. 네이버 전환 스크립트도 GTM 안에서 관리</td><td>tagmanager.google.com → 컨테이너 생성 → head 스니펫 1회 삽입 → GA4 구성 태그 + 이벤트 태그</td></tr>
-    <tr><td class="b">Search Console<br>(서치콘솔)</td><td class="b" style="color:var(--red)">① 지금</td><td>유입의 57%가 검색인데 <b>무슨 검색어인지 모르는 상태</b>를 끝내요. 제목 재작성(SEO 로드맵 1단계)의 전후 비교가 여기서만 가능. GA4와 연결하면 검색어→행동을 한 화면에서</td><td>search.google.com/search-console 속성 등록·소유확인 → GA4 관리 → 제품 링크</td></tr>
+    <tr><td class="b">GTM<br>(태그 관리자)</td><td class="b" style="color:var(--red)">① 지금</td><td>아임웹 <code>&lt;head&gt;</code>에 <b>컨테이너 한 번만</b> 심으면, 이후 이벤트 추가·수정을 <b>개발 배포 없이</b> 콘솔에서 해요. 중급 명세의 웹 이벤트 전부를 GTM으로 운영하면 아임웹 제약을 우회할 수 있어요. 네이버 전환 스크립트도 GTM 안에서 관리</td><td><a href="https://tagmanager.google.com" target="_blank" rel="noopener">tagmanager.google.com</a> → 컨테이너 생성 → head 스니펫 1회 삽입 → GA4 구성 태그 + 이벤트 태그</td></tr>
+    <tr><td class="b">Search Console<br>(서치콘솔)</td><td class="b" style="color:var(--red)">① 지금</td><td>유입의 57%가 검색인데 <b>무슨 검색어인지 모르는 상태</b>를 끝내요. 제목 재작성(SEO 로드맵 1단계)의 전후 비교가 여기서만 가능. GA4와 연결하면 검색어→행동을 한 화면에서</td><td><a href="https://search.google.com/search-console" target="_blank" rel="noopener">search.google.com/search-console</a> 속성 등록·소유확인 → GA4 관리 → 제품 링크</td></tr>
     <tr><td class="b">Firebase</td><td class="b" style="color:var(--red)">① 지금</td><td>앱 스트림 4개의 <b>기반</b>(PART 4). 이미 프로젝트(<code>sinor-8b864</code>)가 있어 재사용. 덤으로 <b>FCM 푸시</b>(무료 — 마이 뱃지·대화 알림)·<b>Crashlytics</b>(무료 — 앱 오류 수집)까지 같은 콘솔에서</td><td>기존 프로젝트를 GA4 속성에 연결 (PART 4 절차)</td></tr>
-    <tr><td class="b">Looker Studio</td><td style="color:var(--orange)" class="b">② 곧</td><td>이미 쓰고 있어요(장기 리포트가 루커스튜디오 실측). GA4·서치콘솔을 붙여 <b>대표 보고용 한 장 대시보드</b>로 — 화면 변경 지도(중급 ③)의 목표·가드레일을 한 화면에</td><td>lookerstudio.google.com → GA4·Search Console 커넥터</td></tr>
-    <tr><td class="b">비즈니스 프로필</td><td style="color:var(--orange)" class="b">② 곧</td><td>구글 지도·검색의 회사 패널. <b>GEO(브랜드 엔티티) 전략의 무료 앵커</b> — 시놀(주)를 구글이 "실체 있는 회사"로 인식하게. 언론보도·sameAs와 한 세트</td><td>business.google.com 등록·소유확인</td></tr>
+    <tr><td class="b">Looker Studio</td><td style="color:var(--orange)" class="b">② 곧</td><td>이미 쓰고 있어요(장기 리포트가 루커스튜디오 실측). GA4·서치콘솔을 붙여 <b>대표 보고용 한 장 대시보드</b>로 — 화면 변경 지도(중급 ③)의 목표·가드레일을 한 화면에</td><td><a href="https://lookerstudio.google.com" target="_blank" rel="noopener">lookerstudio.google.com</a> → GA4·Search Console 커넥터</td></tr>
+    <tr><td class="b">비즈니스 프로필</td><td style="color:var(--orange)" class="b">② 곧</td><td>구글 지도·검색의 회사 패널. <b>GEO(브랜드 엔티티) 전략의 무료 앵커</b> — 시놀(주)를 구글이 "실체 있는 회사"로 인식하게. 언론보도·sameAs와 한 세트</td><td><a href="https://business.google.com" target="_blank" rel="noopener">business.google.com</a> 등록·소유확인</td></tr>
     <tr><td class="b">Google Ads</td><td style="color:var(--sub)" class="b">③ 나중</td><td>지금 광고는 네이버 중심이라 급하지 않아요. 연결해 두면 GA4 <b>잠재고객</b>(중급 ⑤ — "상담 보고 신청 안 한 사람")으로 리마케팅 가능. <b>전제: purchase·신청 이벤트가 먼저</b> — 전환 없이 광고 연결은 의미 없음</td><td>GA4 관리 → 제품 링크 → Google Ads (집행 시점에)</td></tr>
     <tr><td class="b">BigQuery</td><td style="color:var(--sub)" class="b">③ 나중</td><td>GA4 원본 데이터 무료 내보내기. 지금은 불필요 — 이벤트가 쌓인 뒤 "무통장 vs 카드 고객 여정 차이" 같은 정밀 분석이 필요해질 때</td><td>GA4 관리 → 제품 링크 → BigQuery (무료 링크)</td></tr>
-    <tr><td class="b">PageSpeed Insights</td><td style="color:var(--orange)" class="b">② 곧</td><td>가드레일 "페이지 로딩 시간"(시니어 회선에 치명적)의 측정기. 화면 변경 전후로 같은 페이지를 재요 — 연결이 아니라 <b>주기 측정 습관</b></td><td>pagespeed.web.dev (설치 불요)</td></tr>
+    <tr><td class="b">PageSpeed Insights</td><td style="color:var(--orange)" class="b">② 곧</td><td>가드레일 "페이지 로딩 시간"(시니어 회선에 치명적)의 측정기. 화면 변경 전후로 같은 페이지를 재요 — 연결이 아니라 <b>주기 측정 습관</b></td><td><a href="https://pagespeed.web.dev" target="_blank" rel="noopener">pagespeed.web.dev</a> (설치 불요)</td></tr>
   </tbody></table></div>
   <div class="callout"><b>순서가 곧 이유예요</b> — ①(GTM·서치콘솔·Firebase)은 측정 공백을 끝내는 도구라 지금, ②는 측정이 흐르기 시작하면, ③은 데이터가 쌓인 뒤에. 도구를 먼저 늘리는 게 아니라 <b>"보이게 만든다 → 보여준다 → 깊게 판다"</b> 순서예요. 네이버 서치어드바이저(구글 밖)는 서치콘솔과 같은 ①순위로 함께 진행해요 — 시놀은 네이버 유입이 구글의 2.2배니까요.</div>
 </div></section>
@@ -245,12 +245,12 @@ document.querySelector('.app-banner a').addEventListener('click', () =&gt;
   <div class="eyebrow2">근거</div>
   <h2>구글 공식 문서 — 고급용</h2>
   <div class="links">
-    <div class="lk"><div class="t">전자상거래 측정 (purchase) — 개발자 문서</div><div class="u">developers.google.com/analytics/devguides/collection/ga4/ecommerce?hl=ko</div><div class="d">purchase 이벤트 공식 스키마 (PART 3-A)</div></div>
-    <div class="lk"><div class="t">Measurement Protocol (GA4) — 개발자 문서</div><div class="u">developers.google.com/analytics/devguides/collection/protocol/ga4?hl=ko</div><div class="d">서버→GA4 전송 — 무통장 경로의 공식 근거 (PART 3-B)</div></div>
-    <div class="lk"><div class="t">Firebase 애널리틱스 시작하기</div><div class="u">firebase.google.com/docs/analytics/get-started?hl=ko</div><div class="d">앱 스트림·logEvent (PART 4)</div></div>
-    <div class="lk"><div class="t">[GA4] DebugView에서 이벤트 확인</div><div class="u">support.google.com/analytics/answer/7201382?hl=ko</div><div class="d">웹·앱 디버그 검증 (PART 5)</div></div>
-    <div class="lk"><div class="t">[GA4] 웹사이트·앱에 애널리틱스 설정</div><div class="u">support.google.com/analytics/answer/9304153?hl=ko</div><div class="d">스트림 추가의 전체 그림 (PART 4)</div></div>
-    <div class="lk"><div class="t">Google 태그 관리자 도움말</div><div class="u">support.google.com/tagmanager?hl=ko</div><div class="d">gtag 대신 GTM으로 운영할 경우</div></div>
+    <div class="lk"><div class="t">전자상거래 측정 (purchase) — 개발자 문서</div><div class="u"><a href="https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?hl=ko" target="_blank" rel="noopener">developers.google.com/analytics/devguides/collection/ga4/ecommerce?hl=ko</a></div><div class="d">purchase 이벤트 공식 스키마 (PART 3-A)</div></div>
+    <div class="lk"><div class="t">Measurement Protocol (GA4) — 개발자 문서</div><div class="u"><a href="https://developers.google.com/analytics/devguides/collection/protocol/ga4?hl=ko" target="_blank" rel="noopener">developers.google.com/analytics/devguides/collection/protocol/ga4?hl=ko</a></div><div class="d">서버→GA4 전송 — 무통장 경로의 공식 근거 (PART 3-B)</div></div>
+    <div class="lk"><div class="t">Firebase 애널리틱스 시작하기</div><div class="u"><a href="https://firebase.google.com/docs/analytics/get-started?hl=ko" target="_blank" rel="noopener">firebase.google.com/docs/analytics/get-started?hl=ko</a></div><div class="d">앱 스트림·logEvent (PART 4)</div></div>
+    <div class="lk"><div class="t">[GA4] DebugView에서 이벤트 확인</div><div class="u"><a href="https://support.google.com/analytics/answer/7201382?hl=ko" target="_blank" rel="noopener">support.google.com/analytics/answer/7201382?hl=ko</a></div><div class="d">웹·앱 디버그 검증 (PART 5)</div></div>
+    <div class="lk"><div class="t">[GA4] 웹사이트·앱에 애널리틱스 설정</div><div class="u"><a href="https://support.google.com/analytics/answer/9304153?hl=ko" target="_blank" rel="noopener">support.google.com/analytics/answer/9304153?hl=ko</a></div><div class="d">스트림 추가의 전체 그림 (PART 4)</div></div>
+    <div class="lk"><div class="t">Google 태그 관리자 도움말</div><div class="u"><a href="https://support.google.com/tagmanager?hl=ko" target="_blank" rel="noopener">support.google.com/tagmanager?hl=ko</a></div><div class="d">gtag 대신 GTM으로 운영할 경우</div></div>
   </div>
   <p style="font-size:14px;color:var(--sub)">링크가 안 열리면 각 도움말 홈에서 제목으로 검색하세요.</p>
 </div></section>
