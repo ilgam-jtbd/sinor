@@ -105,8 +105,8 @@ details .body{padding:14px 18px 16px;font-size:15.5px}
 .step p{font-size:15.5px;color:var(--sub);margin-bottom:4px}
 .step .j{font-size:13.5px;font-weight:700;color:var(--slate2)}
 
-.chk{list-style:none;margin:16px 0;display:grid;gap:8px}
-.chk li{background:var(--wash);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:15.5px;display:flex;gap:10px}
+.chk{list-style:none;margin:16px 0;padding:0;display:grid;gap:8px}
+.chk li{background:var(--wash);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:15.5px;display:flex;gap:10px;min-width:0;overflow-wrap:anywhere}
 .chk li::before{content:"☐";font-weight:800;color:var(--amber)}
 
 .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin:16px 0}
@@ -413,19 +413,19 @@ paths:
 
   <h3>Anthropic — Claude Code 공식 문서</h3>
   <div class="links">
-    <div class="lk"><div class="t">code.claude.com/docs/en/</div><div class="u">commands · sessions · memory · sub-agents</div><div class="d">슬래시 명령, 세션·압축, CLAUDE.md·조건부 로딩, 서브에이전트</div></div>
-    <div class="lk"><div class="t">code.claude.com/docs/en/</div><div class="u">agent-teams · cross-session-messaging · mcp · routines · hooks-guide</div><div class="d">Agent Teams, 크로스세션, MCP 지연 로드, 루틴, 훅(설정 파일)</div></div>
+    <div class="lk"><div class="t"><a href="https://code.claude.com/docs/en/" target="_blank" rel="noopener">code.claude.com/docs/en/</a></div><div class="u"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener">commands</a> · <a href="https://code.claude.com/docs/en/sessions" target="_blank" rel="noopener">sessions</a> · <a href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener">memory</a> · <a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">sub-agents</a></div><div class="d">슬래시 명령, 세션·압축, CLAUDE.md·조건부 로딩, 서브에이전트</div></div>
+    <div class="lk"><div class="t"><a href="https://code.claude.com/docs/en/" target="_blank" rel="noopener">code.claude.com/docs/en/</a></div><div class="u"><a href="https://code.claude.com/docs/en/agent-teams" target="_blank" rel="noopener">agent-teams</a> · <a href="https://code.claude.com/docs/en/cross-session-messaging" target="_blank" rel="noopener">cross-session-messaging</a> · <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener">mcp</a> · <a href="https://code.claude.com/docs/en/routines" target="_blank" rel="noopener">routines</a> · <a href="https://code.claude.com/docs/en/hooks-guide" target="_blank" rel="noopener">hooks-guide</a></div><div class="d">Agent Teams, 크로스세션, MCP 지연 로드, 루틴, 훅(설정 파일)</div></div>
   </div>
   <h3>OpenAI — Codex 공식 · 오픈 스펙</h3>
   <div class="links">
-    <div class="lk"><div class="t">learn.chatgpt.com — 공식 문서 홈 (2026-08 URL 이전)</div><div class="u">/llms.txt 인덱스 · 페이지 URL+.md = 마크다운 · docs/agent-configuration/agents-md · docs/extend/mcp · docs/hooks · docs/agent-configuration/subagents</div><div class="d">본문 확인 완료(2026-08-29) — /compact·/status·/init(AGENTS.md 스캐폴드)·/mcp·/side·/agent·/hooks(Codex CLI) · AGENTS.md 탐색·32KiB 분할 안내 · 서브에이전트·훅 공식</div></div>
-    <div class="lk"><div class="t">github.com/openai/codex</div><div class="u">core/agents_md.rs · compact.rs · tui/slash_command.rs · config/defaults.toml</div><div class="d">AGENTS.md 탐색·이어붙임, /compact·자동압축, /debug-config(CLI), 32KB 상한</div></div>
-    <div class="lk"><div class="t">agents.md — 오픈 스펙</div><div class="u">github.com/agentsmd/agents.md</div><div class="d">크로스벤더 표준(2025-08, OpenAI 주도 · Google·Cursor 등 공동)</div></div>
+    <div class="lk"><div class="t"><a href="https://learn.chatgpt.com" target="_blank" rel="noopener">learn.chatgpt.com</a> — 공식 문서 홈 (2026-08 URL 이전)</div><div class="u"><a href="https://learn.chatgpt.com/llms.txt" target="_blank" rel="noopener">/llms.txt 인덱스</a> · 페이지 URL+.md = 마크다운 · <a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md" target="_blank" rel="noopener">docs/agent-configuration/agents-md</a> · <a href="https://learn.chatgpt.com/docs/extend/mcp" target="_blank" rel="noopener">docs/extend/mcp</a> · <a href="https://learn.chatgpt.com/docs/hooks" target="_blank" rel="noopener">docs/hooks</a> · <a href="https://learn.chatgpt.com/docs/agent-configuration/subagents" target="_blank" rel="noopener">docs/agent-configuration/subagents</a></div><div class="d">본문 확인 완료(2026-08-29) — /compact·/status·/init(AGENTS.md 스캐폴드)·/mcp·/side·/agent·/hooks(Codex CLI) · AGENTS.md 탐색·32KiB 분할 안내 · 서브에이전트·훅 공식</div></div>
+    <div class="lk"><div class="t"><a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex</a></div><div class="u">core/agents_md.rs · compact.rs · tui/slash_command.rs · config/defaults.toml</div><div class="d">AGENTS.md 탐색·이어붙임, /compact·자동압축, /debug-config(CLI), 32KB 상한</div></div>
+    <div class="lk"><div class="t">agents.md — 오픈 스펙</div><div class="u"><a href="https://github.com/agentsmd/agents.md" target="_blank" rel="noopener">github.com/agentsmd/agents.md</a></div><div class="d">크로스벤더 표준(2025-08, OpenAI 주도 · Google·Cursor 등 공동)</div></div>
   </div>
   <h3>공식 공인 오픈 표준 — 서드파티 운영이지만 양사가 공식 채택</h3>
   <div class="links">
-    <div class="lk"><div class="t">MCP — Model Context Protocol</div><div class="u">github.com/modelcontextprotocol · modelcontextprotocol.io</div><div class="d">Anthropic이 만든 오픈 표준(MIT). Claude Code 공식 문서가 다루고, Codex도 공식 구현(codex-mcp·mcp-server 크레이트) — <b>양사 공통</b></div></div>
-    <div class="lk"><div class="t">MCP 공식 레지스트리</div><div class="u">registry.modelcontextprotocol.io · github.com/modelcontextprotocol/registry</div><div class="d">MCP 서버 공식 목록 · API v0.1 동결(2025-10). 서버를 고를 때 이 레지스트리를 1차 기준으로</div></div>
+    <div class="lk"><div class="t">MCP — Model Context Protocol</div><div class="u"><a href="https://github.com/modelcontextprotocol" target="_blank" rel="noopener">github.com/modelcontextprotocol</a> · <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">modelcontextprotocol.io</a></div><div class="d">Anthropic이 만든 오픈 표준(MIT). Claude Code 공식 문서가 다루고, Codex도 공식 구현(codex-mcp·mcp-server 크레이트) — <b>양사 공통</b></div></div>
+    <div class="lk"><div class="t">MCP 공식 레지스트리</div><div class="u"><a href="https://registry.modelcontextprotocol.io" target="_blank" rel="noopener">registry.modelcontextprotocol.io</a> · <a href="https://github.com/modelcontextprotocol/registry" target="_blank" rel="noopener">github.com/modelcontextprotocol/registry</a></div><div class="d">MCP 서버 공식 목록 · API v0.1 동결(2025-10). 서버를 고를 때 이 레지스트리를 1차 기준으로</div></div>
   </div>
   <p style="font-size:14px;color:var(--sub)">판정 기준 — 벤더(Anthropic·OpenAI)가 <b>공동 저작·공식 문서화·직접 구현</b>한 것만 공인 서드파티로 인정합니다. 개인 오픈소스 도구(자체 발표 수치)는 이 기준 미달로 계속 제외합니다.</p>
 
