@@ -141,7 +141,7 @@ footer .wrap{display:grid;gap:6px}
 
 <nav aria-label="섹션 이동"><div class="wrap">
   <a href="#s0">요약</a><a href="#s1">① 개념</a><a href="#s2">② 트렌드</a><a href="#s3">③ 파이프라인</a>
-  <a href="#s4">④ 코드 7계층</a><a href="#s5">⑤ 키워드·ASO</a><a href="#s7">⑥ 시놀 진단</a><a href="#s8">⑦ 로드맵</a><a href="#gl">용어</a>
+  <a href="#s4">④ 코드 7계층</a><a href="#s5">⑤ 키워드·ASO</a><a href="#s7">⑥ 시놀 진단</a><a href="#s8">⑦ 로드맵</a><a href="#s9">⑧ 외부진단</a><a href="#gl">용어</a>
 </div></nav>
 
 <header id="s0"><div class="wrap">
@@ -494,7 +494,8 @@ footer .wrap{display:grid;gap:6px}
       <tr><td class="b">web.sinor.co.kr 용도</td><td><span class="st done">확정</span></td><td>"시놀과 시럽의 빠른 웹 화면" — 웹앱 로그인 게이트. 봇 접근 가능. www는 막히고 web은 열린 역전 상태 — 로그인 페이지 noindex 검토.</td></tr>
       <tr><td class="b">아임웹 플랫폼</td><td><span class="st part">유력↑</span></td><td>칼럼 URL <code>/information/?bmode=view&amp;idx=…</code> 패턴이 검색에 노출 + robots.txt의 <code>/logout.cm</code> 경로(<code>.cm</code>은 아임웹 규격) — 근거 이중 보강. head 삽입 가능 여부는 관리자 로그인 필요.</td></tr>
       <tr><td class="b">robots.txt · sitemap.xml</td><td><span class="st done">확정</span></td><td><b>원문 판독 완료(2026-08-30 실물·은실장 제공)</b> — <code>User-agent: *</code> + <code>Allow: /</code>, Disallow는 가입·로그인·장바구니·어드민 등 유틸 경로 7종뿐. <b>AI 크롤러(GPTBot·ClaudeBot 등) 차단 규칙 없음 → 허용 확정, GEO 0단계 종결.</b> <code>Sitemap: sinor.co.kr/sitemap.xml</code> 선언 확인(내용물·갱신일은 서치콘솔 연결 시 점검). 앞서 실증된 자동화 차단은 <b>서버(WAF) 레벨</b>로 robots 정책과 별개이며, Googlebot 색인·AI 유입 실측(61명)으로 GEO 파이프라인은 작동 중.</td></tr>
-      <tr><td class="b">서치콘솔 · 서치어드바이저 · GA4 search_term · 아임웹 관리자</td><td><span class="st no">미확인</span></td><td>로그인 필요 — 개발 점검표(키워드관리 요구서 v1.0 §8)로 이관.</td></tr>
+      <tr><td class="b">네이버 서치어드바이저 · llms.txt</td><td><span class="st done">확정</span></td><td><b>외부 GEO 진단(2026-08-31 매스티지 v3)으로 확인</b> — 서치어드바이저 소유확인 meta 태그 감지 · 네이버 블로그 채널 연결 확인 · <code>llms.txt</code>(sinor.co.kr/llms.txt) 존재 확인. sitemap.xml 존재·유효(7/7)는 위 robots.txt 행과 동일 출처. AI 크롤러 15종 전량 허용도 robots.txt 판독과 <b>상호 검증 일치</b>.</td></tr>
+      <tr><td class="b">구글 서치콘솔 · GA4 search_term · 아임웹 관리자</td><td><span class="st no">미확인</span></td><td>로그인 필요 — 개발 점검표(키워드관리 요구서 v1.0 §8)로 이관. 외부 진단은 이 항목을 측정하지 않음 — <b>남은 핵심 미확인은 구글 서치콘솔</b>.</td></tr>
       </tbody></table></div>
   </div>
 </div></section>
@@ -566,6 +567,64 @@ footer .wrap{display:grid;gap:6px}
   </ol>
 
   <div class="callout warn"><b>가드레일 — 악화되면 실패입니다.</b> 시럽인연 상담 신청 수 · 단체미팅 신청 완료율 · 페이지 로딩 시간 · "화면 바뀌어서 못 찾겠다" CS. 성공지표만 보지 마십시오.</div>
+</div></section>
+
+<!-- §9 외부 진단 -->
+<section id="s9"><div class="wrap">
+  <div class="sec-eyebrow">PART 8 · 외부 진단</div>
+  <h2>외부 GEO 진단 50점 — 점수보다 큰 문제는 따로 있습니다</h2>
+  <p class="lede">2026-08-31 외부 도구(매스티지 v3) 진단 결과입니다. 첫 화면 1페이지·21개 신호·30초 판정이라 148항목 전수 점검은 아닙니다. 그 범위 안에서 나온 결과를 그대로 옮깁니다.</p>
+
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:22%">축</th><th style="width:15%">점수</th><th>의미</th></tr></thead><tbody>
+    <tr><td class="b">GEO</td><td><span class="lamp warn">59</span></td><td>생성형 AI가 우리 사이트를 읽고 인용할 조건</td></tr>
+    <tr><td class="b">SEO</td><td><span class="lamp ok">73</span></td><td>검색엔진 기본기 — 세 축 중 가장 높음</td></tr>
+    <tr><td class="b">AEO</td><td><span class="lamp danger">18</span></td><td>답변엔진 — FAQ 스키마 부재가 원인</td></tr>
+  </tbody></table></div>
+
+  <div class="callout"><b>가장 큰 발견은 점수가 아닙니다.</b> 사이트에서 감지된 구조화 데이터가 <code>OnlineStore</code> · <code>ShippingService</code> · <code>ShippingConditions</code> · <code>MerchantReturnPolicy</code> 등 <b>전부 쇼핑몰 스키마</b>였고, <code>Organization</code> · <code>WebSite</code> · <code>FAQPage</code>는 하나도 없었습니다. 그래서 진단 도구가 시놀을 <b>"쇼핑몰/이커머스" 업종으로 분류</b>했고, 예시 질의도 "이커머스 추천해줘"로 생성됐습니다. <b>기계가 구조화 데이터만 보면 시놀은 쇼핑몰입니다.</b></div>
+
+  <h3>왜 이것이 FAQ 스키마 30점보다 급한가</h3>
+  <p>AEO를 18점에서 48점으로 올려도, AI가 "시놀 = 온라인 쇼핑몰"로 기억하면 <b>"5060 소개팅 어디가 좋아?"라는 질문 자체에 후보로 떠오르지 않습니다.</b> 스키마는 순위를 올리는 도구이기 이전에 <b>"우리가 무엇인지 선언하는 문장"</b>입니다.</p>
+
+  <h3>감점 내역 — 바닥은 튼튼합니다</h3>
+  <div class="tbl-scroll"><table class="tbl"><thead><tr><th>항목</th><th style="width:24%">감지값</th><th style="width:16%">점수</th><th style="width:26%">조치</th></tr></thead><tbody>
+    <tr><td>메타 설명</td><td>67자</td><td><b>14/14</b></td><td>만점 — 손대지 말 것</td></tr>
+    <tr><td>HTTPS · 모바일 · canonical · 사이트맵 · OG</td><td>전부 적용</td><td><b>만점</b></td><td>유지</td></tr>
+    <tr><td class="b">title 태그</td><td>7자 "시놀 시럽인연"</td><td>7/12</td><td>검색어를 앞에</td></tr>
+    <tr><td class="b">H1 제목</td><td><b>0개</b></td><td>0/8</td><td>페이지당 1개 신설</td></tr>
+    <tr><td class="b">이미지 alt</td><td>17/102 (17%)</td><td>2/10</td><td>85개 보완</td></tr>
+    <tr><td class="b">응답 속도</td><td>2,585ms</td><td>4/10</td><td>이미지·지연 로딩</td></tr>
+    <tr><td class="b">FAQ 스키마</td><td>없음</td><td>AEO −30</td><td>ASO v5.1 Q&amp;A 재사용</td></tr>
+  </tbody></table></div>
+  <p style="font-size:15px;color:var(--sub)">기술 기반은 전부 만점입니다. 깎인 것은 <b>콘텐츠를 기계가 읽게 표시하는 부분</b>과 속도뿐이라, 회복이 빠릅니다.</p>
+
+  <div class="callout blue"><b>확인 스탬프 갱신 —</b> 이 진단으로 미확인 항목이 여럿 닫혔습니다. 네이버 <b>서치어드바이저 연결 확인</b>(meta 태그 감지) · 네이버 블로그 채널 연결 · <b>sitemap.xml 존재·유효</b> · <b>llms.txt 존재</b> · AI 크롤러 15종 전량 허용(우리 robots.txt 판독과 <b>상호 검증 일치</b>). <b>잔여 미확인은 구글 서치콘솔 하나</b>입니다.</div>
+
+  <div class="callout"><b>AI 인식 상태는 오히려 좋습니다.</b> Claude 질의에서 시놀이 인용됐고, AI가 "10만+ 가입자·시럽·시럽인연"을 정확히 서술했습니다. <b>오프라인 GEO(보도자료·언론)는 이미 작동 중</b>이며 병목은 온라인 GEO 하나 — 우리 손으로 고칠 수 있는 영역입니다.</div>
+
+  <h3>실행 순서</h3>
+  <ol class="steps">
+    <li class="step"><span class="dot">1</span><h4>Organization · WebSite 스키마 신설</h4>
+      <p>홈 head에 1회. 시놀이 쇼핑몰이 아니라 50+ 소셜 플랫폼임을 선언합니다. 앱 4종·시럽인연을 sameAs로 묶습니다.</p>
+      <div class="judge">판정 — 리치결과 테스트 오류 0건 · Organization 인식</div></li>
+    <li class="step"><span class="dot">2</span><h4>쇼핑몰 스키마 정리</h4>
+      <p>실제 결제가 있으면 <code>parentOrganization</code>으로 Organization 하위에 종속, 없으면 제거. 아임웹 자동 삽입이라 제거 불가면 대안 설계.</p>
+      <div class="judge">판정 — 업종 오분류 해소</div></li>
+    <li class="step"><span class="dot">3</span><h4>title 재작성 · H1 신설</h4>
+      <p>검색어를 앞에 두고 브랜드는 뒤로. ASO v5.1 실측 키워드(5060·만남·모임·소개팅) 반영. 메타 설명은 만점이므로 유지.</p>
+      <div class="judge">판정 — title 12/12 · H1 8/8</div></li>
+    <li class="step"><span class="dot">4</span><h4>FAQPage 스키마</h4>
+      <p>새로 쓸 필요 없습니다 — ASO v5.1의 AEO Q&amp;A를 그대로 씁니다. 본문에 보이는 FAQ와 스키마 내용이 반드시 일치해야 합니다.</p>
+      <div class="judge">판정 — AEO +30 · 스니펫 후보 진입</div></li>
+    <li class="step"><span class="dot">5</span><h4>alt 보완 · 속도 개선</h4>
+      <p>이미지 85개에 고유한 alt(키워드로 시작, 서로 다르게). 응답속도 2,585ms 단축.</p>
+      <div class="judge">판정 — SEO +14</div></li>
+  </ol>
+
+  <div class="callout warn"><b>전제 조건 하나 —</b> 위 1~4번은 모두 아임웹 관리자에서 <code>&lt;head&gt;</code> 코드 삽입이 가능해야 실행됩니다. 확인 스탬프의 "아임웹 head 삽입 가능 여부" 항목이 바로 이것이며, <b>이 확인이 GEO 개선 전체의 관문</b>입니다.</div>
+
+  <h3>덤 — AI가 인식하는 경쟁 지형</h3>
+  <p>공동언급 분석에서 나온 목록입니다. <b>매듭</b>(50-60대 프리미엄 소셜클럽) · <b>큐리어스</b>(4060 커뮤니티 강의)가 직접 경쟁 상위이고, 오아이·애슈(취미·문화여가), 르매리(재혼 전문), 듀오·가연(결혼정보)이 뒤를 잇습니다. 캠핏은 파트너로 인식됩니다. <b>IR 경쟁 슬라이드는 틴더·듀오·밴드만 비교하고 있어, 매듭·큐리어스 대비 차별점을 보강할 필요가 있습니다</b> — 본인인증 11만·특허 4건·풀퍼널이 우리 답입니다.</p>
 </div></section>
 
 <!-- 용어집 -->
