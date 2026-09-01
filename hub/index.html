@@ -4,147 +4,262 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>시놀 워크허브 — 모든 작업이 여기서 이어져요</title>
-<meta name="description" content="시놀 내부 작업 허브 — 우선순위, 최지영님 시작 순서, 라이브 페이지 지도, 키워드 관리 3문서 담당별 액션, 운영보드. 내부용.">
+<meta name="description" content="시놀 내부 작업 허브 — 우선순위, 온보딩 순서, 라이브 페이지 지도, 브랜드 결정, 키워드 관리, 운영보드, 자산 대장. 내부용.">
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#22303A; --sub:#5A6982; --line:#DCE4E4; --bg:#FFFFFF; --wash:#F4F7F7;
-  --teal:#0E5A5A; --teal2:#12726E; --coral:#E8734A; --coral-soft:#FDF0EA;
-  --blue:#2E7BB0; --blue-soft:#EDF4FA; --green:#2E9E6B; --green-soft:#E9F5EF;
-  --red:#C0392B; --red-soft:#FBEBE8; --amber:#B67C1E; --amber-soft:#FBF3E1;
+  --paper:#F8F6F2; --card:#FFFFFF; --ink:#14110F; --ink2:#3A3530; --sub:#6B655E;
+  --line:#D9D3CA; --hair:#14110F;
+  --wine:#6B1F32; --wine-soft:#F6EEF0;
+  --blue:#1B6BFF; --blue-soft:#EEF3FF;
+  --green:#2F7A4E; --green-soft:#EEF5EF;
+  --serif:'Noto Serif KR','Nanum Myeongjo','Apple Myungjo','Batang',serif;
+  --sans:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',-apple-system,sans-serif;
+  --mono:Consolas,'SF Mono','Nanum Gothic Coding','Malgun Gothic',monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{font-family:'Pretendard','Apple SD Gothic Neo','맑은 고딕',-apple-system,sans-serif;
-  color:var(--ink);background:var(--bg);font-size:17px;line-height:1.68;word-break:keep-all}
-.wrap{max-width:880px;margin:0 auto;padding:0 20px}
-a{color:var(--blue)} b{font-weight:700}
-code{background:var(--wash);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:14px;font-family:Consolas,monospace}
-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 10px}
-nav a{display:flex;align-items:center;min-height:48px;padding:0 12px;font-size:14.5px;font-weight:600;color:var(--sub);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
-nav a:hover,nav a:focus-visible{color:var(--teal);border-bottom-color:var(--teal)}
-header{background:linear-gradient(150deg,#0B4A4A 0%,var(--teal2) 62%,#15807A 100%);color:#fff;padding:48px 0 40px}
-header .eyebrow{font-size:13px;letter-spacing:.14em;font-weight:700;color:#9FD4CB;text-transform:uppercase}
-header h1{font-size:clamp(25px,4.4vw,36px);line-height:1.3;margin:10px 0 8px;font-weight:800}
-header .sub{font-size:17.5px;color:#D7EAE6;max-width:660px}
-section{padding:42px 0 6px}
-.eyebrow2{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--coral)}
-h2{font-size:clamp(21px,3.3vw,27px);margin:6px 0 10px;color:var(--teal);font-weight:800}
-.lede{color:var(--sub);font-size:17px;max-width:700px;margin-bottom:18px}
-h3{font-size:18.5px;margin:24px 0 10px}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);font-size:17px;line-height:1.72;word-break:keep-all}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover,a:focus-visible{color:var(--wine)}
+b,strong{font-weight:700}
+code{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:1px 6px;font-size:14px;font-family:var(--mono)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* 라벨 — 보고서의 §N 소제목 */
+.tag{font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;color:var(--wine);text-transform:uppercase;font-weight:700}
+.tag.k{color:var(--sub)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(248,246,242,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--hair)}
+nav .wrap{display:flex;gap:0;overflow-x:auto;padding:0 12px;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{display:flex;align-items:center;min-height:48px;padding:0 13px;font-size:14.5px;font-weight:700;color:var(--ink2);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--wine);border-bottom-color:var(--wine)}
+
+/* header — 보고서 표지(잉크 바탕) */
+header{background:var(--ink);color:#F3EFE8;padding:56px 0 52px}
+header .rule{width:64px;height:1px;background:#8E5A66;margin:34px 0 22px}
+header h1{font-family:var(--serif);font-weight:900;font-size:clamp(28px,5vw,44px);line-height:1.28;letter-spacing:-.01em;max-width:760px}
+header .sub{font-size:17.5px;color:#C9C2B8;max-width:640px;margin-top:18px}
+header .meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;color:#9A9288}
+
+/* 요약 3열 — 보고서 '권고 3' 슬라이드 */
+.brief{padding:44px 0 6px}
+.brief h2{margin-bottom:22px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0 28px}
+.col{border-top:2px solid var(--hair);padding:16px 0 20px;min-width:0}
+.col.w{border-top-color:var(--wine)} .col.b{border-top-color:var(--blue)}
+.col .tag{display:block;margin-bottom:8px}
+.col h3{font-family:var(--serif);font-weight:700;font-size:21px;line-height:1.4;margin:0 0 8px;padding:0;border:0}
+.col p{font-size:15.5px;color:var(--ink2);margin:0}
+
+/* section */
+section{padding:48px 0 8px;border-top:1px solid var(--line)}
+section .tag{display:block;margin-bottom:8px}
+h2{font-family:var(--serif);font-weight:900;font-size:clamp(23px,3.6vw,31px);line-height:1.32;letter-spacing:-.01em;margin:0 0 12px}
+.lede{color:var(--ink2);font-size:17px;max-width:720px;margin-bottom:22px}
+h3{font-family:var(--serif);font-weight:700;font-size:19.5px;margin:30px 0 12px;padding-top:14px;border-top:1px solid var(--hair)}
 p{margin:0 0 14px}
-.callout{border-left:5px solid var(--coral);background:var(--coral-soft);border-radius:0 12px 12px 0;padding:14px 17px;margin:18px 0;font-size:16px}
-.callout.blue{border-color:var(--blue);background:var(--blue-soft)}
-.callout.green{border-color:var(--green);background:var(--green-soft)}
-.prio{display:grid;gap:12px;margin:18px 0}
-.prio .p{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-.prio .n{flex:0 0 40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:17px}
-.prio .p h4{font-size:17px;margin-bottom:3px}
-.prio .p p{font-size:15px;color:var(--sub);margin:0}
-.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
-.tbl th{background:var(--teal);color:#fff;text-align:left;padding:9px 11px;font-size:14px}
-.tbl td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;background:#fff}
-.tbl tr:nth-child(even) td{background:var(--wash)}
+.note{font-size:14.5px;color:var(--sub)}
+.src{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--sub);margin:14px 0 4px}
+
+/* callout — 얇은 테두리 카드, 왼쪽 축만 색 */
+.callout{border:1px solid var(--line);border-left:3px solid var(--wine);background:var(--card);padding:16px 20px;margin:20px 0;font-size:16px;overflow-wrap:anywhere}
+.callout.blue{border-left-color:var(--blue)}
+.callout.green{border-left-color:var(--green)}
+.callout.wine{background:var(--wine-soft)}
+.callout .tag{display:block;margin-bottom:6px}
+
+/* 우선순위 */
+.prio{display:grid;gap:0;margin:18px 0;border-top:1px solid var(--hair)}
+.prio .p{display:flex;gap:18px;align-items:flex-start;padding:16px 4px;border-bottom:1px solid var(--line);min-width:0}
+.prio .n{flex:0 0 44px;font-family:var(--serif);font-weight:900;font-size:30px;line-height:1;color:var(--wine);padding-top:2px}
+.prio .n.k{color:var(--sub)}
+.prio h4{font-size:17.5px;font-weight:700;margin-bottom:3px}
+.prio .p p{font-size:15.5px;color:var(--ink2);margin:0}
+
+/* 표 */
+.tbl-scroll{overflow-x:auto;margin:16px 0}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;border-top:2px solid var(--hair)}
+.tbl th{text-align:left;padding:10px 12px;font-size:13px;font-family:var(--mono);letter-spacing:.1em;color:var(--sub);border-bottom:1px solid var(--hair);font-weight:700;background:transparent}
+.tbl td{border-bottom:1px solid var(--line);padding:11px 12px;vertical-align:top;background:transparent}
 .tbl .b{font-weight:700}
-.tbl-scroll{overflow-x:auto}
-.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0}
-.lk{border:1px solid var(--line);border-radius:14px;padding:15px 17px;background:#fff}
-.lk .t{font-size:16px;font-weight:700;margin-bottom:3px}
-.lk .u{font-size:13px;word-break:break-all}
-.lk .d{font-size:14px;color:var(--sub);margin-top:5px}
-.lk .who{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:700;border-radius:12px;padding:3px 10px;background:var(--wash);color:var(--teal2);border:1px solid var(--line)}
-.file{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:8px 0;font-size:15.5px}
-.file .no{flex:0 0 30px;height:30px;border-radius:8px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:800}
-.file b{font-family:Consolas,monospace;font-size:14.5px}
-.file span{color:var(--sub);font-size:14.5px}
-.pill{display:inline-block;font-size:12.5px;font-weight:800;border-radius:12px;padding:3px 10px;color:#fff;margin-right:6px}
-.pill.r{background:var(--red)}.pill.b{background:var(--blue)}.pill.g{background:var(--green)}
-footer{margin-top:44px;background:var(--ink);color:#B9C4CE;padding:24px 0 32px;font-size:13.5px}
-footer .wrap{display:grid;gap:5px}
+.tbl.wine tbody tr:last-child td{background:var(--wine);color:#fff}
+.tbl.wine tbody tr:last-child td a{color:#fff}
+
+/* 링크 카드 */
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:16px 0}
+.lk{border:1px solid var(--line);background:var(--card);padding:16px 18px 14px;min-width:0;display:flex;flex-direction:column}
+.lk .t{font-size:16.5px;font-weight:700;margin-bottom:4px}
+.lk .u{font-size:13.5px;font-family:var(--mono);overflow-wrap:anywhere}
+.lk .d{font-size:14.5px;color:var(--ink2);margin-top:6px;flex:1}
+.lk .who{display:inline-block;align-self:flex-start;margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--wine);border:1px solid var(--wine);padding:2px 9px}
+.lk.lock{border-color:#C9B5BA;background:var(--wine-soft)}
+
+/* 파일 목록 */
+.file{display:flex;gap:14px;align-items:flex-start;padding:11px 4px;border-bottom:1px solid var(--line);font-size:15.5px;min-width:0}
+.file .no{flex:0 0 26px;font-family:var(--serif);font-weight:900;font-size:19px;color:var(--wine);line-height:1.5}
+.file b{font-family:var(--mono);font-size:14.5px;overflow-wrap:anywhere}
+.file span{color:var(--ink2);font-size:14.5px}
+.files{border-top:1px solid var(--hair);margin:14px 0}
+
+/* 색 칸(회신 담당) */
+.pill{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;font-weight:700;padding:2px 9px;color:#fff;margin-right:6px;vertical-align:middle}
+.pill.r{background:var(--wine)}.pill.b{background:var(--blue)}.pill.g{background:var(--green)}
+
+/* 컬러 스와치 */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:16px 0}
+.sw{min-width:0}
+.sw .chip{height:64px;border:1px solid var(--line)}
+.sw .nm{font-weight:700;font-size:15px;margin-top:8px}
+.sw .hx{font-family:var(--mono);font-size:13px;color:var(--sub)}
+.sw .use{font-size:13.5px;color:var(--ink2);margin-top:2px}
+
+ul.li{margin:8px 0 10px;padding-left:20px;font-size:15.5px;color:var(--ink2);overflow-wrap:anywhere}
+ul.li li{margin-bottom:5px}
+
+footer{margin-top:52px;background:var(--ink);color:#B7AFA5;padding:30px 0 36px;font-size:13.5px}
+footer .wrap{display:grid;gap:6px}
+footer .tag{color:#9A9288;margin-bottom:8px}
 </style>
 </head>
 <body>
 
 <nav aria-label="섹션 이동"><div class="wrap">
-  <a href="#s1">① 지금 우선순위</a><a href="#s2">② 최지영님 시작</a><a href="#s3">③ 라이브 페이지</a>
-  <a href="#s4">④ 키워드 3문서</a><a href="#s5">⑤ 스케줄 보드</a><a href="#s6">⑥ 자산 대장</a>
+  <a href="#s0">요약</a><a href="#s1">① 우선순위</a><a href="#s2">② 온보딩</a><a href="#s3">③ 라이브 페이지</a>
+  <a href="#s7">④ 브랜드</a><a href="#s4">⑤ 키워드</a><a href="#s5">⑥ 보드</a><a href="#s6">⑦ 자산 대장</a>
 </div></nav>
 
 <header><div class="wrap">
-  <div class="eyebrow">SINOR WORK HUB · 2026-08</div>
-  <h1>시놀 워크허브 — 지금까지 만든 게 전부 여기서 이어져요</h1>
-  <p class="sub">프로토타입·운영보드·학습 페이지·키워드 문서·온보딩 패키지가 흩어지지 않게 한 장으로 묶었어요. 새 멤버는 이 페이지 하나만 받으면 돼요.</p>
+  <div class="tag" style="color:#C9A4AE">SINOR · WORK HUB</div>
+  <div class="rule"></div>
+  <h1>흩어진 문서와 화면이<br>여기서 한 장으로 이어집니다</h1>
+  <p class="sub">프로토타입·운영보드·학습 페이지·키워드 문서·브랜드 결정·자산 대장을 한 페이지에 묶었어요. 새 멤버는 이 페이지 하나만 받으면 됩니다. 문서를 인용하기 전에는 ⑦ 자산 대장의 ⚠ 표시부터 확인해 주세요.</p>
+  <div class="meta"><span>주식회사 시놀 · 내부 작업 허브</span><span>2026.09.01 갱신 · 정본 §14 기준</span></div>
 </div></header>
 
 <main>
 
+<!-- 0 요약 -->
+<section id="s0" class="brief" style="border-top:0">
+  <div class="wrap">
+    <span class="tag">요약 · 지금 세 가지</span>
+    <h2>지킬 순서가 있고, 확인할 표시가 있습니다</h2>
+    <div class="cols">
+      <div class="col w"><span class="tag">01 · 개발 순서</span><h3>안정 → 백오피스 → 영업관리 → 개편</h3><p>전면 개편(P01)은 기획을 계속하되 개발 투입은 시스템 안정·운영보드·SFA 다음이에요. 일정은 운영보드가 정본.</p></div>
+      <div class="col b"><span class="tag" style="color:var(--blue)">02 · 브랜드 결정 3건 확정</span><h3>"관계는 은퇴하지 않습니다"</h3><p>매니페스토 채택 · 컬러 2축(잉크·블루 유지·버건디 신설) · TIER 1 실행 중 — 담당 3인 배정 완료. 근거는 정본 §12.</p></div>
+      <div class="col"><span class="tag k">03 · 인용 전 확인</span><h3>2026E 10억 · 16억·15억 인용 금지</h3><p>IR 202608 최신본이 현행 본체이고 QA ① "15억" 2곳은 수정·vault 교체 완료. GEO 점수 50점은 대외 인용 금지.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- 1 -->
 <section id="s1"><div class="wrap">
-  <div class="eyebrow2">① 방향</div>
+  <span class="tag">§1 · 방향</span>
   <h2>지금 우선순위 — 개편은 기획, 개발은 안정과 운영부터</h2>
-  <p class="lede">앱·웹 전면 개편은 <b>기획을 계속 진행하되</b>, 개발 착수는 아래 순서가 먼저예요. (신진영 이사님 의견 + PO 동일 판단 — KPI 주간회의가 돌아가려면 이 기반이 먼저 서야 해요.)</p>
+  <p class="lede">앱·웹 전면 개편은 <b>기획을 계속 진행하되</b>, 개발 착수는 아래 순서가 먼저예요. 신진영 이사님 의견과 PO 판단이 같아요 — KPI 주간회의가 돌아가려면 이 기반이 먼저 서야 합니다.</p>
   <div class="prio">
-    <div class="p"><span class="n" style="background:var(--red)">1</span><div><h4>시스템 안정</h4><p>지금 서비스가 흔들리지 않는 것이 모든 것의 전제예요.</p></div></div>
-    <div class="p"><span class="n" style="background:var(--coral)">2</span><div><h4>실무자 백오피스 · 운영보드</h4><p>운영보드(v1.13)로 일정·QA를 한 화면에서, 백오피스로 실무자가 직접 처리하게.</p></div></div>
-    <div class="p"><span class="n" style="background:var(--amber)">3</span><div><h4>영업관리 (SFA)</h4><p>상담→매칭→결제의 영업 파이프라인이 시스템에 있어야 <b>KPI 주간회의</b>가 숫자로 돌아가요.</p></div></div>
-    <div class="p"><span class="n" style="background:var(--teal2)">4</span><div><h4>전면 개편 (P01) — 기획 트랙</h4><p>4대 메뉴 개편은 기획·목업·측정 설계를 계속 진행하고, 개발 투입은 위 1~3 이후 보드 일정대로.</p></div></div>
+    <div class="p"><span class="n">01</span><div><h4>시스템 안정</h4><p>지금 서비스가 흔들리지 않는 것이 모든 것의 전제예요.</p></div></div>
+    <div class="p"><span class="n">02</span><div><h4>실무자 백오피스 · 운영보드</h4><p>운영보드(v1.13)로 일정·QA를 한 화면에서, 백오피스로 실무자가 직접 처리하게.</p></div></div>
+    <div class="p"><span class="n">03</span><div><h4>영업관리 (SFA)</h4><p>상담→매칭→결제의 영업 파이프라인이 시스템에 있어야 <b>KPI 주간회의</b>가 숫자로 돌아가요.</p></div></div>
+    <div class="p"><span class="n k">04</span><div><h4>전면 개편 (P01) — 기획 트랙</h4><p>4대 메뉴 개편은 기획·목업·측정 설계를 계속 진행하고, 개발 투입은 위 1~3 이후 보드 일정대로.</p></div></div>
   </div>
-  <div class="callout"><b>의사결정 라인</b> — 모든 결정은 <b>김민지 대표님·신진영 이사님과 확인</b> 후 진행해요. 문서의 빨간 칸이 그 자리예요.</div>
+  <div class="callout"><span class="tag">의사결정 라인</span>모든 결정은 <b>김민지 대표님·신진영 이사님과 확인</b> 후 진행해요. 문서의 빨간 칸이 그 자리예요.</div>
 </div></section>
 
 <!-- 2 -->
 <section id="s2"><div class="wrap">
-  <div class="eyebrow2">② 온보딩</div>
+  <span class="tag">§2 · 온보딩</span>
   <h2>최지영님 — 여기부터 이 순서로 보세요</h2>
   <p class="lede">받으신 파일 패키지(v3.1)는 이 순서로 열면 30분이면 전체 그림이 잡혀요. 파일명이 영문인 건 압축 한글 깨짐 방지용이고 내용은 전부 한글이에요.</p>
-  <div class="file"><span class="no">1</span><div><b>01_start_here_guide.docx</b><br><span>실무자 안내 — 전체 목차 한 장. 여기부터</span></div></div>
-  <div class="file"><span class="no">2</span><div><b>06_prototype.html</b><br><span>동작하는 화면 — 더블클릭. 온라인은 <a href="../">프로토타입 링크</a>와 같아요</span></div></div>
-  <div class="file"><span class="no">3</span><div><b>02_app_screen_spec.docx</b><br><span>앱 화면 기획서 — 4대 메뉴·화면 구성·대화 확장</span></div></div>
-  <div class="file"><span class="no">4</span><div><b>03_web_requirements.docx</b><br><span>웹 개발 요구서 — 매출 우선 IA·웹뷰 두 맥락·검색 채널</span></div></div>
-  <div class="file"><span class="no">5</span><div><b>05_screen_mockup.pptx</b><br><span>화면 목업 11장 (발표 노트 포함)</span></div></div>
-  <div class="file"><span class="no">6</span><div><b>04_dev_work_prompt.docx</b><br><span>개발자 작업 지시 — 개발 전달용이라 마지막에</span></div></div>
+  <div class="files">
+    <div class="file"><span class="no">1</span><div><b>01_start_here_guide.docx</b><br><span>실무자 안내 — 전체 목차 한 장. 여기부터</span></div></div>
+    <div class="file"><span class="no">2</span><div><b>06_prototype.html</b><br><span>동작하는 화면 — 더블클릭. 온라인은 <a href="../">프로토타입 링크</a>와 같아요</span></div></div>
+    <div class="file"><span class="no">3</span><div><b>02_app_screen_spec.docx</b><br><span>앱 화면 기획서 — 4대 메뉴·화면 구성·대화 확장</span></div></div>
+    <div class="file"><span class="no">4</span><div><b>03_web_requirements.docx</b><br><span>웹 개발 요구서 — 매출 우선 IA·웹뷰 두 맥락·검색 채널</span></div></div>
+    <div class="file"><span class="no">5</span><div><b>05_screen_mockup.pptx</b><br><span>화면 목업 11장 (발표 노트 포함)</span></div></div>
+    <div class="file"><span class="no">6</span><div><b>04_dev_work_prompt.docx</b><br><span>개발자 작업 지시 — 개발 전달용이라 마지막에</span></div></div>
+  </div>
 
   <h3>v3.1에서 바뀐 것 — 한 줄이에요</h3>
   <p>4대 메뉴가 <b>홈 · 모임 · 여가 · 만남</b>으로 확정됐어요. 여행은 없어진 게 아니라 <b>여가의 하위</b>로 들어갔어요(여가 = 여행·문화공연·배움·운세재미). 대메뉴 이름만 '여가'로 바뀌고, 시놀트립·이번 주 여행 같은 <b>상품 이름은 '여행' 그대로</b>예요.</p>
 
   <h3>회신은 파란 칸만 채우면 돼요</h3>
   <p><span class="pill r">빨강</span>대표님·이사님(경영 판단) <span class="pill b">파랑</span><b>PO·UX — 최지영님 자리예요</b> <span class="pill g">초록</span>개발(우종선님). 문서와 화면이 다르면 <b>화면이 기준</b>이에요.</p>
-  <div class="callout blue"><b>GA4는 짝꿍 페이지가 있어요</b> — 오늘 물어보신 측정 쪽은 <a href="../ga4/">GA4 초급(보는 법)</a>부터 시작하시고, 개편 기획과 이어지는 건 <a href="../ga4/mid/">중급의 "화면 변경 측정 지도"</a>예요. 정식 합류 후 태그매니저·플레이콘솔 권한이 나오면 직접 작업 예정 — 그때까지는 기준선 기록이 최지영님 몫이에요.</div>
+  <div class="callout blue"><span class="tag" style="color:var(--blue)">GA4 짝꿍 페이지</span>측정 쪽은 <a href="../ga4/">GA4 초급(보는 법)</a>부터 시작하시고, 개편 기획과 이어지는 건 <a href="../ga4/mid/">중급의 "화면 변경 측정 지도"</a>예요. 정식 합류 후 태그매니저·플레이콘솔 권한이 나오면 직접 작업 예정 — 그때까지는 기준선 기록이 최지영님 몫이에요.</div>
+  <p class="note">신규 합류 온보딩 1순위 문서는 <a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/02_%EC%A0%9C%ED%92%88%EA%B0%9C%EB%B0%9C_%EC%9A%B4%EC%98%81%EC%B2%B4%EA%B3%84_v1.0.md" target="_blank" rel="noopener">제품개발 운영체계 v1.0</a>(3자 협업 규격·문서 파이프라인)이에요.</p>
 </div></section>
 
 <!-- 3 -->
 <section id="s3"><div class="wrap">
-  <div class="eyebrow2">③ 지도</div>
+  <span class="tag">§3 · 지도</span>
   <h2>라이브 페이지 — 전부 링크로 열려요</h2>
   <div class="links">
-    <div class="lk"><div class="t">📱 앱·웹 프로토타입 (v3.1)</div><div class="u"><a href="../">ilgam-jtbd.github.io/sinor/</a></div><div class="d">4대 메뉴가 실제로 동작하는 화면 — 문서와 다르면 이게 기준</div><span class="who">전원</span></div>
-    <div class="lk"><div class="t">📅 운영보드 (v1.13)</div><div class="u"><a href="../board/">/board/</a></div><div class="d">스케줄·이슈·QA 한 화면 — 관리 포인트는 전부 여기로</div><span class="who">PO · 개발</span></div>
-    <div class="lk"><div class="t">🗂 백오피스 설계 목업</div><div class="u"><a href="../admin.html">/admin.html</a></div><div class="d">우선순위 ②의 밑그림 — 12개 섹션 + QA/그로스</div><span class="who">PO · 개발</span></div>
-    <div class="lk"><div class="t">🔍 SEO·AEO·GEO 학습자료</div><div class="u"><a href="../learn/">/learn/</a></div><div class="d">검색 57%의 전략 — 대표·실무자 공용 교재</div><span class="who">전원</span></div>
-    <div class="lk"><div class="t">📊 GA4 시리즈 (초·중·고급)</div><div class="u"><a href="../ga4/">/ga4/</a> · <a href="../ga4/mid/">mid</a> · <a href="../ga4/pro/">pro</a></div><div class="d">보는 법 → 설계하는 법(화면 변경 측정 지도) → 붙이는 법(앱 스트림·purchase 2경로·구글 연결 지도)</div><span class="who">최지영 → 개발</span></div>
-    <div class="lk"><div class="t">⚙️ 개발팀 토큰 최적화</div><div class="u"><a href="../devops/">/devops/</a></div><div class="d">Claude Code·Codex 운영 — 공식 출처만으로 검증됨</div><span class="who">개발</span></div>
+    <div class="lk"><div class="t">앱·웹 프로토타입 (v3.1)</div><div class="u"><a href="../">ilgam-jtbd.github.io/sinor/</a></div><div class="d">4대 메뉴가 실제로 동작하는 화면 — 문서와 다르면 이게 기준</div><span class="who">전원</span></div>
+    <div class="lk"><div class="t">운영보드 (v1.13)</div><div class="u"><a href="../board/">/board/</a></div><div class="d">스케줄·이슈·QA 한 화면 — 관리 포인트는 전부 여기로</div><span class="who">PO · 개발</span></div>
+    <div class="lk"><div class="t">백오피스 설계 목업</div><div class="u"><a href="../admin.html">/admin.html</a></div><div class="d">우선순위 02의 밑그림 — 12개 섹션 + QA/그로스</div><span class="who">PO · 개발</span></div>
+    <div class="lk"><div class="t">SEO·AEO·GEO 학습자료</div><div class="u"><a href="../learn/">/learn/</a></div><div class="d">검색 57%의 전략 — 대표·실무자 공용 교재. PART 8에 외부 GEO 진단·벤치마크</div><span class="who">전원</span></div>
+    <div class="lk"><div class="t">GA4 시리즈 (초·중·고급)</div><div class="u"><a href="../ga4/">/ga4/</a> · <a href="../ga4/mid/">mid</a> · <a href="../ga4/pro/">pro</a></div><div class="d">보는 법 → 설계하는 법(화면 변경 측정 지도) → 붙이는 법(앱 스트림·purchase 2경로·구글 연결 지도)</div><span class="who">최지영 → 개발</span></div>
+    <div class="lk"><div class="t">개발팀 토큰 최적화</div><div class="u"><a href="../devops/">/devops/</a></div><div class="d">Claude Code·Codex 운영 — 공식 출처만으로 검증됨</div><span class="who">개발</span></div>
   </div>
-  <p style="font-size:14px;color:var(--sub)">디자인 아티팩트(클릭 편집용): claude.ai/code/artifact/bac52e13… — 패키지 READ_ME에 전체 주소가 있어요.</p>
+  <p class="note">디자인 아티팩트(클릭 편집용): claude.ai/code/artifact/bac52e13… — 패키지 READ_ME에 전체 주소가 있어요.</p>
 
-  <h3>외부 GEO 진단 50점(C) — 2026-08-31</h3>
-  <div class="callout"><b>점수보다 큰 문제 하나</b> — 사이트에 감지된 구조화 데이터가 쇼핑몰용(OnlineStore·배송·반품 정책)뿐이고 Organization·WebSite·FAQPage가 없어서, 진단 도구가 시놀을 <b>"쇼핑몰/이커머스"로 오분류</b>했어요. 순위 문제가 아니라 <b>"우리가 무엇인지 선언"</b>이 안 된 문제예요.</div>
-  <ul style="margin:10px 0 6px;padding-left:20px;font-size:15px;color:var(--sub);line-height:1.7">
-    <li>GEO 59 · SEO 73(만점권) · AEO 18(FAQ 스키마 부재가 원인)</li>
+  <h3>외부 GEO 진단 — 점수보다 큰 문제 하나</h3>
+  <div class="callout wine"><span class="tag">2026-08-31 · 매스티지 v3 · 50점(C)</span>사이트에 감지된 구조화 데이터가 쇼핑몰용(OnlineStore·배송·반품 정책)뿐이고 Organization·WebSite·FAQPage가 없어서, 진단 도구가 시놀을 <b>"쇼핑몰/이커머스"로 오분류</b>했어요. 순위 문제가 아니라 <b>"우리가 무엇인지 선언"</b>이 안 된 문제예요.</div>
+  <ul class="li">
+    <li>GEO <span class="num">59</span> · SEO <span class="num">73</span>(만점권) · AEO <span class="num">18</span>(FAQ 스키마 부재가 원인). 점수는 첫 화면 1p·21신호 판정이라 <b>IR·대외 문서 인용 금지</b></li>
     <li>기술 기반(HTTPS·모바일·canonical·사이트맵·OG·메타설명)은 전부 만점 — 감점은 H1 0개·title 7자·alt 17%·속도 2,585ms뿐</li>
     <li>미확인 해소: 서치어드바이저 연결 · sitemap · llms.txt · AI 크롤러 15종 허용(robots.txt 판독과 상호 검증 일치) — <b>잔여 미확인은 구글 서치콘솔 하나</b></li>
     <li>AI 인식은 오히려 양호 — Claude 질의에서 시놀이 정확히 인용됨(오프라인 GEO는 이미 작동 중)</li>
+    <li>같은 도구 벤치마크 — tinder.com은 B(67/82/30), VELOR(velor.kr)는 A+(94/100/91, 09-01 재진단). 격차는 스키마 @graph 단일화·About+Organization 연결·title/H1 일치 — 실행 순서 1~4번으로 해소 가능</li>
     <li>덤: AI 공동언급 경쟁사 신규 확보(매듭·큐리어스 등) — IR 경쟁 슬라이드 보강 대상</li>
   </ul>
-  <p style="font-size:14px;color:var(--sub)">상세 분석·실행 순서·개발 프롬프트는 <a href="../learn/#s9">/learn/ PART 8</a>에 있어요. <b>전제 조건</b> — 개선 1~4번은 아임웹 관리자에서 head 코드 삽입이 가능해야 실행돼요.</p>
+  <p class="note">상세 분석·실행 순서·개발 프롬프트는 <a href="../learn/#s9">/learn/ PART 8</a>에 있어요. <b>전제 조건</b> — 개선 1~4번은 아임웹 관리자에서 head 코드 삽입이 가능해야 실행되고, 스키마 코드 적용은 개발 담당(우종선님) 권한이에요.</p>
+  <div class="src">출처 · 정본 §13 · 자산 대장 §3 GEO 진단 행</div>
+</div></section>
+
+<!-- 7 브랜드 -->
+<section id="s7"><div class="wrap">
+  <span class="tag">§4 · 브랜드</span>
+  <h2>브랜드 결정 3건 — 확정됐고, 이번 주에 할 일이 있어요</h2>
+  <p class="lede">컨설팅 보고서(브랜드 진단 43p) 판독 후 결정 대기였던 3건이 <b>2026-08-31 은실장 위임으로 확정</b>됐어요. 확정값은 정본 §12, 실행 지시는 코워크 실행 패키지(08-31)예요.</p>
+
+  <div class="cols">
+    <div class="col w"><span class="tag">① 매니페스토</span><h3>관계는 은퇴하지 않습니다</h3><p>층별 태그라인 5종 — 모임 "오늘 만날 사람이 있습니다" · 시럽 "설레는 일은 끝나지 않았습니다" · 트립 "같이 가면 멀지 않습니다" · 여보세요 "오늘 안부를 묻는 사람이 있습니다" · 시럽인연 "남은 절반을 함께 결정합니다". IR 커버 반영은 다음 리비전.</p></div>
+    <div class="col b"><span class="tag" style="color:var(--blue)">② 컬러 2축 · 단계 적용</span><h3>기존 자산 재작업 0 원칙</h3><p>기업 층은 잉크, 커뮤니티 층은 현행 시놀 블루 유지, 시럽인연만 버건디 신설. 핑크는 시럽 앱 내부·앱 아이콘으로 격하. <b>버건디 대규모 집행(TIER 3)은 결제자 성별 실측 후.</b></p></div>
+    <div class="col"><span class="tag k">③ TIER 1 · 실행 중</span><h3>디자인 리소스 없이 이번 주</h3><p>문구와 삭제만으로 되는 5건 + 데이터 1건. 측정은 상담 신청률이 아니라 <b>계약 전환율·환불률</b>, 철거 후 4주 비교.</p></div>
+  </div>
+
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#14110F"></div><div class="nm">잉크</div><div class="hx">#14110F</div><div class="use">L1 기업 — IR·제안서·B2G 문서 기본색(구 navy 대체)</div></div>
+    <div class="sw"><div class="chip" style="background:#1B6BFF"></div><div class="nm">시놀 블루</div><div class="hx">#1B6BFF · 현행 유지</div><div class="use">L2 커뮤니티 — 모임·시럽·트립·여보세요</div></div>
+    <div class="sw"><div class="chip" style="background:#6B1F32"></div><div class="nm">인연 버건디</div><div class="hx">#6B1F32 · 신설</div><div class="use">L3 시럽인연 — 랜딩·상담 자료·계약서 한정</div></div>
+    <div class="sw"><div class="chip" style="background:#EE3D96;opacity:.55"></div><div class="nm">기존 핑크 · 격하</div><div class="hx">#EE3D96</div><div class="use">마스터에서 제거 — 시럽 앱 내부·앱 아이콘만</div></div>
+  </div>
+  <p class="note">타이포 — 기업·프리미엄 제목은 명조 Bold 이상, 본문은 고딕, 수치는 고정폭. <b>Light·Thin 웨이트는 전 접점 금지.</b> 본문 17px · 버튼 18px · 터치 48px. (이 페이지도 같은 규칙으로 만들었어요.)</p>
+
+  <h3>TIER 1 담당별 — 확인란만 채워 주세요</h3>
+  <div class="tbl-scroll"><table class="tbl wine"><thead><tr><th style="width:22%">누가</th><th>무엇을</th></tr></thead><tbody>
+    <tr><td class="b">우종선 님 <span class="pill g">초록</span></td><td>① 시럽인연 하단 카운트다운 바 철거 → "이번 달 소개 가능 인원 N명 · 상담 일정 보기". <b>N은 어드민 입력 실측값만</b>(자동 감소·리셋 금지, 값 미입력 시 문구 미노출) ② 랜딩 상단에 신뢰 3줄 블록(안면인식 본인 검증 · 신분증-얼굴 대조 · 로맨스스캠 차단 AI, 특허 4건)</td></tr>
+    <tr><td class="b">박희수 님</td><td>③ "국내 최초" 전 지면 → "3년 5개월 운영 · 특허 4건 등록"(단체미팅 랜딩 우선) ④ '시니어 러브'·'Si-Love' 대외 노출 전수 제거 → <b>'시럽' 통일</b>(메타·본문·광고 소재)</td></tr>
+    <tr><td class="b">진희 님</td><td>⑤ 상담 스크립트·CS에 언어 대조표 배포 — 어르신→○○님 · "더 늦기전에"→"준비가 되었다면" · "마감 임박"→"이번 달 소개 가능 인원". 판단 기준 한 줄: <b>"회원을 대상으로 부르는가, 주체로 부르는가"</b></td></tr>
+    <tr><td class="b">데이터 1건</td><td>⑥ 시럽인연 결제자 성별 구성 실측(2025 Beta 65건 + 2026 계약) — 회신 시 버건디 TIER 3 게이트 해제. 회원 데이터 원천은 git 저장 전면 금지, 비식별 집계만</td></tr>
+  </tbody></table></div>
+  <p class="note">표기 규칙 함께 채택 — <b>재방문율 52% 대외 사용 금지</b>(재결제율 47%로 대체) · 老맨스·"달콤한 데이팅" 폐기. 상세는 정본 §11.</p>
+  <div class="src">출처 · 정본 §11·§12 · 🔒 컨설팅 보고서 §7·TIER 1 · 코워크 실행 패키지 2026-08-31</div>
 </div></section>
 
 <!-- 4 -->
 <section id="s4"><div class="wrap">
-  <div class="eyebrow2">④ 키워드 관리</div>
-  <h2>키워드 3문서 — 어제 회의 7번의 후속이에요</h2>
-  <div class="callout"><b>핵심 숫자 하나</b> — <b>오늘의운세 월 525만 검색</b>, 결정사(11,020)의 <b>476배</b>. 시놀이 이미 가진 운세·사주가 최대 유입구예요.</div>
+  <span class="tag">§5 · 키워드 관리</span>
+  <h2>키워드 3문서 — 회의 7번의 후속이에요</h2>
+  <div class="callout"><span class="tag">핵심 숫자 하나</span><b>오늘의운세 월 <span class="num">525만</span> 검색</b>, 결정사(<span class="num">11,020</span>)의 <b><span class="num">476</span>배</b>. 시놀이 이미 가진 운세·사주가 최대 유입구예요.</div>
   <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:34%">문서</th><th>무엇</th></tr></thead><tbody>
     <tr><td class="b">① ASO 키워드 설계 v5.1</td><td>스토어 문구 전체안(글자수 검증 완료). 앱 이름 확정안: <b>시놀 - 시니어 5060 만남 소개팅 모임 운세 앱</b>. <b>모든 판단의 기준 문서</b></td></tr>
     <tr><td class="b">② 어드민 키워드 관리 요구사항 v1.0</td><td><a href="https://admin.senor.co.kr" target="_blank" rel="noopener">admin.senor.co.kr</a> 신규 메뉴 개발 정의서 (Codex 붙여넣기 프롬프트 포함)</td></tr>
@@ -152,61 +267,72 @@ footer .wrap{display:grid;gap:5px}
   </tbody></table></div>
   <h3>담당별 — 시스템 안정 이후, 확인란만 채워 주세요</h3>
   <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:22%">누가</th><th>무엇을</th></tr></thead><tbody>
-    <tr><td class="b">우종선 님 <span class="pill g" style="margin-left:4px">초록</span></td><td>v5.1로 스토어 문구 교체 — <b>App Store 한국어 등록이 최우선</b>(미등록이라 iOS 검색에 안 걸려요) · GA4 앱 스트림 4개(<a href="../ga4/pro/">고급 페이지 PART 4</a>, 앱당 반나절) · 정의서 초록 확인란 회신</td></tr>
-    <tr><td class="b">최지영 님 <span class="pill b" style="margin-left:4px">파랑</span></td><td>앱 스트림 연결 후 first_open·purchase 측정 설계(<a href="../ga4/mid/">중급 지도</a>) · <b>교체 전 기준선 기록</b> · 정의서 파란 확인란(클러스터·/fortune 경로)</td></tr>
-    <tr><td class="b">박희수 님</td><td><b>웹 오늘의운세 페이지 신설이 최대 과제</b> · FAQ는 v5.1 9장 질의응답 그대로 · 이미지 파일명·alt 규칙은 10장</td></tr>
-    <tr><td class="b">김민지 대표님 <span class="pill r" style="margin-left:4px">빨강</span></td><td>결정 2건 — ① 어드민 디자인 통일 먼저 vs 키워드 메뉴 바로 추가 ② 앱 이름에 운세 반영 승인(유입 우선으로 반영해 둔 상태)</td></tr>
+    <tr><td class="b">우종선 님 <span class="pill g">초록</span></td><td>v5.1로 스토어 문구 교체 — <b>App Store 한국어 등록이 최우선</b>(미등록이라 iOS 검색에 안 걸려요) · GA4 앱 스트림 4개(<a href="../ga4/pro/">고급 페이지 PART 4</a>, 앱당 반나절) · 정의서 초록 확인란 회신</td></tr>
+    <tr><td class="b">최지영 님 <span class="pill b">파랑</span></td><td>앱 스트림 연결 후 first_open·purchase 측정 설계(<a href="../ga4/mid/">중급 지도</a>) · <b>교체 전 기준선 기록</b> · 정의서 파란 확인란(클러스터·/fortune 경로)</td></tr>
+    <tr><td class="b">박희수 님</td><td><b>웹 오늘의운세 페이지 신설이 최대 과제</b> · FAQ는 v5.1 9장 질의응답 그대로 · 이미지 파일명·alt 규칙은 10장 · 발행킷(유튜브 링크 표준 블록·UTM)은 아래 ⑦ 표</td></tr>
+    <tr><td class="b">김민지 대표님 <span class="pill r">빨강</span></td><td>결정 2건 — ① 어드민 디자인 통일 먼저 vs 키워드 메뉴 바로 추가 ② 앱 이름에 운세 반영 승인(유입 우선으로 반영해 둔 상태)</td></tr>
   </tbody></table></div>
-  <p style="font-size:14px;color:var(--sub)">참조 주신 <a href="https://www.onthe.ai/healthcare" target="_blank" rel="noopener">onthe.ai/healthcare</a>는 어드민 메뉴 설계 때 추가 검토 예정이에요.</p>
+
+  <h3>검색 순위 추적 파이프라인 — 설계 끝, 착수 대기</h3>
+  <p>키워드별 네이버 검색 순위를 자동으로 쌓는 설계(정본 §14)는 코워크 검토로 <b>조건부 승인</b>됐어요. 선반영 조건 4건 — 하트링크는 우리 자산 매칭에서 제외 · 순위는 API 정렬 내 상대 위치라는 주석 필수 · 자산은 앱 리스팅 4개 + 시럽인연 웹 · 궁합은 '관찰(미보유)' 분류.</p>
+  <div class="callout"><span class="tag">착수 전제 3가지 · 전부 미충족</span>① 시놀 전용 Supabase 프로젝트 부재 ② NCP 키 미발급 — <b>B안(시놀 전용 발급)</b> 대표 최종 승인 대기 ③ 프로덕션 코드 저장소 미지정. 충족 전까지 스키마 미적용·배포 미실행이에요. <b>기준선 스냅샷은 title·H1·스키마 개편 착수 전에</b> 확보해야 개선 효과를 증명할 수 있어요.</div>
+  <p class="note">참조 주신 <a href="https://www.onthe.ai/healthcare" target="_blank" rel="noopener">onthe.ai/healthcare</a>는 어드민 메뉴 설계 때 추가 검토 예정이에요.</p>
+  <div class="src">출처 · ASO v5.1 · 정본 §5·§14 · 자산 대장 §3</div>
 </div></section>
 
 <!-- 5 -->
 <section id="s5"><div class="wrap">
-  <div class="eyebrow2">⑤ 관리 포인트</div>
+  <span class="tag">§6 · 관리 포인트</span>
   <h2>스케줄은 운영보드가 정본이에요</h2>
   <p class="lede">P01(4대 메뉴)~P08(단체미팅 프로세스)까지 프로젝트 8개가 CRITICAL/TIER1/TIER2로 보드에 올라 있어요. 일정 질문이 생기면 문서 말고 <b>보드부터</b> 여세요.</p>
   <div class="links">
-    <div class="lk"><div class="t">📅 스케줄 보드 열기</div><div class="u"><a href="../board/">ilgam-jtbd.github.io/sinor/board/</a></div><div class="d">간트(프로젝트별·이슈별·담당자별) · 이슈 · QA · 릴리즈 — 로그인 없이 열람(예시 배포)</div></div>
+    <div class="lk"><div class="t">스케줄 보드 열기</div><div class="u"><a href="../board/">ilgam-jtbd.github.io/sinor/board/</a></div><div class="d">간트(프로젝트별·이슈별·담당자별) · 이슈 · QA · 릴리즈 — 로그인 없이 열람(예시 배포)</div></div>
   </div>
-  <p style="font-size:14px;color:var(--sub)">정식 운영 전 필수 3가지(보드 README): Firebase 연결 · 관리자 비밀번호 변경 · 공개 노출 처리. 지금 상태는 "예시 공개"예요.</p>
+  <p class="note">정식 운영 전 필수 3가지(보드 README): Firebase 연결 · 관리자 비밀번호 변경 · 공개 노출 처리. 지금 상태는 "예시 공개"예요.</p>
 </div></section>
 
 <!-- 6 -->
 <section id="s6"><div class="wrap">
-  <div class="eyebrow2">⑥ 더 깊이</div>
+  <span class="tag">§7 · 더 깊이</span>
   <h2>자산 대장 — 어디 있고, 지금 믿어도 되는지</h2>
-  <p class="lede">코워크·CC·배포 페이지에 흩어진 문서의 위치와 상태는 <b>자산 대장</b>에서 확인해요. 문서를 인용하기 전에 대장의 ⚠ 플래그부터 봐 주세요.</p>
-  <div class="callout"><b>⚠ 인용 전 필수 확인 3가지</b><br>
-    ① <b>2026E 매출은 10억 확정</b> — 구표기 <b>16억·15억 인용 금지는 계속</b>이에요. 라운드 자료의 현행 본체는 <b>IR 202608 최신본</b>(08-31 승격)이고, 구 덱(v2·v4)과 구 2027E 수치는 인용 금지. 최신본도 p11·p24의 "15억" 2곳이 수정 전이라 <b>그 두 페이지는 단독 인용 금지</b>예요<br>
-    ② <b>TIPS 검토 1p</b>는 06월판 구표기 위험 — 확정치(정부매칭 최대 8억·실효 14억)는 코워크 정합기준 정본 §7로만 인용해요<br>
-    ③ <b>CAC 2,836원은 계획값</b> — 실측 병기 없이 단독 표기 금지예요</div>
+  <p class="lede">코워크·CC·배포 페이지에 흩어진 문서의 위치와 상태는 <b>자산 대장(v1.14)</b>에서 확인해요. 문서를 인용하기 전에 대장의 ⚠ 플래그부터 봐 주세요.</p>
+  <div class="callout"><span class="tag">⚠ 인용 전 필수 확인 4가지</span>
+    ① <b>2026E 매출은 10억 확정</b> — 구표기 <b>16억·15억 인용 금지(영구)</b>, 구 2027E 36.7억도 인용 금지. 현행 라운드 본체는 <b>IR 202608 최신본</b>(08-31 승격)이고 구 덱(v2·v4)은 인용 금지. 최신본 QA ①("15억" 2곳)은 <b>수정·vault 교체 완료</b> — 잔여는 덱 제작 원본(디자인 파일) 미수정이라 재내보내기 시 재유입 주의<br>
+    ② <b>페이지 표기</b> — 최신본은 무번호 디바이더 때문에 디바이더 이후 슬라이드 번호와 물리 페이지가 1 어긋나요. 인용은 <b>"슬라이드 N(물리 N+1)"</b>로<br>
+    ③ <b>TIPS 검토 1p</b>는 06월판 구표기 위험 — 확정치는 코워크 정합기준 정본 §7로만 인용<br>
+    ④ <b>CAC 2,836원은 계획값</b> — 실측 병기 없이 단독 표기 금지 · GEO 진단 점수도 대외 인용 금지</div>
   <div class="links">
-    <div class="lk"><div class="t">📒 자산 대장 (2026-08)</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/12_%EC%9E%90%EC%82%B0%EB%8C%80%EC%9E%A5_2026-08.md">docs/12_자산대장_2026-08.md</a></div><div class="d">전략·IR / 제품 v3.1 / 키워드·채널 / 프로세스·학습 — 문서별 위치·상태·⚠ 플래그. 근거: 코워크 대장 1·2차(v1.1)</div></div>
-    <div class="lk"><div class="t">📌 위치 해소 2건</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/10_%EA%B2%BD%EC%98%81%EA%B2%B0%EC%A0%95_%EA%B8%B0%EB%A1%9D_2026-08.md">docs/10_경영결정_기록_2026-08.md</a></div><div class="d">경영결정 기록 v1.01/1.02 반영본 · PO 교육자료 W1~W4 요약은 <a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/00_%EB%AC%B8%EC%84%9C%ED%95%99%EC%8A%B5_%EC%A7%80%EC%8B%9D%EB%B2%A0%EC%9D%B4%EC%8A%A4.md" target="_blank" rel="noopener"><code>docs/00_문서학습_지식베이스.md</code></a> — 원본은 CC 업로드 채널 수신분이에요. <b>PO 교육자료는 외부 저작물</b>이라 원본 pdf는 공개 저장소에 올리지 않아요(요약 반영본만)</div></div>
+    <div class="lk"><div class="t">자산 대장 (2026-08 · v1.14)</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/12_%EC%9E%90%EC%82%B0%EB%8C%80%EC%9E%A5_2026-08.md">docs/12_자산대장_2026-08.md</a></div><div class="d">전략·IR / 제품 v3.1 / 키워드·채널 / 프로세스·학습 — 문서별 위치·상태·⚠ 플래그. 인벤토리 트랙은 08-30 종결, 이후 유지 갱신 중</div></div>
+    <div class="lk"><div class="t">경영결정 기록 · PO 교육 요약</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/10_%EA%B2%BD%EC%98%81%EA%B2%B0%EC%A0%95_%EA%B8%B0%EB%A1%9D_2026-08.md">docs/10_경영결정_기록_2026-08.md</a></div><div class="d">경영결정 기록 반영본(결정 주체 신진영 이사·김민지 대표 — 인명은 슬랙 계정과 대사 후 표기) · PO 교육자료 W1~W4 요약은 <a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/00_%EB%AC%B8%EC%84%9C%ED%95%99%EC%8A%B5_%EC%A7%80%EC%8B%9D%EB%B2%A0%EC%9D%B4%EC%8A%A4.md" target="_blank" rel="noopener">docs/00_문서학습_지식베이스.md</a>. <b>PO 교육자료는 외부 저작물</b>이라 원본은 어느 저장소에도 올리지 않아요</div></div>
   </div>
   <div class="tbl-scroll"><table class="tbl"><thead><tr><th style="width:44%">저장소 원본 (repo: ilgam-jtbd/sinor · docs/)</th><th>역할</th></tr></thead><tbody>
-    <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/03_%EC%A0%95%ED%95%A9%EA%B8%B0%EC%A4%80_%EC%A0%95%EB%B3%B8_2026-08.md" target="_blank" rel="noopener"><code>03_정합기준_정본_2026-08.md</code></a></td><td class="b">공개용 축약 정본 — 재무·라운드 상세는 코워크 확장 정본이 우선이에요</td></tr>
+    <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/03_%EC%A0%95%ED%95%A9%EA%B8%B0%EC%A4%80_%EC%A0%95%EB%B3%B8_2026-08.md" target="_blank" rel="noopener"><code>03_정합기준_정본_2026-08.md</code></a></td><td class="b">공개용 축약 정본(§1~§14) — 재무·라운드 상세는 코워크 확장 정본이 우선이에요</td></tr>
     <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/12_%EC%9E%90%EC%82%B0%EB%8C%80%EC%9E%A5_2026-08.md" target="_blank" rel="noopener"><code>12_자산대장_2026-08.md</code></a></td><td class="b">문서 자산의 위치·상태 지도 — 이 섹션의 원본</td></tr>
+    <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/02_%EC%A0%9C%ED%92%88%EA%B0%9C%EB%B0%9C_%EC%9A%B4%EC%98%81%EC%B2%B4%EA%B3%84_v1.0.md" target="_blank" rel="noopener"><code>02_제품개발_운영체계_v1.0.md</code></a></td><td>3자 협업 규격 · 문서 파이프라인 — 온보딩 1순위</td></tr>
     <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/11_IA_%EB%A9%94%EB%89%B4%EA%B0%9C%ED%8E%B8_2026-08.md" target="_blank" rel="noopener"><code>11_IA_메뉴개편_2026-08.md</code></a></td><td>홈·모임·여가·만남 확정 근거</td></tr>
     <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/reports/%EC%8B%9C%EB%86%80_SEO%C2%B7AEO%C2%B7GEO_%ED%95%99%EC%8A%B5%EC%A0%95%EB%A6%AC_20260827.md" target="_blank" rel="noopener"><code>reports/시놀_SEO·AEO·GEO_학습정리…</code></a></td><td>/learn/의 원본 + 그림 SVG</td></tr>
-    <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/prompts/%EC%8B%9C%EB%86%80_%EB%B0%9C%ED%96%89%ED%82%B7_20260827.md" target="_blank" rel="noopener"><code>prompts/시놀_발행킷_20260827.md</code></a></td><td>유튜브 링크 표준 블록·UTM·sameAs</td></tr>
-    <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/09_%EB%B0%B1%EC%98%A4%ED%94%BC%EC%8A%A4_%EC%84%A4%EA%B3%84%EC%84%9C_v1.0.md" target="_blank" rel="noopener"><code>09_백오피스_설계서_v1.0.md</code></a></td><td>우선순위 ② 설계서 (충돌 자동 Hold 규칙 포함)</td></tr>
+    <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/prompts/%EC%8B%9C%EB%86%80_%EB%B0%9C%ED%96%89%ED%82%B7_20260827.md" target="_blank" rel="noopener"><code>prompts/시놀_발행킷_20260827.md</code></a></td><td>유튜브 링크 표준 블록·UTM·sameAs (하트링크 제외·시럽 19+ 병기)</td></tr>
+    <tr><td><a href="https://github.com/ilgam-jtbd/sinor/blob/claude/learning-session-b0yeka/docs/09_%EB%B0%B1%EC%98%A4%ED%94%BC%EC%8A%A4_%EC%84%A4%EA%B3%84%EC%84%9C_v1.0.md" target="_blank" rel="noopener"><code>09_백오피스_설계서_v1.0.md</code></a></td><td>우선순위 02 설계서 (충돌 자동 Hold 규칙 포함)</td></tr>
   </tbody></table></div>
+
   <h3>🔒 대외비 원본 — 권한자만 열려요</h3>
   <div class="links">
-    <div class="lk"><div class="t">🔒 IR 202608 최신본 (28p)</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%8B%9C%EB%86%80_IR_202608_Appendix%ED%8F%AC%ED%95%A8.pdf">vault · 시놀_IR_202608_Appendix포함.pdf</a></div><div class="d">현행 라운드 본체 — ⚠ p11·p24 "15억" 수정 전 해당 페이지 단독 인용 금지</div></div>
-    <div class="lk"><div class="t">🔒 컨설팅 보고서 + 판독 요약</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%8B%9C%EB%86%80_%EC%BB%A8%EC%84%A4%ED%8C%85_%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf">원본 pdf</a> · <a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%BD%94%EC%9B%8C%ED%81%AC_%ED%8C%90%EB%8F%85_%EC%BB%A8%EC%84%A4%ED%8C%85%EB%B3%B4%EA%B3%A0%EC%84%9C_20260831.md">판독 요약</a></div><div class="d">브랜드 진단 43p — 결정 3건은 확정 완료(정본 §12)</div></div>
-    <div class="lk"><div class="t">🔒 종합전략 v3 · 경영결정 기록</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%8B%9C%EB%86%80_%EC%A2%85%ED%95%A9%EC%A0%84%EB%9E%B5_v3.pptx">전략 pptx</a> · <a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/10_%EA%B2%BD%EC%98%81%EA%B2%B0%EC%A0%95_%EA%B8%B0%EB%A1%9D_202608.md">경영결정 원본 md</a></div><div class="d">정본 출처 문서 · 결정 주체는 신진영 이사·김민지 대표</div></div>
+    <div class="lk lock"><div class="t">🔒 IR 202608 최신본 (28p)</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%8B%9C%EB%86%80_IR_202608_Appendix%ED%8F%AC%ED%95%A8.pdf">vault · 시놀_IR_202608_Appendix포함.pdf</a></div><div class="d">현행 라운드 본체 — QA ① "15억"→"10억" 2곳 수정본으로 교체 완료(08-31). 잔여 QA ②③: p5 지표는 p7·p25 실측이 정본 · CPS/RCPS는 RCPS 정본</div></div>
+    <div class="lk lock"><div class="t">🔒 컨설팅 보고서 + 판독 요약</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%8B%9C%EB%86%80_%EC%BB%A8%EC%84%A4%ED%8C%85_%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf">원본 pdf</a> · <a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%BD%94%EC%9B%8C%ED%81%AC_%ED%8C%90%EB%8F%85_%EC%BB%A8%EC%84%A4%ED%8C%85%EB%B3%B4%EA%B3%A0%EC%84%9C_20260831.md">판독 요약</a></div><div class="d">브랜드 진단 43p(ShareMelon 2026-08) — 결정 3건은 확정 완료(위 §4 · 정본 §12). 이 페이지의 디자인 규칙 출처</div></div>
+    <div class="lk lock"><div class="t">🔒 종합전략 v3 · 경영결정 기록</div><div class="u"><a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/%EC%8B%9C%EB%86%80_%EC%A2%85%ED%95%A9%EC%A0%84%EB%9E%B5_v3.pptx">전략 pptx</a> · <a href="https://github.com/ilgam-jtbd/sinor-vault/blob/main/docs/10_%EA%B2%BD%EC%98%81%EA%B2%B0%EC%A0%95_%EA%B8%B0%EB%A1%9D_202608.md">경영결정 원본 md</a></div><div class="d">정본 출처 문서 · 결정 주체는 신진영 이사·김민지 대표</div></div>
   </div>
-  <div class="callout green"><b>파일은 이렇게 나뉘어요 (2026-08-31 확정)</b> — 내부공유 문서는 공개 저장소 링크로, <b>대외비 원본은 위 🔒 비공개 보관소(sinor-vault)</b>로 열어요. 🔒 링크는 권한자(대표님·은실장님 등)만 열리고 다른 사람에게는 404라 안전해요. <b>러닝스푼즈 교육자료(외부 저작물)만 재배포 금지라 링크 없이 보관</b>해요 — 필요하면 은실장님께 요청하세요.</div>
+  <div class="callout green"><span class="tag" style="color:var(--green)">파일은 이렇게 나뉘어요 (2026-08-31 확정)</span>내부공유 문서는 공개 저장소 링크로, <b>대외비 원본은 위 🔒 비공개 보관소(sinor-vault, 운영 중)</b>로 열어요. 🔒 링크는 권한자(대표님·은실장님 등)만 열리고 다른 사람에게는 404라 안전해요. 예외 둘 — <b>러닝스푼즈 교육자료(외부 저작물)는 재배포 금지라 링크 없이 보관</b>(필요하면 은실장님께 요청) · <b>회원 데이터는 어느 저장소에도 올리지 않아요</b>(비식별 집계만).</div>
+  <div class="src">출처 · 자산 대장 v1.14 §0·§1 · 정본 §2·§11</div>
 </div></section>
 
 </main>
 
 <footer><div class="wrap">
-  <div><b style="color:#fff">시놀 워크허브</b> · 2026-08-29 · 내부용 (대외비)</div>
+  <div class="tag">SINOR · WORK HUB</div>
+  <div><b style="color:#F3EFE8">시놀 워크허브</b> · 2026-08-29 작성 · 2026-09-01 갱신 · 내부용</div>
   <div>우선순위 — 신진영 이사님 의견 + PO 판단 · 최종 결정은 대표님·이사님 라인</div>
-  <div>수치 출처 — 정합기준 정본(2026-08) · ASO v5.1 · 운영보드 v1.13</div>
+  <div>수치 출처 — 정합기준 정본(2026-08, §1~§14) · 자산 대장 v1.14 · ASO v5.1 · 운영보드 v1.13</div>
+  <div>디자인 규칙 — 컨설팅 보고서 §7(잉크 · 시놀 블루 · 버건디 · 명조 제목 · 고딕 본문 · 고정폭 수치)</div>
 </div></footer>
 
 </body>
