@@ -8,10 +8,10 @@
 <meta name="robots" content="noindex">
 <style>
 :root{
-  --ink:#22303A; --sub:#5A6982; --teal:#0E5A5A; --teal2:#12726E;
-  --coral:#E8734A; --blue:#2E7BB0; --blue2:#22608C;
+  --ink:#14110F; --sub:#6B655E; --teal:#14110F; --teal2:#1B6BFF;
+  --coral:#6B1F32; --blue:#1B6BFF; --blue2:#1B6BFF;
   --ok:#2E9E6B; --warn:#E8A13A; --danger:#D9534F;
-  --bg:#FFFFFF; --wash:#F4F7F7; --line:#DCE4E4; --card:#FFFFFF;
+  --bg:#F8F6F2; --wash:#F4F1EA; --line:#D9D3CA; --card:#FFFFFF;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -32,25 +32,25 @@ nav a{display:flex;align-items:center;min-height:48px;padding:0 13px;font-size:1
 nav a:hover,nav a:focus-visible{color:var(--teal);border-bottom-color:var(--teal)}
 
 /* ── 히어로 ── */
-header{background:linear-gradient(150deg,#0B4A4A 0%,var(--teal2) 62%,#15807A 100%);color:#fff;
+header{background:var(--ink);color:#fff;
   padding:52px 0 44px}
-header .eyebrow{font-size:13.5px;letter-spacing:.14em;font-weight:700;color:#9FD4CB;text-transform:uppercase}
+header .eyebrow{font-size:13.5px;letter-spacing:.14em;font-weight:700;color:#C9A4AE;text-transform:uppercase}
 header h1{font-size:clamp(27px,4.6vw,40px);line-height:1.25;margin:10px 0 6px;font-weight:800}
-header .sub{font-size:17.5px;color:#D7EAE6;max-width:640px}
+header .sub{font-size:17.5px;color:#C9C2B8;max-width:640px}
 .scale{margin-top:30px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
   border-radius:14px;padding:20px 22px}
-.scale .cap{font-size:13.5px;font-weight:700;color:#9FD4CB;letter-spacing:.08em;margin-bottom:12px}
+.scale .cap{font-size:13.5px;font-weight:700;color:#C9A4AE;letter-spacing:.08em;margin-bottom:12px}
 .bar-row{display:grid;grid-template-columns:120px 1fr 96px;align-items:center;gap:12px;margin:9px 0}
-.bar-row .lb{font-size:15px;font-weight:700;color:#EAF5F2}
+.bar-row .lb{font-size:15px;font-weight:700;color:#F3EFE8}
 .bar-track{display:block;height:14px;border-radius:7px;background:rgba(255,255,255,.06);overflow:hidden}
 .bar-fill{display:block;height:100%;border-radius:7px;background:var(--coral);min-width:8px}
-.bar-fill.thin{background:#CFE9E3;min-width:8px}
+.bar-fill.thin{background:#C9899A;min-width:8px}
 .bar-row .val{font-size:14.5px;font-weight:700;text-align:right;color:#fff}
-.scale .note{font-size:14px;color:#C6E2DC;margin-top:12px}
+.scale .note{font-size:14px;color:#C9C2B8;margin-top:12px}
 .tldr{margin-top:26px;display:grid;gap:10px}
 .tldr li{list-style:none;background:rgba(255,255,255,.07);border-left:4px solid var(--coral);
-  border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;color:#F1FAF8}
-.tldr li b{color:#FFD9C7}
+  border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;color:#F3EFE8}
+.tldr li b{color:#F0B8C4}
 
 /* ── 공통 섹션 ── */
 section{padding:46px 0 8px}
@@ -81,9 +81,9 @@ p{margin:0 0 14px}
 .tbl-scroll{overflow-x:auto}
 
 /* 강조 박스 */
-.callout{border-left:5px solid var(--coral);background:#FDF3ED;border-radius:0 12px 12px 0;
+.callout{border-left:5px solid var(--coral);background:#F6EEF0;border-radius:0 12px 12px 0;
   padding:15px 18px;margin:20px 0;font-size:16px}
-.callout.blue{border-color:var(--blue);background:#EEF5FA}
+.callout.blue{border-color:var(--blue);background:#EEF3FF}
 .callout.warn{border-color:var(--warn);background:#FCF6E9}
 .callout b{color:var(--teal)}
 
@@ -193,30 +193,30 @@ footer .wrap{display:grid;gap:6px}
 
   <figure class="fig"><svg role="img" aria-label="그림 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
   <rect width="640" height="460" fill="#FFFFFF"/>
-  <text x="320" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#22303A">SEO · AEO · GEO — 대체가 아니라 상호보완</text>
-  <text x="320" y="66" text-anchor="middle" font-size="13" fill="#5A6982">AI 엔진은 "구글에 잘 인덱싱된 신뢰 높은 페이지"를 먼저 참고한다 · SEO가 토대</text>
+  <text x="320" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#14110F">SEO · AEO · GEO — 대체가 아니라 상호보완</text>
+  <text x="320" y="66" text-anchor="middle" font-size="13" fill="#6B655E">AI 엔진은 "구글에 잘 인덱싱된 신뢰 높은 페이지"를 먼저 참고한다 · SEO가 토대</text>
 
   <!-- circles -->
-  <circle cx="248" cy="228" r="130" fill="#12726E" fill-opacity="0.20" stroke="#0E5A5A" stroke-width="2.5"/>
-  <circle cx="392" cy="228" r="130" fill="#E8734A" fill-opacity="0.20" stroke="#C8552F" stroke-width="2.5"/>
-  <circle cx="320" cy="330" r="130" fill="#2E7BB0" fill-opacity="0.18" stroke="#22608C" stroke-width="2.5"/>
+  <circle cx="248" cy="228" r="130" fill="#1B6BFF" fill-opacity="0.20" stroke="#14110F" stroke-width="2.5"/>
+  <circle cx="392" cy="228" r="130" fill="#6B1F32" fill-opacity="0.20" stroke="#4A1624" stroke-width="2.5"/>
+  <circle cx="320" cy="330" r="130" fill="#1B6BFF" fill-opacity="0.18" stroke="#1550C7" stroke-width="2.5"/>
 
   <!-- labels -->
-  <text x="176" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#0E5A5A">SEO</text>
-  <text x="176" y="216" text-anchor="middle" font-size="11.5" fill="#0E5A5A">검색 상위 노출</text>
-  <text x="176" y="232" text-anchor="middle" font-size="11" fill="#5A6982">구글·네이버 봇</text>
+  <text x="176" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#14110F">SEO</text>
+  <text x="176" y="216" text-anchor="middle" font-size="11.5" fill="#14110F">검색 상위 노출</text>
+  <text x="176" y="232" text-anchor="middle" font-size="11" fill="#6B655E">구글·네이버 봇</text>
 
-  <text x="466" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#C8552F">AEO</text>
-  <text x="466" y="216" text-anchor="middle" font-size="11.5" fill="#C8552F">AI 요약 답변 인용</text>
-  <text x="466" y="232" text-anchor="middle" font-size="11" fill="#5A6982">AI Overview·스니펫</text>
+  <text x="466" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#4A1624">AEO</text>
+  <text x="466" y="216" text-anchor="middle" font-size="11.5" fill="#4A1624">AI 요약 답변 인용</text>
+  <text x="466" y="232" text-anchor="middle" font-size="11" fill="#6B655E">AI Overview·스니펫</text>
 
-  <text x="320" y="392" text-anchor="middle" font-size="19" font-weight="700" fill="#22608C">GEO</text>
-  <text x="320" y="412" text-anchor="middle" font-size="11.5" fill="#22608C">생성형 AI 브랜드 인용</text>
-  <text x="320" y="428" text-anchor="middle" font-size="11" fill="#5A6982">ChatGPT·Perplexity·Claude</text>
+  <text x="320" y="392" text-anchor="middle" font-size="19" font-weight="700" fill="#1550C7">GEO</text>
+  <text x="320" y="412" text-anchor="middle" font-size="11.5" fill="#1550C7">생성형 AI 브랜드 인용</text>
+  <text x="320" y="428" text-anchor="middle" font-size="11" fill="#6B655E">ChatGPT·Perplexity·Claude</text>
 
   <!-- center overlap -->
-  <text x="320" y="252" text-anchor="middle" font-size="12.5" font-weight="700" fill="#22303A">콘텐츠 권위</text>
-  <text x="320" y="270" text-anchor="middle" font-size="11" fill="#3A4A57">+ 구조화 + 언급</text>
+  <text x="320" y="252" text-anchor="middle" font-size="12.5" font-weight="700" fill="#14110F">콘텐츠 권위</text>
+  <text x="320" y="270" text-anchor="middle" font-size="11" fill="#3A342E">+ 구조화 + 언급</text>
 </svg><figcaption>그림 1 · SEO·AEO·GEO는 겹치는 상호보완 관계이며, 토대는 SEO입니다.</figcaption></figure>
 </div></section>
 
@@ -226,43 +226,43 @@ footer .wrap{display:grid;gap:6px}
   <h2>반드시 알아야 할 다섯 결론</h2>
   <figure class="fig"><svg role="img" aria-label="그림 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 490" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
   <rect width="640" height="490" fill="#FFFFFF"/>
-  <text x="320" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">AI Overview 인용 비율 × 오가닉 검색 순위</text>
-  <text x="320" y="56" text-anchor="middle" font-size="12.5" fill="#5A6982">구글 상위일수록 AI 답변에 인용될 확률이 높다 (개념도, Ahrefs 조사)</text>
+  <text x="320" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#14110F">AI Overview 인용 비율 × 오가닉 검색 순위</text>
+  <text x="320" y="56" text-anchor="middle" font-size="12.5" fill="#6B655E">구글 상위일수록 AI 답변에 인용될 확률이 높다 (개념도, Ahrefs 조사)</text>
 
   <!-- y grid + labels -->
-  <g font-size="11" fill="#8A97A8">
-    <line x1="70" y1="410" x2="610" y2="410" stroke="#D3DBE7"/><text x="60" y="414" text-anchor="end">0%</text>
-    <line x1="70" y1="346" x2="610" y2="346" stroke="#EEF2F6"/><text x="60" y="350" text-anchor="end">20%</text>
-    <line x1="70" y1="282" x2="610" y2="282" stroke="#EEF2F6"/><text x="60" y="286" text-anchor="end">40%</text>
-    <line x1="70" y1="218" x2="610" y2="218" stroke="#EEF2F6"/><text x="60" y="222" text-anchor="end">60%</text>
-    <line x1="70" y1="154" x2="610" y2="154" stroke="#EEF2F6"/><text x="60" y="158" text-anchor="end">80%</text>
-    <line x1="70" y1="90" x2="610" y2="90" stroke="#EEF2F6"/><text x="60" y="94" text-anchor="end">100%</text>
+  <g font-size="11" fill="#8A8378">
+    <line x1="70" y1="410" x2="610" y2="410" stroke="#E4DDD0"/><text x="60" y="414" text-anchor="end">0%</text>
+    <line x1="70" y1="346" x2="610" y2="346" stroke="#E4DDD0"/><text x="60" y="350" text-anchor="end">20%</text>
+    <line x1="70" y1="282" x2="610" y2="282" stroke="#E4DDD0"/><text x="60" y="286" text-anchor="end">40%</text>
+    <line x1="70" y1="218" x2="610" y2="218" stroke="#E4DDD0"/><text x="60" y="222" text-anchor="end">60%</text>
+    <line x1="70" y1="154" x2="610" y2="154" stroke="#E4DDD0"/><text x="60" y="158" text-anchor="end">80%</text>
+    <line x1="70" y1="90" x2="610" y2="90" stroke="#E4DDD0"/><text x="60" y="94" text-anchor="end">100%</text>
   </g>
 
   <!-- bars: coral(top)=Not in AIO, blue(bottom)=In AIO -->
   <g>
-    <rect x="78" y="90" width="38" height="160" fill="#F0A28A"/><rect x="78" y="250" width="38" height="160" fill="#2E7BB0"/>
-    <rect x="132" y="90" width="38" height="188.8" fill="#F0A28A"/><rect x="132" y="278.8" width="38" height="131.2" fill="#2E7BB0"/>
-    <rect x="186" y="90" width="38" height="224" fill="#F0A28A"/><rect x="186" y="314" width="38" height="96" fill="#2E7BB0"/>
-    <rect x="240" y="90" width="38" height="243.2" fill="#F0A28A"/><rect x="240" y="333.2" width="38" height="76.8" fill="#2E7BB0"/>
-    <rect x="294" y="90" width="38" height="259.2" fill="#F0A28A"/><rect x="294" y="349.2" width="38" height="60.8" fill="#2E7BB0"/>
-    <rect x="348" y="90" width="38" height="268.8" fill="#F0A28A"/><rect x="348" y="358.8" width="38" height="51.2" fill="#2E7BB0"/>
-    <rect x="402" y="90" width="38" height="294.4" fill="#F0A28A"/><rect x="402" y="384.4" width="38" height="25.6" fill="#2E7BB0"/>
-    <rect x="456" y="90" width="38" height="300.8" fill="#F0A28A"/><rect x="456" y="390.8" width="38" height="19.2" fill="#2E7BB0"/>
-    <rect x="510" y="90" width="38" height="307.2" fill="#F0A28A"/><rect x="510" y="397.2" width="38" height="12.8" fill="#2E7BB0"/>
-    <rect x="564" y="90" width="38" height="310.4" fill="#F0A28A"/><rect x="564" y="400.4" width="38" height="9.6" fill="#2E7BB0"/>
+    <rect x="78" y="90" width="38" height="160" fill="#D9A9B2"/><rect x="78" y="250" width="38" height="160" fill="#1B6BFF"/>
+    <rect x="132" y="90" width="38" height="188.8" fill="#D9A9B2"/><rect x="132" y="278.8" width="38" height="131.2" fill="#1B6BFF"/>
+    <rect x="186" y="90" width="38" height="224" fill="#D9A9B2"/><rect x="186" y="314" width="38" height="96" fill="#1B6BFF"/>
+    <rect x="240" y="90" width="38" height="243.2" fill="#D9A9B2"/><rect x="240" y="333.2" width="38" height="76.8" fill="#1B6BFF"/>
+    <rect x="294" y="90" width="38" height="259.2" fill="#D9A9B2"/><rect x="294" y="349.2" width="38" height="60.8" fill="#1B6BFF"/>
+    <rect x="348" y="90" width="38" height="268.8" fill="#D9A9B2"/><rect x="348" y="358.8" width="38" height="51.2" fill="#1B6BFF"/>
+    <rect x="402" y="90" width="38" height="294.4" fill="#D9A9B2"/><rect x="402" y="384.4" width="38" height="25.6" fill="#1B6BFF"/>
+    <rect x="456" y="90" width="38" height="300.8" fill="#D9A9B2"/><rect x="456" y="390.8" width="38" height="19.2" fill="#1B6BFF"/>
+    <rect x="510" y="90" width="38" height="307.2" fill="#D9A9B2"/><rect x="510" y="397.2" width="38" height="12.8" fill="#1B6BFF"/>
+    <rect x="564" y="90" width="38" height="310.4" fill="#D9A9B2"/><rect x="564" y="400.4" width="38" height="9.6" fill="#1B6BFF"/>
   </g>
 
   <!-- x labels -->
-  <g font-size="11.5" fill="#5A6982" text-anchor="middle">
+  <g font-size="11.5" fill="#6B655E" text-anchor="middle">
     <text x="97" y="430">1</text><text x="151" y="430">2</text><text x="205" y="430">3</text><text x="259" y="430">4</text><text x="313" y="430">5</text>
     <text x="367" y="430">6</text><text x="421" y="430">7</text><text x="475" y="430">8</text><text x="529" y="430">9</text><text x="583" y="430">10</text>
   </g>
-  <text x="340" y="454" text-anchor="middle" font-size="12" fill="#5A6982">오가닉 검색 순위 (Organic position)</text>
+  <text x="340" y="454" text-anchor="middle" font-size="12" fill="#6B655E">오가닉 검색 순위 (Organic position)</text>
 
   <!-- legend -->
-  <rect x="200" y="468" width="14" height="14" fill="#2E7BB0"/><text x="220" y="480" font-size="12" fill="#22303A">AI Overview에 인용됨</text>
-  <rect x="400" y="468" width="14" height="14" fill="#F0A28A"/><text x="420" y="480" font-size="12" fill="#22303A">인용 안 됨</text>
+  <rect x="200" y="468" width="14" height="14" fill="#1B6BFF"/><text x="220" y="480" font-size="12" fill="#14110F">AI Overview에 인용됨</text>
+  <rect x="400" y="468" width="14" height="14" fill="#D9A9B2"/><text x="420" y="480" font-size="12" fill="#14110F">인용 안 됨</text>
 </svg><figcaption>그림 2 · AI Overview 인용 비율 × 오가닉 순위 — 1위 약 50%에서 10위로 갈수록 급감. (Ahrefs 개념 재구성 · 근사값)</figcaption></figure>
 
   <table class="tbl"><thead><tr><th style="width:56px">#</th><th>결론</th><th style="width:38%">근거 · 함의</th></tr></thead><tbody>
@@ -284,53 +284,53 @@ footer .wrap{display:grid;gap:6px}
   <h2>무엇을, 어떤 순서로 다루는가 — 8요소 지도</h2>
   <figure class="fig"><svg role="img" aria-label="그림 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
   <rect width="740" height="430" fill="#FFFFFF"/>
-  <text x="370" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">실전 SEO 8요소 — 무엇을 순서대로 다루는가</text>
+  <text x="370" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#14110F">실전 SEO 8요소 — 무엇을 순서대로 다루는가</text>
 
   <!-- 샌드박스 bracket (over col3-4 top) -->
-  <path d="M448 92 v-14 h192 v14" fill="none" stroke="#C8552F" stroke-width="2"/>
+  <path d="M448 92 v-14 h192 v14" fill="none" stroke="#4A1624" stroke-width="2"/>
   <rect x="512" y="58" width="64" height="22" rx="11" fill="#FBE8E0"/>
-  <text x="544" y="74" text-anchor="middle" font-size="12.5" font-weight="700" fill="#C8552F">샌드박스</text>
+  <text x="544" y="74" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4A1624">샌드박스</text>
 
   <!-- Row 1 -->
   <g>
-    <circle cx="110" cy="170" r="64" fill="#0E5A5A"/>
+    <circle cx="110" cy="170" r="64" fill="#14110F"/>
     <text x="110" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">알고리즘</text>
 
-    <circle cx="290" cy="170" r="64" fill="#12726E"/>
+    <circle cx="290" cy="170" r="64" fill="#1B6BFF"/>
     <text x="290" y="162" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">시장조사</text>
-    <text x="290" y="182" text-anchor="middle" font-size="11" fill="#DDF0EE">경쟁사 키워드 추출</text>
+    <text x="290" y="182" text-anchor="middle" font-size="11" fill="#F6EEF0">경쟁사 키워드 추출</text>
 
-    <circle cx="470" cy="170" r="64" fill="#12726E"/>
+    <circle cx="470" cy="170" r="64" fill="#1B6BFF"/>
     <text x="470" y="164" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">도메인</text>
     <text x="470" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">·호스팅</text>
 
-    <circle cx="640" cy="170" r="64" fill="#12726E"/>
+    <circle cx="640" cy="170" r="64" fill="#1B6BFF"/>
     <text x="640" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">CMS</text>
   </g>
 
   <!-- Row 2 -->
   <g>
-    <circle cx="110" cy="312" r="64" fill="#2E7BB0"/>
+    <circle cx="110" cy="312" r="64" fill="#1B6BFF"/>
     <text x="110" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">검색엔진</text>
     <text x="110" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">등록</text>
 
-    <circle cx="290" cy="312" r="64" fill="#2E7BB0"/>
+    <circle cx="290" cy="312" r="64" fill="#1B6BFF"/>
     <text x="290" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">외부유입</text>
-    <text x="290" y="326" text-anchor="middle" font-size="11" fill="#DCEAF4">백링크</text>
+    <text x="290" y="326" text-anchor="middle" font-size="11" fill="#EEF3FF">백링크</text>
 
-    <circle cx="470" cy="312" r="64" fill="#2E7BB0"/>
+    <circle cx="470" cy="312" r="64" fill="#1B6BFF"/>
     <text x="470" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">콘텐츠</text>
     <text x="470" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">발행</text>
 
-    <circle cx="640" cy="312" r="64" fill="#E8734A"/>
+    <circle cx="640" cy="312" r="64" fill="#6B1F32"/>
     <text x="640" y="306" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">성과측정</text>
     <text x="640" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">시스템</text>
   </g>
 
   <!-- 백링크 bracket (under col1-2 bottom) -->
-  <path d="M46 388 v14 h384 v-14" fill="none" stroke="#22608C" stroke-width="2"/>
-  <rect x="176" y="402" width="124" height="22" rx="11" fill="#E1EEF7"/>
-  <text x="238" y="418" text-anchor="middle" font-size="12" font-weight="700" fill="#22608C">백링크 (네이버·구글)</text>
+  <path d="M46 388 v14 h384 v-14" fill="none" stroke="#1550C7" stroke-width="2"/>
+  <rect x="176" y="402" width="124" height="22" rx="11" fill="#EEF3FF"/>
+  <text x="238" y="418" text-anchor="middle" font-size="12" font-weight="700" fill="#1550C7">백링크 (네이버·구글)</text>
 </svg><figcaption>그림 3 · 실전 SEO 8요소 — 샌드박스 구간은 도메인·호스팅과 CMS, 사이트맵은 검색엔진 등록의 기초.</figcaption></figure>
 
   <h3>사전진단 — 시놀은 '기존 홈페이지 보유' 갈래입니다</h3>
@@ -415,54 +415,54 @@ footer .wrap{display:grid;gap:6px}
   <h2>5채널 진단 — 실측이 말하는 것</h2>
   <figure class="fig"><svg role="img" aria-label="그림 4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
   <rect width="700" height="430" fill="#FFFFFF"/>
-  <text x="350" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">시놀 SEO/AEO/GEO/UX 진단 — 5채널 신호등</text>
-  <text x="350" y="60" text-anchor="middle" font-size="12" fill="#5A6982">실측 2026.08.06 · 근거: 정합기준 정본(GA4·앱 리스팅·루커스튜디오)</text>
+  <text x="350" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#14110F">시놀 SEO/AEO/GEO/UX 진단 — 5채널 신호등</text>
+  <text x="350" y="60" text-anchor="middle" font-size="12" fill="#6B655E">실측 2026.08.06 · 근거: 정합기준 정본(GA4·앱 리스팅·루커스튜디오)</text>
 
   <!-- rows -->
   <!-- SEO -->
   <g>
-    <rect x="40" y="82" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <rect x="40" y="82" width="620" height="58" rx="10" fill="#FAF8F4" stroke="#E4DDD0"/>
     <circle cx="72" cy="111" r="11" fill="#E8A13A"/>
-    <text x="100" y="106" font-size="16" font-weight="700" fill="#22303A">SEO</text>
+    <text x="100" y="106" font-size="16" font-weight="700" fill="#14110F">SEO</text>
     <rect x="152" y="99" width="52" height="24" rx="12" fill="#FBEFD8"/><text x="178" y="116" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B67C1E">주의</text>
-    <text x="224" y="107" font-size="12.5" fill="#3A4A57">검색이 유입의 57% · 칼럼 191편 보유 · 상위 페이지 제목에 검색어 없음</text>
-    <text x="224" y="126" font-size="12" font-weight="700" fill="#0E5A5A">→ 페이지 제목에 검색어 삽입</text>
+    <text x="224" y="107" font-size="12.5" fill="#3A342E">검색이 유입의 57% · 칼럼 191편 보유 · 상위 페이지 제목에 검색어 없음</text>
+    <text x="224" y="126" font-size="12" font-weight="700" fill="#14110F">→ 페이지 제목에 검색어 삽입</text>
   </g>
   <!-- ASO -->
   <g>
-    <rect x="40" y="148" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <rect x="40" y="148" width="620" height="58" rx="10" fill="#FAF8F4" stroke="#E4DDD0"/>
     <circle cx="72" cy="177" r="11" fill="#D9534F"/>
-    <text x="100" y="172" font-size="16" font-weight="700" fill="#22303A">ASO</text>
+    <text x="100" y="172" font-size="16" font-weight="700" fill="#14110F">ASO</text>
     <rect x="152" y="165" width="52" height="24" rx="12" fill="#FADEDD"/><text x="178" y="182" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B23A36">위험</text>
-    <text x="224" y="173" font-size="12.5" fill="#3A4A57">App Store 언어가 '영어'만 — 한국 전용인데 한국어 키워드 미인덱싱</text>
-    <text x="224" y="192" font-size="12" font-weight="700" fill="#0E5A5A">→ App Store 한국어 등록</text>
+    <text x="224" y="173" font-size="12.5" fill="#3A342E">App Store 언어가 '영어'만 — 한국 전용인데 한국어 키워드 미인덱싱</text>
+    <text x="224" y="192" font-size="12" font-weight="700" fill="#14110F">→ App Store 한국어 등록</text>
   </g>
   <!-- AEO -->
   <g>
-    <rect x="40" y="214" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <rect x="40" y="214" width="620" height="58" rx="10" fill="#FAF8F4" stroke="#E4DDD0"/>
     <circle cx="72" cy="243" r="11" fill="#2E9E6B"/>
-    <text x="100" y="238" font-size="16" font-weight="700" fill="#22303A">AEO</text>
+    <text x="100" y="238" font-size="16" font-weight="700" fill="#14110F">AEO</text>
     <rect x="152" y="231" width="52" height="24" rx="12" fill="#DBF0E4"/><text x="178" y="248" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1F7A4D">양호</text>
-    <text x="224" y="239" font-size="12.5" fill="#3A4A57">시럽인연 페이지에 이미 FAQ 존재 · 구글이 본문 읽는 중 · 표시만 없음</text>
-    <text x="224" y="258" font-size="12" font-weight="700" fill="#0E5A5A">→ FAQPage 스키마 얹기</text>
+    <text x="224" y="239" font-size="12.5" fill="#3A342E">시럽인연 페이지에 이미 FAQ 존재 · 구글이 본문 읽는 중 · 표시만 없음</text>
+    <text x="224" y="258" font-size="12" font-weight="700" fill="#14110F">→ FAQPage 스키마 얹기</text>
   </g>
   <!-- GEO -->
   <g>
-    <rect x="40" y="280" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <rect x="40" y="280" width="620" height="58" rx="10" fill="#FAF8F4" stroke="#E4DDD0"/>
     <circle cx="72" cy="309" r="11" fill="#E8A13A"/>
-    <text x="100" y="304" font-size="16" font-weight="700" fill="#22303A">GEO</text>
+    <text x="100" y="304" font-size="16" font-weight="700" fill="#14110F">GEO</text>
     <rect x="152" y="297" width="52" height="24" rx="12" fill="#FBEFD8"/><text x="178" y="314" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B67C1E">주의</text>
-    <text x="224" y="305" font-size="12.5" fill="#3A4A57">AI 유입 61명(챗GPT 47) 실측 · 다만 www는 선별적 차단(자동화만)</text>
-    <text x="224" y="324" font-size="12" font-weight="700" fill="#0E5A5A">→ AI 크롤러 허용 확인</text>
+    <text x="224" y="305" font-size="12.5" fill="#3A342E">AI 유입 61명(챗GPT 47) 실측 · 다만 www는 선별적 차단(자동화만)</text>
+    <text x="224" y="324" font-size="12" font-weight="700" fill="#14110F">→ AI 크롤러 허용 확인</text>
   </g>
   <!-- UX -->
   <g>
-    <rect x="40" y="346" width="620" height="58" rx="10" fill="#F7FAFB" stroke="#E4EBF0"/>
+    <rect x="40" y="346" width="620" height="58" rx="10" fill="#FAF8F4" stroke="#E4DDD0"/>
     <circle cx="72" cy="375" r="11" fill="#D9534F"/>
-    <text x="100" y="370" font-size="16" font-weight="700" fill="#22303A">UX</text>
+    <text x="100" y="370" font-size="16" font-weight="700" fill="#14110F">UX</text>
     <rect x="152" y="363" width="52" height="24" rx="12" fill="#FADEDD"/><text x="178" y="380" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B23A36">위험</text>
-    <text x="224" y="371" font-size="12.5" fill="#3A4A57">결제 기본값 무통장 · 광고 직행 랜딩 이탈 75.8% · 앱 유도 도달 1.4%</text>
-    <text x="224" y="390" font-size="12" font-weight="700" fill="#0E5A5A">→ 결제·랜딩·여행 동선 수리</text>
+    <text x="224" y="371" font-size="12.5" fill="#3A342E">결제 기본값 무통장 · 광고 직행 랜딩 이탈 75.8% · 앱 유도 도달 1.4%</text>
+    <text x="224" y="390" font-size="12" font-weight="700" fill="#14110F">→ 결제·랜딩·여행 동선 수리</text>
   </g>
 </svg><figcaption>그림 4 · 시놀 5채널 신호등 — SEO 주의 · ASO 위험 · AEO 양호 · GEO 주의 · UX 위험.</figcaption></figure>
 
@@ -506,45 +506,45 @@ footer .wrap{display:grid;gap:6px}
   <h2>순서가 핵심 — 앞을 건너뛰면 뒤가 작동하지 않습니다</h2>
   <figure class="fig"><svg role="img" aria-label="그림 5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 240" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
   <rect width="780" height="240" fill="#FFFFFF"/>
-  <text x="390" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#22303A">시놀 실행 로드맵 — 앞 단계를 건너뛰면 뒤가 작동하지 않는다</text>
+  <text x="390" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#14110F">시놀 실행 로드맵 — 앞 단계를 건너뛰면 뒤가 작동하지 않는다</text>
 
   <!-- connecting line -->
-  <line x1="90" y1="96" x2="690" y2="96" stroke="#CFE0DE" stroke-width="4"/>
+  <line x1="90" y1="96" x2="690" y2="96" stroke="#D9D3CA" stroke-width="4"/>
 
   <!-- steps -->
   <g text-anchor="middle">
     <!-- 0 -->
-    <circle cx="90" cy="96" r="34" fill="#0E5A5A"/><text x="90" y="105" font-size="24" font-weight="700" fill="#FFFFFF">0</text>
-    <text x="90" y="156" font-size="14" font-weight="700" fill="#22303A">측정 연결</text>
-    <text x="90" y="176" font-size="10.5" fill="#5A6982">서치콘솔·SA</text>
-    <text x="90" y="190" font-size="10.5" fill="#5A6982">결제 이벤트</text>
+    <circle cx="90" cy="96" r="34" fill="#14110F"/><text x="90" y="105" font-size="24" font-weight="700" fill="#FFFFFF">0</text>
+    <text x="90" y="156" font-size="14" font-weight="700" fill="#14110F">측정 연결</text>
+    <text x="90" y="176" font-size="10.5" fill="#6B655E">서치콘솔·SA</text>
+    <text x="90" y="190" font-size="10.5" fill="#6B655E">결제 이벤트</text>
 
     <!-- 1 -->
-    <circle cx="240" cy="96" r="34" fill="#12726E"/><text x="240" y="105" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
-    <text x="240" y="156" font-size="14" font-weight="700" fill="#22303A">SEO 본체</text>
-    <text x="240" y="176" font-size="10.5" fill="#5A6982">제목·시맨틱</text>
-    <text x="240" y="190" font-size="10.5" fill="#5A6982">모바일·속도</text>
+    <circle cx="240" cy="96" r="34" fill="#1B6BFF"/><text x="240" y="105" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+    <text x="240" y="156" font-size="14" font-weight="700" fill="#14110F">SEO 본체</text>
+    <text x="240" y="176" font-size="10.5" fill="#6B655E">제목·시맨틱</text>
+    <text x="240" y="190" font-size="10.5" fill="#6B655E">모바일·속도</text>
 
     <!-- 2 -->
-    <circle cx="390" cy="96" r="34" fill="#2E7BB0"/><text x="390" y="105" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
-    <text x="390" y="156" font-size="14" font-weight="700" fill="#22303A">리치결과</text>
-    <text x="390" y="176" font-size="10.5" fill="#5A6982">FAQPage</text>
-    <text x="390" y="190" font-size="10.5" fill="#5A6982">Product+Offer</text>
+    <circle cx="390" cy="96" r="34" fill="#1B6BFF"/><text x="390" y="105" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+    <text x="390" y="156" font-size="14" font-weight="700" fill="#14110F">리치결과</text>
+    <text x="390" y="176" font-size="10.5" fill="#6B655E">FAQPage</text>
+    <text x="390" y="190" font-size="10.5" fill="#6B655E">Product+Offer</text>
 
     <!-- 3 -->
-    <circle cx="540" cy="96" r="34" fill="#22608C"/><text x="540" y="105" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
-    <text x="540" y="156" font-size="14" font-weight="700" fill="#22303A">브랜드 언급</text>
-    <text x="540" y="176" font-size="10.5" fill="#5A6982">PR·YouTube</text>
-    <text x="540" y="190" font-size="10.5" fill="#5A6982">제3자 멘션</text>
+    <circle cx="540" cy="96" r="34" fill="#1550C7"/><text x="540" y="105" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+    <text x="540" y="156" font-size="14" font-weight="700" fill="#14110F">브랜드 언급</text>
+    <text x="540" y="176" font-size="10.5" fill="#6B655E">PR·YouTube</text>
+    <text x="540" y="190" font-size="10.5" fill="#6B655E">제3자 멘션</text>
 
     <!-- 4 -->
-    <circle cx="690" cy="96" r="34" fill="#E8734A"/><text x="690" y="105" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
-    <text x="690" y="156" font-size="14" font-weight="700" fill="#22303A">ASO</text>
-    <text x="690" y="176" font-size="10.5" fill="#5A6982">한국어 등록</text>
-    <text x="690" y="190" font-size="10.5" fill="#5A6982">운세 탑재</text>
+    <circle cx="690" cy="96" r="34" fill="#6B1F32"/><text x="690" y="105" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+    <text x="690" y="156" font-size="14" font-weight="700" fill="#14110F">ASO</text>
+    <text x="690" y="176" font-size="10.5" fill="#6B655E">한국어 등록</text>
+    <text x="690" y="190" font-size="10.5" fill="#6B655E">운세 탑재</text>
   </g>
 
-  <text x="390" y="222" text-anchor="middle" font-size="11.5" fill="#8A97A8">0단계(측정)가 비면 개선 여부를 판정할 수 없다 — 정합기준 정본 §4</text>
+  <text x="390" y="222" text-anchor="middle" font-size="11.5" fill="#8A8378">0단계(측정)가 비면 개선 여부를 판정할 수 없다 — 정합기준 정본 §4</text>
 </svg><figcaption>그림 5 · 시놀 실행 로드맵 — 0.측정 연결 → 1.SEO 본체 → 2.리치결과 → 3.브랜드 언급 → 4.ASO.</figcaption></figure>
 
   <ol class="steps">
@@ -559,7 +559,7 @@ footer .wrap{display:grid;gap:6px}
       <div class="judge">판정 — 스니펫 노출</div></li>
     <li class="step"><span class="dot">3</span><h4>브랜드 언급</h4>
       <p>언론 보도·YouTube·커뮤니티의 제3자 언급 확대 · 회사소개에 팩트 문장 집약. 언급이 백링크보다 강한 신호(0.66~0.74)입니다.</p>
-      <p style="font-size:15.5px;background:#FDF3ED;border-left:4px solid var(--coral);border-radius:0 8px 8px 0;padding:11px 14px;margin:8px 0 6px;color:var(--ink)"><b>첫 실행 —</b> 주제 부합 YouTube 영상(5060 만남·모임·오늘의운세·재혼·시놀트립) + 설명란에 <b>웹·앱 링크 표준 블록</b>을 항상 같은 형태로. 웹과 앱을 한 브랜드로 묶는 <code>sameAs</code> 연결이며, 유입은 UTM으로 추적합니다. <span style="color:var(--sub)">별도 문서 — 시놀_발행킷_링크표준블록</span></p>
+      <p style="font-size:15.5px;background:#F6EEF0;border-left:4px solid var(--coral);border-radius:0 8px 8px 0;padding:11px 14px;margin:8px 0 6px;color:var(--ink)"><b>첫 실행 —</b> 주제 부합 YouTube 영상(5060 만남·모임·오늘의운세·재혼·시놀트립) + 설명란에 <b>웹·앱 링크 표준 블록</b>을 항상 같은 형태로. 웹과 앱을 한 브랜드로 묶는 <code>sameAs</code> 연결이며, 유입은 UTM으로 추적합니다. <span style="color:var(--sub)">별도 문서 — 시놀_발행킷_링크표준블록</span></p>
       <div class="judge">판정 — AI 인용·멘션 월 추적</div></li>
     <li class="step"><span class="dot">4</span><h4>ASO</h4>
       <p>App Store 한국어 등록 · 운세 이름 탑재 · 데이터 안전 재제출. 최대 기회(운세 525만)와 신뢰 신호를 함께 잡습니다.</p>
