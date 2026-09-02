@@ -8,8 +8,8 @@
 <meta name="robots" content="noindex">
 <style>
 :root{
-  --ink:#1A2028; --sub:#5C6A78; --line:#DDE3E9; --bg:#FFFFFF; --wash:#F5F7F9;
-  --slate:#243444; --slate2:#2F4459; --amber:#D97A28; --amber-bg:#FDF4EA;
+  --ink:#14110F; --sub:#6B655E; --line:#D9D3CA; --bg:#F8F6F2; --wash:#F4F1EA;
+  --slate:#14110F; --slate2:#1B6BFF; --amber:#6B1F32; --amber-bg:#F6EEF0;
   --ok:#2E8B62; --warn:#D9932B; --danger:#C6483F;
   --term:#161C24; --term-ink:#D8E2EC; --term-cmd:#8FD6A8;
 }
@@ -29,22 +29,22 @@ nav a{display:flex;align-items:center;min-height:48px;padding:0 13px;font-size:1
   color:var(--sub);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
 nav a:hover,nav a:focus-visible{color:var(--slate);border-bottom-color:var(--amber)}
 
-header{background:linear-gradient(155deg,#1B2836 0%,var(--slate) 60%,#31485E 100%);color:#fff;padding:50px 0 42px}
-header .eyebrow{font-size:13px;letter-spacing:.15em;font-weight:700;color:#8FB4CE;text-transform:uppercase}
+header{background:var(--ink);color:#fff;padding:50px 0 42px}
+header .eyebrow{font-size:13px;letter-spacing:.15em;font-weight:700;color:#C9A4AE;text-transform:uppercase}
 header h1{font-size:clamp(26px,4.4vw,38px);line-height:1.26;margin:10px 0 8px;font-weight:800}
-header .sub{font-size:17.5px;color:#C6D6E2;max-width:660px}
+header .sub{font-size:17.5px;color:#C9C2B8;max-width:660px}
 .leak{margin-top:28px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px 22px}
-.leak .cap{font-size:13px;font-weight:700;color:#8FB4CE;letter-spacing:.08em;margin-bottom:14px}
+.leak .cap{font-size:13px;font-weight:700;color:#C9A4AE;letter-spacing:.08em;margin-bottom:14px}
 .lrow{display:grid;grid-template-columns:172px 1fr 62px;align-items:center;gap:12px;margin:9px 0}
 .lrow .lb{font-size:14.5px;font-weight:700;color:#E6EEF4}
 .ltrack{display:block;height:13px;border-radius:7px;background:rgba(255,255,255,.08);overflow:hidden}
 .lfill{display:block;height:100%;border-radius:7px;background:var(--amber);min-width:6px}
 .lrow .pv{font-size:14px;font-weight:700;text-align:right;color:#fff}
-.leak .note{font-size:14px;color:#AFC6D6;margin-top:12px}
+.leak .note{font-size:14px;color:#C9C2B8;margin-top:12px}
 .tldr{margin-top:26px;display:grid;gap:10px}
 .tldr li{list-style:none;background:rgba(255,255,255,.06);border-left:4px solid var(--amber);
   border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;color:#EDF3F7}
-.tldr li b{color:#FFD3AC}
+.tldr li b{color:#F0B8C4}
 
 section{padding:46px 0 8px}
 .eyebrow2{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--amber)}
@@ -69,7 +69,7 @@ p{margin:0 0 14px}
 .term{position:relative;background:var(--term);border-radius:12px;margin:14px 0;overflow:hidden}
 .term .bar{display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:9px 14px;background:#0F141B;border-bottom:1px solid #2A3543}
-.term .ttl{font-size:12.5px;font-weight:700;color:#8FB4CE;letter-spacing:.06em}
+.term .ttl{font-size:12.5px;font-weight:700;color:#C9A4AE;letter-spacing:.06em}
 .term .cp{min-height:30px;padding:4px 12px;border:1px solid #3A4757;border-radius:7px;background:#1E2732;
   color:#C6D6E2;font-size:12.5px;font-weight:700;cursor:pointer}
 .term .cp:hover{background:#28323F;color:#fff}
@@ -139,7 +139,7 @@ footer .wrap{display:grid;gap:6px}
     <div class="lrow"><span class="lb">누적 대화·요약</span><span class="ltrack"><span class="lfill" style="width:44%"></span></span><span class="pv">중간</span></div>
     <div class="lrow"><span class="lb">CLAUDE.md·규칙</span><span class="ltrack"><span class="lfill" style="width:26%"></span></span><span class="pv">고정</span></div>
     <div class="lrow"><span class="lb">MCP·훅</span><span class="ltrack"><span class="lfill" style="width:14%"></span></span><span class="pv">조건부</span></div>
-    <div class="note">개념도입니다. 실제 비중은 <code style="color:#FFD3AC">/context</code> 로 각자 세션에서 확인하십시오 — 이 문서의 모든 처방은 그 화면을 먼저 보는 데서 시작합니다.</div>
+    <div class="note">개념도입니다. 실제 비중은 <code style="color:#F0B8C4">/context</code> 로 각자 세션에서 확인하십시오 — 이 문서의 모든 처방은 그 화면을 먼저 보는 데서 시작합니다.</div>
   </div>
 
   <ul class="tldr">
